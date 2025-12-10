@@ -60,12 +60,10 @@
 **<div style="text-align: center; font-size: 24px;">Приклад команди INSERT</div>**
 
 ```sql
-```sql
 INSERT INTO Employees (EmployeeID, FirstName, LastName)
 VALUES (1, 'Іван', 'Петров');
 ```
 
-```
 Якщо ми маємо таблицю **«Employees»** зі стовпцями **«EmployeeID»,
 «FirstName»** і **«LastName»**, ми можемо додати нового співробітника за
 допомогою команди INSERT таким чином:
@@ -118,13 +116,11 @@ VALUES (1, 'Іван', 'Петров');
 **<div style="text-align: center; font-size: 24px;">Приклад команди UPDATE</div>**
 
 ```sql
-```sql
 UPDATE Employees
 SET LastName = 'Smith'
-WHERE EmployeeID = 1;
+  WHERE EmployeeID = 1;
 ```
 
-```
 Якщо ми хочемо змінити прізвище співробітника з **ID 1** на **«Smith»**
 у таблиці **«Employees»**, ми можемо використати
 команду **UPDATE** таким чином:
@@ -162,12 +158,10 @@ WHERE EmployeeID = 1;
 **<div style="text-align: center; font-size: 24px;">Приклад команди DELETE</div>**
 
 ```sql
-```sql
 DELETE FROM Employees
-WHERE EmployeeID = 1;
+  WHERE EmployeeID = 1;
 ```
 
-```
 Якщо ми хочемо видалити співробітника з **ID 1** з таблиці
 **«Employees»**, то ми можемо використати команду **DELETE** таким
 чином:
@@ -339,14 +333,9 @@ SQL надає багато видів з'єднань. Ось деякі з н
 
 ```sql
 SELECT A.n
-
-```
 FROM A
-
 INNER JOIN B
-
-```sql
-ON B.n = A.n;
+  ON B.n = A.n;
 ```
 
 Оператор **INNER JOIN** з'являється після **FROM**. Умова відповідності
@@ -361,20 +350,15 @@ ON B.n = A.n;
 
 ```sql
 SELECT A.n
-
-```
 FROM A
-
 INNER JOIN B
-
-ON B.n = A.n
-
+  ON B.n = A.n
 INNER JOIN C
-
-ON C.n = A.n;
+  ON C.n = A.n;
+```
 
 Давай використаємо таблиці **employees** і **departments**, щоб
-продемонструвати, як працює** INNER JOIN.**
+продемонструвати, як працює **INNER JOIN.**
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image9.png" width="600" />
@@ -395,13 +379,10 @@ ON C.n = A.n;
 
 ```sql
 SELECT department_id
-
-```
-, department_name
-
-FROM \"HR\".departments
-
+     , department_name
+FROM HR.departments
 WHERE department_id IN (1, 2, 3);
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image10.png" width="600" />
@@ -412,23 +393,15 @@ WHERE department_id IN (1, 2, 3);
 
 ```sql
 SELECT first_name
-
+     , last_name
+     , employees.department_id
+     , departments.department_id
+     , department_name
+FROM HR.employees
+INNER JOIN HR.departments
+  ON departments.department_id = employees.department_id
+    WHERE employees.department_id IN (1, 2, 3);
 ```
-, last_name
-
-, employees.department_id
-
-, departments.department_id
-
-, department_name
-
-FROM \"HR\".employees
-
-INNER JOIN \"HR\".departments
-
-ON departments.department_id = employees.department_id
-
-WHERE employees.department_id IN (1, 2, 3);
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image11.png" width="600" />
@@ -456,29 +429,14 @@ departments.department_id** задовольняється, то об'єдна�
 
 ```sql
 SELECT first_name
-
-```
-```sql
-, last_name
-
-, job_title
-
-, department_name
-```
-
-FROM \"HR\".employees e
-
-INNER JOIN \"HR\".departments d
-
-```sql
-ON d.department_id = e.department_id
-```
-
-INNER JOIN \"HR\".jobs j
-
-```sql
-ON j.job_id = e.job_id
-
+     , last_name
+     , job_title
+     , department_name
+FROM HR.employees e
+INNER JOIN HR.departments d
+  ON d.department_id = e.department_id
+INNER JOIN HR.jobs j
+  ON j.job_id = e.job_id
 WHERE e.department_id IN (1, 2, 3);
 ```
 
@@ -502,19 +460,13 @@ WHERE e.department_id IN (1, 2, 3);
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image12.png" width="600" />
 </div>
 
-У SQL ми використовуємо наступний синтаксис для з\'єднання таблиці **A**
+У SQL ми використовуємо наступний синтаксис для з'єднання таблиці **A**
 з таблицею **B**.
-
 ```sql
 SELECT A.n
-
-```
 FROM A
-
 LEFT JOIN B
-
-```sql
-ON B.n = A.n;
+  ON B.n = A.n;
 ```
 
 **LEFT JOIN** з'являється після **FROM**. Умова, що йде за ключовим
@@ -546,16 +498,13 @@ WHERE country_id IN (\'US\', \'UK\', \'CN\');
 Великобританії та Китаї:
 
 ```sql
-SELECT country_id
-
+-- Locations in US, UK and CN
+SELECT l.country_id
+     , l.street_address
+     , l.city
+FROM HR.locations AS l
+  WHERE l.country_id IN ('US', 'UK', 'CN');
 ```
-, street_address
-
-, city
-
-FROM \"HR\".locations
-
-WHERE country_id IN (\'US\', \'UK\', \'CN\');
 
 **<div style="text-align: center; font-size: 24px;">Запит 1</div>**
 
@@ -563,24 +512,18 @@ WHERE country_id IN (\'US\', \'UK\', \'CN\');
 таблицею локацій у вигляді наступного запиту:
 
 ```sql
+-- Locations for US, UK and CN (LEFT JOIN countries -> locations)
 SELECT c.country_name
-
+     , c.country_id
+     , l.location_id
+     , l.street_address
+     , l.city
+FROM HR.countries AS c
+LEFT JOIN HR.locations AS l
+  ON l.country_id = c.country_id
+    WHERE c.country_id IN ('US', 'UK', 'CN')
+ORDER BY c.country_name;
 ```
-, c.country_id
-
-, l.country_id
-
-, l.street_address
-
-, l.city
-
-FROM \"HR\".countries c
-
-LEFT JOIN \"HR\".locations l
-
-ON l.country_id = c.country_id
-
-WHERE c.country_id IN (\'US\', \'UK\', \'CN\')
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image13.png" width="600" />
@@ -604,22 +547,15 @@ WHERE c.country_id IN (\'US\', \'UK\', \'CN\')
 
 Тепер дуже просто можна знайти країну, яка не має жодного розташування в
 таблиці локацій:
-
 ```sql
-SELECT country_name
-
+-- Countries without any locations
+SELECT c.country_name
+FROM HR.countries AS c
+LEFT JOIN HR.locations AS l
+  ON l.country_id = c.country_id
+    WHERE l.location_id IS NULL
+ORDER BY c.country_name;
 ```
-FROM \"HR\".countries c
-
-LEFT JOIN \"HR\".locations l
-
-```sql
-ON l.country_id = c.country_id
-
-WHERE l.location_id IS NULL
-```
-
-ORDER BY country_name;
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image14.png" width="600" />
@@ -632,30 +568,16 @@ ORDER BY country_name;
 
 ```sql
 SELECT r.region_name
-
-```
-```sql
-, c.country_name
-
-, l.street_address
-
-, l.city
-```
-
-FROM \"HR\".regions r 
-
-LEFT JOIN \"HR\".countries c
-
-```sql
-ON c.region_id = r.region_id
-```
-
-LEFT JOIN \"HR\".locations l
-
-```sql
-ON l.country_id = c.country_id
-
-WHERE c.country_id IN (\'US\', \'UK\', \'CN\');
+     , c.country_name
+     , l.street_address
+     , l.city
+FROM HR.regions AS r
+LEFT JOIN HR.countries AS c
+  ON c.region_id = r.region_id
+LEFT JOIN HR.locations AS l
+  ON l.country_id = c.country_id
+    WHERE c.country_id IN ('US', 'UK', 'CN')
+ORDER BY r.region_name, c.country_name;
 ```
 
 <div align="center">
@@ -682,12 +604,9 @@ WHERE c.country_id IN (\'US\', \'UK\', \'CN\');
 
 ```sql
 SELECT column_list
-
 FROM A
-
 FULL OUTER JOIN B
-
-ON B.n = A.n;
+  ON B.n = A.n;
 ```
 
 Зауваж, що ключове слово **OUTER** необов'язкове.
@@ -709,7 +628,7 @@ ON B.n = A.n;
 У математиці **декартів добуток** --- це математична операція, яка
 повертає набір, що складається з **комбінацій елементів** інших наборів.
 
-Наприклад, із двома наборами**: A {x,y,z}** і **B {1,2,3}** --- декартів
+Наприклад, із двома наборами: **A {x,y,z}** і **B {1,2,3}** --- декартів
 добуток **A x B** є набором усіх упорядкованих пар: **(x,1), (x,2),
 (x,3), (y,1) (y,2), (y,3), (z,1), (z,2), (z,3).**
 
@@ -729,10 +648,8 @@ ON B.n = A.n;
 
 ```sql
 SELECT column_list
-
 FROM A
-
-CROSS JOIN B;
+  CROSS JOIN B;
 ```
 
 На наступному зображенні показано результат перехресного з'єднання між
@@ -792,60 +709,36 @@ B також має три рядки: **x, y** та **z. У** результа�
 
 ```sql
 WITH RECURSIVE employees_hierarchy AS (
+  SELECT
+    employee_id,
+    first_name,
+    last_name,
+    manager_id,
+    1 AS level
+  FROM HR.employees
+    WHERE manager_id IS NULL -- Вибрати кореневих співробітників (без менеджера)
 
-```
-```sql
-SELECT employee_id
+  UNION ALL
 
-, first_name
-
-, last_name
-
-, manager_id
-
-, 1 AS level
-
-FROM \"HR\".employees
-
-WHERE manager_id IS NULL *\-- Вибрати кореневих співробітників
-(без менеджера)*
-
-UNION ALL
-
-SELECT e.employee_id
-
-, e.first_name
-
-, e.last_name
-
-, e.manager_id
-
-, eh.level + 1
-
-FROM \"HR\".employees e
-
-INNER JOIN employees_hierarchy eh
-
-ON e.manager_id = eh.employee_id
-```
-
+  SELECT
+    e.employee_id,
+    e.first_name,
+    e.last_name,
+    e.manager_id,
+    eh.level + 1
+  FROM HR.employees AS e
+  INNER JOIN employees_hierarchy AS eh
+    ON e.manager_id = eh.employee_id
 )
-
-```sql
-SELECT employee_id
-
-```
-, first_name
-
-, last_name
-
-, manager_id
-
-, level
-
+SELECT
+  employee_id,
+  first_name,
+  last_name,
+  manager_id,
+  level
 FROM employees_hierarchy
-
 ORDER BY level, employee_id;
+```
 
 **RECURSIVE** у цьому запиті вказує SQL на те, що **CTE** має звертатися
 сам до себе, тобто працює рекурсивно. Це потрібно для того, щоб запит
@@ -872,19 +765,19 @@ ORDER BY level, employee_id;
     отримати одну розширену таблицю, яка містить інформацію з усіх
     вихідних таблиць.
 
--   Для об\'єднання таблиць в SQL використовуються оператори **JOIN**.
-    Найпоширеніші типи об\'єднань **--- INNER JOIN, LEFT JOIN, RIGHT
-    JOIN** і** FULL JOIN**. Кожен тип об\'єднання має свої особливості й
+-   Для об'єднання таблиць в SQL використовуються оператори **JOIN**.
+    Найпоширеніші типи об'єднань **--- INNER JOIN, LEFT JOIN, RIGHT
+    JOIN** і **FULL JOIN**. Кожен тип об'єднання має свої особливості й
     визначає, які рядки будуть включені до результату.
 
--   Під час об\'єднання таблиць необхідно вказати умову
+-   Під час об'єднання таблиць необхідно вказати умову
     відповідності (зіставлення) для визначення, які рядки повинні бути
-    об\'єднані. Зазвичай це робиться за допомогою оператора **ON**, який
+    об'єднані. Зазвичай це робиться за допомогою оператора **ON**, який
     визначає стовпці, за якими відбувається порівняння.
 
--   Об\'єднання таблиць дозволяє поєднувати інформацію з різних таблиць,
+-   Об'єднання таблиць дозволяє поєднувати інформацію з різних таблиць,
     щоб отримати повний набір даних для аналізу. Наприклад, можна
-    об\'єднати таблиці **«Замовлення»** і **«Клієнти»,** щоб отримати
+    об'єднати таблиці **«Замовлення»** і **«Клієнти»,** щоб отримати
     інформацію про клієнтів, які зробили замовлення, і пов\'язати їх
     дані для подальшого аналізу.
 
@@ -907,8 +800,8 @@ ORDER BY level, employee_id;
 -   **UNION** застосовується, коли дві таблиці мають однакову кількість
     стовпців.
 
-Загалом об\'єднання даних із кількох таблиць у SQL є важливим
+Загалом об'єднання даних із кількох таблиць у SQL є важливим
 інструментом для роботи з великими обсягами даних та аналізу інформації
 з різних джерел. Правильне використання операторів **JOIN** і розуміння
-**типів об\'єднань** сприятимуть створенню цілісного уявлення про
-дані та допоможуть здобути важливі висновки з об\'єднаних таблиць.
+**типів об'єднань** сприятимуть створенню цілісного уявлення про
+дані та допоможуть здобути важливі висновки з об'єднаних таблиць.
