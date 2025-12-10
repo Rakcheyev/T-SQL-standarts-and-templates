@@ -133,29 +133,33 @@ WHERE опис ~* 'description';
 ```
 
 Трішки розшифровки регулярних виразів у прикладах вище:
+1. У цьому регулярному виразі (приклад для email)
+   
+   - **.** — будь-який символ (зазвичай, окрім переведення рядка);
+   - **\*** — квантор «0 або більше» застосовується до попереднього токена;
+   - **+** — квантор «1 або більше» (зручний для виразу .+);
+   - Для позначення літеральної крапки використовується екранування: \. 
 
-1.  У цьому регулярному виразі 
+   Приклад коректного виразу для пошуку адреси з доменом example.com:
+   ```regex
+   .+@example\.com
+   ```
+   (якщо ви кладете цей рядок у SQL-літерал, у деяких СУБД потрібно додатково екранувати слеш: '.+@example\\.com')
 
-    -   **.** вказує нам на те, що на її місці може бути будь-який
-        символ, 
+2. У цьому регулярному виразі (приклад для телефонів, що починаються з "+1" і мають 10 цифр)
+   
+   - ^ — початок рядка;
+   - \+ — літерал плюс (потрібно екранувати, бо + — спеціальний символ);
+   - \d — будь-яка цифра; \d{10} — саме 10 цифр підряд;
+   - $ — кінець рядка.
 
-    -   **\*** --- що їх може бути довільна кількість, починаючи з
-        **0**.
+   Приклад виразу:
+   ```regex
+   ^\+1\d{10}$
+   ```
+   (у SQL-рядку часто записують як '^\\+1\\d{10}$')
 
-    -   Далі ми вказуємо, що текстовий рядок має закінчуватися виразом
-        **«@example.com»**, використовуючи **\\** для позначення того,
-        що **.** є символом **«.»**, а не будь-яким символом.
-
-2.  У цьому регулярному виразі 
-
-    -   **\^** вказує нам на початок текстового рядка,
-        тобто **\^\\+1** значить, що текст має починатися з **«+1»**. 
-
-    -   **\\d** використовується для позначення будь-якої цифри (**d**
-        --- від слова **«digit»**), число у фігурних дужках вказує на
-        кількість таких символів **(тобто ми шукаємо 10 цифр підряд)**,
-
-    -   а **\$** --- на кінець текстового рядка.
+Коротко: використовуйте \. для літеральної крапки, * — 0+, + — 1+, \d{N} — N цифр, ^ та $ — як анкорні маркери початку/кінця рядка; у SQL-літералах слеші можуть потребувати подвоєння.
 
 Для того щоб зручніше розшифровувати регулярні вирази та перевіряти, чи
 правильно ти їх пишеш, можна використовувати онлайн-сервіси
@@ -169,9 +173,9 @@ WHERE опис ~* 'description';
 рядків в один рядок.
 
 Нижче наведено синтаксис функції **CONCAT**:
-
-CONCAT(string1, string2, \...);
-
+```sql
+CONCAT(string1, string2, ...);
+```
 Щоб об'єднати рядки, ти передаєш їх у функцію **CONCAT** як список
 аргументів, розділених комами.
 
@@ -203,8 +207,7 @@ CONCAT(string1, string2, \...);
 два рядки:
 
 ```sql
-SELECT CONCAT(\'SQL CONCAT function\', \' demo\');
-
+SELECT CONCAT('SQL CONCAT function', ' demo');
 ```
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image1.png" width="600" />
@@ -214,8 +217,7 @@ SELECT CONCAT(\'SQL CONCAT function\', \' demo\');
 імен співробітників шляхом об'єднання імені, пробілу та прізвища.
 
 ```sql
-SELECT CONCAT(first_name, \' \', last_name) AS name
-
+SELECT CONCAT(first_name, ' ', last_name) AS name
 ```
 FROM \"HR\".employees
 
@@ -229,12 +231,10 @@ ORDER BY name;
 імені співробітника таким чином:
 
 ```sql
-SELECT CONCAT_WS(\' \', first_name, last_name) AS name
-
-```
-FROM \"HR\".employees
-
+SELECT CONCAT_WS(' ', first_name, last_name) AS name
+FROM HR.employees
 ORDER BY name;
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image3.png" width="600" />
@@ -252,7 +252,6 @@ ORDER BY name;
 LENGTH(string)
 
 -   Якщо вхідний рядок є порожнім --- **LENGTH** повертає  **0**.
-
 -   Якщо вхідний рядок є **NULL** --- повертає **NULL**.
 
 Кількість символів така сама, як кількість байтів для рядків **ASCII**.
@@ -267,17 +266,12 @@ LENGTH(string)
 
 ```sql
 SELECT employee_id
-
-```
-, CONCAT(first_name, \' \', last_name) AS full_name
-
-, LENGTH(CONCAT(first_name, \' \', last_name)) AS len
-
-FROM \"HR\".employees
-
+     , CONCAT(first_name, ' ', last_name) AS full_name
+     , LENGTH(CONCAT(first_name, ' ', last_name)) AS len
+FROM HR.employees
 ORDER BY len DESC
-
 LIMIT 5;
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image4.png" width="600" />
@@ -289,9 +283,10 @@ LIMIT 5;
 рядка.
 
 Нижче показано синтаксис функції TRIM.
-
-TRIM( \[LEADING \| TRAILING \| BOTH\] trim_character FROM source_string
+```sql
+TRIM( [LEADING | TRAILING | BOTH] trim_character FROM source_string
 );
+```
 
 -   Спочатку вкажи символ **trim_character**, який **TRIM** буде
     видаляти. Якщо ти не
@@ -331,9 +326,9 @@ TRIM( \[LEADING \| TRAILING \| BOTH\] trim_character FROM source_string
 початку рядка.
 
 ```sql
-SELECT LENGTH( TRIM( LEADING FROM \'  SQL \' ) );
-
+SELECT LENGTH( TRIM( LEADING FROM '  SQL ' ) );
 ```
+
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image6.png" width="600" />
 </div>
@@ -344,8 +339,7 @@ SELECT LENGTH( TRIM( LEADING FROM \'  SQL \' ) );
 рядка.
 
 ```sql
-SELECT LENGTH( TRIM( TRAILING FROM \'  SQL \' ) );
-
+SELECT LENGTH( TRIM( TRAILING FROM '  SQL ' ) );
 ```
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image7.png" width="600" />
@@ -355,8 +349,7 @@ SELECT LENGTH( TRIM( TRAILING FROM \'  SQL \' ) );
 Звичайно, довжина рядка дорiвнює **3**.
 
 ```sql
-SELECT LENGTH( TRIM( \'  SQL \' ) );
-
+SELECT LENGTH( TRIM( '  SQL ' ) );
 ```
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image8.png" width="600" />
@@ -381,18 +374,15 @@ SELECT LENGTH( TRIM( \'  SQL \' ) );
 phone_number**.
 
 ```sql
+-- Trim leading/trailing spaces only for rows that actually change (handles NULLs)
 UPDATE employees
-
-```
 SET
-
-first_name = TRIM( first_name )
-
-last_name = TRIM( last_name )
-
-email = TRIM( email )
-
-phone_number = TRIM( phone_number )
+    first_name   = TRIM(first_name),
+    last_name    = TRIM(last_name),
+    email        = TRIM(email),
+    phone_number = TRIM(phone_number)
+;
+```
 
 **<div style="text-align: center; font-size: 24px;">Функція UPPER</div>**
 
@@ -401,11 +391,10 @@ phone_number = TRIM( phone_number )
 функцію **LOWER**.
 
 Синтаксис функції **UPPER** :
-
+```sql
 UPPER(string)
-
+```
 -   Якщо вхідний рядок є **NULL**, **UPPER** повертає **NULL**.
-
 -   Iнакше повертає новий рядок з усіма літерами, перетвореними на
     верхній регістр.
 
@@ -415,8 +404,7 @@ UPPER(string)
 Наступний оператор перетворює рядок **'sql upper'** на **'SQL UPPER'**:
 
 ```sql
-SELECT UPPER( \'sql upper\' );
-
+SELECT UPPER( 'sql upper' );
 ```
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image9.png" width="600" />
@@ -426,12 +414,10 @@ SELECT UPPER( \'sql upper\' );
 співробітників на верхній регістр.
 
 ```sql
-SELECT UPPER( last_name )
-
+SELECT UPPER(last_name) AS last_name_upper
+FROM HR.employees
+ORDER BY last_name_upper;
 ```
-FROM \"HR\".employees
-
-ORDER BY UPPER( last_name );
 
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image10.png" width="600" />
@@ -446,9 +432,8 @@ ORDER BY UPPER( last_name );
 
 ```sql
 UPDATE employees
-
-```
 SET email = UPPER( email );
+```
 
 Коли ти здійснюєш запит за допомогою WHERE, системи баз даних часто
 відповідають регістру даних. Наприклад, літеральний
@@ -458,26 +443,20 @@ SET email = UPPER( email );
 
 ```sql
 SELECT employee_id
-
+     , first_name
+FROM HR.employees
+    WHERE first_name = 'BRUCE';
 ```
-, first_name
-
-FROM "HR".employees
-
-WHERE first_name = \'BRUCE\';
 
 Щоб зіставити дані, незалежно від регістру, використай
 функцію **UPPER**. Наприклад, наступний запит поверне рядок:
 
 ```sql
 SELECT employee_id
-
+     , first_name
+FROM HR.employees
+    WHERE UPPER( first_name ) = 'BRUCE';
 ```
-, first_name
-
-FROM "HR".employees
-
-WHERE UPPER( first_name ) = \'BRUCE\';
 
 Зверни увагу, що наведений вище запит сканує всю таблицю, щоб знайти
 відповідний рядок. Якщо таблиця є великою, запит буде дуже повільним.
@@ -491,23 +470,20 @@ WHERE UPPER( first_name ) = \'BRUCE\';
 вказаної позиції і має задану довжину.
 
 Нижче наведено синтаксис функції **SUBSTRING**:
-
+```sql
 SUBSTRING( source_string, position, length );
-
+```
 Функція SUBSTRING має три аргументи:
 
 -   **source_string** --- це рядок, з якого ти хочеш отримати підрядок.
-
 -   **position** --- це початкова позиція, з якої починається підрядок.
-
 -   **length** --- це довжина підрядка (необов\'язковий аргумент).
 
 Наступний приклад повертає підрядок, що починається з позиції **1** і
 має довжину **3**.
 
 ```sql
-SELECT SUBSTRING( \'Go it the best school\', 1, 3 );
-
+SELECT SUBSTRING( 'Go it the best school', 1, 3 );
 ```
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image11.png" width="600" />
@@ -517,8 +493,7 @@ SELECT SUBSTRING( \'Go it the best school\', 1, 3 );
 має довжину **8**.
 
 ```sql
-SELECT SUBSTRING( \'Go it the best school\', 4, 8 );
-
+SELECT SUBSTRING( 'Go it the best school', 4, 8 );
 ```
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image12.png" width="600" />
@@ -529,14 +504,12 @@ SELECT SUBSTRING( \'Go it the best school\', 4, 8 );
 ініціалами:
 
 ```sql
-SELECT SUBSTRING(first_name, 1, 1) initial
-
+SELECT COALESCE( UPPER(TRIM(SUBSTRING(first_name, 1, 1))) , '') AS initial
+     , COUNT(*) AS employees_count
+FROM HR.employees
+GROUP BY initial
+ORDER BY initial;
 ```
-, COUNT(employee_id)
-
-FROM \"HR\".employees
-
-GROUP BY initial;
 
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image13.png" width="600" />
@@ -595,9 +568,9 @@ GROUP BY initial;
 Функція **COALESCE** приймає кілька аргументів і повертає перший
 аргумент, відмінний від **NULL**. Нижче наведено синтаксис
 функції **COALESCE**:
-
+```sql
 COALESCE( argument1, argument2, \... );
-
+```
 -   Функція **COALESCE** обчислює свої аргументи зліва направо. Вона
     зупиняє обчислення, як тільки знайде перший аргумент, відмінний від
     **NULL**, і виводить його значення. Це означає, що всі наступні
@@ -608,19 +581,17 @@ COALESCE( argument1, argument2, \... );
 
 **<div style="text-align: center; font-size: 24px;">Приклади COALESCE</div>**
 
-1\. Наступний оператор повертає значення 1, оскільки 1 є першим
+1. Наступний оператор повертає значення 1, оскільки 1 є першим
 аргументом, відмінним від NULL.
 
 ```sql
-SELECT COALESCE( 1, 2, 3 ); \-- return 1
-
+SELECT COALESCE( 1, 2, 3 ); -- return 1
 ```
-2\. Наступний оператор повертає Not NULL, оскільки це перший рядковий
+2. Наступний оператор повертає Not NULL, оскільки це перший рядковий
 аргумент, який не має значення NULL.
 
 ```sql
-SELECT COALESCE( NULL, \'Not NULL\', \'OK\' ); \-- return Not NULL
-
+SELECT COALESCE( NULL, 'Not NULL', 'OK' ); -- return Not NULL
 ```
 Майже всі системи реляційних баз даних підтримують функцію **COALESCE**,
 наприклад, MySQL, PostgreSQL, Oracle, Microsoft SQL Server, Sybase --
@@ -633,59 +604,54 @@ SELECT COALESCE( NULL, \'Not NULL\', \'OK\' ); \-- return Not NULL
 
 ```sql
 CREATE TABLE products (
-
-```
-ID INT PRIMARY KEY
-
-, product_name VARCHAR(255) NOT NULL
-
-, product_summary VARCHAR(255)
-
-, product_description VARCHAR(4000) NOT NULL
-
-, price NUMERIC (11, 2) NOT NULL
-
-, discount NUMERIC (11, 2)
-
+    id                   INT           PRIMARY KEY
+  , product_name         VARCHAR(255)  NOT NULL
+  , product_summary      VARCHAR(255)
+  , product_description  VARCHAR(4000) NOT NULL
+  , price                NUMERIC(11,2) NOT NULL
+  , discount             NUMERIC(11,2)
 );
 
-```sql
-INSERT INTO products
-
+INSERT INTO products (
+    id
+  , product_name
+  , product_summary
+  , product_description
+  , price
+  , discount
+) VALUES
+(
+    1
+  , 'McLaren 675LT'
+  , 'Inspired by the McLaren F1 GTR Longtail'
+  , 'Performance is like striking and the seven-speed dual-clutch gearbox is twice as fast now.'
+  , 349500.00
+  , 1000.00
+),
+(
+    2
+  , 'Rolls-Royce Wraith Coupe'
+  , NULL
+  , 'Inspired by the words of Sir Henry Royce, this Rolls-Royce Wraith Coupe is an imperceptible force.'
+  , 304000.00
+  , NULL
+),
+(
+    3
+  , '2016 Lamborghini Aventador Convertible'
+  , NULL
+  , 'Based on a V12, this Superveloce has been developed as the Lamborghini with a sportier DNA.'
+  , 271000.00
+  , 500.00
+);
 ```
-(id
-
-,product_name
-
-,products_summary
-
-,product_description
-
-,price
-
-,discount)
-
-VALUES
-
-(1,\'McLaren 675LT\',\'Inspired by the McLaren F1 GTR
-Longtail\',\'Performance is like striking and the seven-speed
-dual-clutch gearbox is twice as fast now.\',349500,1000)
-
-, (2,\'Rolls-Royce Wraith Coupe\',NULL,\'Inspired by the words of sir
-Henry Royce, this Rolls-Royce Wraith Coupe is an imperceptible
-force.\',304000,NULL)
-
-, (3,\'2016 Lamborgini Avendator Convertible\',NULL,\'Based on V12, this
-superveloce has been developed as the Lamborgini with the sportied
-DNA.\',271000,500);
 
 Бачимо, що у списку продуктів є запис, у якого
 поле **discount** (знижка) має значення **NULL**. Далі розглянемо, як це
 відображається при виконанні запиту:
 
 ```sql
-SELECT \* FROM products;
-
+SELECT * FROM products;
 ```
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image14.png" width="600" />
@@ -700,20 +666,17 @@ SELECT \* FROM products;
 У такому випадку ти можеш скористатися функцією **COALESCE**,
 щоб повернути короткий опис продукту. Якщо короткий опис продукту не
 надано, ти отримаєш перші 50 символів з опису продукту.
-
 ```sql
-SELECT ID
-
-```
-, product_name
-
-, COALESCE( product_summary, LEFT( product_description, 50 ) ) excerpt
-
-, price
-
-, discount
-
+SELECT id
+    , product_name
+    , COALESCE(
+        product_summary,
+        CONCAT(SUBSTRING(product_description, 1, 50), '...')
+      ) AS excerpt
+    , price
+    , discount
 FROM products;
+```
 
 Також ти можеш скористатися функцією **CONCAT**, щоб додати (...) в
 кінці уривка. Це буде сигналом для користувачів про те, що вони читають
@@ -721,55 +684,46 @@ FROM products;
 доступно більше інформації.
 
 ```sql
-SELECT id
-
-```
-```sql
-, product_name
-```
-
-, coalesce( product_summary ,concat( LEFT( product_description ,50
-),\'\...\' ) ) excerpt
-
-, price
-
-, discount
-
+SELECT
+    id
+  , product_name
+  , COALESCE(
+      product_summary
+    , CONCAT(LEFT(product_description, 50), '...')
+    ) AS excerpt
+  , price
+  , discount
 FROM products;
+```
 
 **<div style="text-align: center; font-size: 24px;">Приклад 3</div>**
 
 Припустимо, що тобі потрібно обчислити чисту ціну всіх продуктів, і ти
 написав/-ла такий запит:
-
 ```sql
-SELECT id
-
-```
-, product_name
-
-, ( price -- discount ) AS net_price
-
+SELECT
+    id
+  , product_name
+  , price
+  , ( price - COALESCE( discount, 0 ) ) AS net_price
 FROM products;
+```
 
-Чиста ціна для продукту **Rolls-Royce Wraith Coupe **вказана
+Чиста ціна для продукту Rolls‑Royce Wraith Coupe становить 304000.00 (discount = NULL → COALESCE(discount, 0) = 0).
 як **NULL**. Це через те, що знижка на цей продукт має
 значення **NULL**, і коли ми використовуємо це значення **NULL** у
 розрахунку, отримуємо значення **NULL**.
 
 Тому нам потрібний запит, який дозволить вивести коректну інформацію:
-
 ```sql
-SELECT id
-
-```
-, product_name
-
-, price
-
-, ( price - COALESCE( discount, 0 ) ) AS net_price
-
+-- Calculate net price: treat NULL discount as 0
+SELECT
+    id
+  , product_name
+  , price
+  , (price - COALESCE(discount, 0)) AS net_price
 FROM products;
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image15.png" width="600" />
@@ -885,7 +839,6 @@ FROM products;
 результатів. Вираз **CASE** має два формати:
 
 1.  простий **CASE**;
-
 2.  пошуковий **CASE**.
 
 Ти можеш використовувати **CASE** у реченні або в операторі. Наприклад,
@@ -897,17 +850,14 @@ BY** та **HAVING**.
 
 **<div style="text-align: center; font-size: 24px;">Нижче наведено простий вираз CASE.</div>**
 
+```sql
 CASE expression
-
-WHEN when_expression_1 THEN result_1
-
-WHEN when_expression_2 THEN result_2
-
-\...
-
-ELSE else_result
-
+    WHEN when_expression_1 THEN result_1
+    WHEN when_expression_2 THEN result_2
+    -- ...
+    ELSE else_result
 END
+```
 
 У цьому виразі кожна умова (**condition**) перевіряється по черзі, і
 коли вона є істинною, повертається відповідний результат (**result**).
@@ -931,35 +881,21 @@ END
 
 ```sql
 SELECT first_name
-
-```
-, last_name
-
-, hire_date
-
-, CASE ( 2000 - EXTRACT( YEAR FROM hire_date ) )
-
-       WHEN 1 THEN \'1 year\'
-
-       WHEN 3 THEN \'3 year\'
-
-       WHEN 5 THEN \'5 year\'
-
-       WHEN 10 THEN \'10 year\'
-
-       WHEN 15 THEN \'15 year\'
-
-       WHEN 20 THEN \'20 year\'
-
-       WHEN 25 THEN \'25 year\'
-
-       WHEN 30 THEN \'30 year\'
-
-     END anniversary
-
-FROM \"HR\".employees
-
+    , last_name
+    , hire_date
+    , CASE (2000 - EXTRACT(YEAR FROM hire_date))
+        WHEN 1  THEN '1 year'
+        WHEN 3  THEN '3 year'
+        WHEN 5  THEN '5 year'
+        WHEN 10 THEN '10 year'
+        WHEN 15 THEN '15 year'
+        WHEN 20 THEN '20 year'
+        WHEN 25 THEN '25 year'
+        WHEN 30 THEN '30 year'
+      END AS anniversary
+FROM HR.employees
 ORDER BY first_name;
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image16.png" width="600" />
@@ -987,22 +923,23 @@ when_expression_2, when_expression_3, ...)** за допомогою опера
 рівності **(=)**.
 
 Якщо ти хочеш використовувати інші оператори порівняння, такі як більше
-ніж **(\>)**, менше ніж **(\<)** тощо, тобі потрібно
+ніж **(>)**, менше ніж **(<)** тощо, тобі потрібно
 застосувати пошуковий вираз **CASE**.
 
 Нижче наведено приклад пошукового виразу **CASE**:
 
-CASE
-
-WHEN boolean_expression_1 THEN result_1
-
-WHEN boolean_expression_2 THEN result_2
-
-\...
-
-ELSE else_result
-
-END;
+```sql
+SELECT first_name
+    , last_name
+    , salary
+    , CASE
+        WHEN salary < 3000 THEN 'Low'
+        WHEN salary >= 3000 AND salary <= 5000 THEN 'Average'
+        WHEN salary > 5000 THEN 'High'
+        ELSE 'Unknown'
+      END AS evaluation
+FROM HR.employees;
+```
 
 Система бази даних обчислює логічний вираз для кожного
 речення **WHEN** у порядку, зазначеному у виразі **CASE**.
@@ -1024,26 +961,17 @@ END;
 **<div style="text-align: center; font-size: 24px;">Приклад пошукового виразу CASE</div>**
 
 ```sql
-SELECT first_name
-
+SELECT
+    first_name
+  , last_name
+  , CASE
+        WHEN salary < 3000 THEN 'Low'
+        WHEN salary >= 3000
+             AND salary <= 5000 THEN 'Average'
+        WHEN salary > 5000 THEN 'High'
+    END AS evaluation
+FROM HR.employees;
 ```
-, last_name
-
-, CASE
-
-```sql
-WHEN salary \< 3000 THEN \'Low\'
-
-WHEN salary \>= 3000
-
-AND salary \<= 5000 THEN \'Average\'
-
-WHEN salary \> 5000 THEN \'High\'
-```
-
-END evaluation
-
-FROM "HR".emplyees;
 
 -   Якщо зарплата менша за **3000**, вираз **CASE** повертає значення
     **«Low»** (низька).
@@ -1129,22 +1057,16 @@ FROM "HR".emplyees;
 коду ілюструє, як створювати функцію:
 
 ```sql
-CREATE \[or REPLACE\] FUNCTION function_name( param_list )
-
-```
+CREATE OR REPLACE FUNCTION function_name(param_list)
 RETURNS return_type
-
-LANGUAGE plpgsql as \$\$
-
-DECLARE \-- variable declaration
-
+AS $$
+DECLARE
+    -- variable declaration
 BEGIN
-
-```sql
-\--logic
+    -- logic
+END;
+$$ LANGUAGE plpgsql;
 ```
-
-END \$\$;
 
 **<div style="text-align: center; font-size: 24px;">Пояснення операторів:</div>**
 
@@ -1169,33 +1091,23 @@ END \$\$;
 функція повертає загальну кількість записів у таблиці **employees**:
 
 ```sql
-CREATE OR REPLACE FUNCTION totalRecords ()
-
-```
-RETURNS integer AS \$total\$
-
-DECLARE total integer;
-
+CREATE OR REPLACE FUNCTION totalRecords()
+RETURNS integer AS $total$
+DECLARE
+    total integer;
 BEGIN
-
-```sql
-SELECT count(\*) into total
-
-FROM "HR".employees;
-```
-
-RETURN total;
-
+    SELECT COUNT(*) INTO total
+    FROM "HR".employees;
+    RETURN total;
 END;
-
-\$total\$ LANGUAGE plpgsql;
+$total$ LANGUAGE plpgsql;
+```
 
 Тепер давай виконаємо виклик цієї функції та перевіримо записи в таблиці
 **employees**.
 
 ```sql
 SELECT totalRecords()
-
 ```
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image18.png" width="600" />
@@ -1219,173 +1131,99 @@ SELECT totalRecords()
 **return**. 
 
 ```sql
-CREATE \[OR REPLACE\] PROCEDURE procedure_name(parameter_list)
-
-```
-LANGUAGE language_name AS \$
-
+CREATE [OR REPLACE] PROCEDURE procedure_name(parameter_list)
+LANGUAGE language_name AS $$
 stored_procedure_body;
-
-\$;
+$$;
+```
 
 Давай розглянемо приклад процедури для додавання нового співробітника:
 
 ```sql
+-- Procedure: insert_employee
 CREATE OR REPLACE PROCEDURE insert_employee(
-
-```
-p_first_name varchar(20)
-
-, p_last_name varchar(25)
-
-, p_email varchar(100)
-
-, p_phone_number varchar(20)
-
-, p_job_id date
-
-, p_salary int
-
-, p_manager_id numeric(8,2)
-
-, p_department_id int
-
-, p_identifier int
-
-, p_name varchar(50)
-
-, p_description varchar(50)
-
-, p_type varchar(50)
-
-, p_state varchar(50)
-
-, p_resource_name varchar(50)
-
-, p_resource_account_level varchar(50)
-
-, p_update_status varchar(50)
-
+    p_first_name                 VARCHAR(50),
+    p_last_name                  VARCHAR(50),
+    p_email                      VARCHAR(255),
+    p_phone_number               VARCHAR(50),
+    p_hire_date                  DATE,
+    p_job_id                     VARCHAR(50),
+    p_salary                     NUMERIC(11,2),
+    p_manager_id                 INT,
+    p_department_id              INT,
+    p_identifier                 VARCHAR(100),
+    p_name                       VARCHAR(255),
+    p_description                TEXT,
+    p_type                       VARCHAR(100),
+    p_state                      VARCHAR(100),
+    p_resource_name              VARCHAR(255),
+    p_resource_account_level     VARCHAR(100),
+    p_update_status              VARCHAR(100)
 )
-
-AS \$\$
-
-> BEGIN
-```sql
-INSERT INTO employees (
-```
-> first_nam
-```sql
-, last_name
-
-, email
-
-, phone_number
-
-, job_id
-
-, salary
-
-, manager_id
-
-, department_id
-
-, \"ідентифікатор\"
-
-, \"Імʼя\"
-
-, опис
-
-, тип
-
-, штат
-
-, \"Назва ресурсу\"
-
-, \"Рівень облікового номера ресурсу\"
-
-, \"Стан оновлення\")
-
-VALUES (
-```
-> p_first_nam
-```sql
-, p_last_name
-
-, p_email
-
-, p_phone_number
-
-, p_job_id
-
-, p_salary
-
-, p_manager_id
-
-, p_department_id
-
-, p_identifier
-
-, p_name
-
-, p_description
-
-, p_type
-
-, p_state
-
-, p_resource_name
-
-, p_resource_account_level
-
-, p_update_status);
-
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO employees (
+        first_name,
+        last_name,
+        email,
+        phone_number,
+        hire_date,
+        job_id,
+        salary,
+        manager_id,
+        department_id,
+        "ідентифікатор",
+        "Імʼя",
+        опис,
+        тип,
+        штат,
+        "Назва ресурсу",
+        "Рівень облікового номера ресурсу",
+        "Стан оновлення"
+    ) VALUES (
+        p_first_name,
+        p_last_name,
+        p_email,
+        p_phone_number,
+        p_hire_date,
+        p_job_id,
+        p_salary,
+        p_manager_id,
+        p_department_id,
+        p_identifier,
+        p_name,
+        p_description,
+        p_type,
+        p_state,
+        p_resource_name,
+        p_resource_account_level,
+        p_update_status
+    );
 END;
-```
+$$;
 
-\$\$
-
-LANGUAGE plpgsql;
-
-Тепер спробуємо запустити таку процедуру:
-
-CALL insert_employee (
-
-\'John\'
-
-, \'Doe\'
-
-, \'john.doe@example.com\'
-
-, \'+123456789\'
-
-, \'2023-06-07\'
-
-, 1
-
-, 5000.00
-
-, NULL
-
-, NULL
-
-, \'identifier\'
-
-, \'name\'
-
-, \'description\'
-
-, \'type\'
-
-, \'state\'
-
-, \'resource name\'
-
-, \'account level\'
-
-, \'update status\'
-
+-- Example call
+CALL insert_employee(
+  'John',                       -- first_name
+  'Doe',                        -- last_name
+  'john.doe@example.com',       -- email
+  '+123456789',                 -- phone_number
+  '2023-06-07'::date,           -- hire_date
+  'DEV01',                      -- job_id
+  5000.00,                      -- salary
+  NULL,                         -- manager_id
+  NULL,                         -- department_id
+  'identifier-123',             -- "ідентифікатор"
+  'John Doe',                   -- "Імʼя"
+  'Short product description',  -- опис
+  'employee',                   -- тип
+  'active',                     -- штат
+  'resource name',              -- "Назва ресурсу"
+  'account level',              -- "Рівень облікового номера ресурсу"
+  'update status'               -- "Стан оновлення"
 );
+```
 
 Що ж нам дала ця процедура? **Ми спростили процес додавання нових
 записів до бази даних** і можемо **повторно використовувати** цей
