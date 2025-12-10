@@ -397,11 +397,9 @@ WHERE location_id = 1700;
 SELECT employee_id
 
 ```
-```sql
-, first_name
-
-, last_name
-```
+> , first_name
+>
+> , last_name
 
 FROM \"HR\".employees
 
@@ -440,9 +438,7 @@ FROM \"HR\".employees
 
 WHERE department_id IN
 
-```sql
-(SELECT department_id
-```
+> (SELECT department_id
 
              FROM \"HR\".departments
 
@@ -478,11 +474,9 @@ FROM \"HR\".employees
 
 WHERE department_id NOT IN
 
-```sql
-(SELECT department_id
-
-FROM \"HR\".departments
-```
+> (SELECT department_id
+>
+>                FROM \"HR\".departments
 
                WHERE location_id = 1700)
 
@@ -499,27 +493,21 @@ ORDER BY first_name, last_name;
 SELECT employee_id
 
 ```
-```sql
-, first_name
-
-, last_name
-```
+> , first_name
+>
+> , last_name
 
 FROM \"HR\".employees
 
-```sql
-WHERE salary =
-
-(SELECT MAX(salary)
-```
+> WHERE salary =
+>
+> (SELECT MAX(salary)
 
          FROM \"HR\".employees)
 
 ORDER BY first_name
 
-```sql
-, last_name;
-```
+> , last_name;
 
 У цьому прикладі **підзапит** повертає найвищу зарплату з усіх
 працівників, а зовнішній запит знаходить працівників, чия зарплата
@@ -534,19 +522,15 @@ ORDER BY first_name
 SELECT employee_id
 
 ```
-```sql
-, first_name
-
-, last_name
-```
+> , first_name
+>
+> , last_name
 
 FROM \"HR\".employees
 
 WHERE salary \>
 
-```sql
-(SELECT AVG(salary)
-```
+> (SELECT AVG(salary)
 
          FROM \"HR\".employees)
 
@@ -605,17 +589,15 @@ FROM ( SELECT AVG(salary) AS average_salary
 SELECT employee_id
 
 ```
-```sql
-, first_name
-
-, last_name
-
-, salary
-
-, ( SELECT ROUND(AVG(salary), 0)
-
-FROM \"HR\".employees) average_salary
-```
+> , first_name
+>
+> , last_name
+>
+> , salary
+>
+> , ( SELECT ROUND(AVG(salary), 0)
+>
+> FROM \"HR\".employees) average_salary
 
 , salary - (SELECT ROUND(AVG(salary), 0)
 
@@ -639,15 +621,13 @@ ORDER BY first_name, last_name;
 
 Ось синтаксис **CTE** в SQL:
 
-```sql
-WITH *імʼя\_*CTE AS (
-
-*Запит*
-
-)
-
-*Основний_запит*
-```
+> WITH *імʼя\_*CTE AS (
+>
+> *Запит*
+>
+> )
+>
+> *Основний_запит*
 
 Де:
 
@@ -851,23 +831,17 @@ ALL** для об\'єднання імені та прізвища співро
 SELECT first_name
 
 ```
-```sql
-, last_name
-```
+> , last_name
 
 FROM \"HR\".employees
 
-```sql
-UNION ALL
-```
+> UNION ALL
 
 ```sql
 SELECT first_name
 
 ```
-```sql
-, last_name
-```
+> , last_name
 
 FROM \"HR\".dependents
 

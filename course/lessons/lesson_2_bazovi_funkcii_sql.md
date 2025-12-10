@@ -493,19 +493,17 @@ SELECT \'2019-06-15 14:30:20\'::timestamp;
 
 Нижче показано базовий синтаксис оператора **GROUP BY:**
 
-```sql
-SELECT column1
-
-, column2
-
-, aggregate_function(column3)
-
-FROM table_name
-
-GROUP BY column1
-
-,     column2;
-```
+> SELECT column1
+>
+> , column2
+>
+> , aggregate_function(column3)
+>
+> FROM table_name
+>
+> GROUP BY column1
+>
+> ,     column2;
 
 А ось як працює **GROUP BY** на прикладi таблицi з фруктами:
 
@@ -540,15 +538,13 @@ GROUP BY fruit;
 застосовуємо **COUNT** до стовпця **id**. Набір результатів містить
 унікальні значення стовпців фруктів і кількість відповідних рядків.
 
-```sql
-SELECT fruit
-
-, count(id)
-
-FROM sample_table
-
-GROUP BY fruit;
-```
+> SELECT fruit
+>
+> , count(id)
+>
+> FROM sample_table
+>
+> GROUP BY fruit;
 
 Стовпці, які з'являються у **GROUP BY,** називаються стовпцями
 групування. Якщо стовпець групування містить значення **NULL**, усі
@@ -558,13 +554,11 @@ GROUP BY fruit;
 У наступному прикладі використовується **GROUP BY** для групування
 значень у стовпці **department_id** у таблиці **employees**:
 
-```sql
-SELECT department_id
-
-FROM \"HR\".employees
-
-GROUP BY department_id;
-```
+> SELECT department_id
+>
+> FROM \"HR\".employees
+>
+> GROUP BY department_id;
 
 <div align="center">
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image11.png" width="600" />
@@ -583,13 +577,11 @@ BY** групує ці значення.
 
 Без функції агрегації **GROUP BY** поводиться як **DISTINCT**:
 
-```sql
-SELECT DISTINCT department_id
-
-FROM \"HR\".employees
-
-GROUP BY department_id;
-```
+> SELECT DISTINCT department_id
+>
+> FROM \"HR\".employees
+>
+> GROUP BY department_id;
 
 Оператор **DISTINCT** використовується в мові запитів для видалення
 повторюваних значень із результатів запиту. Цей оператор дозволяє
@@ -605,15 +597,13 @@ GROUP BY department_id;
 Наприклад, у наступному операторі використовується **GROUP
 BY** з **COUNT** для підрахунку кількості співробітників за відділами:
 
-```sql
-SELECT department_id
-
-, COUNT(employee_id) headcount
-
-FROM \"HR\".employees
-
-GROUP BY department_id;
-```
+> SELECT department_id
+>
+> , COUNT(employee_id) headcount
+>
+> FROM \"HR\".employees
+>
+> GROUP BY department_id;
 
 <div align="center">
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image12.png" width="600" />
@@ -644,11 +634,9 @@ AVG (\[ALL \| DISTINCT\] expression)
 Щоб обчислити середню зарплату всіх працівників, застосовуємо
 функцію AVG до стовпця зарплати таким чином:
 
-```sql
-SELECT AVG(salary)
-
-FROM \"HR\".employees;
-```
+> SELECT AVG(salary)
+>
+> FROM \"HR\".employees;
 
 <div align="center">
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image13.png" width="600" />
@@ -660,15 +648,13 @@ FROM \"HR\".employees;
 функцію **AVG** із **GROUP BY**. Наприклад, наступний оператор повертає
 відділи та середню зарплату працівників у кожному відділі.
 
-```sql
-SELECT department_id
-
-, AVG(salary)
-
-FROM \"HR\".employees
-
-GROUP BY department_id;
-```
+> SELECT department_id
+>
+> , AVG(salary)
+>
+> FROM \"HR\".employees
+>
+> GROUP BY department_id;
 
 <div align="center">
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image14.png" width="600" />
@@ -685,9 +671,7 @@ GROUP BY department_id;
 
 Нижче наведено синтаксис функції **COUNT** у **SQL**:
 
-```sql
-COUNT (\[ALL \| DISTINCT\] expression);
-```
+> COUNT (\[ALL \| DISTINCT\] expression);
 
 Результат функції COUNT залежить від аргументу, який ти їй передаєш.
 
@@ -709,15 +693,13 @@ COUNT (\[ALL \| DISTINCT\] expression);
 У наступному прикладі використовується **COUNT** із **GROUP BY**, щоб
 знайти кількість співробітників для кожного відділу:
 
-```sql
-SELECT department_id
-
-,COUNT(\*)
-
-FROM \"HR\".employees
-
-GROUP BY department_id;
-```
+> SELECT department_id
+>
+> ,COUNT(\*)
+>
+> FROM \"HR\".employees
+>
+> GROUP BY department_id;
 
 <div align="center">
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image15.png" width="600" />
@@ -726,11 +708,9 @@ GROUP BY department_id;
 У наступному прикладі використовується **COUNT** із **DISTINCT** для
 отримання кількості менеджерів:
 
-```sql
-SELECT COUNT(DISTINCT manager_id)
-
-FROM \"HR\".employees;
-```
+> SELECT COUNT(DISTINCT manager_id)
+>
+> FROM \"HR\".employees;
 
 *💡 Який результат у тебе вийшов?*
 
@@ -749,11 +729,9 @@ FROM \"HR\".employees;
 
 Нижче наведено синтаксис функцій **MAX** і **MIN**.
 
-```sql
-MAX(expression)
-
-MIN(expression)
-```
+> MAX(expression)
+>
+> MIN(expression)
 
 Функції **MAX/MIN** ігнорують значення **NULL**.
 
@@ -764,11 +742,9 @@ MIN(expression)
 оператор **SELECT** повертає найвищу (максимальну) зарплату працівників
 у таблиці **employees**.
 
-```sql
-SELECT MAX(salary)
-
-FROM \"HR\".employees;
-```
+> SELECT MAX(salary)
+>
+> FROM \"HR\".employees;
 
 <div align="center">
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image16.png" width="600" />
@@ -782,15 +758,13 @@ BY**, щоб знайти максимальне/мiнiмальне значен
 Наприклад, ми можемо використати функцію **MAX**, щоб знайти найвищу
 зарплату працівника в кожному відділі, як показано нижче:
 
-```sql
-SELECT department_id
-
-,MAX(salary)
-
-FROM \"HR\".employees
-
-GROUP BY department_id;
-```
+> SELECT department_id
+>
+> ,MAX(salary)
+>
+> FROM \"HR\".employees
+>
+> GROUP BY department_id;
 
 <div align="center">
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image17.png" width="600" />
@@ -819,11 +793,9 @@ SUM (\[ALL \| DISTINCT\] expression);
 Щоб отримати суму зарплат усіх співробітників, ми застосуємо
 функцію **SUM** до стовпця зарплати, як у наступному запиті:
 
-```sql
-SELECT SUM(salary)
-
-FROM \"HR\".employees;
-```
+> SELECT SUM(salary)
+>
+> FROM \"HR\".employees;
 
 <div align="center">
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image18.png" width="600" />
@@ -838,17 +810,11 @@ FROM \"HR\".employees;
 відділу, ми застосовуємо функцію **SUM** до стовпця **salary** та
 групуємо рядки за стовпцями **department_id**:
 
-```sql
-SELECT department_id
-```
+> **SELECT department_id**
 >
-```sql
-,SUM(salary)
-```
+> **,SUM(salary)**
 >
-```sql
-FROM \"HR\".employees
-```
+> **FROM \"HR\".employees**
 
 <div style="text-align: center; font-size: 24px;">GROUP BY department_id;</div>
 
@@ -870,25 +836,15 @@ FROM \"HR\".employees
 Наприклад, ми можемо відфільтрувати департаменти за їхніми
 ідентифікаторами:
 
-```sql
-SELECT department_id
-```
+> **SELECT department_id**
 >
-```sql
-, SUM(salary)
-```
+> **, SUM(salary)**
 >
-```sql
-FROM \"HR\".employees
-```
+> **FROM \"HR\".employees**
 >
-```sql
-GROUP BY department_id
-```
+> **GROUP BY department_id**
 >
-```sql
-HAVING department_id \<= 5;
-```
+> **HAVING department_id \<= 5;**
 
 <div align="center">
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image20.png" width="600" />
@@ -896,13 +852,16 @@ HAVING department_id \<= 5;
 
 Або за сумою зарплат:
 
-```sql
-SELECT department_id
-     , SUM(salary)
-FROM HR.employees
-GROUP BY department_id
-HAVING SUM(salary) > 5000;
-```
+> **SELECT department_id**
+>
+> **, SUM(salary)**
+>
+> **FROM \"HR\".employees**
+>
+> **GROUP BY department_id**
+>
+> **HAVING SUM(salary) \> 5000;**
+
 <div align="center">
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image21.png" width="600" />
 </div>

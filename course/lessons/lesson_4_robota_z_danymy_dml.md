@@ -345,9 +345,7 @@ FROM A
 
 INNER JOIN B
 
-```sql
-ON B.n = A.n;
-```
+> ON B.n = A.n;
 
 Оператор **INNER JOIN** з'являється після **FROM**. Умова відповідності
 між таблицями **A** і **B** вказується після ключового слова **ON**. Ця
@@ -458,29 +456,23 @@ departments.department_id** задовольняється, то об'єдна�
 SELECT first_name
 
 ```
-```sql
-, last_name
-
-, job_title
-
-, department_name
-```
+> , last_name
+>
+> , job_title
+>
+> , department_name
 
 FROM \"HR\".employees e
 
 INNER JOIN \"HR\".departments d
 
-```sql
-ON d.department_id = e.department_id
-```
+> ON d.department_id = e.department_id
 
 INNER JOIN \"HR\".jobs j
 
-```sql
-ON j.job_id = e.job_id
-
-WHERE e.department_id IN (1, 2, 3);
-```
+> ON j.job_id = e.job_id
+>
+> WHERE e.department_id IN (1, 2, 3);
 
 Круто, але є одна проблема. Внутрішнє з'єднання прибирає рядки, які не
 збігаються з рядками іншої таблиці.
@@ -513,9 +505,7 @@ FROM A
 
 LEFT JOIN B
 
-```sql
-ON B.n = A.n;
-```
+> ON B.n = A.n;
 
 **LEFT JOIN** з'являється після **FROM**. Умова, що йде за ключовим
 словом **ON**, називається умовою з'єднання.
@@ -613,11 +603,9 @@ FROM \"HR\".countries c
 
 LEFT JOIN \"HR\".locations l
 
-```sql
-ON l.country_id = c.country_id
-
-WHERE l.location_id IS NULL
-```
+> ON l.country_id = c.country_id
+>
+> WHERE l.location_id IS NULL
 
 ORDER BY country_name;
 
@@ -634,29 +622,23 @@ ORDER BY country_name;
 SELECT r.region_name
 
 ```
-```sql
-, c.country_name
-
-, l.street_address
-
-, l.city
-```
+> , c.country_name
+>
+> , l.street_address
+>
+> , l.city
 
 FROM \"HR\".regions r 
 
 LEFT JOIN \"HR\".countries c
 
-```sql
-ON c.region_id = r.region_id
-```
+> ON c.region_id = r.region_id
 
 LEFT JOIN \"HR\".locations l
 
-```sql
-ON l.country_id = c.country_id
-
-WHERE c.country_id IN (\'US\', \'UK\', \'CN\');
-```
+> ON l.country_id = c.country_id
+>
+> WHERE c.country_id IN (\'US\', \'UK\', \'CN\');
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image15.png" width="600" />
@@ -680,15 +662,13 @@ WHERE c.country_id IN (\'US\', \'UK\', \'CN\');
 Наступний оператор ілюструє синтаксис повного зовнішнього
 з\'єднання двох таблиць:
 
-```sql
-SELECT column_list
-
-FROM A
-
-FULL OUTER JOIN B
-
-ON B.n = A.n;
-```
+> SELECT column_list
+>
+> FROM A
+>
+> FULL OUTER JOIN B
+>
+> ON B.n = A.n;
 
 Зауваж, що ключове слово **OUTER** необов'язкове.
 
@@ -727,13 +707,11 @@ ON B.n = A.n;
 
 Нижче наведено синтаксис оператора **CROSS JOIN**:
 
-```sql
-SELECT column_list
-
-FROM A
-
-CROSS JOIN B;
-```
+> SELECT column_list
+>
+> FROM A
+>
+> CROSS JOIN B;
 
 На наступному зображенні показано результат перехресного з'єднання між
 таблицею **A** й таблицею **B**.
@@ -794,40 +772,38 @@ B також має три рядки: **x, y** та **z. У** результа�
 WITH RECURSIVE employees_hierarchy AS (
 
 ```
-```sql
-SELECT employee_id
-
-, first_name
-
-, last_name
-
-, manager_id
-
-, 1 AS level
-
-FROM \"HR\".employees
-
-WHERE manager_id IS NULL *\-- Вибрати кореневих співробітників
-(без менеджера)*
-
-UNION ALL
-
-SELECT e.employee_id
-
-, e.first_name
-
-, e.last_name
-
-, e.manager_id
-
-, eh.level + 1
-
-FROM \"HR\".employees e
-
-INNER JOIN employees_hierarchy eh
-
-ON e.manager_id = eh.employee_id
-```
+>    SELECT employee_id
+>
+> , first_name
+>
+> , last_name
+>
+> , manager_id
+>
+> , 1 AS level
+>
+>    FROM \"HR\".employees
+>
+>     WHERE manager_id IS NULL *\-- Вибрати кореневих співробітників
+> (без менеджера)*
+>
+>    UNION ALL
+>
+>    SELECT e.employee_id
+>
+> , e.first_name
+>
+> , e.last_name
+>
+> , e.manager_id
+>
+> , eh.level + 1
+>
+>    FROM \"HR\".employees e
+>
+>    INNER JOIN employees_hierarchy eh
+>
+> ON e.manager_id = eh.employee_id
 
 )
 

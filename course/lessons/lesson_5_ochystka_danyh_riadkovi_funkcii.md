@@ -750,9 +750,7 @@ FROM products;
 SELECT id
 
 ```
-```sql
-, product_name
-```
+> , product_name
 
 , coalesce( product_summary ,concat( LEFT( product_description ,50
 ),\'\...\' ) ) excerpt
@@ -1057,15 +1055,13 @@ SELECT first_name
 
 , CASE
 
-```sql
-WHEN salary \< 3000 THEN \'Low\'
-
-WHEN salary \>= 3000
-
-AND salary \<= 5000 THEN \'Average\'
-
-WHEN salary \> 5000 THEN \'High\'
-```
+> WHEN salary \< 3000 THEN \'Low\'
+>
+> WHEN salary \>= 3000
+>
+> AND salary \<= 5000 THEN \'Average\'
+>
+> WHEN salary \> 5000 THEN \'High\'
 
 END evaluation
 
@@ -1166,9 +1162,7 @@ DECLARE \-- variable declaration
 
 BEGIN
 
-```sql
-\--logic
-```
+> \--logic
 
 END \$\$;
 
@@ -1204,11 +1198,9 @@ DECLARE total integer;
 
 BEGIN
 
-```sql
-SELECT count(\*) into total
-
-FROM "HR".employees;
-```
+> SELECT count(\*) into total
+>
+> FROM "HR".employees;
 
 RETURN total;
 
@@ -1297,77 +1289,76 @@ p_first_name varchar(20)
 AS \$\$
 
 > BEGIN
-```sql
-INSERT INTO employees (
-```
+>
+> INSERT INTO employees (
+>
 > first_nam
-```sql
-, last_name
-
-, email
-
-, phone_number
-
-, job_id
-
-, salary
-
-, manager_id
-
-, department_id
-
-, \"ідентифікатор\"
-
-, \"Імʼя\"
-
-, опис
-
-, тип
-
-, штат
-
-, \"Назва ресурсу\"
-
-, \"Рівень облікового номера ресурсу\"
-
-, \"Стан оновлення\")
-
-VALUES (
-```
+>
+> , last_name
+>
+> , email
+>
+> , phone_number
+>
+> , job_id
+>
+> , salary
+>
+> , manager_id
+>
+> , department_id
+>
+> , \"ідентифікатор\"
+>
+> , \"Імʼя\"
+>
+> , опис
+>
+> , тип
+>
+> , штат
+>
+> , \"Назва ресурсу\"
+>
+> , \"Рівень облікового номера ресурсу\"
+>
+> , \"Стан оновлення\")
+>
+> VALUES (
+>
 > p_first_nam
-```sql
-, p_last_name
-
-, p_email
-
-, p_phone_number
-
-, p_job_id
-
-, p_salary
-
-, p_manager_id
-
-, p_department_id
-
-, p_identifier
-
-, p_name
-
-, p_description
-
-, p_type
-
-, p_state
-
-, p_resource_name
-
-, p_resource_account_level
-
-, p_update_status);
-
-END;
-```
+>
+> , p_last_name
+>
+> , p_email
+>
+> , p_phone_number
+>
+> , p_job_id
+>
+> , p_salary
+>
+> , p_manager_id
+>
+> , p_department_id
+>
+> , p_identifier
+>
+> , p_name
+>
+> , p_description
+>
+> , p_type
+>
+> , p_state
+>
+> , p_resource_name
+>
+> , p_resource_account_level
+>
+> , p_update_status);
+>
+> END;
 
 \$\$
 

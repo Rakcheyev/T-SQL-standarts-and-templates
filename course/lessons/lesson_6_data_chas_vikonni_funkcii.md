@@ -151,15 +151,13 @@ PostgreSQL підтримує власний тип даних **JSON** з в�
 Давай почнемо зі створення нової таблиці для практики з типом даних
 JSON.
 
-```sql
-CREATE TABLE orders (
-```
+> CREATE TABLE orders (
+>
 > id serial NOT NULL PRIMARY KEY
-```sql
-,info json NOT NULL
-
-);
-```
+>
+> ,info json NOT NULL
+>
+> );
 
 Таблиця **orders** містить два стовпці:
 
@@ -178,21 +176,19 @@ INSERT INTO orders (info)
 ```
 VALUES (
 
-```sql
-\'{
-
-\"customer\": \"John Doe\"
-
-, \"items\": { \"product\": \"Beer\"
-
-, \"qty\": 6
-```
+> \'{
+>
+> \"customer\": \"John Doe\"
+>
+> , \"items\": { \"product\": \"Beer\"
+>
+> , \"qty\": 6
+>
 > }
-```sql
-}\'
-
-);
-```
+>
+> }\'
+>
+> );
 
 Це означає, що John Doe придбав 6 пляшок beers
 
@@ -205,13 +201,11 @@ INSERT INTO orders (info)
 VALUES (\'{\"customer\": \"Lily Bush\", \"items\": {\"product\":
 \"Diaper\", \"qty\": 24}}\')
 
-```sql
-,(\'{\"customer\": \"Josh William\", \"items\": {\"product\": \"Toy
-Car\", \"qty\": 1}}\')
-
-,(\'{\"customer\": \"Mary Clark\", \"items\": {\"product\": \"Toy
-Train\", \"qty\": 2}}\');
-```
+> ,(\'{\"customer\": \"Josh William\", \"items\": {\"product\": \"Toy
+> Car\", \"qty\": 1}}\')
+>
+> ,(\'{\"customer\": \"Mary Clark\", \"items\": {\"product\": \"Toy
+> Train\", \"qty\": 2}}\');
 
 Щоб отримати дані у форматі **JSON**, використовуй звичайний **SELECT**.
 
@@ -317,9 +311,7 @@ WHERE CAST ( info -\> \'items\' -\>\> \'qty\' AS INTEGER ) = 2;
 
 **qty** в **INTEGER**.
 
-```sql
 **<div style="text-align: center; font-size: 24px;">Застосування агрегатних функцій до даних JSON</div>**
-```
 
 Ми можемо застосовувати агрегатні функції, такі
 як **MIN, MAX, AVERAGE, SUM** тощо, до даних **JSON**.
@@ -331,15 +323,13 @@ WHERE CAST ( info -\> \'items\' -\>\> \'qty\' AS INTEGER ) = 2;
 SELECT
 
 ```
-```sql
-MIN (CAST (info -\> \'items\' -\>\> \'qty\' AS INTEGER))
-
-, MAX (CAST (info -\> \'items\' -\>\> \'qty\' AS INTEGER))
-
-, SUM (CAST (info -\> \'items\' -\>\> \'qty\' AS INTEGER))
-
-, AVG (CAST (info -\> \'items\' -\>\> \'qty\' AS INTEGER))
-```
+> MIN (CAST (info -\> \'items\' -\>\> \'qty\' AS INTEGER))
+>
+> , MAX (CAST (info -\> \'items\' -\>\> \'qty\' AS INTEGER))
+>
+> , SUM (CAST (info -\> \'items\' -\>\> \'qty\' AS INTEGER))
+>
+> , AVG (CAST (info -\> \'items\' -\>\> \'qty\' AS INTEGER))
 
 FROM orders
 
@@ -899,17 +889,15 @@ FROM products;
 використовуємо **GROUP BY**. Наступний приклад повертає середню ціну для
 кожної групи продуктів.
 
-```sql
-SELECT group_name
-
-, AVG(price)
-
-FROM products
-
-INNER JOIN product_groups USING (group_id)
-
-GROUP BY group_name
-```
+> SELECT group_name
+>
+> , AVG(price)
+>
+> FROM products
+>
+> INNER JOIN product_groups USING (group_id)
+>
+> GROUP BY group_name
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image19.png" width="600" />
@@ -1108,9 +1096,7 @@ SELECT product_name
 
 , ROW_NUMBER()
 
-```sql
-OVER (PARTITION BY group_name ORDER BY price)
-```
+> OVER (PARTITION BY group_name ORDER BY price)
 
 FROM products
 
@@ -1137,9 +1123,7 @@ SELECT product_name
 
 , RANK()
 
-```sql
-OVER (PARTITION BY group_name ORDER BY price)
-```
+> OVER (PARTITION BY group_name ORDER BY price)
 
 FROM products
 
@@ -1167,9 +1151,7 @@ SELECT product_name
 
 , DENSE_RANK()
 
-```sql
-OVER (PARTITION BY group_name ORDER BY price)
-```
+> OVER (PARTITION BY group_name ORDER BY price)
 
 FROM products
 
@@ -1216,9 +1198,7 @@ SELECT product_name
 
 , FIRST_VALUE(price)
 
-```sql
-OVER (PARTITION BY group_name
-```
+> OVER (PARTITION BY group_name
 
 ORDER BY price) AS lowest_price_per_group
 
@@ -1243,9 +1223,7 @@ SELECT product_name
 
 , LAST_VALUE(price)
 
-```sql
-OVER (PARTITION BY group_name
-```
+> OVER (PARTITION BY group_name
 
 ORDER BY price RANGE BETWEEN UNBOUNDED PRECEDING
 
@@ -1313,17 +1291,13 @@ SELECT product_name
 
 , LAG(price, 1)
 
-```sql
-OVER (PARTITION BY group_name
-```
+> OVER (PARTITION BY group_name
 
 ORDER BY price) AS prev_price
 
 , price - LAG(price, 1)
 
-```sql
-OVER (PARTITION BY group_name
-```
+> OVER (PARTITION BY group_name
 
 ORDER BY price) AS cur_prev_diff
 
@@ -1363,17 +1337,13 @@ SELECT product_name
 
 , LEAD(price, 1)
 
-```sql
-OVER (PARTITION BY group_name
-```
+> OVER (PARTITION BY group_name
 
 ORDER BY price) AS next_price
 
 , price - LEAD(price, 1)
 
-```sql
-OVER (PARTITION BY group_name
-```
+> OVER (PARTITION BY group_name
 
 ORDER BY price) AS cur_next_diff
 
@@ -1642,23 +1612,19 @@ SELECT product_name
 
 , LAG(price, 1)
 
-```sql
-OVER (PARTITION BY group_name
-
-ORDER BY price
-
-) AS prev_price
-```
+> OVER (PARTITION BY group_name
+>
+> ORDER BY price
+>
+> ) AS prev_price
 
 , price - LAG(price, 1)
 
-```sql
-OVER (PARTITION BY group_name
-
-ORDER BY price
-
-) AS cur_prev_diff
-```
+> OVER (PARTITION BY group_name
+>
+> ORDER BY price
+>
+> ) AS cur_prev_diff
 
 FROM products
 
@@ -1666,17 +1632,13 @@ INNER JOIN product_groups USING (group_id)
 
 WHERE price \> 1000
 
-```sql
-AND group_name IN (\'Електроніка\', \'Побутова техніка\')
-```
+> AND group_name IN (\'Електроніка\', \'Побутова техніка\')
 
 ORDER BY group_name
 
 , price
 
-```sql
-DESC;
-```
+> DESC;
 
 Цей стиль форматування поєднує переваги вертикального вирівнювання з
 ізоляцією складних виразів, що забезпечує максимальну читабельність,
