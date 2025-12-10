@@ -1,25 +1,27 @@
 {
-  "github.copilot.ignoredFolders": [
-    "assets/images",
-    "node_modules",
-    ".git",
-    ".venv",
-    "dist",
-    "out",
-    "input"
-  ],
-  "github.copilot.enable": { "*": true },
-  "github.copilot.editor.enableCodeActions": false,
+  "python-envs.defaultEnvManager": "ms-python.python:system",
+  "python-envs.pythonProjects": []
+  // // "github.copilot.ignoredFolders": [
+  // //   "assets/images",
+  // //   "node_modules",
+  // //   ".git",
+  // //   ".venv",
+  // //   "dist",
+  // //   "out",
+  // //   "input"
+  // // ],
+  // "github.copilot.enable": { "*": true },
+  // "github.copilot.editor.enableCodeActions": true,
 
-  "chat.agent.enabled": true,
-  "chat.agent.maxRequests": 20,
-  "github.copilot.chat.agent.autoFix": true,
-  "github.copilot.chat.agent.currentEditorContext.enabled": true,
-  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
-  "github.copilot.chat.reviewSelection.instructions": [
-    { "file": ".copilot-review-instructions.md" },
-    { "text": "Resolve all TODO tasks in the selected code if it is safe." }
-  ],
+  // "chat.agent.enabled": true,
+  // "chat.agent.maxRequests": 20,
+  // "github.copilot.chat.agent.autoFix": true,
+  // "github.copilot.chat.agent.currentEditorContext.enabled": true,
+  // "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  // "github.copilot.chat.reviewSelection.instructions": [
+  //   { "file": ".copilot-review-instructions.md" },
+  //   { "text": "Resolve all TODO tasks in the selected code if it is safe." }
+  // ],
 
-  "gitlens.ai.model": "vscode"
+  // "gitlens.ai.model": "vscode"
 }
