@@ -768,9 +768,7 @@ FROM table_name;
   <img src="../../assets/images/lesson_1_sql_vstup/media/image15.png" width="600" />
 </div>
 
-```sql
 <div style="text-align: center; font-size: 24px;">Приклад 1. Отримання даних з усіх рядків і стовпців таблиці</div>
-```
 
 У наступному прикладі SQL-коду використовується оператор SELECT для
 отримання даних з усіх рядків і стовпців таблиці **employees**:
@@ -820,9 +818,7 @@ FROM "HR".employees;
   <img src="../../assets/images/lesson_1_sql_vstup/media/image17.png" width="600" />
 </div>
 
-```sql
 <div style="text-align: center; font-size: 24px;">Приклад 2. Отримання імені, прізвища, зарплати та нової зарплати</div>
-```
 
 У цьому прикладі використовується оператор **SELECT** для отримання
 імені, прізвища, зарплати та нової зарплати (На скільки % ми збільшили
