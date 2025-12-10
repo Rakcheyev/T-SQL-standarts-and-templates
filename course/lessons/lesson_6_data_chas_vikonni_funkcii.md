@@ -153,18 +153,14 @@ JSON.
 
 ```sql
 CREATE TABLE orders (
-```
-> id serial NOT NULL PRIMARY KEY
-```sql
-,info json NOT NULL
-
+    id serial NOT NULL PRIMARY KEY
+, info json NOT NULL
 );
 ```
 
 Таблиця **orders** містить два стовпці:
 
 -   Стовпець **«ID» **є первинним ключем ідентифікації замовлення.
-
 -   Стовпець **«Info»** зберігає дані у формі **JSON**.
 
 Перш ніж вставити дані у стовпець **JSON**, важливо переконатися, що
@@ -174,23 +170,14 @@ CREATE TABLE orders (
 
 ```sql
 INSERT INTO orders (info)
-
-```
 VALUES (
-
-```sql
-\'{
-
-\"customer\": \"John Doe\"
-
-, \"items\": { \"product\": \"Beer\"
-
-, \"qty\": 6
-```
-> }
-```sql
-}\'
-
+'{
+    "customer": "John Doe"
+    , "items": {
+            "product": "Beer"
+        , "qty": 6
+        }
+}'
 );
 ```
 
@@ -200,24 +187,22 @@ VALUES (
 
 ```sql
 INSERT INTO orders (info)
-
-```
-VALUES (\'{\"customer\": \"Lily Bush\", \"items\": {\"product\":
-\"Diaper\", \"qty\": 24}}\')
-
-```sql
-,(\'{\"customer\": \"Josh William\", \"items\": {\"product\": \"Toy
-Car\", \"qty\": 1}}\')
-
-,(\'{\"customer\": \"Mary Clark\", \"items\": {\"product\": \"Toy
-Train\", \"qty\": 2}}\');
+VALUES
+(
+    '{"customer": "Lily Bush", "items": {"product": "Diaper", "qty": 24}}'
+)
+, (
+    '{"customer": "Josh William", "items": {"product": "Toy Car", "qty": 1}}'
+)
+, (
+    '{"customer": "Mary Clark", "items": {"product": "Toy Train", "qty": 2}}'
+);
 ```
 
 Щоб отримати дані у форматі **JSON**, використовуй звичайний **SELECT**.
 
 ```sql
 SELECT info FROM orders;
-
 ```
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image1.png" width="600" />
@@ -230,22 +215,21 @@ PostgreSQL повертає набір результатів у форматі 
 **PostgreSQL** надає два власні оператори, щоб допомогти тобі отримати
 дані **JSON**.
 
--   **-\>** повертає значення поля об'єкта JSON за ключем.
+-   **->** повертає значення поля об'єкта JSON за ключем.
+-   **->>** повертає значення поля об'єкта JSON за текстом.
 
--   **-\>\>** повертає значення поля об'єкта JSON за текстом.
-
-Наступний запит використовує оператор -\> для отримання всіх клієнтів у
+Наступний запит використовує оператор -> для отримання всіх клієнтів у
 форматі JSON:
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image2.png" width="600" />
 </div>
-
 ```sql
-SELECT info -\> \'customer\' AS customer
-
-```
+SELECT
+    info -> 'customer' AS customer
+,   info -> 'items'    AS items
 FROM orders;
+```
 
 А наступний запит використовує оператор -\>\>, щоб отримати всіх
 клієнтів у вигляді тексту:
@@ -258,24 +242,21 @@ SELECT info -\>\> \'customer\' AS customer
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image3.png" width="600" />
 </div>
 
-Оскільки оператор -\> повертає об'єкт JSON, ти можеш поєднати його
-з оператором -\>\>, щоб отримати певний вузол. Наприклад, наступний
+Оскільки оператор -> повертає об'єкт JSON, ти можеш поєднати його
+з оператором ->>, щоб отримати певний вузол. Наприклад, наступний
 оператор повертає всі продані продукти:
 
 ```sql
-SELECT info -\> \'items\' -\>\> \'product\' as product
-
+SELECT info -> 'items' ->> 'product' as product
+ORDER BY product;
 ```
+
 <div align="center">
-  <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image4.png" width="600" />
+  <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image4.png" width="200" />
 </div>
 
-ORDER BY product;
-
-Спочатку **info -\> \'items\'** повертає елементи як об'єкти **JSON**.
-
-А потім **info-\>\'items\'-\>\>\'product\'** повертає всі продукти як
-текст.
+Спочатку **info -> 'items'** повертає елементи як об'єкти **JSON**.
+А потім **info -> 'items' ->> 'product'** повертає всі продукти як текст.
 
 **<div style="text-align: center; font-size: 24px;">Оператор JSON у реченні WHERE</div>**
 
@@ -284,14 +265,13 @@ ORDER BY product;
 
 Наприклад, щоб дізнатися, хто купив **Diaper**, ми використовуємо такий
 запит:
-
 ```sql
-SELECT info -\>\> \'customer\' as customer
-
-```
+SELECT
+    info ->> 'customer' AS customer
+,   info -> 'items' ->> 'product' AS product
 FROM orders
-
-WHERE info -\> \'items\' -\>\> \'product\' = \'Diaper\';
+    WHERE info -> 'items' ->> 'product' = 'Diaper';
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image5.png" width="600" />
@@ -301,21 +281,17 @@ WHERE info -\> \'items\' -\>\> \'product\' = \'Diaper\';
 запит:
 
 ```sql
-SELECT info -\>\> \'customer\' as customer\
-, info -\> \'items\' -\>\> \'product\' as product
-
-```
+SELECT info ->> 'customer' AS customer
+     , info -> 'items' ->> 'product' AS product
 FROM orders
-
-WHERE CAST ( info -\> \'items\' -\>\> \'qty\' AS INTEGER ) = 2;
+    WHERE CAST(info -> 'items' ->> 'qty' AS INTEGER) = 2;
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image6.png" width="600" />
 </div>
 
-Зверни увагу, що ми використовували приведення типу, щоб перетворити 
-
-**qty** в **INTEGER**.
+Зверни увагу, що ми використовували приведення типу, щоб перетворити **qty** в **INTEGER**.
 
 ****<div style="text-align: center; font-size: 24px;">Застосування агрегатних функцій до даних JSON</div>****
 
@@ -327,19 +303,12 @@ WHERE CAST ( info -\> \'items\' -\>\> \'qty\' AS INTEGER ) = 2;
 
 ```sql
 SELECT
-
+    MIN(CAST(info -> 'items' ->> 'qty' AS INTEGER))
+  , MAX(CAST(info -> 'items' ->> 'qty' AS INTEGER))
+  , SUM(CAST(info -> 'items' ->> 'qty' AS INTEGER))
+  , AVG(CAST(info -> 'items' ->> 'qty' AS INTEGER))
+FROM orders;
 ```
-```sql
-MIN (CAST (info -\> \'items\' -\>\> \'qty\' AS INTEGER))
-
-, MAX (CAST (info -\> \'items\' -\>\> \'qty\' AS INTEGER))
-
-, SUM (CAST (info -\> \'items\' -\>\> \'qty\' AS INTEGER))
-
-, AVG (CAST (info -\> \'items\' -\>\> \'qty\' AS INTEGER))
-```
-
-FROM orders
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image7.png" width="600" />
@@ -352,9 +321,8 @@ FROM orders
 
 ```sql
 SELECT json_each (info)
-
-```
 FROM orders;
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image8.png" width="600" />
@@ -374,10 +342,9 @@ FROM orders;
 стовпці **info**.
 
 ```sql
-SELECT json_object_keys ( info-\>\'items\' )
-
-```
+SELECT json_object_keys ( info->'items' )
 FROM orders;
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image9.png" width="600" />
@@ -420,33 +387,16 @@ FROM orders;
 Загалом використання формату **JSON** у базі даних **PostgreSQL**
 дозволяє зберігати, опрацьовувати й обмінюватися структурованими даними
 гнучким та ефективним способом.
+| Завдання | PostgreSQL | MS SQL Server (T-SQL) | Oracle SQL |
+|---|---:|---:|---:|
+| Вибірка (отримати текстове значення) | `json_column ->> 'path'`<br/>Приклад: `info ->> 'customer'` | `JSON_VALUE(json_column, '$.path')`<br/>Приклад: `JSON_VALUE(info, '$.customer')` | `JSON_VALUE(json_column, '$.path')`<br/>Приклад: `JSON_VALUE(info, '$.customer')` |
+| Вибірка (отримати JSON-об'єкт) | `json_column -> 'path'`<br/>Приклад: `info -> 'items'` | Для отримання об'єкта використовують `OPENJSON` або парсинг; `JSON_QUERY(json_column, '$.path')` | `JSON_QUERY(json_column, '$.path')` |
+| Фільтрація (WHERE) | `info -> 'items' ->> 'product' = 'Diaper'`<br/>або `CAST(info -> 'items' ->> 'qty' AS INTEGER) = 2` | `JSON_VALUE(json_column, '$.path.subpath') = 'value'`<br/>або `CAST(JSON_VALUE(json_column, '$.path.qty') AS INT) = 2` | `JSON_VALUE(json_column, '$.path.subpath') = 'value'`<br/>або `TO_NUMBER(JSON_VALUE(json_column, '$.path.qty')) = 2` |
 
-***Ось таблиця, що узагальнює еквівалентні підходи та синтаксис для
-ключових завдань у PostgreSQL, MS SQL Server (T-SQL) та Oracle SQL.***
-
-+-----------+------------------+------------------+-------------------+
-| **З       | **PostgreSQL**   | **MS SQL         | **Oracle SQL**    |
-| авдання** |                  | (T-SQL)**        |                   |
-+===========+==================+==================+===================+
-| **        | json_column      | JSON_VALUE\      | JSON_VALUE        |
-| Вибірка** | -\>\> \'path\'   | (\               |                   |
-|           |                  | json_column,     | (                 |
-|           |                  | \'\$.path\'\     |                   |
-|           |                  | )                | json_column,      |
-|           |                  |                  | \'\$.path\'       |
-|           |                  |                  |                   |
-|           |                  |                  | )                 |
-+-----------+------------------+------------------+-------------------+
-| **Філ     | json_column\     | JSON_VALUE\      | JSON_VALUE        |
-| ьтрація** | -\> \'path\'\    | (\               |                   |
-|           | -\>\>            | json_column,     | (                 |
-|           | \'subpath\' =    | \'\$             |                   |
-|           | \'value\'        | .path.subpath\'\ | json_column,      |
-|           |                  | ) = \'value\'    | \'                |
-|           |                  |                  | \$.path.subpath\' |
-|           |                  |                  |                   |
-|           |                  |                  | ) = \'value\'     |
-+-----------+------------------+------------------+-------------------+
+Примітки:
+- У PostgreSQL `->` повертає JSON, `->>` повертає текст.
+- У T‑SQL та Oracle для простих скалярних значень використовується `JSON_VALUE`, для повернення підоб'єктів — `JSON_QUERY` / `OPENJSON`.
+- Підставляйте реальні імена стовпців і шляхів (`json_column`, `$.path`) відповідно до схеми.
 
 **<div style="text-align: center; font-size: 24px;">Робота з датами та часовими даними в SQL</div>**
 
@@ -525,7 +475,6 @@ FROM orders;
 
 ```sql
 SELECT CURRENT_DATE;
-
 ```
 -   **CURRENT_TIMESTAMP**
 
@@ -537,7 +486,6 @@ SELECT CURRENT_DATE;
 
 ```sql
 SELECT CURRENT_TIMESTAMP;
-
 ```
 Обидві функції: **CURRENT_DATE** і **CURRENT_TIMESTAMP** --- не
 приймають аргументів і повертають значення відповідного типу дати. Вони
@@ -554,23 +502,23 @@ PostgreSQL.
 вимірювання, залежно від потреби.
 
 Синтаксис функції date_trunc такий:
-
-date_trunc(\'unit\', timestamp)
-
+```sql
+date_trunc('unit', timestamp)
+```
 У цьому синтаксисі:
 
--   **unit** вказує одиницю, до якої треба обрізати частину дати або
-    часу.
-
+-   **unit** вказує одиницю, до якої треба обрізати частину дати або часу.
 -   **timestamp** --- дата або час, який потрібно обрізати.
 
 Для демонстрації використаємо таблицю employees зі схеми відділу HR:
 
 ```sql
-SELECT date_trunc( \'year\', hire_date ) AS truncated_date
-
+SELECT
+    date_trunc(\'year\'
+    , hire_date
+    ) AS truncated_date
+FROM HR.employees;
 ```
-FROM \"HR\".employees;
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image10.png" width="600" />
@@ -627,14 +575,12 @@ FROM \"HR\".employees;
 або часів та обчислення їх різниці.
 
 Ось синтаксис функції **date_part**:
-
-date_part(\'unit\', timestamp)
-
+```sql
+date_part('unit', timestamp)
+```
 У цьому синтаксисі:
-
 -   **unit** --- одиниця вимірювання, для якої ти хочеш отримати
     значення.
-
 -   **timestamp** --- дата або час, з яких ти отримуєш значення.
 
 Наприклад, для обчислення різниці в роках між двома датами з
@@ -642,11 +588,9 @@ date_part(\'unit\', timestamp)
 таким запитом:
 
 ```sql
-SELECT date_part( \'year\', age( \'2023-01-01\', hire_date ) ) AS
-diff_years
-
+SELECT date_part( 'year', age( '2023-01-01', hire_date ) ) AS diff_years
+FROM HR.employees;
 ```
-FROM \"HR\".employees;
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image12.png" width="600" />
@@ -670,13 +614,11 @@ FROM \"HR\".employees;
 вимірювання з дати або часу.
 
 Ось синтаксис функції **EXTRACT**:
-
-EXTRACT( \'unit\' FROM timestamp )
-
+```sql
+EXTRACT( 'unit' FROM timestamp )
+```
 У цьому синтаксисі:
-
 -   **unit** --- одиниця вимірювання, яку ти хочеш отримати.
-
 -   **timestamp** --- дата або час, з яких ти отримуєш значення.
 
 Наприклад, для отримання значення року з поля **hire_date** у
@@ -685,10 +627,8 @@ EXTRACT( \'unit\' FROM timestamp )
 
 ```sql
 SELECT EXTRACT(year FROM hire_date) AS hire_year
-
+FROM HR.employees;
 ```
-FROM \"HR\".employees;
-
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image13.png" width="600" />
 </div>
@@ -717,10 +657,9 @@ FROM \"HR\".employees;
 ти можеш використати такий запит:
 
 ```sql
-SELECT TO_CHAR( hire_date, \'YYYY-MM-DD\' ) AS hire_date_str
-
+SELECT TO_CHAR( hire_date, 'YYYY-MM-DD' ) AS hire_date_str
+FROM HR.employees;
 ```
-FROM \"HR\".employees;
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image14.png" width="600" />
@@ -738,8 +677,7 @@ FROM \"HR\".employees;
 скористатися таким запитом:
 
 ```sql
-SELECT CAST(\'2022-05-10\' AS date) AS converted_date;
-
+SELECT CAST('2022-05-10' AS date) AS converted_date;
 ```
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image15.png" width="600" />
@@ -798,75 +736,44 @@ TIME** і **TIMESTAMP** є важливою частиною розробки б
 
 ```sql
 CREATE TABLE product_groups (
-
-```
-group_id serial PRIMARY KEY
-
-, group_name VARCHAR (255) NOT NULL
-
+    group_id serial PRIMARY KEY
+  , group_name VARCHAR(255) NOT NULL
 );
 
-```sql
 CREATE TABLE products (
-
-```
-product_id serial PRIMARY KEY
-
-, product_name VARCHAR (255) NOT NULL
-
-, price DECIMAL (11, 2)
-
-, group_id INT NOT NULL
-
-, FOREIGN KEY (group_id) REFERENCES product_groups (group_id)
-
+    product_id serial PRIMARY KEY
+  , product_name VARCHAR(255) NOT NULL
+  , price DECIMAL(11, 2)
+  , group_id INT NOT NULL
+  , FOREIGN KEY (group_id) REFERENCES product_groups (group_id)
 );
+```
 
 Також додамо деяку інформацію до наших таблиць:
 
 ```sql
 INSERT INTO product_groups (group_name)
-
-```
 VALUES
-
-(\'Smartphone\')
-
-, (\'Laptop\')
-
-, (\'Tablet\')
-
+ ('Smartphone')
+ , ('Laptop')
+ , ('Tablet')
 ;
 
-```sql
 INSERT INTO products (product_name, group_id, price)
-
-```
 VALUES
-
-(\'Microsoft Lumia\', 1, 200)
-
-, (\'HTC One\', 1, 400)
-
-, (\'Nexus\', 1, 500)
-
-, (\'iPhone\', 1, 900)
-
-, (\'HP Elite\', 2, 1200)
-
-, (\'Lenovo Thinkpad\', 2, 700)
-
-, (\'Sone VAIO\', 2, 700)
-
-, (\'Dell Vostro\', 2, 800)
-
-, (\'iPad\', 3, 700)
-
-, (\'Kindle Fire\', 3, 150)
-
-, (\'Samsung Galaxy Tab\', 3, 200)
-
+ ('Microsoft Lumia', 1, 200)
+ , ('HTC One', 1, 400)
+ , ('Nexus', 1, 500)
+ , ('iPhone', 1, 900)
+ , ('HP Elite', 2, 1200)
+ , ('Lenovo Thinkpad', 2, 700)
+ , ('Sone VAIO', 2, 700)
+ , ('Dell Vostro', 2, 800)
+ , ('iPad', 3, 700)
+ , ('Kindle Fire', 3, 150)
+ , ('Samsung Galaxy Tab', 3, 200)
 ;
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image17.png" width="600" />
@@ -885,10 +792,8 @@ VALUES
 
 ```sql
 SELECT AVG(price)
-
-```
 FROM products;
-
+```
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image18.png" width="600" />
 </div>
@@ -898,17 +803,13 @@ FROM products;
 кожної групи продуктів.
 
 ```sql
-SELECT group_name
-
-, AVG(price)
-
+SELECT
+    group_name
+,   AVG(price)
 FROM products
-
 INNER JOIN product_groups USING (group_id)
-
-GROUP BY group_name
+GROUP BY group_name;
 ```
-
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image19.png" width="600" />
 </div>
@@ -931,17 +832,14 @@ GROUP BY group_name
 
 ```sql
 SELECT product_name
-
-```
-, price
-
-, group_name
-
-, AVG( price ) OVER ( PARTITION BY group_name )
-
+    , price
+    , group_name
+    , AVG(price) OVER (
+        PARTITION BY group_name
+      ) AS avg_price_per_group
 FROM products
-
-INNER JOIN product_groups USING (group_id)
+INNER JOIN product_groups USING (group_id);
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image20.png" width="600" />
@@ -987,34 +885,30 @@ price, group_name)**, а також додатковий стовпець, як�
 як **ORDER BY, ROWS, RANGE** тощо.
 
 Основний синтаксис віконних функцій у Postgre виглядає так:
-
-\<функція\>
-
-OVER (\[PARTITION BY \<стовпець1\>, \<стовпець2\>, \...\]
-
-\[ORDER BY \<стовпець\> \[ASC\|DESC\], \...\]
-
-\[ROWS \<розмір_вікна\>\] \[\<додаткові_вказівники_вікна\>\]
-
+```sql
+<функція>
+OVER ([PARTITION BY <стовпець1>, <стовпець2>, ...]
+[ORDER BY <стовпець> [ASC|DESC], ...]
+[ROWS <розмір_вікна>] [<додаткові_вказівники_вікна>]
 )
-
+```
 Де:
 
--   **\<функція\>** --- це вираз, який відображає віконну функцію,
+-   **<функція>** --- це вираз, який відображає віконну функцію,
     наприклад, **SUM, AVG, RANK** тощо.
 
--   **PARTITION BY \<стовпець1\>, \<стовпець2\>,** \... --- вказує, за
+-   **PARTITION BY <стовпець1>, <стовпець2>,** ... --- вказує, за
     якими стовпцями слід групувати дані перед обчисленням віконної
     функції.
 
--   **ORDER BY \<стовпець\> \[ASC\|DESC\],** \... --- визначає порядок
+-   **ORDER BY <стовпець> [ASC|DESC],** ... --- визначає порядок
     сортування рядків, у межах яких відбувається обчислення віконної
     функції.
 
--   **ROWS \<розмір_вікна\> **--- вказує, які рядки повинні бути
+-   **ROWS <розмір_вікна> **--- вказує, які рядки повинні бути
     включені до вікна. Це можуть бути, наприклад, попередні **N** рядків
-    **(ROWS BETWEEN \<start\> PRECEDING AND \<end\> FOLLOWING)** або
-    діапазон значень **(RANGE BETWEEN \<start\> AND \<end\>).**
+    **(ROWS BETWEEN <start> PRECEDING AND <end> FOLLOWING)** або
+    діапазон значень **(RANGE BETWEEN <start> AND <end>).**
 
 -   **\<додаткові_вказівники_вікна\>** --- додаткові вказівники вікна,
     такі як **ROWS BETWEEN** **UNBOUNDED PRECEDING AND CURRENT ROW,
@@ -1098,21 +992,16 @@ PostgreSQL:
 
 ```sql
 SELECT product_name
-
-```
-, group_name
-
-, price
-
-, ROW_NUMBER()
-
-```sql
-OVER (PARTITION BY group_name ORDER BY price)
-```
-
+    , group_name
+    , price
+    , ROW_NUMBER()
+        OVER (
+            PARTITION BY group_name
+            ORDER BY price
+        ) AS row_number
 FROM products
-
 INNER JOIN product_groups USING (group_id);
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image21.png" width="600" />
@@ -1127,21 +1016,15 @@ INNER JOIN product_groups USING (group_id);
 
 ```sql
 SELECT product_name
-
-```
-, group_name
-
-, price
-
-, RANK()
-
-```sql
-OVER (PARTITION BY group_name ORDER BY price)
-```
-
+    , group_name
+    , price
+    , RANK() OVER (
+        PARTITION BY group_name
+        ORDER BY price
+      ) AS rank_in_group
 FROM products
-
 INNER JOIN product_groups USING (group_id);
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image22.png" width="600" />
@@ -1157,21 +1040,15 @@ INNER JOIN product_groups USING (group_id);
 
 ```sql
 SELECT product_name
-
-```
-, group_name
-
-, price
-
-, DENSE_RANK()
-
-```sql
-OVER (PARTITION BY group_name ORDER BY price)
-```
-
+    , group_name
+    , price
+    , DENSE_RANK() OVER (
+        PARTITION BY group_name
+        ORDER BY price
+      ) AS dense_rank_in_group
 FROM products
-
 INNER JOIN product_groups USING (group_id);
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image23.png" width="600" />
@@ -1206,23 +1083,15 @@ INNER JOIN product_groups USING (group_id);
 
 ```sql
 SELECT product_name
-
-```
-, group_name
-
-, price
-
-, FIRST_VALUE(price)
-
-```sql
-OVER (PARTITION BY group_name
-```
-
-ORDER BY price) AS lowest_price_per_group
-
+    , group_name
+    , price
+    , FIRST_VALUE(price) OVER (
+        PARTITION BY group_name
+        ORDER BY price
+      ) AS lowest_price_per_group
 FROM products
-
 INNER JOIN product_groups USING (group_id);
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image24.png" width="600" />
@@ -1233,27 +1102,16 @@ INNER JOIN product_groups USING (group_id);
 
 ```sql
 SELECT product_name
-
-```
-, group_name
-
-, price
-
-, LAST_VALUE(price)
-
-```sql
-OVER (PARTITION BY group_name
-```
-
-ORDER BY price RANGE BETWEEN UNBOUNDED PRECEDING
-
-AND UNBOUNDED FOLLOWING
-
-) AS highest_price_per_group
-
+    , group_name
+    , price
+    , LAST_VALUE(price) OVER (
+        PARTITION BY group_name
+        ORDER BY price
+        RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+      ) AS highest_price_per_group
 FROM products
-
 INNER JOIN product_groups USING (group_id);
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image25.png" width="600" />
@@ -1283,7 +1141,7 @@ UNBOUNDED FOLLOWING**, він вказує, що віконний фрейм п�
 
 Ось їх опис:
 
--   **LAG (expression \[, offset \[, default\]\])** --- Ця функція
+-   **LAG (expression [, offset [, default]] )** --- Ця функція
     повертає значення виразу для попереднього рядка вікна. Вираз може
     бути будь-яким стовпцем або виразом, який ти хочеш отримати з
     попереднього рядка.
@@ -1302,38 +1160,27 @@ UNBOUNDED FOLLOWING**, він вказує, що віконний фрейм п�
 попереднього рядка.
 
 ```sql
-SELECT product_name
-
-```
-, group_name
-
-, price
-
-, LAG(price, 1)
-
-```sql
-OVER (PARTITION BY group_name
-```
-
-ORDER BY price) AS prev_price
-
-, price - LAG(price, 1)
-
-```sql
-OVER (PARTITION BY group_name
-```
-
-ORDER BY price) AS cur_prev_diff
-
+SELECT
+    product_name
+  , group_name
+  , price
+  , LAG(price, 1) OVER (
+        PARTITION BY group_name
+        ORDER BY price
+    ) AS prev_price
+  , price - LAG(price, 1) OVER (
+        PARTITION BY group_name
+        ORDER BY price
+    ) AS cur_prev_diff
 FROM products
-
 INNER JOIN product_groups USING (group_id);
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image26.png" width="600" />
 </div>
 
--   **LEAD (expression \[, offset \[, default\]\])** --- Ця функція
+-   **LEAD (expression [, offset [, default]])** --- Ця функція
     повертає значення виразу для наступного рядка вікна. Вираз може бути
     будь-яким стовпцем або виразом, який ти хочеш отримати з наступного
     рядка.
@@ -1350,34 +1197,22 @@ INNER JOIN product_groups USING (group_id);
 Наступний оператор використовує функцію **LEAD ()** для отримання цін із
 наступного рядка й обчислення різниці між ціною поточного рядка та
 наступного рядка.
-
 ```sql
-SELECT product_name
-
-```
-, group_name
-
-, price
-
-, LEAD(price, 1)
-
-```sql
-OVER (PARTITION BY group_name
-```
-
-ORDER BY price) AS next_price
-
-, price - LEAD(price, 1)
-
-```sql
-OVER (PARTITION BY group_name
-```
-
-ORDER BY price) AS cur_next_diff
-
+SELECT
+    product_name
+,   group_name
+,   price
+,   LEAD(price, 1) OVER (
+        PARTITION BY group_name
+        ORDER BY price
+    ) AS next_price
+,   price - LEAD(price, 1) OVER (
+        PARTITION BY group_name
+        ORDER BY price
+    ) AS cur_next_diff
 FROM products
-
 INNER JOIN product_groups USING (group_id);
+```
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image27.png" width="600" />
@@ -1628,52 +1463,26 @@ SQL-код.
 **<div style="text-align: center; font-size: 24px;">Порожній простір</div>**
 
 Для полегшення читання коду важливо використовувати правильне та
-узгоджене доповнення пробілів.\
-\
+узгоджене доповнення пробілів.
+
 ```sql
 SELECT product_name
-
-```
 , group_name
-
 , price
-
-, LAG(price, 1)
-
-```sql
-OVER (PARTITION BY group_name
-
-ORDER BY price
-
+, LAG(price, 1) OVER (
+    PARTITION BY group_name
+    ORDER BY price
 ) AS prev_price
-```
-
-, price - LAG(price, 1)
-
-```sql
-OVER (PARTITION BY group_name
-
-ORDER BY price
-
+, price - LAG(price, 1) OVER (
+    PARTITION BY group_name
+    ORDER BY price
 ) AS cur_prev_diff
-```
-
 FROM products
-
 INNER JOIN product_groups USING (group_id)
-
-WHERE price \> 1000
-
-```sql
-AND group_name IN (\'Електроніка\', \'Побутова техніка\')
-```
-
+    WHERE price > 1000
+        AND group_name IN ('Електроніка', 'Побутова техніка')
 ORDER BY group_name
-
-, price
-
-```sql
-DESC;
+       , price DESC;
 ```
 
 Цей стиль форматування поєднує переваги вертикального вирівнювання з
