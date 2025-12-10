@@ -19,6 +19,9 @@ def is_bold_sql_line(line: str):
     if not m:
         return None
     inner = m.group(2)
+    # Ignore HTML div headers or other HTML tags wrapped in **...**
+    if '<div' in inner.lower() or '</div>' in inner.lower():
+        return None
     # Heuristic: treat as SQL if contains SQL keyword or common SQL punctuation
     if SQL_KEYWORDS.search(inner) or re.search(r"[,();=*<>]", inner):
         return inner
