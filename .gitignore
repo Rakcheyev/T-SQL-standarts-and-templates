@@ -1,2 +1,5 @@
 archive/fixbacks/
 *.md.bak
+
+# Local Python virtual environment (non-educational artifact)
+.venv/
