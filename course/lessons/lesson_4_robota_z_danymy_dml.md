@@ -1,119 +1,121 @@
-<h2 align="center">Мова маніпулювання даними (DML) (insert, update, delete statements)</h2>
+﻿**Language:** English | [Українська](../../i18n/uk/course/lessons/lesson_4_robota_z_danymy_dml.md)
 
-Сьогодні ми розглянемо більш детально мову маніпулювання даними
-**(DML)**, яка містить команди **INSERT, UPDATE і DELETE**. Навіщо нам
-вивчати цю тему? Давай розбиратися!
+<h2 align="center">Data Manipulation Language (DML) (insert, update, delete statements)</h2>
 
-Уяви, що твоя база даних --- це велика коробка з різнокольоровими
-конструкторами. Спосіб, яким ти бажаєш створювати та змінювати дані в
-таблицях, подібний до того, як ти будуєш і змінюєш різні моделі з
-конструктора. І тут на сцену виходять команди **DML**:
+Today we will take a closer look at the data manipulation language
+**(DML)** which contains the **INSERT, UPDATE and DELETE** commands. 
+study this topic? 
 
--   Перша команда **INSERT** (додавання) дозволяє вставляти нові рядки
-    даних у таблицю. Це схоже на додавання нових елементів до твоєї
-    моделі з конструктора. Ти можеш вказати значення для кожного стовпця
-    або використовувати значення з інших таблиць.
+Imagine that your database is a big box with different colors
+designers. 
+tables, similar to how you build and modify different models with
+designer 
 
--   Наступна команда **UPDATE** (оновлення) дозволяє оновлювати вже
-    наявні рядки даних у таблиці. Це подібно до зміни і вдосконалення
-    вже створеної моделі. Ти можеш оновити значення в певних стовпцях
-    або навіть змінити значення на основі певних умов.
+- The first **INSERT** command allows you to insert new lines
+data into a table. 
+models from the constructor. 
+or use values ​​from other tables.
 
--   І, нарешті, команда **DELETE** (видалення) дозволяє видаляти рядки
-    даних з таблиці. Це подібно до розбирання або видалення частин твоєї
-    моделі з конструктора. Ти можеш видалити один або кілька рядків
-    даних або навіть очистити всю таблицю.
+- The following command **UPDATE** (update) allows you to update already
+existing rows of data in the table. 
+already created model. 
+or even change values ​​based on certain conditions.
 
-Навіщо нам вивчати команди **INSERT**, **UPDATE** і **DELETE**? Тому що
-вони надають нам повний контроль над даними! Ми можемо створювати нові
-записи, змінювати їх або видаляти, щоб наша база даних була актуальною
-та відповідала нашим потребам.
+- And finally, the **DELETE** command allows you to delete rows
+data from the table. 
+models from the constructor. 
+data or even clear the entire table.
 
-Розглянемо кожну з команд та їхній синтаксис детальніше.
+Why should we learn **INSERT**, **UPDATE** and **DELETE** commands? 
+they give us full control over the data! 
+records, change them or delete them to keep our database up to date
+and met our needs.
 
-<h2 align="center">Команда INSERT (додавання)</h2>
+Let's consider each of the commands and their syntax in more detail.
 
-*📌 Команда **INSERT** використовується для вставки (чи додавання) нових
-записів у таблицю бази даних.*
+<h2 align="center">INSERT command</h2>
 
-Синтаксис команди **INSERT** виглядає так:
+*📌 The **INSERT** command is used to insert (or add) new ones
+entries in the database table.*
+
+The syntax for the **INSERT** command is as follows:
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image1.png" width="600" />
 </div>
 
-Тут:
+Here:
 
-***«table_name»*** --- це ім\'я таблиці, у яку ти хочеш вставити дані.
+***"table_name"*** --- this is the name of the table into which you want to insert data.
 
-***«column1, column2, \...»*** --- це список стовпців таблиці, у які ти
-хочеш вставити значення.
+***"column1, column2, \..."*** --- this is a list of table columns in which you
+want to insert a value.
 
-***«value1, value2, \...»*** --- це відповідні значення, які ти хочеш
-додати.
+***"value1, value2, \..."*** --- these are the corresponding values ​​you want
+to add
 
-Важливо переконатися, що кількість стовпців і значень відповідає одна
-одній. Також слід звернути увагу на типи даних, щоб значення відповідали
-очікуваним типам стовпців.
+It is important to make sure that the number of columns and values ​​match one
+one 
+expected column types.
 
 
-<h2 align="center">Приклад команди INSERT</h2>
+<h2 align="center">An example of the INSERT command</h2>
 
 ```sql
 INSERT INTO Employees (EmployeeID, FirstName, LastName)
 VALUES (1, 'Іван', 'Петров');
 ```
 
-Якщо ми маємо таблицю **«Employees»** зі стовпцями **«EmployeeID»,
-«FirstName»** і **«LastName»**, ми можемо додати нового співробітника за
-допомогою команди INSERT таким чином:
+If we have a table **"Employees"** with columns **"EmployeeID",
+"FirstName"** and **"LastName"**, we can add a new employee for
+using the INSERT command as follows:
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image2.png" width="600" />
 </div>
 
-Також можна вставити кілька рядків даних одночасно, вказавши декілька
-наборів значень через кому: 
+You can also insert multiple rows of data at once by specifying multiple
+sets of values ​​separated by a comma: 
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image3.png" width="600" />
 </div>
 
-У цьому прикладі ми вставляємо три нові рядки даних у таблицю
-**«employees»** із різними значеннями для кожного рядка.
+In this example, we insert three new rows of data into the table
+**"employees"** with different values ​​for each row.
 
-Команда **INSERT** дозволяє нам додавати нові дані до таблиць,
-розширюючи нашу базу даних і збагачуючи інформацію. Вона є важливим
-інструментом у роботі з даними й дозволяє нам створювати, оновлювати та
-керувати інформацією в наших таблицях.
+The **INSERT** command allows us to add new data to tables,
+expanding our database and enriching information. 
+tool in working with data and allows us to create, update and
+manage the information in our tables.
 
-<h2 align="center">Команда UPDATE (оновлення)</h2>
+<h2 align="center">UPDATE command</h2>
 
-📌 *Команда **UPDATE** використовується для зміни вже наявних записів у
-таблиці бази даних.*
+📌 *The **UPDATE** command is used to change already existing records in
+database tables.*
 
-Синтаксис команди **UPDATE** виглядає так:
+The **UPDATE** command syntax looks like this:
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image4.png" width="600" />
 </div>
 
-Тут:
+Here:
 
-***«table_name»*** --- це назва таблиці, у якій ти хочеш оновити дані.
+***"table_name"*** --- this is the name of the table in which you want to update the data.
 
-***«column1, column2, \...»*** --- це стовпці, значення яких ти хочеш
-змінити.
+***"column1, column2, \..."*** --- these are the columns whose values ​​you want
+change.
 
-***«value1, value2, \...»*** --- це нові значення, на які ти хочеш
-замінити наявні значення у вказаних стовпцях.
+***"value1, value2, \..."*** --- these are the new values ​​you want
+replace the existing values ​​in the specified columns.
 
-Ключове слово **WHERE** використовується для вказування умови, яка
-визначає, які рядки повинні бути оновлені. Це дозволяє тобі вибрати
-конкретні рядки для оновлення, відповідно до заданих критеріїв.
+The **WHERE** keyword is used to specify a condition which
+specifies which rows should be updated. 
+specific rows to update, according to the specified criteria.
 
 
-<h2 align="center">Приклад команди UPDATE</h2>
+<h2 align="center">Example of the UPDATE command</h2>
 
 ```sql
 UPDATE Employees
@@ -121,215 +123,215 @@ SET LastName = 'Smith'
   WHERE EmployeeID = 1;
 ```
 
-Якщо ми хочемо змінити прізвище співробітника з **ID 1** на **«Smith»**
-у таблиці **«Employees»**, ми можемо використати
-команду **UPDATE** таким чином:
+If we want to change an employee's last name from **ID 1** to **"Smith"**
+in the **"Employees"** table, we can use
+**UPDATE** command as follows:
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image5.png" width="600" />
 </div>
 
-Команда **UPDATE** дозволяє змінювати дані в таблицях, що відповідно дає
-нам змогу оновлювати й корегувати інформацію згідно з нашими потребами.
-Вона є потужним інструментом у роботі з даними й дозволяє нам
-підтримувати актуальність і точність інформації в нашій базі даних.
+The **UPDATE** command allows you to change the data in the tables, which accordingly gives
+we can update and correct the information according to our needs.
+It is a powerful tool in working with data and allows us
+maintain the relevance and accuracy of the information in our database.
 
-<h2 align="center">Команда DELETE (видалення)</h2>
+<h2 align="center">DELETE command</h2>
 
-*📌 Команда **DELETE** використовується для видалення записів із таблиці
-бази даних.*
+*📌 The **DELETE** command is used to delete records from a table
+database.*
 
-Синтаксис команди **DELETE** виглядає так:
+The **DELETE** command syntax is as follows:
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image6.png" width="600" />
 </div>
 
-Тут:
+Here:
 
-***«table_name»*** --- це назва таблиці, з якої ти хочеш видалити дані.
+***"table_name"*** --- this is the name of the table from which you want to delete data.
 
-Ключове слово **FROM** використовується для вказівки таблиці.
+The **FROM** keyword is used to specify a table.
 
-Ключове слово **WHERE** дозволяє тобі вказати умову, за якою будуть
-вибрані рядки для видалення.
+The **WHERE** keyword allows you to specify the condition under which they will be
+selected rows to delete.
 
 
-<h2 align="center">Приклад команди DELETE</h2>
+<h2 align="center">Example of the DELETE command</h2>
 
 ```sql
 DELETE FROM Employees
   WHERE EmployeeID = 1;
 ```
 
-Якщо ми хочемо видалити співробітника з **ID 1** з таблиці
-**«Employees»**, то ми можемо використати команду **DELETE** таким
-чином:
+If we want to delete the employee with **ID 1** from the table
+**"Employees"** then we can use **DELETE** command like this
+as follows:
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image7.png" width="600" />
 </div>
 
-Важливо пам\'ятати, що перед застосуванням
-команд **UPDATE** і **DELETE**, особливо з використанням
-умови **WHERE**, рекомендується зробити резервну копію даних, щоб
-уникнути їх втрати у разі помилкової дії.
+It is important to remember that before use
+**UPDATE** and **DELETE** commands, especially using
+**WHERE** conditions, it is recommended to back up your data so that
+avoid losing them in the event of a wrong action.
 
-Команда **DELETE** дозволяє нам видаляти дані з таблиць, що відповідно
-дає нам змогу керувати інформацією в нашій базі даних і очищувати її.
-Крім того, ця команда допомагає нам підтримувати актуальність і чистоту
-даних у нашій базі даних, звільняючи місце та видаляючи непотрібні або
-застарілі записи.
+The **DELETE** command allows us to delete data from the respective tables
+enables us to manage and clean the information in our database.
+Additionally, this team helps us keep things current and clean
+data in our database, freeing up space and deleting unnecessary or
+outdated records.
 
-Як бачиш, мова маніпулювання даними надає нам засоби для керування
-інформацією в базі даних. Вона дозволяє додавати нові дані, оновлювати
-наявні та видаляти непотрібні записи, що є важливою частиною роботи з
-базами даних. Усе просто і зрозуміло. Проте, як завжди, є свої
-особливості, про які необхідно пам\'ятати:
+As you can see, a data manipulation language provides us with tools to manipulate
+information in the database. 
+existing and delete unnecessary records, which is an important part of working with
+databases. 
+features that need to be remembered:
 
-**Мова маніпулювання даними (DML)** --- це частина мови SQL, яка
-використовується для додавання, зміни та видалення даних у базі даних.
+**Data Manipulation Language (DML)** is a part of the SQL language that
+is used to add, modify and delete data in the database.
 
-Команда **INSERT** дозволяє вставляти нові рядки даних до таблиці. Вона
-дає нам можливість додавати нову інформацію до бази даних і розширювати
-її вміст.
+The **INSERT** command allows you to insert new rows of data into a table. 
+gives us the ability to add new information to the database and expand
+its content.
 
-Команда **UPDATE** дозволяє змінювати значення в наявних рядках таблиці.
-Вона дає можливість оновлювати дані та вносити корективи до вже наявної
-інформації.
+The **UPDATE** command allows you to change values ​​in existing table rows.
+It provides an opportunity to update data and make corrections to existing data
+information
 
-Команда **DELETE** використовується для видалення рядків даних із
-таблиці. Вона надає можливість видаляти непотрібні або застарілі
-записи, звільняючи місце й підтримуючи базу даних актуальною та чистою.
+The **DELETE** command is used to delete rows of data from
+tables. 
+records, freeing up space and keeping the database up-to-date and clean.
 
-Під час використання команд** INSERT, UPDATE і DELETE** необхідно бути
-обережними й ретельно перевіряти умови та значення, щоб уникнути
-небажаних змін або втрати даних.
+When using the **INSERT, UPDATE, and DELETE** commands, you must be
+be careful and check conditions and values ​​carefully to avoid
+unwanted changes or data loss.
 
-<h2 align="center">Операції CRUD</h2>
+<h2 align="center">CRUD operations</h2>
 
-***📌CRUD** --- це абревіатура, яка походить зі світу комп'ютерного
-програмування та стосується чотирьох основних функцій, які вважаються
-необхідними для реалізації програми постійного зберігання:*
+***📌CRUD** is an acronym that comes from the computer world
+programming and refers to the four main functions that are considered
+necessary for the implementation of the permanent storage program:*
 
--   **Create** --- створення;
+- **Create** --- creation;
 
--   **Read** --- читання;
+- **Read** --- reading;
 
--   **Update** --- оновлення;
+- **Update** --- update;
 
--   **Delete** --- видалення.
+- **Delete** --- deletion.
 
-**Постійне зберігання** стосується будь-якого пристрою зберігання даних,
-який утримує інформацію після вимкнення пристрою, наприклад, жорсткий
-диск або твердотілий накопичувач. Це тип електронної пам\'яті, що
-зберігає дані навіть за відсутності живлення. Вона отримала назву
-«енергонезалежна» завдяки своїй здатності зберігати інформацію навіть
-без електричної енергії. А от оперативна пам'ять і внутрішнє кешування є
-прикладами енергозалежної пам'яті.
+**Persistent storage** refers to any data storage device that
+which retains information after the device is turned off, such as hard
+disk or solid state drive. 
+retains data even without power. 
+"energy-independent" due to its ability to store information even
+without electricity. 
+examples of non-volatile memory.
 
-Організаціям, які ведуть облік даних клієнтів, облікових записів,
-платіжної інформації, даних про стан здоров'я та інших записів,
-необхідне обладнання та програми для постійного зберігання даних. Бази
-даних саме відповідають цьому опису.
+Organizations that keep records of customer data, accounts,
+payment information, health data and other records,
+necessary equipment and programs for permanent data storage. 
+data exactly matches this description.
 
-Користувачі можуть викликати чотири функції **CRUD** для виконання
-різних типів операцій над вибраними даними в базі даних. Це можна
-зробити за допомогою коду (який ми вивчаємо вже протягом чотирьох
-занять) або через графічний інтерфейс користувача.
+Users can call four **CRUD** functions to execute
+various types of operations on selected data in the database. 
+to do with code (which we have been studying for four
+classes) or through a graphical user interface.
 
-Давай детально розглянемо кожен із чотирьох компонентів, щоб повністю
-оцінити їх загальне значення для спрощення взаємодії з базами даних.
+Let's take a closer look at each of the four components in order to fully
+evaluate their overall value for simplifying interaction with databases.
 
-Функція створення **(Create) **дозволяє користувачам створювати новий
-запис у базі даних. Здогадуєшся, яка саме команда в SQL відповідає за
-створення? Правильно, **INSERT**! Під час виконання
-функції Create необхідно вказати значення для кожного поля, яке потрібно
-заповнити. Наприклад, можна створити новий запис у таблиці
-«Співробітники» і вказати ім\'я, прізвище, посаду та іншу інформацію про
-співробітника.
+The Create function allows users to create a new one
+record in the database. 
+creation? 
+the Create function must provide a value for each field that is required
+to fill 
+"Employees" and indicate the name, surname, position and other information about
+an employee
 
-Функція читання **(Read)** подібна до функції пошуку або вибірки даних.
-У SQL за це відповідає наша улюблена команда **SELECT**. Функція
-читання дозволяє отримати інформацію про наявні записи або об\'єкти в
-базі даних. Під час виконання функції **Read** можна вказати певні умови
-для вибірки даних, наприклад, отримати всі записи з таблиці
-«Співробітники», де посада відповідає критерію «Менеджер».
+The Read function is similar to the function of searching or retrieving data.
+In SQL, our favorite **SELECT** command is responsible for this. 
+reading allows you to obtain information about existing records or objects in
+database. 
+to sample data, for example, get all records from a table
+"Employees", where the position corresponds to the criterion "Manager".
 
-Функція оновлення **(Update)** використовується для зміни наявних
-записів у базі даних. Щоб повністю змінити запис, користувачам, можливо,
-доведеться змінити інформацію в кількох полях. За це відповідає
-команда **UPDATE**. Наприклад, ресторан, який зберігає рецепти для
-пунктів меню в базі даних, може мати таблицю з атрибутами «страва», «час
-приготування», «вартість» і «ціна». Одного разу шеф-кухар вирішує
-замінити інгредієнт у страві якимось іншим. У результаті наявний запис у
-базі даних потрібно змінити, тобто змінити значення відповідних
-атрибутів, щоб відобразити характеристики нової страви.
+The update function **(Update)** is used to change the existing ones
+records in the database. 
+you will have to change the information in several fields. 
+**UPDATE** command. 
+menu items in the database, can have a table with the attributes "dish", "time
+preparation", "cost" and "price". 
+replace an ingredient in a dish with something else. 
+database needs to be modified, i.e. change the values ​​of the relevant ones
+attributes to reflect the characteristics of the new dish.
 
-Функція видалення **(Delete)** використовує команду **DELETE** для
-видалення даних. Під час виконання функції **Delete** необхідно вказати
-умови, що визначають, які саме дані треба видалити. Наприклад, можна
-видалити записи про співробітника, який більше не працює в компанії, або
-видалити клієнта, який більше не є активним.
+The Delete function uses the **DELETE** command to
+data deletion. 
+the conditions that determine which data should be deleted. 
+delete records of an employee who no longer works for the company, or
+delete a client that is no longer active.
 
-Тут є сенс ввести поняття жорсткого або м'якого видалення. Жорстке
-видалення остаточно видаляє записи з бази даних, тоді як м'яке
-видалення може просто оновити статус рядка, позначити його як видалений,
-зберігаючи дані на місці та недоторканими.
+Here it makes sense to introduce the concept of hard or soft deletion. 
+delete permanently deletes records from the database, while soft
+delete can simply update the status of the row, mark it as deleted,
+keeping the data in place and intact.
 
-Операції **CRUD** широко використовуються в багатьох програмах, які
-підтримують реляційні бази даних. Ці чотири основні функції **CRUD**
-неймовірно універсальні, оскільки можуть підтримувати низку важливих
-функцій у різних бізнес-моделях і галузевих вертикалях.
+**CRUD** operations are widely used in many applications that
+support relational databases. 
+incredibly versatile as they can support a number of important
+functions in various business models and industry verticals.
 
-Розуміння операцій **CRUD** допомагає працювати з даними в аналітичних
-завданнях більш ефективно. Це навичка, що дозволяє створювати,
-отримувати, оновлювати та видаляти дані, які є важливими для роботи з
-базами даних у сфері аналітики.
+Understanding CRUD operations helps you work with data in analytics
+tasks more efficiently. 
+get, update and delete data that is important to work with
+databases in the field of analytics.
 
-<h2 align="center">Об'єднання даних із декількох таблиць</h2>
+<h2 align="center">Combining data from several tables</h2>
 
-Ми навчилися використовувати оператор SELECT для запиту даних з однієї
-таблиці. Однак SELECT не обмежується даними запиту лише з однієї
-таблиці. SELECT може зв'язувати декілька таблиць.
+We learned how to use the SELECT statement to query data from one
+tables. 
+tables. 
 
-Процес зв\'язування таблиць називається з\'єднанням --- **JOIN**.
+The process of linking tables is called joining --- **JOIN**.
 
-SQL надає багато видів з'єднань. Ось деякі з них:
+SQL provides many types of joins. 
 
--   внутрішнє з'єднання **(INNER JOIN)**;
+- internal connection **(INNER JOIN)**;
 
--   ліве з'єднання **(LEFT JOIN)**;
+- left connection **(LEFT JOIN)**;
 
--   праве з'єднання **(RIGHT JOIN)**;
+- right connection **(RIGHT JOIN)**;
 
--   повне зовнішнє з'єднання **(FULL JOIN)**;
+- full external connection **(FULL JOIN)**;
 
--   перехресне з\'єднання **(CROSS JOIN)**.
+- cross connection **(CROSS JOIN)**.
 
 <h2 align="center">INNER JOIN</h2>
 
-Припустимо, у тебе є дві таблиці: **A** і **B**.
+Suppose you have two tables: **A** and **B**.
 
-Таблиця A має чотири рядки з даними: **(1,2,3,4)**. Таблиця B має також
-чотири рядки з даними: **(3,4,5,6)**.
+Table A has four rows of data: **(1,2,3,4)**. 
+four lines with data: **(3,4,5,6)**.
 
-Коли таблиця A об'єднується з таблицею B за допомогою внутрішнього
-з\'єднання, ми отримуємо набір результатів **(3,4)**, який є перетином
-таблиць **A** і **B**, тобто залишаються тільки спільні елементи.
+When table A is joined to table B using an inner
+connection, we get the result set **(3,4)** which is the intersection
+of tables **A** and **B**, that is, only common elements remain.
 
-Розгляньмо наступне зображення.
+Consider the following image.
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image8.png" width="600" />
 </div>
 
-Для кожного рядка в таблиці **A** внутрішнє з\'єднання знаходить
-відповідні рядки в таблиці B. Якщо рядок збігається, він включається в
-остаточний набір результатів.
+For each row in table **A**, the inner join is found
+matching rows in Table B. If a row matches, it is included in the
+the final set of results.
 
-Припустимо, стовпці **a** і **b** знаходяться в таблицях **A** і **B**
-відповідно. Наступний запит ілюструє синтаксис внутрішнього з'єднання:
+Suppose columns **a** and **b** are in tables **A** and **B**
+in accordance. 
 
 ```sql
 SELECT A.n
@@ -338,15 +340,15 @@ INNER JOIN B
   ON B.n = A.n;
 ```
 
-Оператор **INNER JOIN** з'являється після **FROM**. Умова відповідності
-між таблицями **A** і **B** вказується після ключового слова **ON**. Ця
-умова називається умовою з'єднання, тобто **B.n = A.n**.
+The **INNER JOIN** statement appears after the **FROM**. 
+between tables **A** and **B** is specified after the **ON** keyword. 
+the condition is called the join condition i.e. **B.n = A.n**.
 
-Оператор **INNER JOIN** може об'єднати три або більше таблиць, якщо вони
-мають зв'язки, як правило, зв'язки зовнішнього ключа.
+The **INNER JOIN** operator can join three or more tables if they
+have relationships, usually foreign key relationships.
 
-Наприклад, наступний оператор ілюструє, як об'єднати 3 таблиці: **A**,
-<h2 align="center">B** і **C:</h2>
+For example, the following statement illustrates how to join 3 tables: **A**,
+<h2 align="center">B** and **C:</h2>
 
 ```sql
 SELECT A.n
@@ -357,25 +359,25 @@ INNER JOIN C
   ON C.n = A.n;
 ```
 
-Давай використаємо таблиці **employees** і **departments**, щоб
-продемонструвати, як працює **INNER JOIN.**
+Let's use the **employees** and **departments** tables to
+demonstrate how **INNER JOIN works.**
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image9.png" width="600" />
 </div>
 
-Кожен співробітник належить до одного й лише одного відділу, тоді як у
-кожному відділі може бути більше одного співробітника. Відношення
-між **departments** та **employees** --- «один до багатьох».
+Each employee belongs to one and only one department, while in
+each department may have more than one employee. 
+between **departments** and **employees** --- "one to many".
 
-Стовпець **department_id** у таблиці **employees** є стовпцем
-зовнішнього ключа, який пов'язує **employees** з
-таблицею **departments**.
+The **department_id** column in the **employees** table is a column
+of the foreign key that associates **employees** with
+by the **departments** table.
 
-<h2 align="center">Запит 1</h2>
+<h2 align="center">Request 1</h2>
 
-Щоб отримати інформацію про ідентифікатори відділів **1, 2** і **3**, ти
-використаєш такий оператор (ми вже знаємо, як це писати):
+For information on Department IDs **1, 2** and **3**, you
+use the following operator (we already know how to write it):
 
 ```sql
 SELECT department_id
@@ -388,8 +390,8 @@ WHERE department_id IN (1, 2, 3);
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image10.png" width="600" />
 </div>
 
-А тепер спробуємо об'єднати ці два запити за допомогою внутрішнього
-з'єднання:
+And now let's try to combine these two requests with the help of an internal one
+connection:
 
 ```sql
 SELECT first_name
@@ -407,25 +409,25 @@ INNER JOIN HR.departments
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image11.png" width="600" />
 </div>
 
-Для кожного рядка в **employees** оператор перевіряє, чи значення
-стовпця **department_id** дорівнює значенню стовпця **department_id** у
-таблиці **departments**.
+For each row in **employees**, the statement checks whether the value
+of the **department_id** column is equal to the value of the **department_id** column in
+**departments** tables.
 
-Якщо умова **employees.department_id =
-departments.department_id** задовольняється, то об'єднаний рядок, який
-містить дані з рядків обох таблиць **(employees і departments),**
-включається до набору результатів.
+If the condition **employees.department_id =
+departments.department_id** is satisfied, then a concatenated string that
+contains data from rows of both tables **(employees and departments),**
+is included in the result set.
 
-Зверни увагу, що обидві таблиці мають однакові назви
-стовпців **department_id**, тому нам довелося позначити стовпець
-**department_id** за допомогою синтаксису **table_name.column_name**.
+Note that both tables have the same names
+**department_id** columns, so we had to label the column
+**department_id** using **table_name.column_name** syntax.
 
-<h2 align="center">Запит 2</h2>
+<h2 align="center">Request 2</h2>
 
-Наступний запит використовує внутрішнє з'єднання, щоб об'єднати 3
-таблиці: співробітники, відділи та вакансії --- для того, щоб отримати
-ім'я, прізвище, посаду та назву відділу співробітників, які працюють у
-відділі з ідентифікаторами **1**, **2** і **3**.
+The following query uses an inner join to join the 3
+tables: Employees, Departments, and Vacancies --- in order to get
+name, surname, position and name of the department of employees working in
+departments with identifiers **1**, **2** and **3**.
 
 ```sql
 SELECT first_name
@@ -440,28 +442,28 @@ INNER JOIN HR.jobs j
 WHERE e.department_id IN (1, 2, 3);
 ```
 
-Круто, але є одна проблема. Внутрішнє з'єднання прибирає рядки, які не
-збігаються з рядками іншої таблиці.
+Cool, but there is one problem. 
+match the rows of another table.
 
-Тут на допомогу приходить **LEFT JOIN** --- ліве з\'єднання, що повертає
-всі рядки з лівої таблиці, незалежно від того, чи є відповідний рядок у
-правій таблиці.
+This is where **LEFT JOIN** comes to the rescue---the returning left join
+all rows from the left table, regardless of whether the corresponding row is in
+right table.
 
 <h2 align="center">LEFT JOIN</h2>
 
-Припустимо, у нас є дві таблиці: A і B. Таблиця A має чотири рядки: **1,
-2, 3** і **4**. Таблиця B також має чотири рядки: **3, 4, 5, 6**.
+Suppose we have two tables, A and B. Table A has four rows: **1,
+2, 3** and **4**. 
 
-Коли ми об'єднуємо таблицю **A** з таблицею **B**, усі рядки в таблиці
-**A** (ліва таблиця) включаються в набір результатів, незалежно від
-того, чи є відповідний рядок у таблиці **B** чи ні.
+When we join table **A** with table **B**, all the rows in the table
+**A** (left table) are included in the result set regardless of
+whether the corresponding row is in table **B** or not.
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image12.png" width="600" />
 </div>
 
-У SQL ми використовуємо наступний синтаксис для з'єднання таблиці **A**
-з таблицею **B**.
+In SQL we use the following syntax to join table **A**
+with table **B**.
 ```sql
 SELECT A.n
 FROM A
@@ -469,20 +471,20 @@ LEFT JOIN B
   ON B.n = A.n;
 ```
 
-**LEFT JOIN** з'являється після **FROM**. Умова, що йде за ключовим
-словом **ON**, називається умовою з'єднання.
+**LEFT JOIN** appears after **FROM**. 
+with the word **ON** is called a connection condition.
 
-Давай розглянемо таблиці **countries** і **locations**.
+Let's look at the **countries** and **locations** tables.
 
-Кожна локація належить одній і лише одній країні, тоді як кожна країна
-може мати нуль або більше локацій. Зв'язок між таблицями країн і локацій
---- «один до багатьох».
+Each location belongs to one and only one country, while each country
+can have zero or more locations. 
+--- "one to many".
 
-Стовпець **country_id** у таблиці **locations** є зовнішнім ключем, який
-посилається на стовпець **country_id** у таблиці **country**.
+The **country_id** column in the **locations** table is a foreign key that
+refers to the **country_id** column in the **country** table.
 
-Щоб вивести назви країн **(county_name)** США, Великобританії та Китаю,
-ми використаємо такий оператор:
+To output the country names of **(county_name)** US, UK and China,
+we will use the following operator:
 
 ```sql
 SELECT country_id
@@ -494,8 +496,8 @@ FROM \"HR\".countries
 
 WHERE country_id IN (\'US\', \'UK\', \'CN\');
 
-Наступний запит виводить місцезнаходження (**street_address**) в США,
-Великобританії та Китаї:
+The following query returns the location (**street_address**) in the US,
+Great Britain and China:
 
 ```sql
 -- Locations in US, UK and CN
@@ -506,10 +508,10 @@ FROM HR.locations AS l
   WHERE l.country_id IN ('US', 'UK', 'CN');
 ```
 
-<h2 align="center">Запит 1</h2>
+<h2 align="center">Request 1</h2>
 
-Тепер ми використовуємо **LEFT JOIN**, щоб об'єднати таблицю країн із
-таблицею локацій у вигляді наступного запиту:
+Now we use **LEFT JOIN** to join the countries table with
+a table of locations in the form of the following query:
 
 ```sql
 -- Locations for US, UK and CN (LEFT JOIN countries -> locations)
@@ -529,24 +531,24 @@ ORDER BY c.country_name;
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image13.png" width="600" />
 </div>
 
-Умова **WHERE** застосована, щоб оператор отримував дані лише з рядків
-**США**, **Великобританії** та **Китаю**.
+A **WHERE** condition is applied so that the statement only retrieves data from rows
+**USA**, **Great Britain** and **China**.
 
-Оскільки ми використовуємо **LEFT JOIN**, усі рядки, які задовольняють
-умову **WHERE**, включаються до набору результатів.
+Since we are using **LEFT JOIN**, all rows that satisfy
+**WHERE** condition are included in the result set.
 
-Для кожного рядка в таблиці країн **LEFT JOIN** знаходить відповідні
-рядки в таблиці локацій.
+For each row in the countries table, **LEFT JOIN** finds matches
+rows in the locations table.
 
-Якщо знайдено принаймні один відповідний рядок, то механізм бази даних
-поєднає дані зі стовпців відповідних рядків в обох таблицях.
+If at least one matching row is found, then the database engine
+will combine the data from the columns of the corresponding rows in both tables.
 
-Якщо відповідного рядка не знайдено, наприклад, із **country_id CN**, то
-рядок у таблиці країн включається в набір результатів, а рядок у таблиці
-локацій заповнюється значеннями **NULL**.
+If no matching string is found, for example with **country_id CN**, then
+a row in the countries table is included in the result set, and a row in the table
+locations is filled with **NULL** values.
 
-Тепер дуже просто можна знайти країну, яка не має жодного розташування в
-таблиці локацій:
+Now it is very easy to find a country that does not have any location in it
+location tables:
 ```sql
 -- Countries without any locations
 SELECT c.country_name
@@ -561,10 +563,10 @@ ORDER BY c.country_name;
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image14.png" width="600" />
 </div>
 
-<h2 align="center">Запит 2</h2>
+<h2 align="center">Request 2</h2>
 
-Наступний запит демонструє, як об'єднати 3 таблиці: регіони, країни та
-місця розташування:
+The following query demonstrates how to join 3 tables: regions, countries, and
+locations:
 
 ```sql
 SELECT r.region_name
@@ -584,23 +586,23 @@ ORDER BY r.region_name, c.country_name;
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image15.png" width="600" />
 </div>
 
-Праве з\'єднання **RIGHT JOIN** працює аналогічно, як ліве з\'єднання,
-лише за **базову (основну)** таблицю використовується та, що справа.
+Right join **RIGHT JOIN** works similarly to left join,
+only the one on the right is used for the **base (main)** table.
 
 <h2 align="center">FULL JOIN</h2>
 
-*📌 Повне зовнішнє з\'єднання --- це комбінація лівого та правого
-з'єднань. Повне зовнішнє з\'єднання включає всі рядки з об'єднаних
-таблиць, незалежно від того, чи є в іншій таблиці відповідний рядок.*
+*📌 Full outer join is a combination of left and right
+connections 
+tables, regardless of whether there is a corresponding row in another table.*
 
-Якщо рядки в об'єднаних таблицях не збігаються, то набір результатів
-повного зовнішнього з\'єднання містить значення **NULL** для кожного
-стовпця таблиці, у якому відсутній відповідний рядок. Для відповідних
-рядків один рядок, який містить стовпці, заповнені з об'єднаної таблиці,
-включається до набору результатів.
+If the rows in the joined tables do not match, then the result set
+full outer join contains **NULL** for each
+column of the table in which the corresponding row is missing. 
+rows one row that contains the columns populated from the joined table,
+is included in the result set.
 
-Наступний оператор ілюструє синтаксис повного зовнішнього
-з\'єднання двох таблиць:
+The following statement illustrates the syntax of a full outer
+joining two tables:
 
 ```sql
 SELECT column_list
@@ -609,42 +611,42 @@ FULL OUTER JOIN B
   ON B.n = A.n;
 ```
 
-Зауваж, що ключове слово **OUTER** необов'язкове.
+Note that the **OUTER** keyword is optional.
 
-Наступна діаграма ілюструє повне зовнішнє з'єднання двох таблиць.
+The following diagram illustrates a full outer join between two tables.
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image16.png" width="600" />
 </div>
 
-На практиці такий тип з'єднань зустрічається не так часто.
+In practice, this type of connection is not so common.
 
 <h2 align="center">CROSS JOIN</h2>
 
-**Перехресне з'єднання** --- це операція з'єднання, яка створює
-**декартів добуток** двох або більше таблиць. Пам\'ятаєш зі шкільних
-років, що це таке?
+**Cross join** is a join operation that creates
+**cartesian product** of two or more tables. 
+years, what is it?
 
-У математиці **декартів добуток** --- це математична операція, яка
-повертає набір, що складається з **комбінацій елементів** інших наборів.
+In mathematics, the Cartesian product is a mathematical operation that
+returns a set consisting of **combinations of elements** of other sets.
 
-Наприклад, із двома наборами: **A {x,y,z}** і **B {1,2,3}** --- декартів
-добуток **A x B** є набором усіх упорядкованих пар: **(x,1), (x,2),
+For example, with two sets: **A {x,y,z}** and **B {1,2,3}** --- Cartesians
+the product **A x B** is the set of all ordered pairs: **(x,1), (x,2),
 (x,3), (y,1) (y,2), (y,3), (z,1), (z,2), (z,3).**
 
-Наступне зображення ілюструє декартів добуток A і B:
+The following image illustrates the Cartesian product of A and B:
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image17.png" width="600" />
 </div>
 
-Подібним чином у SQL декартів добуток двох таблиць **(A** і **B)** є
-набором результатів, у якому кожен рядок у першій таблиці **(A)**
-поєднується з кожним рядком у другій таблиці **(B).** Припустимо,
-що таблиця A має n рядків, а таблиця **B** має **m** рядків. Результат
-перехресного з'єднання таблиць **A** і **B** має (**n) x (m)** рядків.
+Similarly, Cartesian SQL has the product of two tables **(A** and **B)**
+a result set in which each row in the first table **(A)**
+is combined with each row in the second table **(B).** Suppose
+that table A has n rows and table B has **m** rows. 
+cross join of tables **A** and **B** has (**n) x (m)** rows.
 
-Нижче наведено синтаксис оператора **CROSS JOIN**:
+Below is the syntax for the **CROSS JOIN** statement:
 
 ```sql
 SELECT column_list
@@ -652,60 +654,60 @@ FROM A
   CROSS JOIN B;
 ```
 
-На наступному зображенні показано результат перехресного з'єднання між
-таблицею **A** й таблицею **B**.
+The following image shows the result of a cross connection between
+table **A** and table **B**.
 
-На цій ілюстрації таблиця A має три рядки: **1, 2** та **3**, а таблиця
-B також має три рядки: **x, y** та **z. У** результаті декартів добуток
-має дев\'ять рядків:
+In this illustration, table A has three rows: **1, 2**, and **3**, and the table
+B also has three strings: **x, y** and **z. 
+has nine lines:
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image18.png" width="600" />
 </div>
 
-Такий тип запитів також не часто зустрічається в повсякденній роботі. В
-основному ми його застосовуємо, щоб отримати всі можливі комбінації
-даних із різних таблиць або ж комбінації в межах однієї таблиці.
+This type of request is also not often found in everyday work. 
+we mainly apply it to get all possible combinations
+data from different tables or a combination within the same table.
 
-<h2 align="center">Різниця між UNION і JOIN</h2>
+<h2 align="center">Difference between UNION and JOIN</h2>
 
-Сьогодні ми розглядали команду **JOIN**, тому в тебе може виникнути
-запитання --- а навіщо тоді потрібна команда **UNION** і чи є вона
-дублікатом **JOIN**? Давай розберемось.
+Today we looked at the **JOIN** command, so you may have some
+question --- then why is the **UNION** command needed and does it exist
+by duplicate **JOIN**? 
 
--   **UNION** відрізняється від **JOIN** тим,
-    що **JOIN** поєднує стовпці кількох таблиць, тоді
-    як **UNION** об'єднує рядки таблиць.
+- **UNION** differs from **JOIN** in that
+that **JOIN** joins columns of multiple tables, then
+how **UNION** joins the rows of tables.
 
--   **JOIN** застосовується лише тоді, коли дві задіяні таблиці мають
-    принаймні один стовпець, спільний для обох. Існує декілька
-    типів **JOIN**: **INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER
+- **JOIN** applies only when the two tables involved have
+at least one column common to both. 
+**JOIN** types: **INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER
     JOIN.**
 
--   **UNION** застосовується, коли дві таблиці мають однакову кількість
-    стовпців. Існують тільки два типи **UNION**: **UNION** та **UNION
+- **UNION** is applied when two tables have the same count
+columns 
     ALL**.
 
-Отже, у **JOIN** рядок результатів має більший розмір, оскільки містить
-стовпці з обох таблиць (якщо, звісно, ти не відібрав/-ла ті, які
-потрібні тобі).
+So in **JOIN** the result string is larger because it contains
+columns from both tables (unless, of course, you selected those which
+you need).
 
-З іншого боку, в **UNION** кількість рядків збільшується, адже в
-результат враховуються рядки з обох таблиць, які присутні в запиті.
+On the other hand, in **UNION** the number of rows increases, because in
+the result includes rows from both tables that are present in the query.
 
 <div align="center">
   <img src="../../assets/images/lesson_4_robota_z_danymy_dml/media/image19.png" width="600" />
 </div>
 
-<h2 align="center">Приклад CTE з використанням JOIN</h2>
+<h2 align="center">Example of CTE using JOIN</h2>
 
-У минулій темі ми розглянули використання **CTE**, які бувають особливо
-корисні, коли потрібно обʼєднати дані з різних таблиць, тому давай
-розглянемо такий кейс на прикладі.
+In the last topic, we covered the use of **CTE**, which are special
+useful when you need to combine data from different tables, so go for it
+consider such a case as an example.
 
-У цьому прикладі ми використовуємо **CTE** з назвою
-**«employees_hierarchy»**, щоб побудувати ієрархію співробітників у
-компанії.
+In this example we use **CTE** named
+**"employees_hierarchy"** to build a hierarchy of employees in
+companies
 
 ```sql
 WITH RECURSIVE employees_hierarchy AS (
@@ -740,68 +742,68 @@ FROM employees_hierarchy
 ORDER BY level, employee_id;
 ```
 
-**RECURSIVE** у цьому запиті вказує SQL на те, що **CTE** має звертатися
-сам до себе, тобто працює рекурсивно. Це потрібно для того, щоб запит
-обробив усі рівні ієрархії працівників.
+**RECURSIVE** in this query tells SQL that the **CTE** should be referenced
+to itself, that is, it works recursively. 
+processed all levels of the employee hierarchy.
 
-<h2 align="center">Запит містить дві частини:</h2>
+<h2 align="center">The request contains two parts:</h2>
 
-1.  Перша частина вибирає кореневих співробітників, тобто тих, у яких не
-    вказаний менеджер (кореневий рівень ієрархії). Вона використовує
-    фільтр **WHERE manager_id IS NULL.**
+1. The first part selects the root employees, that is, those who do not have
+the specified manager (the root level of the hierarchy). 
+filter **WHERE manager_id IS NULL.**
 
-2.  Друга частина використовує рекурсивне об\'єднання **(UNION ALL)**
-    для приєднання до кожного співробітника його підлеглих. Вона
-    використовує **JOIN** між таблицею **employees** і **CTE**
-    **employees_hierarchy**, де **e.manager_id = eh.employee_id**.
+2. The second part uses recursive union **(UNION ALL)**
+to join each employee of his subordinates. 
+uses **JOIN** between **employees** table and **CTE**
+**employees_hierarchy** where **e.manager_id = eh.employee_id**.
 
-У результаті отримуємо список співробітників з їхніми рівнями в
-ієрархії, відсортований за рівнями й ідентифікаторами співробітників.
+As a result, we get a list of employees with their levels in
+hierarchies sorted by employee levels and IDs.
 
-<h2 align="center">Ось декілька ключових висновків:</h2>
+<h2 align="center">Here are some key takeaways:</h2>
 
--   Об\'єднання таблиць дозволяє об\'єднати дані з двох або більше
-    таблиць на основі збігу значень у певних стовпцях. Це дозволяє
-    отримати одну розширену таблицю, яка містить інформацію з усіх
-    вихідних таблиць.
+- Joining tables allows you to combine data from two or more
+tables based on matching values ​​in certain columns. 
+get one extended table that contains information from all
+source tables.
 
--   Для об'єднання таблиць в SQL використовуються оператори **JOIN**.
-    Найпоширеніші типи об'єднань **--- INNER JOIN, LEFT JOIN, RIGHT
-    JOIN** і **FULL JOIN**. Кожен тип об'єднання має свої особливості й
-    визначає, які рядки будуть включені до результату.
+- **JOIN** statements are used to join tables in SQL.
+The most common types of joins **--- INNER JOIN, LEFT JOIN, RIGHT
+JOIN** and **FULL JOIN**. 
+specifies which rows will be included in the result.
 
--   Під час об'єднання таблиць необхідно вказати умову
-    відповідності (зіставлення) для визначення, які рядки повинні бути
-    об'єднані. Зазвичай це робиться за допомогою оператора **ON**, який
-    визначає стовпці, за якими відбувається порівняння.
+- A condition must be specified when joining tables
+matches (mappings) to determine which strings should be
+united 
+defines the columns on which the comparison takes place.
 
--   Об'єднання таблиць дозволяє поєднувати інформацію з різних таблиць,
-    щоб отримати повний набір даних для аналізу. Наприклад, можна
-    об'єднати таблиці **«Замовлення»** і **«Клієнти»,** щоб отримати
-    інформацію про клієнтів, які зробили замовлення, і пов\'язати їх
-    дані для подальшого аналізу.
+- Joining tables allows you to combine information from different tables,
+to obtain a complete data set for analysis. 
+join **"Orders"** and **"Customers"** tables to get
+information about customers who placed an order and connect them
+data for further analysis.
 
--   Під час проєктування баз даних рекомендується
-    використовувати зв\'язки між таблицями, щоб уникнути надлишковості
-    даних. Це дозволяє об\'єднувати таблиці за ключовими полями, які
-    зв\'язують записи з різних таблиць і забезпечують цілісність даних.
+- It is recommended when designing databases
+use relationships between tables to avoid redundancy
+data 
+link records from different tables and ensure data integrity.
 
--   Об\'єднання таблиць може бути виконано не тільки на основі рівності
-    значень, але й з використанням інших операцій порівняння, таких як
-    більше, менше або дано (містить). Це дозволяє більш гнучко
-    фільтрувати дані під час об\'єднання.
+- Tables can be joined not only on the basis of equality
+values, but also using other comparison operations such as
+more, less or given (contains). 
+filter data during merging.
 
--   Команди **JOIN** і **UNION** не є ідентичними одна одній, тому
-    важливо пам\'ятати їх основні відмінності:
+- The **JOIN** and **UNION** commands are not identical to each other, so
+it is important to remember their main differences:
 
--   **JOIN** застосовується лише тоді, коли дві задіяні таблиці мають
-    принаймні один стовпець, загальний для обох.
+- **JOIN** applies only when the two tables involved have
+at least one column common to both.
 
--   **UNION** застосовується, коли дві таблиці мають однакову кількість
-    стовпців.
+- **UNION** is applied when two tables have the same count
+columns
 
-Загалом об'єднання даних із кількох таблиць у SQL є важливим
-інструментом для роботи з великими обсягами даних та аналізу інформації
-з різних джерел. Правильне використання операторів **JOIN** і розуміння
-**типів об'єднань** сприятимуть створенню цілісного уявлення про
-дані та допоможуть здобути важливі висновки з об'єднаних таблиць.
+In general, joining data from multiple tables in SQL is important
+a tool for working with large volumes of data and information analysis
+from various sources. 
+**types of associations** will contribute to the creation of a holistic view of
+data and help to draw important conclusions from the combined tables.

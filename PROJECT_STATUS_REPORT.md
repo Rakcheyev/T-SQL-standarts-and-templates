@@ -1,47 +1,48 @@
+**Language:** English | [Українська](i18n/uk/PROJECT_STATUS_REPORT.md)
+
 # Project Status Report
 
-## 1. Опис проєкту
-- **Призначення:** систематизована колекція навчальних матеріалів з SQL у форматі Markdown, придатна для самостійного проходження та довідкового пошуку за темами.
-- **Тип проєкту:** навчальний.
-- **Поточна стадія:** active development → maintenance (контент курсу сформований, паралельно ведеться нормалізація структури, навігації та якості подання матеріалів).
+## 1. Project overview
+- **Purpose:** a structured collection of SQL learning materials in Markdown, suitable for self-study and quick topic lookup.
+- **Type:** educational.
+- **Current stage:** active development → maintenance (the course content is formed; ongoing work focuses on structure, navigation, and presentation quality).
 
-## 2. Виконані роботи (✅)
-(на основі структури, документації та підтверджених змін)
+## 2. Completed work (✅)
+(based on repository structure, documentation, and confirmed changes)
 
-- Сформовано навчальний курс із щонайменше 6 послідовних уроків у каталозі course/lessons/ (від вступу до баз даних та базових запитів до тем про агрегації, DDL/DML, JOIN, очищення даних, рядкові функції, дати/час, JSON та віконні функції).
-- Запроваджено керований маршрут навчання через документ рекомендованої послідовності проходження (Learning Path), що знижує поріг входу для нових користувачів.
-- Створено довідкову навігацію за темами та підзаголовками уроків, що підтримує швидкий пошук по матеріалах без необхідності переглядати весь курс.
-- Організовано ілюстративні матеріали в assets/images/ за структурою уроків, що підтверджує наявність візуальної підтримки контенту.
-- Додано допоміжні скрипти для уніфікації та очищення оформлення навчальних матеріалів (нормалізація форматування фрагментів SQL, обробка проблемних Markdown-конструкцій, підготовка “центрованих” блоків).
-- Проведено прибирання та консервацію проміжних артефактів (архіви та резервні копії винесені в окремі каталоги archive/ та backups/), зменшено шум у репозиторії.
-- Посилено дисципліну зберігання артефактів: локальні середовища (наприклад .venv) та тимчасові файли резервних копій виключені з версіонування, що знижує ризик випадкового засмічення історії та конфліктів.
+- A learning course with at least 6 sequential lessons in [course/lessons/](course/lessons/) (from SQL/DB basics to aggregation, DDL/DML, JOIN, data cleaning, string functions, dates/time, JSON, and window functions).
+- A guided learning route via a “Learning Path” document to lower the entry barrier for new learners.
+- A navigation/index document with links to lesson topics and headings for fast lookup.
+- Lesson-related images organized in [assets/images/](assets/images/) following the lesson structure.
+- Helper scripts added to unify and clean up Markdown formatting (SQL snippet formatting, problematic Markdown constructs, centered blocks preparation).
+- Intermediate artifacts archived (archives and backups separated into [archive/](archive/) and [backups/](backups/)), reducing repo noise.
+- Improved artifact hygiene: local environments (e.g., `.venv`) and temporary backup files are excluded from version control to reduce clutter and conflicts.
 
+## 3. Work in progress / formal plans (🟡)
+- No Issues/Milestones-based planning is currently recorded.
+- In practice, the learning docs (Learning Path and navigation) act as a “roadmap”, and ongoing changes indicate continued standardization and cleanup.
 
-## 3. Роботи в процесі / формалізовані плани (🟡)
-- Формалізовані плани у вигляді Issues/Milestones наразі не зафіксовані.
-- Висновок на основі структури та документації: фактичною “дорожньою картою” виступають навчальні документи (Learning Path та навігація), а поточна еволюція репозиторію свідчить про продовження робіт з упорядкування матеріалів і приведення уроків до єдиного стандарту подачі.
+## 4. Analytical summary of the current state
+(key section)
 
-## 4. Аналітичний висновок про фактичний стан
-(ключовий блок)
+- Without formal GitHub planning, progress is assessed from the repository structure, learning materials, and documentation changes.
+- The core learning content is effectively complete: the course has a coherent trajectory and is supported by navigation documents.
+- Maturity level: “stabilized educational content with ongoing editorial standardization” (consistent lesson structure, normalization tooling, backups/archives separation).
+- Manageability without task tracking remains acceptable due to:
+  - clear hierarchy (lessons, assets, scripts, archives),
+  - existing navigation and recommended learning order,
+  - incremental consolidation changes (restructuring, formatting standardization, artifact cleanup).
 
-- За відсутності формалізованого планування в GitHub, оцінка виконаних робіт здійснена на основі структури репозиторію, навчальних матеріалів та зафіксованих змін у документації.
-- Де-факто виконано основну частину робіт із формування ядра навчального контенту: курс має завершену стартову траєкторію (від базових понять до розширених тем) і забезпечений навігаційними документами.
-- Рівень зрілості проєкту можна оцінити як “стабілізований навчальний контент із процесом редактури”: наявні ознаки стандартизації (єдина структура уроків, окремі інструменти для нормалізації, винесення резервних копій та архівів).
-- Керованість без формального task-трекингу є прийнятною завдяки:
-  - чіткій ієрархії матеріалів (уроки, активи, скрипти обробки, архіви),
-  - наявності навчальної навігації та рекомендованого порядку проходження,
-  - еволюції репозиторію, де великі коміти виступають як “консолідовані етапи робіт” (реструктуризація, стандартизація форматування, прибирання артефактів), а не як індикатор проблем управління.
+## 5. Recommended next steps (🔵)
+(useful when formal planning is missing)
 
-## 5. Рекомендований план розвитку (🔵)
-(додається, якщо немає або недостатньо формального плану)
+- Define a target curriculum version (scope, topics, “done” criteria per lesson) as a short internal standard.
+- Run a single editorial pass to unify terminology, section structure, and examples style across lessons.
+- Add minimal practice tasks and learning outcomes to each lesson.
+- Define a maintenance workflow: how changes are accepted, recorded, and how navigation/learning path updates are kept in sync.
+- Prepare a “publication” snapshot (structure freeze, QA pass, release tagging) for stable use.
 
-- Зафіксувати цільову версію навчальної програми (обсяг курсу, перелік тем, критерії “готовності” уроку) як короткий внутрішній регламент.
-- Провести єдину редакторську хвилю: уніфікувати стиль подачі прикладів, структуру розділів і термінологію в усіх уроках.
-- Додати до кожного уроку мінімальний набір практичних завдань і очікуваних результатів навчання (що саме слухач має вміти після проходження).
-- Визначити формат підтримки матеріалів: як приймаються правки, як фіксуються зміни та як відбувається оновлення навігації/маршруту.
-- Підготувати “публікаційну” версію (заморозка структури, контроль якості, позначення релізу) для стабільного використання в навчанні.
-
-## 6. Підсумковий висновок для комісії
-- **Доцільність продовження:** доцільно, оскільки репозиторій вже містить сформоване ядро навчальних матеріалів, а поточні роботи спрямовані на підвищення якості та керованості.
-- **Очікуваний ефект:** стандартизований, легко навігований курс із SQL, придатний для повторюваного використання у навчанні та самостійній підготовці; зменшення витрат часу на супровід завдяки впорядкованій структурі.
-- **Ризики (за відсутності формального планування):** можливе розмиття пріоритетів і нерівномірність оновлень; ці ризики компенсуються фіксацією короткого плану розвитку й правил підтримки, а також вже наявною дисципліною структури та документації.
+## 6. Summary conclusion
+- **Continuation:** recommended, since the core content exists and current work improves quality and maintainability.
+- **Expected effect:** a standardized, easily navigable SQL course suitable for repeated educational use; lower maintenance cost due to better structure.
+- **Risks (without formal planning):** priorities may drift and updates may be uneven; mitigated by a short roadmap and clear maintenance rules.

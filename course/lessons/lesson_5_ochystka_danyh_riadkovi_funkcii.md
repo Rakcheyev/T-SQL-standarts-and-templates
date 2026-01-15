@@ -1,47 +1,49 @@
-<h2 align="center">Рядкові функції та оператори</h2>
+﻿**Language:** English | [Українська](../../i18n/uk/course/lessons/lesson_5_ochystka_danyh_riadkovi_funkcii.md)
 
-**Рядкові функції та оператори** в SQL є невід\'ємною складовою мови
-структурованих запитів до баз даних. Вони надають можливість ефективно
-опрацьовувати рядки даних і маніпулювати ними.
+<h2 align="center">String functions and operators</h2>
 
-За допомогою рядкових функцій ми можемо здійснювати різноманітні
-операції над текстовими даними, такі як об\'єднання рядків, видалення
-певних символів, заміна підрядків тощо.
+**String functions and operators** in SQL are an integral part of the language
+structured queries to databases. 
+process data strings and manipulate them.
 
-Оператори зі свого боку дозволяють порівнювати й шукати рядки за певними
-умовами, такими як перевірка на рівність, використання логічних
-операторів, пошук підрядків тощо.
+With string functions we can do a variety of things
+operations on text data, such as string concatenation, deletion
+certain characters, replacing substrings, etc.
 
-Ті ж самі базові операції, такі як об\'єднання рядків, видалення
-символів, заміна підрядків тощо, також присутні в SQL. Це означає, що ти
-вже маєш певний рівень знань і досвіду, які можна легко застосувати для
-вивчення рядкових функцій та операторів у SQL.
+Operators, on the other hand, allow you to compare and search for specific strings
+conditions, such as checking for equality, using booleans
+operators, search for substrings, etc.
 
-У цій темі ми розглянемо основні рядкові функції та оператори в SQL і
-детально розберемо їхній синтаксис та можливості. Вивчення цих функцій
-та операторів допоможе нам ефективніше працювати з текстовими даними в
-базах даних та отримувати більш точні й необхідні результати запитів.
+The same basic operations, such as string concatenation, deletion
+characters, substring substitution, etc., are also present in SQL. 
+already have a certain level of knowledge and experience that can be easily applied to
+learning string functions and operators in SQL.
 
-<h2 align="center">Оператор LIKE і регулярні вирази (regexp)</h2>
+In this topic, we will look at the basic string functions and operators in SQL and
+let's analyze their syntax and capabilities in detail. 
+and operators will help us work more efficiently with text data in
+databases and get more accurate and necessary query results.
 
-*📌 Оператор **LIKE** і регулярні вирази **(regexp)** у PostgreSQL
-використовуються для пошуку текстових шаблонів у рядках. Вони дозволяють
-здійснювати операції зіставлення та пошуку з використанням шаблонів.*
+<h2 align="center">The LIKE operator and regular expressions (regexp)</h2>
 
-<h2 align="center">Оператор LIKE</h2>
+*📌 **LIKE** operator and **(regexp)** regular expressions in PostgreSQL
+are used to find text patterns in strings. 
+perform matching and searching operations using templates.*
 
-Оператор **LIKE** дозволяє здійснювати простий пошук з використанням
-шаблонів у рядках. Він використовує спеціальні символи для позначення
-шаблонів:
+<h2 align="center">The LIKE operator</h2>
 
-Знак відсотка **(%)** позначає будь-яку послідовність символів (зокрема
-й пусту послідовність).
+The **LIKE** operator allows a simple search using
+patterns in rows. 
+templates:
 
-Нижнє підкреслення **(\_)** позначає будь-який один символ.
+The percent sign **(%)** represents any sequence of characters (in particular
+and an empty sequence).
 
-Наприклад, якщо ти хочеш знайти всі рядки, які починаються з «**ab**» і
-мають будь-яку кількість символів після них, ти можеш використати такий
-запит:
+An underscore **(\_)** indicates any single character.
+
+For example, if you want to find all strings that start with "**ab**" and
+have any number of characters after them, you can use one
+request:
 
 ```sql
 SELECT *
@@ -49,21 +51,21 @@ FROM table_name
     WHERE column_name LIKE 'ab%';
 ```
 
-<h2 align="center">Регулярні вирази (regexp)</h2>
+<h2 align="center">Regular expressions (regexp)</h2>
 
-Регулярні вирази **(regexp)** у PostgreSQL надають більші можливості для
-пошуку й зіставлення текстових шаблонів. Вони дозволяють використовувати
-складніші шаблони, зокрема повторення, альтернативи, групи символів
-тощо.
+Regular expressions **(regexp)** in PostgreSQL provide greater possibilities for
+search and match text patterns. 
+more complex patterns, including repetitions, alternatives, character groups
+etc.
 
-📎 У PostgreSQL для регулярних виразів використовується
-функція **\~** або **\~\*** для виконання пошуку за шаблоном, де:
+📎 In PostgreSQL, regular expressions are used
+function **\~** or **\~\*** to perform a pattern search where:
 
--   **\~ **враховує регістр;
--   **\~*** ігнорує регістр.
+- **\~ **case sensitive;
+- **\~*** ignores case.
 
-Наприклад, якщо ти хочеш знайти всі рядки, які містять слово «cat»,
-незалежно від регістру, ти можеш використати регулярний вираз:
+For example, if you want to find all strings that contain the word "cat",
+regardless of the case, you can use a regular expression:
 
 ```sql
 SELECT *
@@ -71,16 +73,16 @@ FROM table_name
     WHERE column_name ~* 'cat';
 ```
 
-Цей запит знайде рядки, які містять слово «**cat**», незалежно від того,
-чи вони написані у верхньому чи нижньому регістрі.
+This query will find strings that contain the word "**cat**" regardless of
+whether they are written in upper or lower case.
 
-Регулярні вирази в PostgreSQL дозволяють використовувати багато інших
-можливостей, таких як пошук з використанням символів шаблону, валідація
-даних, заміна шаблонів, розбивання рядків на частини тощо.
+Regular expressions in PostgreSQL allow you to use many others
+capabilities such as search using pattern characters, validation
+data, replacing templates, splitting lines into parts, etc.
 
-<h2 align="center">Приклади застосування оператора LIKE:</h2>
+<h2 align="center">Examples of using the LIKE operator:</h2>
 
--- Пошук працівників із прізвищем, що закінчується на "son"
+-- Search for employees with a last name ending in "son"
 
 ```sql
 SELECT *
@@ -88,7 +90,7 @@ FROM HR.employees
     WHERE last_name LIKE '%son';
 ```
 
--- Пошук працівників, чиє імʼя починається на "J" і закінчується на "n"
+-- Search for employees whose name starts with "J" and ends with "n"
 
 
 ```sql
@@ -97,7 +99,7 @@ FROM HR.employees
     WHERE first_name LIKE 'J%n';
 ```
 
--- Пошук працівників, чиє імʼя складається із трьох символів
+-- Search for employees whose name consists of three characters
 
 
 ```sql
@@ -105,9 +107,9 @@ SELECT *
 FROM HR.employees
     WHERE first_name LIKE '___';
 ```
-<h2 align="center">Приклади застосування регулярних виразів:</h2>
+<h2 align="center">Examples of using regular expressions:</h2>
 
--- Пошук працівників, які мають електронну адресу з доменом
+-- Search for employees who have an email address with a domain
 "example.com"
 
 ```sql
@@ -116,8 +118,8 @@ FROM HR.employees
     WHERE email ~ '.+@example\\.com';
 ```
 
--- Пошук працівників, у яких номер телефону починається на "+1" і
-містить 10 цифр
+-- Search for employees whose phone number starts with "+1" and
+contains 10 digits
 
 ```sql
 SELECT *
@@ -125,86 +127,86 @@ FROM HR.employees
     WHERE phone_number ~ '^\\+1\\d{8}$';
 ```
 
--- Пошук працівників, у яких опис містить слово "description" незалежно від регістру
+-- Search for employees whose description contains the word "description" regardless of case
 ```sql
 SELECT *
 FROM HR.employees
 WHERE опис ~* 'description';
 ```
 
-Трішки розшифровки регулярних виразів у прикладах вище:
-1. У цьому регулярному виразі (приклад для email)
+A little decoding of regular expressions in the examples above:
+1. In this regular expression (email example)
    
-   - **.** — будь-який символ (зазвичай, окрім переведення рядка);
-   - **\*** — квантор «0 або більше» застосовується до попереднього токена;
-   - **+** — квантор «1 або більше» (зручний для виразу .+);
-   - Для позначення літеральної крапки використовується екранування: \. 
+- **.** — any character (usually, except for line feed);
+- **\*** — the quantifier "0 or more" is applied to the previous token;
+- **+** — quantifier "1 or more" (convenient for the expression .+);
+- Escaping: \ is used to denote a literal dot.
 
-   Приклад коректного виразу для пошуку адреси з доменом example.com:
+An example of a correct expression for searching for an address with the example.com domain:
    ```regex
    .+@example\.com
    ```
-   (якщо ви кладете цей рядок у SQL-літерал, у деяких СУБД потрібно додатково екранувати слеш: '.+@example\\.com')
+(if you put this line in an SQL literal, in some DBMS you need to additionally escape the slash: '.+@example\\.com')
 
-2. У цьому регулярному виразі (приклад для телефонів, що починаються з "+1" і мають 10 цифр)
+2. In this regular expression (example for phones starting with "+1" and having 10 digits)
    
-   - ^ — початок рядка;
-   - \+ — літерал плюс (потрібно екранувати, бо + — спеціальний символ);
-   - \d — будь-яка цифра; \d{10} — саме 10 цифр підряд;
-   - $ — кінець рядка.
+- ^ is the beginning of the line;
+- \+ — literal plus (must be escaped, because + is a special symbol);
+- \d — any number; 
+- $ is the end of the line.
 
-   Приклад виразу:
+Example expression:
    ```regex
    ^\+1\d{10}$
    ```
-   (у SQL-рядку часто записують як '^\\+1\\d{10}$')
+(often written as '^\\+1\\d{10}$' in the SQL line)
 
-Коротко: використовуйте \. для літеральної крапки, * — 0+, + — 1+, \d{N} — N цифр, ^ та $ — як анкорні маркери початку/кінця рядка; у SQL-літералах слеші можуть потребувати подвоєння.
+In short: use \. 
 
-Для того щоб зручніше розшифровувати регулярні вирази та перевіряти, чи
-правильно ти їх пишеш, можна використовувати онлайн-сервіси
-типу [**Regex101**](https://regex101.com/) --- тут ти зможеш як
-ознайомитися з повним списком доступних виразів, так і прочитати
-пояснення для конкретного регулярного виразу.
+To make it easier to decode regular expressions and check if
+you write them correctly, you can use online services
+like [**Regex101**](https://regex101.com/) --- here you can as
+get acquainted with the full list of available expressions, and read
+explanation for a specific regular expression.
 
-<h2 align="center">Функція CONCAT</h2>
+<h2 align="center">CONCAT function</h2>
 
-Функція **CONCAT** використовується для об\'єднання двох або більше
-рядків в один рядок.
+The **CONCAT** function is used to combine two or more
+lines into one line.
 
-Нижче наведено синтаксис функції **CONCAT**:
+The following is the syntax for the **CONCAT** function:
 ```sql
 CONCAT(string1, string2, ...);
 ```
-Щоб об'єднати рядки, ти передаєш їх у функцію **CONCAT** як список
-аргументів, розділених комами.
+To concatenate strings, you pass them to the **CONCAT** function as a list
+arguments separated by commas.
 
-Функція **CONCAT** повертає рядок, який є комбінацією вхідних рядків.
-Якщо один з аргументів має значення **NULL**, то повернений результат
-також буде **NULL**.
+The **CONCAT** function returns a string that is a combination of the input strings.
+If one of the arguments is **NULL**, then the result is returned
+will also be **NULL**.
 
-*📎 Щоб ефективніше обробляти значення, можна використовувати оператор
-**IS** **NULL** або функції **COALESCE** і **NULLIF**.*
+*📎 To process values ​​more efficiently, you can use an operator
+**IS** **NULL** or **COALESCE** and **NULLIF** functions.*
 
-*Більшість систем реляційних баз даних підтримують функцію **CONCAT** із
-деякими відмінностями. Наприклад, функція **CONCAT** у MySQL дозволяє
-об'єднувати більше двох рядків, тоді як функція **CONCAT** в Oracle
-об'єднує тільки два рядки.*
+*Most relational database systems support the **CONCAT** function
+some differences. 
+concatenate more than two strings, while the **CONCAT** function in Oracle
+joins only two lines.*
 
-Крім використання функції **CONCAT**, можна використовувати оператор
-конкатенації. 
+In addition to using the **CONCAT** function, you can use the operator
+concatenation 
 
-Наприклад:
+For example:
 
--   в Oracle і PostgreSQL використовується оператор **\|\|** для
-    конкатенації двох або більше рядків.
+- Oracle and PostgreSQL use the **\|\|** operator for
+concatenation of two or more strings.
 
--   у Microsoft SQL Server використовується оператор **+.**
+- Microsoft SQL Server uses the **+.** operator
 
-<h2 align="center">Приклади використання CONCAT</h2>
+<h2 align="center">CONCAT usage examples</h2>
 
-Наступний оператор використовує функцію CONCAT для того, щоб об'єднати
-два рядки:
+The following statement uses the CONCAT function to concatenate
+two lines:
 
 ```sql
 SELECT CONCAT('SQL CONCAT function', ' demo');
@@ -213,8 +215,8 @@ SELECT CONCAT('SQL CONCAT function', ' demo');
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image1.png" width="600" />
 </div>
 
-У наступному операторі використовується **CONCAT** для повернення повних
-імен співробітників шляхом об'єднання імені, пробілу та прізвища.
+The following statement uses **CONCAT** to return integers
+names of employees by combining first name, space and last name.
 
 ```sql
 SELECT CONCAT(first_name, ' ', last_name) AS name
@@ -227,8 +229,8 @@ ORDER BY name;
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image2.png" width="600" />
 </div>
 
-Наприклад, ти можеш використовувати **CONCAT_WS** для побудови повного
-імені співробітника таким чином:
+For example, you can use **CONCAT_WS** to build a complete
+employee's name as follows:
 
 ```sql
 SELECT CONCAT_WS(' ', first_name, last_name) AS name
@@ -240,29 +242,29 @@ ORDER BY name;
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image3.png" width="600" />
 </div>
 
-<h2 align="center">Функція LENGTH</h2>
+<h2 align="center">The LENGTH function</h2>
 
-Функція **LENGTH** повертає кількість символів у рядку. Вона доступна в
-усіх системах реляційних баз даних. Деякі системи баз даних
-використовують **LEN**-функцію, яка має той самий ефект, що
-й **LENGTH**.
+The **LENGTH** function returns the number of characters in a string. 
+all relational database systems. 
+use the **LEN** function, which has the same effect as
+and **LENGTH**.
 
-Нижче наведено синтаксис функції **LENGTH**.
+Below is the syntax for the **LENGTH** function.
 
 LENGTH(string)
 
--   Якщо вхідний рядок є порожнім --- **LENGTH** повертає  **0**.
--   Якщо вхідний рядок є **NULL** --- повертає **NULL**.
+- If the input string is empty---**LENGTH** returns **0**.
+- If input string is **NULL** --- returns **NULL**.
 
-Кількість символів така сама, як кількість байтів для рядків **ASCII**.
-Для інших наборів символів вони можуть відрізнятися.
-Функція **LENGTH** повертає кількість байтів у деяких системах
-реляційних баз даних, таких як MySQL і PostgreSQL. Щоб
-отримати кількість символів у рядку в MySQL і PostgreSQL, використай
-замість цього функцію **CHAR_LENGTH**.
+The number of characters is the same as the number of bytes for **ASCII** strings.
+They may differ for other character sets.
+The **LENGTH** function returns the number of bytes on some systems
+relational databases such as MySQL and PostgreSQL. 
+to get the number of characters in a string in MySQL and PostgreSQL, use
+**CHAR_LENGTH** function instead.
 
-Наступний оператор повертає першу п'ятірку співробітників із найдовшими
-іменами:
+The following statement returns the first five employees with the longest tenure
+by names:
 
 ```sql
 SELECT employee_id
@@ -277,53 +279,53 @@ LIMIT 5;
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image4.png" width="600" />
 </div>
 
-<h2 align="center">Функція TRIM</h2>
+<h2 align="center">TRIM function</h2>
 
-Функція **TRIM** дозволяє вирізати початкові та/або кінцеві символи з
-рядка.
+The **TRIM** function allows you to trim leading and/or trailing characters from
+line
 
-Нижче показано синтаксис функції TRIM.
+The syntax for the TRIM function is shown below.
 ```sql
 TRIM( [LEADING | TRAILING | BOTH] trim_character FROM source_string
 );
 ```
 
--   Спочатку вкажи символ **trim_character**, який **TRIM** буде
-    видаляти. Якщо ти не
-    вкажеш  **trim_character**, функція **TRIM** видалить пробіли з
-    вихідного рядка.
+- First specify the **trim_character** that **TRIM** will be
+remove. 
+specify **trim_character**, the **TRIM** function will remove spaces from
+of the output line.
 
--   Розмісти **source_string**, тобто стрічку, яку потрібно почистити.
+- Place the **source_string** i.e. the stream to be scrubbed.
 
--   Вкажи сторону --- **LEADING**, **TRAILING** і **BOTH** --- з
-    якої **TRIM** буде видаляти **trim_character**:
+- Specify side --- **LEADING**, **TRAILING** and **BOTH** --- with
+whose **TRIM** will remove the **trim_character**:
 
--   Якщо вказати **LEADING**, то **TRIM** видалить усі початкові
-    символи, які відповідають **trim_character**.
+- If **LEADING** is specified, **TRIM** will remove all leads
+characters that match **trim_character**.
 
--   Якщо вказати **TRAILING**, то **TRIM** видалить усі кінцеві символи,
-    які відповідають **trim_character**.
+- If **TRAILING** is specified, **TRIM** will remove all trailing characters
+which match **trim_character**.
 
--   Якщо ти вкажеш **BOTH** або не вкажеш жодного із трьох,
-    то **TRIM** видалить початкові й кінцеві символи, які
-    відповідають **trim_characters**.
+- If you specify **BOTH** or do not specify any of the three,
+then **TRIM** will remove leading and trailing characters that
+match **trim_characters**.
 
-Функція **TRIM** повертає **NULL**, якщо один **trim_character** або
-вихідний рядок має значення **NULL**.
+The **TRIM** function returns **NULL** if one **trim_character** or
+the output string is **NULL**.
 
-Припустимо, у нас є рядок, який містить два пробіли на початку й один
-пробіл у кінці рядка (\' SQL \').
+Suppose we have a string that contains two leading spaces and one
+a space at the end of a line (\' SQL \').
 
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image5.png" width="600" />
 </div>
 
-Наступний оператор використовує **TRIM** з опцією **LEADING** для
-видалення всіх пробілів на початку рядка.
+The following statement uses **TRIM** with the **LEADING** option for
+removing all spaces at the beginning of a line.
 
-Ти можеш перевірити це за допомогою функції **LENGTH**. Довжина рядка
-результату має бути чотири, оскільки функція TRIM видаляє два пробіли на
-початку рядка.
+You can check this with the **LENGTH** function. 
+the result should be four because the TRIM function removes two spaces per
+beginning of line
 
 ```sql
 SELECT LENGTH( TRIM( LEADING FROM '  SQL ' ) );
@@ -333,10 +335,10 @@ SELECT LENGTH( TRIM( LEADING FROM '  SQL ' ) );
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image6.png" width="600" />
 </div>
 
-У наступному операторі використовується **TRIM** із
-параметром **TRAILING**, що видаляє всі пробіли в кінці рядка. Довжина
-рядка має бути п'ять, оскільки **TRIM** видаляє один пробіл у кінці
-рядка.
+The following statement uses **TRIM** with
+**TRAILING** parameter, which removes all trailing spaces. 
+line should be five because **TRIM** removes one trailing space
+line
 
 ```sql
 SELECT LENGTH( TRIM( TRAILING FROM '  SQL ' ) );
@@ -345,8 +347,8 @@ SELECT LENGTH( TRIM( TRAILING FROM '  SQL ' ) );
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image7.png" width="600" />
 </div>
 
-Наступний оператор видаляє пробіли на початку та в кінці рядка.
-Звичайно, довжина рядка дорiвнює **3**.
+The following statement removes spaces at the beginning and end of a string.
+Of course, the length of the string is equal to **3**.
 
 ```sql
 SELECT LENGTH( TRIM( '  SQL ' ) );
@@ -355,22 +357,22 @@ SELECT LENGTH( TRIM( '  SQL ' ) );
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image8.png" width="600" />
 </div>
 
-<h2 align="center">Важливо</h2>
+<h2 align="center">Importantly</h2>
 
-Іноді, коли користувачі надсилають форму, яка містить такі поля
-введення, як ім'я, прізвище, електронна адреса, телефон тощо, дані
-можуть містити пробіли на початку та/або в кінці.
+Sometimes when users submit a form that contains the following fields
+input like first name, last name, email address, phone, etc. data
+may contain leading and/or trailing spaces.
 
-Перш ніж вставляти або оновлювати базу даних, потрібно перевірити й
-видалити пробіли. Якщо цього не зробити, то існує можливість
-неправильного зіставлення за допомогою умови **WHERE**.
+Before inserting or updating a database, you need to check and
+remove spaces. 
+invalid mapping using the **WHERE** condition.
 
-Якщо тобі потрібно очистити дані, ти можеш скористатися
-оператором **UPDATE** із функцією **TRIM**, щоб видалити всі небажані
-символи з бази даних, зокрема пробіли.
+If you need to clear data, you can use
+**UPDATE** statement with **TRIM** function to remove all unwanted ones
+characters from the database, including spaces.
 
-У наступному прикладі оператор використовується для заміни всіх пробілів
-на початку та в кінці у стовпцях **first_name, last_name, email,
+In the following example, the operator is used to replace all spaces
+at the beginning and at the end in the columns **first_name, last_name, email,
 phone_number**.
 
 ```sql
@@ -384,24 +386,24 @@ SET
 ;
 ```
 
-<h2 align="center">Функція UPPER</h2>
+<h2 align="center">UPPER function</h2>
 
-Функція **UPPER** перетворює всі літери в рядку на верхній регістр. Якщо
-ти хочеш перетворити рядок на нижній регістр, використовуй
-функцію **LOWER**.
+The **UPPER** function converts all letters in a string to upper case. 
+you want to convert a string to lower case, use
+**LOWER** function.
 
-Синтаксис функції **UPPER** :
+**UPPER** function syntax:
 ```sql
 UPPER(string)
 ```
--   Якщо вхідний рядок є **NULL**, **UPPER** повертає **NULL**.
--   Iнакше повертає новий рядок з усіма літерами, перетвореними на
-    верхній регістр.
+- If the input string is **NULL**, **UPPER** returns **NULL**.
+- Otherwise returns a new string with all letters converted to
+upper case
 
-Крім функції **UPPER**, деякі системи баз даних надають додаткову
-функцію з назвою **UCASE**, яка працює аналогічним чином.
+In addition to the **UPPER** function, some database systems provide an additional one
+a function called **UCASE** that works in a similar way.
 
-Наступний оператор перетворює рядок **'sql upper'** на **'SQL UPPER'**:
+The following statement converts the string **'sql upper'** to **'SQL UPPER'**:
 
 ```sql
 SELECT UPPER( 'sql upper' );
@@ -410,8 +412,8 @@ SELECT UPPER( 'sql upper' );
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image9.png" width="600" />
 </div>
 
-Наступний запит використовує функцію **UPPER** для перетворення прізвищ
-співробітників на верхній регістр.
+The following query uses the **UPPER** function to convert last names
+employees to the upper register.
 
 ```sql
 SELECT UPPER(last_name) AS last_name_upper
@@ -423,23 +425,23 @@ ORDER BY last_name_upper;
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image10.png" width="600" />
 </div>
 
-Запит просто зчитує дані з таблиці співробітників і перетворює їх на
-льоту. Дані в таблиці залишаються незмінними.
+The query simply reads the data from the employees table and converts it to
+flying 
 
-Щоб перетворити дані на верхній регістр у таблиці бази даних, тобі
-потрібно використати оператор UPDATE. Наприклад, наступний оператор
-оновлює електронні адреси співробітників до верхнього регістру.
+To convert data to upper case in a database table, you
+the UPDATE statement must be used. 
+updates employee email addresses to upper case.
 
 ```sql
 UPDATE employees
 SET email = UPPER( email );
 ```
 
-Коли ти здійснюєш запит за допомогою WHERE, системи баз даних часто
-відповідають регістру даних. Наприклад, літеральний
-рядок Bruce відрізняється від bruce.
+When you query using WHERE, database systems often
+correspond to the data register. 
+the string Bruce is different from bruce.
 
-Наступний запит не повертає результатів.
+The following query returns no results.
 
 ```sql
 SELECT employee_id
@@ -448,8 +450,8 @@ FROM HR.employees
     WHERE first_name = 'BRUCE';
 ```
 
-Щоб зіставити дані, незалежно від регістру, використай
-функцію **UPPER**. Наприклад, наступний запит поверне рядок:
+To match data, regardless of case, use
+function **UPPER**. 
 
 ```sql
 SELECT employee_id
@@ -458,29 +460,29 @@ FROM HR.employees
     WHERE UPPER( first_name ) = 'BRUCE';
 ```
 
-Зверни увагу, що наведений вище запит сканує всю таблицю, щоб знайти
-відповідний рядок. Якщо таблиця є великою, запит буде дуже повільним.
+Note that the above query scans the entire table to find
+corresponding line. 
 
-Аналогічно працює функція **LOWER**. Пропонуємо спробувати її
-самостійно на практиці.
+The **LOWER** function works similarly. 
+independently in practice.
 
-<h2 align="center">Функція SUBSTRING</h2>
+<h2 align="center">SUBSTRING function</h2>
 
-Функція **SUBSTRING** дозволяє витягнути підрядок, який починається із
-вказаної позиції і має задану довжину.
+The **SUBSTRING** function allows you to extract a substring that starts with
+of the specified position and has a specified length.
 
-Нижче наведено синтаксис функції **SUBSTRING**:
+The syntax for the **SUBSTRING** function is as follows:
 ```sql
 SUBSTRING( source_string, position, length );
 ```
-Функція SUBSTRING має три аргументи:
+The SUBSTRING function has three arguments:
 
--   **source_string** --- це рядок, з якого ти хочеш отримати підрядок.
--   **position** --- це початкова позиція, з якої починається підрядок.
--   **length** --- це довжина підрядка (необов\'язковий аргумент).
+- **source_string** --- is the string from which you want to get the substring.
+- **position** --- is the starting position from which the substring starts.
+- **length** is the length of the substring (optional argument).
 
-Наступний приклад повертає підрядок, що починається з позиції **1** і
-має довжину **3**.
+The following example returns a substring starting at position **1** and
+has a length of **3**.
 
 ```sql
 SELECT SUBSTRING( 'Go it the best school', 1, 3 );
@@ -489,8 +491,8 @@ SELECT SUBSTRING( 'Go it the best school', 1, 3 );
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image11.png" width="600" />
 </div>
 
-Наступний оператор повертає підрядок, що починається з позиції **4** і
-має довжину **8**.
+The following statement returns the substring starting at position **4** and
+has a length of **8**.
 
 ```sql
 SELECT SUBSTRING( 'Go it the best school', 4, 8 );
@@ -499,9 +501,9 @@ SELECT SUBSTRING( 'Go it the best school', 4, 8 );
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image12.png" width="600" />
 </div>
 
-Наступний запит використовує **SUBSTRING** для вилучення перших символів
-імен співробітників (ініціалів) і групує співробітників за їхніми
-ініціалами:
+The following query uses **SUBSTRING** to extract the first characters
+names of employees (initials) and groups employees by their
+initials:
 
 ```sql
 SELECT COALESCE( UPPER(TRIM(SUBSTRING(first_name, 1, 1))) , '') AS initial
@@ -515,92 +517,92 @@ ORDER BY initial;
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image13.png" width="600" />
 </div>
 
-﻿Загалом **рядкові функції в SQL** є важливою складовою мови запитів, яка
-допомагає нам ефективно й точно обробляти рядкові дані в базі даних,
-виконуючи різноманітні операції та забезпечуючи гнучкість і контроль над
-обробкою даних. Список рядкових функцій великий і може відрізнятися
-залежно від типу СУБД, проте ми розглянули саме ті, які найчастіше
-використовуються в роботі аналітика.
+﻿In general, **string functions in SQL** are an important component of the query language, which
+helps us efficiently and accurately process string data in the database,
+performing a variety of operations and providing flexibility and control over
+data processing. 
+depending on the type of DBMS, however, we considered the most common ones
+are used in the analyst's work.
 
-**COALESCE --- обробка даних зі значеннями NULL або відсутніми
-значеннями**
+**COALESCE --- handle data with NULL or missing values
+values**
 
-Під час роботи з SQL важливо розуміти концепцію **NULL** і правильно
-опрацьовувати ці значення, оскільки вони можуть впливати на результати
-запитів та обчислень.
+When working with SQL, it is important to understand the concept of **NULL** and get it right
+work out these values ​​as they may affect the results
+queries and calculations.
 
-*📎 У SQL, **NULL** представляє спеціальне значення, що вказує на
-відсутність даних або невизначеність значення. Воно
-використовується, коли ти не знаєш значення певного поля в таблиці або
-коли значення не визначено.*
+*📎 In SQL, **NULL** represents a special value that points to
+missing data or uncertain value. 
+is used when you do not know the value of a certain field in a table or
+when the value is undefined.*
 
-<h2 align="center">Особливі властивості NULL у SQL:</h2>
+<h2 align="center">Special properties of NULL in SQL:</h2>
 
--   Відсутність значення. **NULL** вказує на відсутність значення в
-    полі.
+- Lack of meaning. 
+poly.
 
--   Відрізняється від порожнього рядка. **NULL** не є тим самим, що й
-    порожній рядок (рядок з нульовою довжиною). Порожній рядок міститься
-    в полі, але **NULL** вказує на відсутність значення.
+- Different from an empty string. 
+an empty string (a zero-length string). 
+in the field, but **NULL** indicates no value.
 
--   Застосування до будь-якого типу даних. **NULL** можна
-    використовувати з будь-яким типом даних: чи то числа, рядки, дати,
-    чи інші типи.
+- Applies to any type of data. 
+use with any type of data: be it numbers, strings, dates,
+or other types.
 
--   Не порівнюється з іншими значеннями. **NULL** не можна порівнювати з
-    будь-яким іншим значенням, включно з **NULL** самого себе. Умови
-    порівняння з **NULL**, такі як **=, \<\>, \<, \>,** повертають
-    невизначений результат.
+- Not compared to other values. 
+any other value, including **NULL** itself. 
+comparisons with **NULL** such as **=,\<\>,\<,\>,** return
+indeterminate result.
 
-<h2 align="center">Функція COALESCE</h2>
+<h2 align="center">COALESCE function</h2>
 
-За допомогою відповідних методів та інструментів, таких як **COALESCE**,
-можна ефективно обробляти дані зі значеннями **NULL** або відсутніми
-значеннями.
+Using appropriate methods and tools such as **COALESCE**,
+data with **NULL** or missing values ​​can be handled efficiently
+values
 
-*📌 **COALESCE** --- це функція або метод, який дозволяє
-замінювати NULL чи відсутні значення в даних на інші значення. Вона
-дозволяє встановлювати альтернативні значення, які будуть
-використовуватися, якщо вихідне значення є NULL або відсутнім. Це може
-бути корисно при обробці даних, коли необхідно забезпечити наявність
-значень у всіх записах або при виконанні певних операцій над даними.*
+*📌 **COALESCE** is a function or method that allows
+replace NULL or missing values ​​in the data with other values. 
+allows you to set alternative values ​​that will
+to be used if the original value is NULL or missing. 
+be useful in data processing when it is necessary to ensure availability
+values ​​in all records or when performing certain operations on data.*
 
-Функція **COALESCE** приймає кілька аргументів і повертає перший
-аргумент, відмінний від **NULL**. Нижче наведено синтаксис
-функції **COALESCE**:
+The **COALESCE** function takes multiple arguments and returns the first one
+non-NULL argument. 
+**COALESCE** functions:
 ```sql
 COALESCE( argument1, argument2, \... );
 ```
--   Функція **COALESCE** обчислює свої аргументи зліва направо. Вона
-    зупиняє обчислення, як тільки знайде перший аргумент, відмінний від
-    **NULL**, і виводить його значення. Це означає, що всі наступні
-    аргументи не оцінюються взагалі.
+- The **COALESCE** function calculates its arguments from left to right. 
+stops the computation as soon as it finds the first argument other than
+**NULL**, and outputs its value. 
+arguments are not evaluated at all.
 
--   Функція **COALESCE** повертає **NULL**, якщо всі аргументи
-    дорівнюють **NULL**.
+- **COALESCE** function returns **NULL** if all arguments
+are equal to **NULL**.
 
-<h2 align="center">Приклади COALESCE</h2>
+<h2 align="center">Examples of COALESCE</h2>
 
-1. Наступний оператор повертає значення 1, оскільки 1 є першим
-аргументом, відмінним від NULL.
+1. The following statement returns 1 because 1 is the first
+non-NULL argument.
 
 ```sql
 SELECT COALESCE( 1, 2, 3 ); -- return 1
 ```
-2. Наступний оператор повертає Not NULL, оскільки це перший рядковий
-аргумент, який не має значення NULL.
+2. The following statement returns Not NULL because it is the first string
+a non-NULL argument.
 
 ```sql
 SELECT COALESCE( NULL, 'Not NULL', 'OK' ); -- return Not NULL
 ```
-Майже всі системи реляційних баз даних підтримують функцію **COALESCE**,
-наприклад, MySQL, PostgreSQL, Oracle, Microsoft SQL Server, Sybase --
-тому її використання є більш пріорітетним над альтернативними методами,
-притаманними лише конкретному типу БД.
+Almost all relational database systems support the **COALESCE** function,
+for example, MySQL, PostgreSQL, Oracle, Microsoft SQL Server, Sybase --
+therefore, its use is a priority over alternative methods,
+specific only to a specific type of database.
 
-<h2 align="center">Приклад 1</h2>
+<h2 align="center">Example 1</h2>
 
-Припустимо, у нас є таблиця products з такою структурою та даними:
+Suppose we have a products table with the following structure and data:
 
 ```sql
 CREATE TABLE products (
@@ -646,9 +648,9 @@ INSERT INTO products (
 );
 ```
 
-Бачимо, що у списку продуктів є запис, у якого
-поле **discount** (знижка) має значення **NULL**. Далі розглянемо, як це
-відображається при виконанні запиту:
+We see that there is an entry in the list of products that has
+**discount** field is **NULL**. 
+is displayed when the request is executed:
 
 ```sql
 SELECT * FROM products;
@@ -657,15 +659,15 @@ SELECT * FROM products;
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image14.png" width="600" />
 </div>
 
-<h2 align="center">Приклад 2</h2>
+<h2 align="center">Example 2</h2>
 
-Припустимо, тобі потрібно відобразити продукти на вебсторінці з усією
-інформацією в таблиці **products**. Деякі продукти можуть мати опис, а
-інші --- ні.
+Suppose you need to display products on a web page with everything
+with the information in the **products** table. 
+others --- no.
 
-У такому випадку ти можеш скористатися функцією **COALESCE**,
-щоб повернути короткий опис продукту. Якщо короткий опис продукту не
-надано, ти отримаєш перші 50 символів з опису продукту.
+In this case, you can use the **COALESCE** function,
+to return a brief description of the product. 
+provided, you will receive the first 50 characters of the product description.
 ```sql
 SELECT id
     , product_name
@@ -678,10 +680,10 @@ SELECT id
 FROM products;
 ```
 
-Також ти можеш скористатися функцією **CONCAT**, щоб додати (...) в
-кінці уривка. Це буде сигналом для користувачів про те, що вони читають
-лише уривок, і якщо вони натиснуть посилання «Читати далі», то буде
-доступно більше інформації.
+You can also use the **CONCAT** function to add (...) to
+the end of the passage. 
+just an excerpt, and if they click on the Read More link, it will
+more information is available.
 
 ```sql
 SELECT
@@ -696,10 +698,10 @@ SELECT
 FROM products;
 ```
 
-<h2 align="center">Приклад 3</h2>
+<h2 align="center">Example 3</h2>
 
-Припустимо, що тобі потрібно обчислити чисту ціну всіх продуктів, і ти
-написав/-ла такий запит:
+Suppose you need to calculate the net price of all products, and you
+wrote the following request:
 ```sql
 SELECT
     id
@@ -709,12 +711,12 @@ SELECT
 FROM products;
 ```
 
-Чиста ціна для продукту Rolls‑Royce Wraith Coupe становить 304000.00 (discount = NULL → COALESCE(discount, 0) = 0).
-як **NULL**. Це через те, що знижка на цей продукт має
-значення **NULL**, і коли ми використовуємо це значення **NULL** у
-розрахунку, отримуємо значення **NULL**.
+The net price for the product Rolls‑Royce Wraith Coupe is 304000.00 (discount = NULL → COALESCE(discount, 0) = 0).
+as **NULL**. 
+**NULL** value and when we use this **NULL** value in
+calculation, we get the value **NULL**.
 
-Тому нам потрібний запит, який дозволить вивести коректну інформацію:
+Therefore, we need a query that will allow us to display the correct information:
 ```sql
 -- Calculate net price: treat NULL discount as 0
 SELECT
@@ -729,126 +731,126 @@ FROM products;
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image15.png" width="600" />
 </div>
 
-<h2 align="center">Висновки</h2>
+<h2 align="center">Conclusions</h2>
 
-Функція **COALESCE** є корисним інструментом у SQL для роботи зі
-значеннями за замовчуванням. Вона дозволяє повернути перше ненульове
-значення з набору аргументів.
+The **COALESCE** function is a useful tool in SQL to work with
+default values. 
+value from a set of arguments.
 
-Основні висновки щодо функції **COALESCE**:
+Key takeaways from the **COALESCE** feature:
 
--   Зручність та ефективність. Функція **COALESCE** дозволяє швидко й
-    легко обробляти значення за замовчуванням без необхідності складних
-    конструкцій **IF** або **CASE**.
+- Convenience and efficiency. 
+easy to handle default values ​​without the need for complex ones
+**IF** or **CASE** constructs.
 
--   Гнучкість. Функція **COALESCE** може бути використана
-    для комбінування декількох стовпців або значень у запиті, що
-    дозволяє вибирати найбільш відповідні значення.
+- Flexibility. 
+to combine multiple columns or values ​​in a query that
+allows you to choose the most appropriate values.
 
--   Заміна нульових значень. Функція **COALESCE** особливо корисна при
-    роботі з нульовими значеннями, оскільки може замінити їх на
-    альтернативні значення або значення за замовчуванням.
+- Replacement of zero values. 
+work with zero values, because it can replace them with
+alternate or default values.
 
--   Порівняння з аналогами. Хоча існують інші функції, такі
-    як **ISNULL** і **NVL** (рекомендуємо самостійно ознайомитися з
-    ними), функція **COALESCE** відрізняється своєю універсальністю,
-    оскільки може обробляти більше ніж два аргументи й повертає перше
-    ненульове значення.
+- Comparison with analogues. 
+such as **ISNULL** and **NVL** (recommended to familiarize yourself with
+them), the **COALESCE** function is distinguished by its universality,
+because it can handle more than two arguments and returns the first one
+non-zero value.
 
-Загалом гнучкість функції **COALESCE** і можливості заміни нульових
-значень роблять її незамінним інструментом для роботи з рядками даних у
-базах даних.
+In general, the flexibility of the **COALESCE** function and the ability to replace nulls
+values ​​make it an indispensable tool for working with strings of data
+databases.
 
-<h2 align="center">Вибір альтернативних значень для заповнення NULL</h2>
+<h2 align="center">Selection of alternative values ​​for NULL padding</h2>
 
-Вибір альтернативних значень для заповнення **NULL** у SQL може залежати
-від контексту задачі та твоїх вимог. Ось кілька прикладів ситуацій і
-можливих альтернативних значень:
+The choice of alternative values ​​for filling **NULL** in SQL can depend
+from the context of the task and your requirements. 
+possible alternative values:
 
--   Заповнення нулем **(0)** або порожнім рядком. Це може бути варіант,
-    якщо **NULL** означає відсутність даних, і ти хочеш мати конкретне
-    значення для обробки чи відображення. Наприклад, якщо в тебе є
-    стовпець, що зберігає кількість товарів, і **NULL** означає
-    відсутність товару, ти можеш заповнити **NULL** нулем **(0).**
+- Padding with zero **(0)** or an empty string. 
+if **NULL** means no data and you want specifics
+value to process or display. 
+column that stores the number of items and **NULL** means
+no product, you can fill **NULL** with zero **(0).**
 
--   Заповнення значеннями за замовчуванням. Ти можеш використати
-    значення за замовчуванням для заповнення **NULL**, якщо воно є
-    придатним для твого контексту. Наприклад, якщо в тебе є стовпець
-    дати замовлення і **NULL** означає, що дата невідома, ти можеш
-    встановити значення за замовчуванням як поточну дату або спеціальне
-    значення «невідома».
+- Filling with default values. 
+default value to fill **NULL** if present
+appropriate for your context. 
+order dates and **NULL** means the date is unknown, you can
+set default value to current date or custom
+the value is "unknown".
 
--   Використання середніх значень або статистичних показників. Іноді
-    можна використовувати агрегатні функції, такі як **AVG** (середнє
-    значення) або **MAX** (максимальне значення), для обчислення
-    альтернативного значення на основі наявних даних. Наприклад, якщо в
-    тебе є стовпець, що містить вік користувачів, і деякі значення
-    є **NULL**, ти можеш використати **AVG** для обчислення середнього
-    віку й застосовувати його як альтернативне значення для **NULL**.
+- Use of average values ​​or statistical indicators. 
+you can use aggregate functions such as **AVG** (avg
+value) or **MAX** (maximum value) to calculate
+alternative value based on available data. 
+you have a column containing the age of the users and some values
+is **NULL**, you can use **AVG** to calculate the average
+age and use it as an alternative value for **NULL**.
 
-**‼‼‼ Однак заповнення NULL альтернативними значеннями може призвести до
-деяких потенційних проблем, зокрема до втрати інформації або спотворення
-даних.**
+**‼‼‼ However, filling NULL with alternative values ​​can lead to
+some potential problems, including information loss or distortion
+data.**
 
-<h2 align="center">Ось кілька проблем, на які варто звернути увагу:</h2>
+<h2 align="center">Here are a few issues to look out for:</h2>
 
--   **Втрата інформації**. Заповнення **NULL** альтернативними
-    значеннями може призвести до втрати оригінальних даних. Наприклад,
-    якщо **NULL** означає відсутність даних, а ти заповнюєш його нулем
-    **(0)**, то втрачаєш можливість розрізняти відсутні дані і справжнє
-    значення **0**.
+- **Loss of information**. 
+values ​​may result in loss of original data. 
+if **NULL** means no data and you fill it with zero
+**(0)**, then you lose the ability to distinguish missing data from real data
+value **0**.
 
--   **Спотворення аналізу**. Заповнення **NULL** альтернативними
-    значеннями може призвести до спотворення аналізу даних. Наприклад,
-    якщо ти заповнюєш відсутні значення середнім значенням, це може
-    призвести до заниження або завищення фактичних показників, таких як
-    середнє значення, медіана тощо.
+- **Analysis distortion**. 
+values ​​can lead to distortion of data analysis. 
+if you fill in the missing values ​​with the average value, it can
+lead to an understatement or overstatement of actual figures such as
+mean, median, etc.
 
--   **Помилкова інтерпретація даних**. Використання альтернативних
-    значень для заповнення **NULL** може призвести до помилкової
-    інтерпретації даних. Інші користувачі можуть припустити, що
-    заповнені значення є дійсними даними, що може призвести до
-    неправильних висновків або рішень.
+- **Wrong interpretation of data**. 
+**NULL** padding values ​​may result in false positives
+data interpretation. 
+the filled values ​​are valid data which may result in
+wrong conclusions or decisions.
 
--   **Спотворення статистичних
-    аналізів**. Заповнення **NULL** альтернативними значеннями може
-    спотворити статистичні аналізи, такі як розподіл даних, кореляція
-    тощо. Вставка альтернативних значень може змінити характеристики
-    даних і призвести до неточних аналітичних результатів.
+- **Statistical distortions
+analyses**. 
+distort statistical analyses, such as data distribution, correlation
+etc. 
+data and lead to inaccurate analytical results.
 
-Отже, під час заповнення **NULL** альтернативними значеннями важливо
-розуміти можливі наслідки та природу даних. Ретельний аналіз контексту
-задачі та врахування потенційних проблем допоможуть уникнути
-неправильної інтерпретації даних і зберегти якість аналізу.
+So when filling **NULL** with alternate values ​​is important
+understand the possible implications and nature of the data. 
+tasks and taking into account potential problems will help to avoid them
+misinterpretation of data and maintain the quality of the analysis.
 
-<h2 align="center">CASE у мові запитів SQL</h2>
+<h2 align="center">CASE in the SQL query language</h2>
 
-**CASE** є потужним і гнучким інструментом, який дозволяє виконувати
-умовні операції та розгалуження в запитах SQL.
-Використання **CASE** дозволяє змінювати логіку запиту залежно від
-заданих умов, що робить його незамінним для різних завдань з обробки
-даних.
+**CASE** is a powerful and flexible tool that allows you to execute
+conditional operations and branching in SQL queries.
+Using **CASE** allows you to change the query logic based on
+given conditions, which makes it indispensable for various processing tasks
+data
 
-За допомогою **CASE** можна реалізувати різноманітні логічні операції,
-які забезпечують умовну логіку, обробку вибіркових даних і трансформацію
-результатів запиту. Цей інструмент є важливим компонентом SQL для
-розширення функціональності й виразності запитів, що дозволяє ефективно
-маніпулювати даними в базі даних.
+**CASE** can be used to implement a variety of logical operations,
+which provide conditional logic, sample data processing and transformation
+query results. 
+expanding the functionality and expressiveness of requests, which allows effective
+manipulate data in the database.
 
-Вираз **CASE** дозволяє оцінити список умов і повертає один із можливих
-результатів. Вираз **CASE** має два формати:
+The **CASE** expression evaluates a list of conditions and returns one of the possible ones
+results 
 
-1.  простий **CASE**;
-2.  пошуковий **CASE**.
+1. simple **CASE**;
+2. search **CASE**.
 
-Ти можеш використовувати **CASE** у реченні або в операторі. Наприклад,
-ти можеш використовувати **CASE** у таких операторах,
-як **SELECT**, **DELETE** та **UPDATE** або в **SELECT, ORDER
-BY** та **HAVING**.
+You can use **CASE** in a sentence or in a statement. 
+you can use **CASE** in statements like
+as **SELECT**, **DELETE** and **UPDATE** or in **SELECT, ORDER
+BY** and **HAVING**.
 
-<h2 align="center">Простий CASE</h2>
+<h2 align="center">A simple CASE</h2>
 
-<h2 align="center">Нижче наведено простий вираз CASE.</h2>
+<h2 align="center">Below is a simple CASE expression.</h2>
 
 ```sql
 CASE expression
@@ -859,25 +861,25 @@ CASE expression
 END
 ```
 
-У цьому виразі кожна умова (**condition**) перевіряється по черзі, і
-коли вона є істинною, повертається відповідний результат (**result**).
-Якщо ж жодна з умов не задовольняється, повертається значення, вказане у
-блоці **ELSE**.
+In this expression, each condition (**condition**) is checked in turn, and
+when it is true, the corresponding result (**result**) is returned.
+If none of the conditions is satisfied, the value specified in is returned
+**ELSE** blocks.
 
--   Оператор **CASE** повертає **result_1, result_2** або **result_3**,
-    якщо вираз збігається з відповідним виразом у реченні **WHEN**.
+- The **CASE** operator returns **result_1, result_2** or **result_3**,
+if the expression matches a matching expression in the **WHEN** clause.
 
--   Якщо вираз не відповідає жодному виразу в реченні **WHEN**, він
-    повертає **esle_result** у реченні **ELSE**. Речення **ELSE** є
-    необов'язковим.
+- If the expression does not match any expression in the **WHEN** clause, it
+returns **esle_result** in **ELSE** clause. 
+optional.
 
--   Якщо пропустити пропозицію **ELSE**, і вираз не відповідає жодному
-    виразу **WHEN**, вираз **CASE** повертає **NULL**.
+- If the **ELSE** clause is omitted and the expression does not match any
+**WHEN** expression, **CASE** expression returns **NULL**.
 
-<h2 align="center">Приклади використання простого CASE</h2>
+<h2 align="center">Examples of simple CASE usage</h2>
 
-Ми можемо використовувати простий вираз CASE, щоб отримати робочі ювілеї
-співробітників, застосовуючи такий оператор:
+We can use a simple CASE expression to get the working anniversaries
+employees using the following operator:
 
 ```sql
 SELECT first_name
@@ -901,32 +903,32 @@ ORDER BY first_name;
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image16.png" width="600" />
 </div>
 
-Як ти вже помітив/-ла у прикладі вище, функція **EXTRACT** повертає рік,
-коли працівник приєднався до компанії. Ми отримуємо кількість років,
-протягом яких робітник працює в компанії, і віднімаємо рік приєднання до
-компанії. База HR є актуальною на **2000** рік, тому саме це значення
-використовуємо для розрахунку різниці.
+As you already noticed in the example above, the function **EXTRACT** returns the year,
+when the employee joined the company. 
+during which the worker works in the company, and we subtract the year of joining to
+companies 
+used to calculate the difference.
 
-Потім ми порівнюємо результат із числами **1, 3, 5, 10, 15, 20, 25,
+Then we compare the result with the numbers **1, 3, 5, 10, 15, 20, 25,
 30**.
 
--   Якщо рік роботи дорівнює одному з цих чисел, вираз **CASE** повертає
-    річницю роботи працівника.
+- If year of operation is one of these numbers, the **CASE** expression returns
+anniversary of the employee's work.
 
--   Якщо рік роботи працівника не відповідає жодному з цих чисел,
-    вираз **CASE** повертає **NULL**.
+- If the employee's year of work does not correspond to any of these numbers,
+the **CASE** expression returns **NULL**.
 
-<h2 align="center">Пошуковий вираз CASE</h2>
+<h2 align="center">CASE search expression</h2>
 
-Вираз **CASE** порівнює вираз із набором виразів **(when_expression_1,
-when_expression_2, when_expression_3, ...)** за допомогою оператора
-рівності **(=)**.
+The **CASE** expression compares an expression to the set of expressions **(when_expression_1,
+when_expression_2, when_expression_3, ...)** using the statement
+of equality **(=)**.
 
-Якщо ти хочеш використовувати інші оператори порівняння, такі як більше
-ніж **(>)**, менше ніж **(<)** тощо, тобі потрібно
-застосувати пошуковий вираз **CASE**.
+If you want to use other comparison operators, such as more
+than **(>)**, less than **(<)** etc. you need
+apply **CASE** search expression.
 
-Нижче наведено приклад пошукового виразу **CASE**:
+Below is an example of a **CASE** search expression:
 
 ```sql
 SELECT first_name
@@ -941,24 +943,24 @@ SELECT first_name
 FROM HR.employees;
 ```
 
-Система бази даних обчислює логічний вираз для кожного
-речення **WHEN** у порядку, зазначеному у виразі **CASE**.
+The database system calculates a logical expression for each
+the **WHEN** clause in the order specified in the **CASE** expression.
 
-Якщо логічний вираз у реченні **WHEN** має значення **true**, то
-пошуковий оператор **CASE** повертає результат із
-відповідного **THEN** і припиняє перевірку. Тобто якщо у **CASE** два
-істинні вирази, ми отримаємо відповідь, що відповідає першому з них.
+If the boolean expression in the **WHEN** clause evaluates to **true** then
+The search operator **CASE** returns the result from
+corresponding **THEN** and stops the check. 
+true expressions, we will get an answer that corresponds to the first of them.
 
--   Якщо жоден логічний вираз не повертає значення **true**,
-    вираз **CASE** повертає результат **else_result**, вказаний у
-    реченні **ELSE**.
+- If no boolean expression returns **true**,
+the **CASE** expression returns the **else_result** specified in the
+**ELSE** clauses.
 
--   Як і в простому виразi **CASE**, речення **ELSE** є необов'язковим.
+- As with a simple **CASE** expression, the **ELSE** clause is optional.
 
--   Якщо ти опустиш речення **ELSE** і жоден логічний вираз не отримає
-    значення **true**, вираз **CASE** поверне значення **NULL**.
+- If you omit the **ELSE** clause and no logical expression is received
+**true**, the **CASE** expression will return **NULL**.
 
-<h2 align="center">Приклад пошукового виразу CASE</h2>
+<h2 align="center">An example of a CASE search expression</h2>
 
 ```sql
 SELECT
@@ -973,88 +975,88 @@ SELECT
 FROM HR.employees;
 ```
 
--   Якщо зарплата менша за **3000**, вираз **CASE** повертає значення
-    **«Low»** (низька).
+- If the salary is less than **3000**, the **CASE** expression returns the value
+**"Low"** (low).
 
--   Якщо зарплата знаходиться в діапазоні від **3000** до **5000**,
-    повертається значення **«Average»** (середня).
+- If the salary is in the range from **3000** to **5000**,
+**"Average"** value is returned.
 
--   Коли зарплата перевищує **5000**, вираз **CASE** повертає значення
-    **«High»** (висока).
+- When salary is greater than **5000**, the **CASE** expression returns a value
+**"High"** (high).
 
-<h2 align="center">Отже, коротко підсумуємо основні моменти:</h2>
+<h2 align="center">So, let's briefly summarize the main points:</h2>
 
--   Вираз **CASE** є потужним інструментом для виконання умовних
-    операцій і заміни значень у SQL-запитах.
+- The **CASE** expression is a powerful tool for executing conditionals
+operations and replacing values ​​in SQL queries.
 
--   Вираз **CASE** дозволяє змінювати логіку запиту залежно від заданих
-    умов, що робить його корисним для різноманітних сценаріїв обробки
-    даних.
+- The **CASE** expression allows you to change the query logic depending on the given
+conditions, making it useful for a variety of processing scenarios
+data
 
--   Вираз **CASE** можна використовувати для заміни значень стовпців,
-    створення нових стовпців або визначення значень для групування або
-    сортування даних.
+- **CASE** expression can be used to replace column values,
+creating new columns or defining values ​​for grouping or
+data sorting.
 
--   Вираз **CASE** може містити декілька умов і результатів, які
-    перевіряються послідовно, а також використовувати блок **ELSE** для
-    визначення значення за замовчуванням.
+- A **CASE** expression can contain multiple conditions and results which
+are checked sequentially, and use an **ELSE** block for
+defining the default value.
 
--   Використання **CASE** дозволяє розширити функціональність
-    SQL-запитів, забезпечуючи більшу гнучкість і можливість
-    персоналізації результатів запиту.
+- Using **CASE** allows for extended functionality
+SQL queries, providing greater flexibility and capability
+personalization of query results.
 
-Загалом вираз **CASE** є важливим інструментом для керування умовною
-логікою та обробки даних у SQL. Використання цього виразу дозволяє
-ефективно маніпулювати даними, забезпечуючи більш точні й адаптовані
-результати запитів.
+In general, the **CASE** expression is an important tool for conditional control
+logic and data processing in SQL. 
+manipulate data effectively, providing more accurate and tailored
+query results.
 
-<h2 align="center">Функції та процедури в SQL</h2>
+<h2 align="center">Functions and procedures in SQL</h2>
 
-Функції та процедури в SQL є ключовими компонентами мови запитів, які
-дозволяють створювати повторно використовувані блоки коду й виконувати
-комплексні операції над даними в базі даних. Знання та розуміння процесу
-створення й використання функцій і процедур в SQL має велике значення з
-кількох причин.
+Functions and procedures in SQL are key components of a query language that
+allow you to create reusable blocks of code and execute
+complex operations on data in the database. 
+creating and using functions and procedures in SQL is of great importance with
+several reasons.
 
-Функції та процедури дозволяють забезпечити модульність і повторне
-використання коду або запитів, що сприяє покращенню продуктивності та
-уникненню дублювання. Ти можеш створювати функції та процедури, які
-виконують певні завдання, і використовувати їх у різних запитах і
-програмах, що забезпечує ефективну розробку та підтримку баз даних.
+Functions and procedures allow for modularity and repeatability
+using code or queries that help improve performance and
+avoiding duplication. 
+perform certain tasks, and use them in various requests and
+programs that ensure efficient development and maintenance of databases.
 
-Функції та процедури дозволяють виконувати складні операції над даними,
-які враховують обчислення, обробку, агрегацію та зміну даних у базі
-даних. Ти можеш створювати функції, які повертають значення, а також
-процедури, які виконують набір інструкцій. Це дозволяє тобі створювати
-більш складні запити й операції, що відповідають потребам твого проєкту
-або бізнес-логіки.
+Functions and procedures allow you to perform complex operations on data,
+which take into account the calculation, processing, aggregation and change of data in the database
+data 
+procedures that execute a set of instructions. 
+more complex requests and operations that meet the needs of your project
+or business logic.
 
-Якщо пояснити простими словами, то замість того щоб кожного разу писати
-одні й ті самі запити, зручніше групувати їх разом і зберігати, щоб
-можна було використовувати їх багато разів. Що стосується гнучкості, то
-кожного разу, коли змінюється логіка запитів, можна передавати новий
-параметр для функцій і збережених процедур.
+To explain in simple words, instead of writing every time
+the same queries, it is more convenient to group them together and store them so that
+it was possible to use them many times. 
+each time the request logic changes, a new one can be passed
+parameter for functions and stored procedures.
 
-<h2 align="center">Різниця між функціями та процедурами</h2>
+<h2 align="center">Difference between functions and procedures</h2>
 
-У SQL функції та процедури є двома різними типами об\'єктів, які можуть
-бути створені й використані для виконання операцій над даними. Основна
-різниця між функціями та процедурами полягає в тому, як вони повертають
-результати.
+In SQL, functions and procedures are two different types of objects that can
+be created and used to perform data operations. 
+the difference between functions and procedures is how they return
+the results
 
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image17.png" width="600" />
 </div>
 
-Отже, функції використовуються для обчислень і повернення результатів,
-тоді як процедури служать для виконання послідовних дій і зміни стану
-даних. Обидва типи мають свої використання, залежно від потреб розробки
-та керування базами даних.
+So, functions are used to perform calculations and return results,
+whereas procedures serve to perform sequential actions and change state
+data 
+and database management.
 
-<h2 align="center">Створення функцій</h2>
+<h2 align="center">Creating functions</h2>
 
-Давай розглянемо процес створення функції в PostgreSQL. Наступний блок
-коду ілюструє, як створювати функцію:
+Let's look at the process of creating a function in PostgreSQL. 
+code illustrates how to create a function:
 
 ```sql
 CREATE OR REPLACE FUNCTION function_name(param_list)
@@ -1068,27 +1070,27 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-<h2 align="center">Пояснення операторів:</h2>
+<h2 align="center">Explanation of operators:</h2>
 
--   **create \[or replace\] function function_name** --- створює або
-    замінює функцію, якщо вона існує, із вказаним ім\'ям та параметрами;
+- **create \[or replace\] function function_name** --- creates or
+replaces the function, if it exists, with the specified name and parameters;
 
--   **returns return_type** --- тип даних, який повертає функція;
+- **returns return_type** --- the data type returned by the function;
 
--   мова **plpgsql** --- вказує на процедурне розширення PostgreSQL;
+- **plpgsql** language--- indicates a PostgreSQL procedural extension;
 
--   всередині знака **\$** --- це тіло функції;
+- inside the sign **\$** --- this is the body of the function;
 
--   **declare** --- показує, як оголошуються або ініціалізуються змінні;
+- **declare** --- shows how variables are declared or initialized;
 
--   блок коду **\[begin --- end\]** --- містить усю логіку функції;
+- code block **\[begin --- end\]** --- contains all function logic;
 
--   **begin** --- вказує на початок запитів;
+- **begin** --- indicates the beginning of requests;
 
--   **end** --- вказує на кінець функції.
+- **end** --- indicates the end of the function.
 
-Наступний приклад ілюструє створення та виклик окремої функції. Ця
-функція повертає загальну кількість записів у таблиці **employees**:
+The following example illustrates creating and calling a single function. 
+the function returns the total number of records in the **employees** table:
 
 ```sql
 CREATE OR REPLACE FUNCTION totalRecords()
@@ -1103,7 +1105,7 @@ END;
 $total$ LANGUAGE plpgsql;
 ```
 
-Тепер давай виконаємо виклик цієї функції та перевіримо записи в таблиці
+Now let's call this function and check the entries in the table
 **employees**.
 
 ```sql
@@ -1113,21 +1115,21 @@ SELECT totalRecords()
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image18.png" width="600" />
 </div>
 
-Отже, наша функція повернула кількість рядків у таблиці **employees**,
-для цього нам достатньо було просто викликати її. Тепер у нас є
-можливість повторного застосування цієї функції в різних частинах
-запиту, що спрощує написання коду.
+So our function returned the number of rows in the **employees** table,
+for this we just had to call her. 
+the possibility of re-applying this function in different parts
+query, which simplifies writing code.
 
-Список усіх функцій, доступних у нашому дереві елементів бази даних:
+List of all functions available in our database element tree:
 
 <div align="center">
   <img src="../../assets/images/lesson_5_ochystka_danyh_riadkovi_funkcii/media/image19.png" width="600" />
 </div>
 
-<h2 align="center">Створення збереженої процедури</h2>
+<h2 align="center">Create a stored procedure</h2>
 
-Створення збереженої процедури, як показано у блоці коду нижче, майже
-аналогічне створенню функції, але з невеликою відмінністю --- у ній нема
+Creating a stored procedure as shown in the code block below is almost
+similar to creating a function, but with a slight difference --- it doesn't have one
 **return**. 
 
 ```sql
@@ -1137,7 +1139,7 @@ stored_procedure_body;
 $$;
 ```
 
-Давай розглянемо приклад процедури для додавання нового співробітника:
+Let's consider an example of the procedure for adding a new employee:
 
 ```sql
 -- Procedure: insert_employee
@@ -1225,28 +1227,28 @@ CALL insert_employee(
 );
 ```
 
-Що ж нам дала ця процедура? **Ми спростили процес додавання нових
-записів до бази даних** і можемо **повторно використовувати** цей
-об\'єкт, коли нам зручно.
+What did this procedure give us? 
+records to the database** and can **reuse** this one
+object when it is convenient for us.
 
-<h2 align="center">Висновки</h2>
+<h2 align="center">Conclusions</h2>
 
-Отже, функції та процедури використовуються для створення згрупованих
-блоків коду, які можна викликати з SQL-запитів або з іншого коду. Вони
-забезпечують зручний спосіб структурування й повторного
-використання логіки, а також можуть призначати ролі побічних ефектів.
+So, functions and procedures are used to create grouped
+blocks of code that can be called from SQL queries or from other code. 
+provide a convenient way to structure and reuse
+using logic and can also assign roles to side effects.
 
-Однак перед використанням функцій і процедур рекомендується ретельно
-розробити логіку й уважно спланувати використання цих об\'єктів,
-оскільки неправильне використання може призвести до накопичення великої
-кількості внутрішніх об\'єктів бази даних та вплинути на продуктивність.
+However, it is recommended to be careful before using the features and procedures
+develop logic and carefully plan the use of these objects,
+as improper use can lead to the accumulation of large
+number of internal database objects and affect performance.
 
-Знання функцій і процедур у SQL є важливим для аналітиків даних, адже
-вони дозволяють **створювати розширені запити, автоматизувати обробку
-даних, полегшувати керування базами даних і покращувати продуктивність
-системи**. Це важлива навичка, яка допомагає впроваджувати більш
-ефективні та гнучкі рішення з обробки й аналізу даних.
+Knowledge of SQL functions and procedures is essential for data analysts because
+they allow **to create advanced queries, automate processing
+data, facilitate database management and improve performance
+systems**. 
+effective and flexible data processing and analysis solutions.
 
-Ознайомлення з функціями та процедурами в SQL відкриває широкі
-можливості та робить цю тему важливою для усіх, хто працює з базами
-даних та виконує аналіз даних.
+Familiarity with functions and procedures in SQL opens wide
+capabilities and makes this topic essential for anyone working with databases
+data and performs data analysis.

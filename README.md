@@ -1,23 +1,26 @@
-# T-SQL-standarts-and-templates
+**Language:** English | [Українська](i18n/uk/README.md)
 
-Колекція навчальних матеріалів і прикладів для роботи з **SQL** (у темах уроків зустрічаються як загальні конструкції SQL, так і специфічні можливості окремих СУБД).
+# T-SQL Standards and Templates
 
-## Як користуватися курсом
+A collection of learning materials and examples for working with **SQL**. The lessons include both general SQL constructs and DBMS-specific features.
 
-- Рекомендований маршрут читання: [LEARNING_PATH.md](LEARNING_PATH.md)
-- Довідковий покажчик тем і підзаголовків: [navigation.md](navigation.md)
-- Окрема інструкція для тих, хто вчиться: [README__for_learners.md](README__for_learners.md)
+## How to use this course
 
-Навчальні матеріали розміщені у [course/lessons/](course/lessons/).
+- Recommended learning order: [LEARNING_PATH.md](LEARNING_PATH.md)
+- Topic index (simple): [navigation.md](navigation.md)
+- Topic index (detailed, by headings): [navigation_detailed.md](navigation_detailed.md)
+- Learner-focused guide: [README__for_learners.md](README__for_learners.md)
 
-## Структура репозиторію
+Lessons live in [course/lessons/](course/lessons/).
 
-- Уроки: [course/lessons/](course/lessons/)
-- Ілюстрації до уроків: [assets/images/](assets/images/)
-- Допоміжні скрипти для обробки Markdown: [scripts/](scripts/)
-- Архів/резервні файли: [archive/](archive/) та [backups/](backups/)
+## Repository structure
 
-## Про локальні артефакти
+- Lessons: [course/lessons/](course/lessons/)
+- Lesson images: [assets/images/](assets/images/)
+- Helper scripts for Markdown processing: [scripts/](scripts/)
+- Archive/backups: [archive/](archive/) and [backups/](backups/)
 
-- Папка `.venv/` (локальне Python-середовище) не є частиною навчальних матеріалів і не повинна зберігатися в репозиторії; вона додана до `.gitignore`.
-- Тимчасові файли на кшталт `*.md.bak` також ігноруються (див. `.gitignore`).
+## Local artifacts
+
+- The `.venv/` folder (local Python environment) is not part of the learning materials and should not be committed; it’s listed in `.gitignore`.
+- Temporary files like `*.md.bak` are also ignored (see `.gitignore`).

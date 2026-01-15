@@ -1,24 +1,26 @@
+**Language:** English | [Українська](i18n/uk/README__for_learners.md)
+
 # README (for learners)
 
-## Для кого цей репозиторій
+## Who this repo is for
 
-Цей репозиторій підійде, якщо ти:
+This repository is a good fit if you:
 
-- вивчаєш SQL з нуля або систематизуєш базу;
-- хочеш пройти структуровані уроки у форматі Markdown;
-- шукаєш короткі пояснення й приклади запитів у межах тем уроків.
+- are learning SQL from scratch or refreshing fundamentals;
+- want structured lessons in Markdown;
+- need short explanations and query examples by topic.
 
-Навчальні матеріали зосереджені у папці [course/lessons/](course/lessons/).
+Lessons are in [course/lessons/](course/lessons/).
 
-## Як вчити SQL за цим репозиторієм
+## How to learn SQL with this repo
 
-- Почни з [LEARNING_PATH.md](LEARNING_PATH.md) і рухайся за рекомендованою послідовністю.
-- Відкривай кожен урок у редакторі (наприклад, VS Code) і проходь розділи зверху вниз.
-- Після читання блоку з прикладом SQL, спробуй виконати запит у своїй СУБД (та/або адаптуй під свою).
-- Якщо потрібно швидко знайти тему або підзаголовок, використовуй [navigation.md](navigation.md) як довідник.
+- Start with [LEARNING_PATH.md](LEARNING_PATH.md) and follow the recommended order.
+- Open each lesson in an editor (e.g., VS Code) and go top-to-bottom.
+- After each SQL example, try running it in your DBMS (and adapt if needed).
+- For quick lookups by topic/heading, use [navigation.md](navigation.md).
 
-## Що всередині
+## What’s inside
 
-- Уроки: [course/lessons/](course/lessons/)
-- Ілюстрації до уроків: [assets/images/](assets/images/)
-- Допоміжні скрипти для обробки Markdown: [scripts/](scripts/)
+- Lessons: [course/lessons/](course/lessons/)
+- Lesson images: [assets/images/](assets/images/)
+- Helper scripts for Markdown processing: [scripts/](scripts/)

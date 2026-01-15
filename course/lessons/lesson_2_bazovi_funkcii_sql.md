@@ -1,59 +1,61 @@
-<h2 align="center">Вступ</h2>
+﻿**Language:** English | [Українська](../../i18n/uk/course/lessons/lesson_2_bazovi_funkcii_sql.md)
 
-Ласкаво просимо на нове заняття, під час якого ми продовжимо
-ознайомлюватися з інструментами **SQL**. Окрім того, поринемо в
-дивовижний світ реклами з погляду аналітика даних.
+<h2 align="center">Introduction</h2>
 
--   Навчимося використовувати логічні оператори SQL, щоб за допомогою
-    них здійснювати різні обчислення.
+Welcome to a new session where we will continue
+get familiar with **SQL** tools. 
+the wonderful world of advertising from the perspective of a data analyst.
 
--   Дізнаємося, як змінювати типи даних в **SQL** за допомогою
-    оператора **CAST** (практично, вправність рук і ніякої магії).
+- Let's learn to use logical SQL statements to help
+them to perform various calculations.
 
--   Розглянемо оператор **GROUP BY** і навчимося групувати дані та
-    виконувати операції агрегації, такі як сумування, підрахунок,
-    середнє значення тощо, для отримання загальних показників та
-    зведеної інформації.
+- We learn how to change data types in **SQL** using
+operator **CAST** (basically sleight of hand and no magic).
 
-<h2 align="center">Логічні оператори SQL</h2>
+- Consider the **GROUP BY** operator and learn how to group data and
+perform aggregation operations such as summation, counting,
+average value, etc., to obtain overall indicators and
+summary information.
 
-Ми вже трішки познайомилися з оператором **WHERE**. Зараз спробуємо
-показати тобі всі можливі логічні оператори, які можна застосувати під
-час фільтрації даних.
+<h2 align="center">Logical SQL statements</h2>
 
-**Логічні оператори** **SQL** --- це потужний інструмент, який дозволяє
-здійснювати складні та гнучкі запити до бази даних. Вони
-використовуються для комбінування умов і встановлення логічних зв\'язків
-між ними.
+We've already gotten a little familiar with the **WHERE** operator. 
+show you all the possible logical operators that can be applied under
+data filtering time.
 
-Використання **логічних операторів** дозволяє виконувати пошук і
-фільтрацію даних на основі різних умов. Це значно розширює можливості
-аналізу й отримання необхідної інформації з бази даних, а також
-допомагає встановити зв\'язки між різними умовами та керувати логікою
-пошуку даних.
+**Boolean statements** **SQL** -- is a powerful tool that allows
+perform complex and flexible queries to the database. 
+are used to combine conditions and establish logical connections
+between them
 
-📎 *Логічний оператор дозволяє перевірити істинність умови. Подібно до
-оператора порівняння, логічний оператор повертає значення **true,
-false** або **unknown**.*
+The use of **logical operators** allows you to search and
+data filtering based on various conditions. 
+analysis and obtaining the necessary information from the database, as well as
+helps establish relationships between different conditions and manage logic
+data search.
 
-Наступна таблиця ілюструє логічні оператори **SQL**:
+📎 *The logical operator allows you to check the truth of the condition. 
+comparison operator, logical operator returns **true,
+false** or **unknown**.*
+
+The following table illustrates the **SQL** logical statements:
 
 <div align="center">
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image1.png" width="600" />
 </div>
 
-Попри великий перелік, сьогодні ми розглянемо лише певні оператори з
-наведеного списку.
+Despite the large list, today we will consider only certain operators with
+of the given list.
 
-<h2 align="center">Оператор AND</h2>
+<h2 align="center">AND operator</h2>
 
-Оператор **AND** повертає **true**, якщо обидва вирази мають
-значення **true**.
+The **AND** operator returns **true** if both expressions are true
+the value is **true**.
 
-Повертаємося до нашої HR-схеми та прикладів
+Let's go back to our HR diagram and examples
 
-У прикладі нижче відображено всіх працівників, зарплата яких **перевищує
-5000** і **є меншою за 7000**:
+The example below displays all employees whose salary exceeds **
+5000** and **is less than 7000**:
 
 
 ```sql
@@ -70,13 +72,13 @@ ORDER BY salary;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image2.png" width="600" />
 </div>
 
-<h2 align="center">Оператор OR</h2>
+<h2 align="center">The OR operator</h2>
 
-Оператор **OR** повертає значення **true**, якщо хоча б один вираз має
-значення **true**.
+The **OR** operator returns **true** if at least one expression has
+value **true**.
 
-Наприклад, наступний оператор знаходить працівників із зарплатою
-**7000** або **8000**:
+For example, the following operator finds employees with a salary
+**7000** or **8000**:
 
 ```sql
 SELECT first_name
@@ -92,14 +94,14 @@ ORDER BY salary;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image3.png" width="600" />
 </div>
 
-<h2 align="center">Оператор IS NULL</h2>
+<h2 align="center">The IS NULL operator</h2>
 
-Оператор **IS NULL** порівнює значення з **NULL** значенням (тобто
-пустим, відсутнім значенням) і повертає **true**, якщо порівнюване
-значення нульове (пусте значення); в іншому випадку повертає **false**.
+The **IS NULL** operator compares a value to a **NULL** value (ie
+empty, missing value) and returns **true** if compared
+value is zero (empty value); 
 
-Наприклад, наступний оператор знаходить усіх співробітників, які не
-мають номера телефону:
+For example, the following statement finds all employees who are not
+have phone numbers:
 
 ```sql
 SELECT first_name
@@ -114,14 +116,14 @@ ORDER BY first_name, last_name;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image4.png" width="600" />
 </div>
 
-<h2 align="center">Оператор BETWEEN</h2>
+<h2 align="center">The BETWEEN operator</h2>
 
-Оператор **BETWEEN** шукає значення, які знаходяться в межах заданого
-діапазону, враховуючи мінімальне та максимальне значення. Зауваж, що
-мінімальне та максимальне значення включені як частина умовного набору.
+The **BETWEEN** operator looks for values ​​that are within a given range
+range, taking into account the minimum and maximum value. 
+the minimum and maximum values ​​are included as part of the conditional set.
 
-Наприклад, наступний оператор знаходить усіх працівників із
-зарплатою від **9000** до **12 000**.
+For example, the following statement finds all employees from
+salary from **9,000** to **12,000**.
 
 ```sql
 SELECT first_name
@@ -136,15 +138,15 @@ ORDER BY salary;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image5.png" width="600" />
 </div>
 
-<h2 align="center">Оператор IN</h2>
+<h2 align="center">The IN operator</h2>
 
-Оператор **IN** порівнює значення зі списком заданих значень.
-Оператор **IN** повертає **істину** (**true**), якщо порівнюване
-значення збігається принаймні з одним значенням у списку; в іншому
-випадку повертає **false**.
+The **IN** operator compares a value to a list of given values.
+The **IN** operator returns **true** if compared
+the value matches at least one value in the list; 
+case returns **false**.
 
-Наступний оператор знаходить усіх співробітників, які працюють у відділі
-з ідентифікатором 8 або 9.
+The following operator finds all the employees who work in the department
+with ID 8 or 9.
 
 ```sql
 SELECT first_name
@@ -159,20 +161,20 @@ ORDER BY department_id;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image6.png" width="600" />
 </div>
 
-<h2 align="center">Оператор LIKE</h2>
+<h2 align="center">The LIKE operator</h2>
 
-Оператор **LIKE** порівнює значення зі схожими значеннями за допомогою
-оператора підстановки. В SQL існують два символи підстановки, які
-використовуються в поєднанні з оператором **LIKE**:
+The **LIKE** operator compares values ​​with similar values ​​using
+substitution operator. 
+are used in conjunction with the **LIKE** operator:
 
--   Знак відсотка ( **%** ) означає відсутність будь-якої
-    кількості символів замість себе.
+- The percent sign (**%**) means there is none
+number of characters instead of itself.
 
--   Знак підкреслення ( **_** ) позначає відсутність одного символу
-    замість себе.
+- An underscore (**_**) indicates the absence of a single character
+instead of yourself
 
-Наступний оператор знаходить усіх співробітників, ім'я яких починається
-з рядка **Jo**:
+The following statement finds all employees whose name begins with
+from **Jo** line:
 
 
 ```sql
@@ -188,180 +190,180 @@ ORDER BY first_name;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image7.png" width="600" />
 </div>
 
-*📎 **Логічні оператори** також використовуються для створення складних
-запитів, які містять різні умови сортування та групування даних. Вони
-дозволяють виконувати велику кількість операцій з даними, спрощуючи
-аналіз та отримання необхідної інформації.*
+*📎 **Boolean operators** are also used to create complex ones
+queries that contain various conditions for sorting and grouping data. 
+allow you to perform a large number of operations with data, simplifying
+analysis and obtaining the necessary information.*
 
-Наявність **логічних операторів** у SQL робить цю мову гнучкою та
-потужною для виконання складних запитів до бази даних. Вони дозволяють
-точно визначити умови пошуку, фільтрації та сортування даних, що є
-важливим для отримання зрозумілих і цільових результатів.
+The presence of **logical operators** in SQL makes this language flexible and
+powerful for performing complex queries to the database. 
+accurately determine the conditions for searching, filtering and sorting existing data
+important for obtaining clear and targeted results.
 
-Високий рівень гнучкості й можливостей, що надають **логічні оператори**
-SQL, робить їх незамінними для створення складних запитів та оптимізації
-роботи з базами даних. Використання цих операторів вимагає вміння
-правильно створювати й комбінувати умови, що дозволяє ефективно та точно
-обробляти дані.
+High level of flexibility and possibilities provided by **logical operators**
+SQL, making them indispensable for creating complex queries and optimization
+working with databases. 
+correctly create and combine conditions, which allows you to be efficient and accurate
+process data.
 
-Таким чином, знання **логічних операторів** SQL є важливим для
-аналітиків і всіх, хто працює з базами даних. Вони дозволяють
-здійснювати гнучкий і точний пошук, фільтрацію та обробку даних, що
-сприяє ефективній і продуктивній роботі з інформацією.
+Therefore, knowledge of the **logical statements** of SQL is essential to
+analysts and everyone who works with databases. 
+perform flexible and accurate search, filtering and processing of data that
+promotes effective and productive work with information.
 
-<h2 align="center">Приведення типів (оператор CAST)</h2>
+<h2 align="center">Casting types (CAST operator)</h2>
 
-**Приведення типів**, також відоме як оператор **CAST**, є важливою
-функціональністю SQL для дата-аналітика і для роботи з базами даних. Цей
-оператор дозволяє змінювати типи даних стовпців або значень, що
-уможливлює виконання різноманітних операцій та обробку даних.
+**Type casting**, also known as the **CAST** operator, is important
+SQL functionality for a data analyst and for working with databases. 
+operator allows you to change the data types of columns or values ​​that
+enables various operations and data processing.
 
-Зміна типів даних у базі даних може бути необхідною з різних причин.
+Changing data types in a database may be necessary for a variety of reasons.
 
-Наприклад:
+For example:
 
-1.  **Відповідність даних**. Зміна типу даних може бути необхідною для
-    забезпечення відповідності даних збереженим правилам або обмеженням.
-    Наприклад, якщо стовпець містить числові дані, але він визначений як
-    рядок, може виникнути несумісність при виконанні арифметичних
-    операцій. Зміна типу даних дозволяє забезпечити правильну обробку та
-    збереження даних.
+1. **Compliance of data**. 
+ensuring data compliance with stored rules or restrictions.
+For example, if a column contains numeric data but is defined as
+line, incompatibility may occur when performing arithmetic
+operations 
+data storage.
 
-2.  **Оптимізація збереження й обробки**. Вибір правильного типу даних
-    може позитивно вплинути на продуктивність та ефективність бази
-    даних. Наприклад, використання більш ефективних типів даних для
-    зберігання чисел може зменшити обсяг пам\'яті, який використовується
-    базою даних і прискорити виконання запитів.
+2. **Optimization of storage and processing**. 
+can positively affect the productivity and efficiency of the database
+data 
+storing numbers can reduce the amount of memory used
+database and speed up the execution of requests.
 
-3.  **Аналіз даних**. Зміна типу даних може бути цінним інструментом для
-    аналізу даних. Наприклад, перетворення рядків із датами на тип дати
-    дозволяє виконувати операції порівняння, агрегації та фільтрації
-    даних за датами. Це важливо для виявлення тенденцій, розрахунку
-    метрик і виконання інших аналітичних завдань.
+3. **Data analysis**. 
+data analysis. 
+allows you to perform comparison, aggregation and filtering operations
+data by date. 
+metrics and performance of other analytical tasks.
 
-4.  **Інтеграція з іншими системами**. При інтеграції бази даних з
-    іншими системами може виникати потреба у зміні типу даних для
-    відповідності вимогам цих систем. Наприклад, якщо дані з бази даних
-    передаються до зовнішньої системи, то може знадобитися виконати
-    конвертацію типів даних для правильного сприйняття й обробки цими
-    системами.
+4. **Integration with other systems**. 
+other systems may need to change the data type for
+compliance with the requirements of these systems. 
+are transferred to an external system, it may be necessary to perform
+conversion of data types for correct perception and processing by them
+systems
 
-<h2 align="center">Аспекти оператора CAST</h2>
+<h2 align="center">Aspects of the CAST operator</h2>
 
-Приведення типів має такі важливі аспекти:
+Casting types has the following important aspects:
 
--   **Конвертація даних.** Оператор CAST дозволяє конвертувати значення
-    з одного типу в інший. Наприклад, ти можеш перетворити рядок на
-    число, дату на рядок або навпаки. Це корисно, коли потрібно
-    здійснити обчислення чи порівняння між різними типами даних.
+- **Data conversion.** The CAST operator allows values ​​to be converted
+from one type to another. 
+number, date to line or vice versa. 
+perform calculations or comparisons between different types of data.
 
--   **Форматування дати та часу.** Приведення типів дозволяє змінювати
-    формат дати та часу. Ти можеш перетворити дату в різні формати, такі
-    як рік-місяць-день, місяць/день/рік або інші, щоб відповідати
-    вимогам аналізу даних або зручності відображення.
+- **Date and Time Formatting.** Casting types allows you to change
+date and time format. 
+like year-month-day, month/day/year, or others to match
+requirements for data analysis or display convenience.
 
--   **Агрегація та порівняння даних.** За допомогою оператора CAST можна
-    здійснювати агрегацію та порівнювати дані з різних типів. Наприклад,
-    ти можеш об\'єднати значення з різних стовпців або таблиць, які
-    мають різні типи даних, для подальшого аналізу й обробки.
+- **Aggregate and compare data.** With the CAST operator you can
+aggregate and compare data from different types. 
+you can combine values ​​from different columns or tables that
+have different types of data for further analysis and processing.
 
--   **Умовні операції**. Приведення типів дозволяє використовувати
-    умовні операції, такі як CASE, для обробки даних різних типів. Ти
-    можеш задавати умови на основі типів даних і виконувати відповідні
-    дії залежно від умов.
+- **Conditional transactions**. 
+conditional operations, such as CASE, to process data of various types. 
+you can set conditions based on data types and execute accordingly
+actions depending on conditions.
 
-<h2 align="center">Типи даних для перетворення</h2>
+<h2 align="center">Data types to convert</h2>
 
-Для того щоб правильно перетворювати один тип даних в інший, варто добре
-розібратися, які взагалі типи даних існують.
+In order to correctly convert one type of data into another, it is worth it
+understand what types of data exist in general.
 
-**PostgreSQL** підтримує такі типи даних:
+**PostgreSQL** supports the following data types:
 
-1.  Логічні типи. **PostgreSQL** має підтримку логічних типів даних
-    --- **BOOLEAN**. Цей тип може мати два
-    значення: **TRUE** або **FALSE**. Він використовується для
-    зберігання булевих значень, які вказують на істинність або хибність
-    певних висловлювань.
+1. Logical types. 
+--- **BOOLEAN**. 
+value: **TRUE** or **FALSE**. 
+storing boolean values ​​that indicate true or false
+certain statements.
 
-2.  Символьні типи. **PostgreSQL** надає кілька типів для зберігання
-    символьних даних. Наприклад:
+2. Character types. 
+character data. 
 
--   **CHAR** --- фіксована довжина рядка.
+- **CHAR** --- fixed string length.
 
--   **VARCHAR** --- рядок змінної довжини.
+- **VARCHAR** --- variable length string.
 
--   **TEXT** --- довгий рядок без обмежень довжини.
+- **TEXT** --- long string with no length limit.
 
-Символьні типи дозволяють зберігати тексти різної довжини й
-використовуються для зберігання та обробки текстової інформації.
+Character types allow you to store texts of different lengths and
+are used to store and process text information.
 
-3.  Числові типи. **PostgreSQL** підтримує різні типи чисел, зокрема:
+3. Numerical types. 
 
--   **INTEGER** --- цілі числа.
+- **INTEGER** --- integers.
 
--   **FLOAT, REAL** --- числа з плаваючою комою.
+- **FLOAT, REAL** --- floating point numbers.
 
--   **NUMERIC** --- числа з фіксованою точністю.
+- **NUMERIC** --- fixed precision numbers.
 
-Ці типи дозволяють зберігати й виконувати різноманітні операції над
-числовими значеннями, які використовуються в математичних розрахунках та
-аналітиці.
+These types allow you to store and perform various operations on
+numerical values ​​used in mathematical calculations and
+analysts
 
-4.  Типи дати і часу. **PostgreSQL** має типи даних для зберігання дати,
-    часу та їх комбінацій. Деякі з них містять:
+4. Types of date and time. 
+time and their combinations. 
 
--   **DATE** --- дата без урахування часу.
+- **DATE** --- date without time.
 
--   **TIME** --- час без урахування дати.
+- **TIME** --- time excluding date.
 
--   **TIMESTAMP** --- комбінація дати й часу.
+- **TIMESTAMP** --- a combination of date and time.
 
-Ці типи дозволяють зберігати й опрацьовувати дати та час у різних
-форматах.
+These types allow you to store and process dates and times in different
+formats
 
-\- **UUID (Universally Unique Identifier): PostgreSQL** також підтримує
-тип UUID, який використовується для зберігання **універсальних
-унікальних ідентифікаторів (Universally Unique Identifier). UUID** ---
-це **128-бітний** числовий ідентифікатор, який гарантує унікальність
-навіть при генерації на різних пристроях і в різний час.
+\- **UUID (Universally Unique Identifier): PostgreSQL** also supports
+type of UUID used to store **universals
+unique identifiers (Universally Unique Identifier). 
+is a **128-bit** numeric identifier that guarantees uniqueness
+even when generating on different devices and at different times.
 
-Це не весь перелік типів, але в більшості наших задач будемо
-використовувати саме його. А якщо нам трапиться незнайомий тип, ми легко
-зможемо знайти потрібну інформацію
-в [*[документації]{.underline}*](https://www.postgresql.org/docs/current/datatype.html).
+This is not the entire list of types, but in most of our tasks we will
+use it. 
+we can find the necessary information
+in [*[documentation]{.underline}*](https://www.postgresql.org/docs/current/datatype.html).
 
-<h2 align="center">Синтаксис і приклади оператора CAST</h2>
+<h2 align="center">CAST statement syntax and examples</h2>
 
-Давай розглянемо синтаксис оператора **CAST**:
+Let's consider the syntax of the **CAST** operator:
 
 ```sql
 CAST (expression AS target_type);
 ```
 
-У цьому синтаксисі:
+In this syntax:
 
--   **expression** --- вираз або значення, яке потрібно привести до
-    нового типу даних.
+- **expression** --- the expression or value to cast to
+new data type.
 
--   **target_type** --- це новий тип даних, до якого потрібно привести
-    значення.
+- **target_type** --- is the new data type to cast to
+value.
 
-Розглянемо приклади:
+Let's consider examples:
 
-Наступний оператор перетворює рядкову константу на ціле число:
+The following statement converts a string constant to an integer:
 
 ```
 SELECT CAST('100' AS INTEGER);
 ```
-У цьому прикладі використовується CAST, щоб перетворити рядок на дату:
+This example uses CAST to convert a string to a date:
 
 ```sql
 SELECT  CAST('2015-01-01' AS DATE)
       , CAST('01-OCT-2015' AS DATE);
 ```
 
-У цьому прикладі використовується CAST, щоб перетворити рядок
-«**true**», «**T**» на **true**, а «**false**», «**F**» на **false**:
+This example uses CAST to convert a string
+"**true**", "**T**" to **true** and "**false**", "**F**" to **false**:
 
 
 ```sql
@@ -372,29 +374,29 @@ SELECT CAST('true' AS BOOLEAN)
 ```
 
 
-<h2 align="center">Iнший оператор PostgreSQL приведення типу даних (::)</h2>
+<h2 align="center">Another PostgreSQL data type casting operator (::)</h2>
 
-Окрім синтаксису оператора **CAST**, ти можеш використовувати такий
-синтаксис для перетворення значення з одного типу на
-інший: **(::) expression::type**
+In addition to the **CAST** statement syntax, you can use the following
+syntax for converting a value from one type to
+other: **(::) expression::type**
 
 expression::type
 
-У цьому синтаксисі:
+In this syntax:
 
--   **::** --- оператор перетворення значення з одного типу на iнший.
+- **::** --- operator of conversion of value from one type to another.
 
--   **expression** --- вираз або значення, яке потрібно привести до
-    нового типу даних.
+- **expression** --- the expression or value to cast to
+new data type.
 
--   **type** --- це новий тип даних, до якого потрібно привести
-    значення.
+- **type** is the new data type to cast to
+value.
 
-Наприклад, у першому рядку запиту **SELECT** ми перетворюємо рядкове
-значення «**100**» на числове значення **100**.
+For example, in the first line of the **SELECT** query, we convert to a string
+value "**100**" to the numeric value **100**.
 
-А у другому рядку запиту --- перетворюємо текстову стрічку у
-формат дати.
+And in the second line of the query --- we convert the text strip into
+date format
 
 ```sql
 SELECT '100'::INTEGER
@@ -405,87 +407,87 @@ SELECT '100'::INTEGER
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image8.png" width="600" />
 </div>
 
-У цьому прикладі використовується оператор приведення **(::)** для
-перетворення рядка на **мітку часу**:
+This example uses the **(::)** cast operator for
+converting string to **timestamp**:
 
 ```sql
 SELECT '2019-06-15 14:30:20'::timestamp;
 ```
-Отже, **зміна типів даних** дозволяє адаптувати їх до потреб аналітики
-та забезпечити правильну обробку у базі даних. Наприклад, приведення
-типів може бути корисним для обчислення, злиття, порівняння даних,
-зберігання їх у певному форматі чи для виконання обчислювальних
-операцій.
+So **changing data types** allows you to adapt it to your analytics needs
+and ensure correct processing in the database. 
+types can be useful for calculating, merging, comparing data,
+storing them in a certain format or for computing
+operations
 
-Знання **оператора CAST** і типiв даних дозволяє зручно й ефективно
-маніпулювати даними в SQL для отримання необхідної інформації. Уміння
-правильно використовувати оператор **CAST** **допомагає забезпечити
-точність і коректність аналізу даних та розрахунків**.\
+Knowledge of **CAST operator** and data types allows convenient and efficient
+manipulate data in SQL to obtain the necessary information. 
+using the **CAST** operator correctly **helps ensure
+accuracy and correctness of data analysis and calculations**.\
 \
-Існує ще притаманна тільки **T-SQL** функція -
+There is also a unique **T-SQL** function -
 [**convert**](https://learn.microsoft.com/ru-ru/sql/t-sql/functions/cast-and-convert-transact-sql?view=sql-server-ver17)
 
-<h2 align="center">Агрегація даних у SQL</h2>
+<h2 align="center">Data aggregation in SQL</h2>
 
-Ось зараз буде справді потужна тема! Ми розберемо, як генерувати зведені
-(агреговані) таблиці та застосовувати агрегатні функції до цих таблиць.
+This is going to be a really powerful topic! 
+(aggregated) tables and apply aggregate functions to these tables.
 
-📌 ***Агрегація даних** у SQL відіграє ключову роль в обробці й аналізі
-великих обсягів інформації. Цей процес дозволяє сумувати, групувати,
-знаходити середні значення, мінімуми, максимуми та інші агрегатні
-функції в базі даних.
+📌 ***Data Aggregation** in SQL plays a key role in processing and analysis
+large volumes of information. 
+find average values, minimums, maximums and other aggregate values
+functions in the database.
 
-Уяви, що ти маєш велику таблицю з даними про продажі в
-інтернет-магазині. Кожен рядок представляє окреме замовлення з
-інформацією про товар, кількість, ціну та клієнта. Однак, для прийняття
-стратегічних рішень і розуміння загальної картини нам потрібна
-агрегована інформація, така як загальний дохід, найпопулярніші товари,
-середній чек клієнта та інші показники.
+Imagine that you have a large table with sales data in
+online store. 
+information about the product, quantity, price and customer. 
+we need strategic decisions and an understanding of the overall picture
+aggregated information such as total revenue, most popular items,
+average customer check and other indicators.
 
-**Агрегація даних** дозволяє нам зменшити обсяг інформації до керованих
-та інформативних значень. Вона допомагає виявляти тенденції,
-ідентифікувати ключові метрики та приймати обґрунтовані бізнес-рішення.
-Зрештою, агрегація даних у SQL допомагає знайти відповіді на важливі
-запитання й отримати цінну інформацію з океану даних.
+**Data Aggregation** allows us to reduce the amount of information to a manageable amount
+and informative values. 
+identify key metrics and make informed business decisions.
+Ultimately, data aggregation in SQL helps you find answers to important questions
+questions and extract valuable information from the ocean of data.
 
-<h2 align="center">Процес агрегації даних у SQL</h2>
+<h2 align="center">Data aggregation process in SQL</h2>
 
-Агрегація даних у SQL реалізовується за допомогою
-спеціальних **агрегатних функцій**, які дозволяють сумувати, знаходити
-середні значення та виконувати інші операції з групами даних.
+Data aggregation in SQL is implemented using
+special **aggregate functions** that allow you to search, find
+average values ​​and perform other operations on groups of data.
 
-Процес агрегації даних у SQL зазвичай містить наступні кроки:
+The process of aggregating data in SQL usually includes the following steps:
 
--   **Вибірка даних.** Із бази даних вибираються потрібні таблиці та
-    стовпці, з яких буде проводитись агрегація.
+- **Data Selection.** Required tables are selected from the database and
+the columns from which the aggregation will be performed.
 
--   **Групування даних**. За допомогою оператора **GROUP BY** дані
-    групуються за певним стовпцем або набором стовпців. Це дозволяє
-    розділити дані на підгрупи для подальшої агрегації.
+- **Grouping of data**. 
+grouped by a specific column or set of columns. 
+divide the data into subgroups for further aggregation.
 
--   **Застосування агрегатних функцій.** За допомогою агрегатних
-    функцій, таких як **SUM, COUNT, AVG, MIN, MAX** та інших,
-    виконуються операції над групами даних. Наприклад, можна підрахувати
-    суму значень у стовпці, підрахувати кількість записів у групі або
-    знайти середнє значення.
+- **Using Aggregate Functions.** Using Aggregate
+functions such as **SUM, COUNT, AVG, MIN, MAX** and others,
+operations are performed on groups of data. 
+sum the values ​​in a column, count the number of records in a group, or
+find the mean value.
 
--   **Фільтрація даних**. Для додаткової фільтрації даних можна
-    використовувати ключове слово **HAVING**, яке застосовується після
-    групування й агрегації.
+- **Data filtering**. 
+use the **HAVING** keyword that is applied after
+grouping and aggregation.
 
--   Відображення результатів. Отримані результати агрегації можуть бути
-    виведені на екран, збережені в нову таблицю чи використані для
-    подальших обчислень або запитів.
+- Displaying the results. 
+displayed, saved to a new table, or used for
+further calculations or queries.
 
-<h2 align="center">Оператор GROUP BY</h2>
+<h2 align="center">The GROUP BY operator</h2>
 
-📌 ***GROUP BY** (групування за ознакою) --- не обов'язковий оператор
-в SELECT.*
+📌 ***GROUP BY** (grouping by attribute) --- optional operator
+in SELECT.*
 
-Оператор **GROUP BY** дозволяє групувати рядки на основі значень одного
-або кількох стовпців. Він повертає один рядок для кожної групи.
+The **GROUP BY** operator allows you to group strings based on values ​​of one
+or multiple columns. 
 
-Нижче показано базовий синтаксис оператора **GROUP BY:**
+Below is the basic syntax for the **GROUP BY:** operator.
 ```sql
 SELECT column1
      , column2
@@ -494,15 +496,15 @@ FROM table_name
 GROUP BY column1
         ,column2;
 ```
-А ось як працює **GROUP BY** на прикладi таблицi з фруктами:
+And this is how **GROUP BY** works on the example of a table with fruits:
 
 <div align="center">
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image9.png" width="600" />
 </div>
 
-Таблиця зліва має два стовпці: **id** та **fruit**. Коли ти
-застосовуєш **GROUP BY** до стовпця **fruit**, він повертає набір
-результатів, який містить унікальні значення зі стовпця **fruit**:
+The table on the left has two columns: **id** and **fruit**. 
+apply **GROUP BY** to the **fruit** column, it returns a set
+result that contains unique values ​​from the **fruit** column:
 
 ```sql
 SELECT fruit
@@ -510,20 +512,20 @@ FROM sample_table
 GROUP BY fruit;
 ```
 
-На практиці часто використовується **GROUP BY** з функціями агрегації,
-такими як **MIN, MAX, AVG, SUM** або **COUNT**, для обчислення
-показників, які надають інформацію для кожної групи.
+In practice, **GROUP BY** is often used with aggregation functions,
+such as **MIN, MAX, AVG, SUM** or **COUNT** to calculate
+indicators that provide information for each group.
 
-Наприклад, нижче показано, як **GROUP BY** працює з **COUNT** (функція
-для підрахунку кількості даних одного типу):
+For example, below shows how **GROUP BY** works with **COUNT** (function
+to count the number of data of the same type):
 
 <div align="center">
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image10.png" width="600" />
 </div>
 
-У цьому прикладі групуємо рядки за значеннями стовпця **fruit** і
-застосовуємо **COUNT** до стовпця **id**. Набір результатів містить
-унікальні значення стовпців фруктів і кількість відповідних рядків.
+In this example, we group the rows by the values ​​of the **fruit** column and
+apply **COUNT** to the **id** column. 
+the unique values ​​of the fruit columns and the number of corresponding rows.
 ```sql
 SELECT fruit
      , count(id)
@@ -531,13 +533,13 @@ FROM sample_table
 GROUP BY fruit;
 ```
 
-Стовпці, які з'являються у **GROUP BY,** називаються стовпцями
-групування. Якщо стовпець групування містить значення **NULL**, усі
-значення **NULL** підсумовуються в одну групу, оскільки пункт **GROUP**
-**BY** вважає всі значення **NULL** рівними.
+Columns that appear in a **GROUP BY** are called columns
+grouping. 
+**NULL** values ​​are summed into one group because the **GROUP** clause
+**BY** treats all **NULL** values ​​as equal.
 
-У наступному прикладі використовується **GROUP BY** для групування
-значень у стовпці **department_id** у таблиці **employees**:
+The following example uses **GROUP BY** for grouping
+of the values ​​in the **department_id** column in the **employees** table:
 
 ```sql
 SELECT department_id
@@ -548,37 +550,37 @@ GROUP BY department_id;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image11.png" width="600" />
 </div>
 
-У цьому прикладі:
+In this example:
 
--   По-перше, оператор **SELECT** повертає всі значення зі
-    стовпця **department_id** таблиці **employees**.
+- First, the **SELECT** statement returns all values ​​from
+of the **department_id** column of the **employees** table.
 
--   По-друге, оператор **GROUP BY** об'єднує всі значення у групи.
+- Second, the **GROUP BY** operator combines all values ​​into groups.
 
-Стовпець **department_id** таблиці **employees** містить 40 рядків,
-зокрема повторювані значення **department_id**. Однак **GROUP
-BY** групує ці значення.
+The **department_id** column of the **employees** table contains 40 rows,
+including duplicate **department_id** values. 
+BY** groups these values.
 
-Без функції агрегації **GROUP BY** поводиться як **DISTINCT**:
+Without the aggregation function, **GROUP BY** behaves like **DISTINCT**:
 ```sql
 SELECT DISTINCT department_id
 FROM HR.employees
 GROUP BY department_id;
 ```
 
-Оператор **DISTINCT** використовується в мові запитів для видалення
-повторюваних значень із результатів запиту. Цей оператор дозволяє
-отримати унікальні значення з певного стовпця або комбінації стовпців у
-таблиці. Коли оператор **DISTINCT** застосовується до запиту, він
-видаляє дублікати й повертає тільки унікальні значення. Це дуже корисний
-оператор, коли потрібно провести аналіз даних і отримати лише унікальні
-записи з бази даних.
+The **DISTINCT** operator is used in the delete query language
+duplicate values ​​from query results. 
+retrieve unique values ​​from a specific column or combination of columns in
+tables. 
+removes duplicates and returns only unique values. 
+operator when you need to analyze the data and get only unique ones
+records from the database.
 
-**GROUP BY** буде більш корисним, якщо ти використовуєш його з функцією
-агрегації.
+**GROUP BY** is more useful if you use it with a function
+aggregation
 
-Наприклад, у наступному операторі використовується **GROUP
-BY** з **COUNT** для підрахунку кількості співробітників за відділами:
+For example, the following statement uses **GROUP
+BY** with **COUNT** to count the number of employees by department:
 ```sql
 SELECT department_id
      , COUNT(employee_id) AS headcount
@@ -590,30 +592,30 @@ GROUP BY department_id;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image12.png" width="600" />
 </div>
 
-Як це працює:
+How it works:
 
--   По-перше, **GROUP BY** групує рядки в таблиці «**employees**» за
-    ідентифікатором відділу.
+- First, **GROUP BY** groups the rows in the "**employees**" table by
+department identifier.
 
--   По-друге, **COUNT(employee_id)** повертає кількість значень
-    ідентифікаторів співробітників у кожній групі.
+- Second, **COUNT(employee_id)** returns the number of values
+IDs of employees in each group.
 
-<h2 align="center">Функція AVG</h2>
+<h2 align="center">AVG feature</h2>
 
-📌 **Функція AVG** --- це функція агрегації, яка обчислює середнє
-значення набору.
+📌 **AVG function** is an aggregation function that calculates the average
+set value.
 
-Нижче наведено синтаксис функції **AVG** (у квадратних дужках вказано
-опціональні параметри):
+The following is the syntax of the **AVG** function (in square brackets:
+optional parameters):
 ```sql
 AVG ([ALL | DISTINCT] expression)
 ```
-Розглянемо два приклади застосування цієї функції.
+Let's consider two examples of using this function.
 
-Приклад 1. Функція **AVG** без **GROUP BY**
+Example 1. **AVG** function without **GROUP BY**
 
-Щоб обчислити середню зарплату всіх працівників, застосовуємо
-функцію AVG до стовпця зарплати таким чином:
+To calculate the average salary of all employees, we use
+function AVG to the salary column as follows:
 
 ```sql
 SELECT AVG(salary)
@@ -624,11 +626,11 @@ FROM HR.employees;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image13.png" width="600" />
 </div>
 
-Приклад 2. Функція **AVG** із **GROUP BY**
+Example 2: **AVG** function with **GROUP BY**
 
-Для обчислення середніх значень груп ми використовуємо
-функцію **AVG** із **GROUP BY**. Наприклад, наступний оператор повертає
-відділи та середню зарплату працівників у кожному відділі.
+To calculate the average values ​​of the groups, we use
+**AVG** function with **GROUP BY**. 
+departments and the average salary of employees in each department.
 
 ```sql
 SELECT department_id
@@ -641,38 +643,38 @@ GROUP BY department_id;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image14.png" width="600" />
 </div>
 
-<h2 align="center">Функція COUNT</h2>
+<h2 align="center">COUNT function</h2>
 
-**📌 Функція COUNT** --- це функція агрегації, яка повертає кількість
-рядків, повернутих запитом.
+**📌 COUNT function** is an aggregation function that returns a count
+rows returned by the query.
 
-Ти можеш використовувати **COUNT** в операторі **SELECT**, щоб отримати
-кількість співробітників, кількість співробітників у кожному відділі,
-кількість співробітників, які виконують певну роботу тощо.
+You can use **COUNT** in a **SELECT** statement to get
+number of employees, number of employees in each department,
+the number of employees performing a certain job, etc.
 
-Нижче наведено синтаксис функції **COUNT** у **SQL**:
+The following is the syntax of the **COUNT** function in **SQL**:
 ```sql
 COUNT ([ALL | DISTINCT] expression);
 ```
-Результат функції COUNT залежить від аргументу, який ти їй передаєш.
+The result of the COUNT function depends on the argument you pass to it.
 
--   Ключове слово **ALL** матиме повторювані значення до результату.
-    Наприклад, якщо в тебе є група (1, 2, 3, 3, 4, 4) і застосована
-    функція **COUNT**, результатом буде 6. За замовчуванням
-    функція **COUNT** використовує ALL незалежно від того, вказуєш ти
-    його чи ні.
+- The **ALL** keyword will have repeated values ​​until the result.
+For example, if you have a group (1, 2, 3, 3, 4, 4) and applied
+**COUNT** function, the result will be 6. By default
+the **COUNT** function uses ALL regardless of what you specify
+his or not
 
--   Ключове слово **DISTINCT** враховує лише унікальні значення.
-    Наприклад, **COUNT** із ключовим словом **DISTINCT** повертає 4,
-    якщо застосувати її до групи (1, 2, 3, 3, 4, 4).
+- The **DISTINCT** keyword only considers unique values.
+For example, **COUNT** with **DISTINCT** keyword returns 4,
+if applied to the group (1, 2, 3, 3, 4, 4).
 
--   Функція **COUNT(*)** повертає кількість рядків у таблиці. Вона
-    підраховує повторювані рядки та рядки, які містять нульові значення.
+- The **COUNT(*)** function returns the number of rows in a table. 
+counts duplicate rows and rows that contain null values.
 
-Приклад **COUNT** із **GROUP** **BY**
+Example **COUNT** with **GROUP** **BY**
 
-У наступному прикладі використовується **COUNT** із **GROUP BY**, щоб
-знайти кількість співробітників для кожного відділу:
+The following example uses **COUNT** with **GROUP BY** to
+find the number of employees for each department:
 
 ```sql
 SELECT department_id
@@ -684,43 +686,43 @@ GROUP BY department_id;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image15.png" width="600" />
 </div>
 
-У наступному прикладі використовується **COUNT** із **DISTINCT** для
-отримання кількості менеджерів:
+The following example uses **COUNT** with **DISTINCT** for
+obtaining the number of managers:
 
 ```sql
 SELECT COUNT(DISTINCT manager_id)
 FROM HR.employees;
 ```
 
-*💡 Який результат у тебе вийшов?*
+*💡 What was your result?*
 
-У нас вийшло 10. Спробуй зробити самостійно та перевір.
+We got 10. Try to do it yourself and check.
 
-Оператор **SELECT DISTINCT** використовується для повернення лише різних
-(унікальних) значень.
+The **SELECT DISTINCT** statement is used to return only distinct ones
+(unique) values.
 
-Усередині таблиці стовпець часто містить багато повторюваних значень.
-Іноді потрібно лише перерахувати унікальні значення.
+Within a table, a column often contains many duplicate values.
+Sometimes you just need to list the unique values.
 
-<h2 align="center">Функції MAX і MIN</h2>
+<h2 align="center">MAX and MIN functions</h2>
 
-*📌 SQL надає функції **MAX і MIN**, які дозволяють знайти максимальне
-та мінімальне значення відповідно в наборі даних.*
+*📌 SQL provides **MAX and MIN** functions that allow you to find the maximum
+and the minimum value respectively in the data set.*
 
-Нижче наведено синтаксис функцій **MAX** і **MIN**.
+Below is the syntax for the **MAX** and **MIN** functions.
 ```sql
 MAX(expression)
 MIN(expression)
 ```
 
-Функції **MAX/MIN** ігнорують значення **NULL**.
+**MAX/MIN** functions ignore **NULL** values.
 
-На відміну від функцій **SUM, COUNT і AVG**, параметр **DISTINCT** не
-можна застосувати до функцій **MAX/MIN.**
+Unlike the **SUM, COUNT, and AVG** functions, the **DISTINCT** option does not
+can be applied to **MAX/MIN functions.**
 
-Давай розглянемо наступний приклад, де
-оператор **SELECT** повертає найвищу (максимальну) зарплату працівників
-у таблиці **employees**.
+Let's consider the following example, where
+the **SELECT** statement returns the highest (maximum) employee salary
+in the **employees** table.
 ```sql
 SELECT MAX(salary)
 FROM HR.employees;
@@ -730,13 +732,13 @@ FROM HR.employees;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image16.png" width="600" />
 </div>
 
-<h2 align="center">Приклад MAX/MIN із GROUP BY</h2>
+<h2 align="center">Example of MAX/MIN with GROUP BY</h2>
 
-Зазвичай ми використовуємо функцію **MAX/MIN** у поєднанні з **GROUP
-BY**, щоб знайти максимальне/мiнiмальне значення для групи.
+We usually use **MAX/MIN** function in combination with **GROUP
+BY** to find the max/min value for a group.
 
-Наприклад, ми можемо використати функцію **MAX**, щоб знайти найвищу
-зарплату працівника в кожному відділі, як показано нижче:
+For example, we can use the **MAX** function to find the highest
+employee salary in each department as shown below:
 
 ```sql
 SELECT department_id
@@ -749,29 +751,29 @@ GROUP BY department_id;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image17.png" width="600" />
 </div>
 
-<h2 align="center">Функція SUM</h2>
+<h2 align="center">SUM function</h2>
 
-📌 *Функція **SUM** --- це функція агрегації, яка повертає суму всіх чи
-окремих значень. Ми можемо застосувати функцію **SUM** лише до числового
-стовпця.*
+📌 *The **SUM** function--- is an aggregation function that returns the sum of all or
+individual values. 
+column.*
 
-Нижче наведено синтаксис функції **SUM**:
+The **SUM** function syntax is as follows:
 ```sql
 SUM ([ALL | DISTINCT] expression);
 ```
 
-Оператор **ALL** дозволяє застосувати агрегат до всіх значень. Функція
-**SUM** за замовчуванням використовує оператор **ALL**. Наприклад, якщо
-в тебе є набір (1,2,3,3,NULL), функція **SUM** повертає 9. Зауваж, що
-функція **SUM** ігнорує значення **NULL**.
+The **ALL** operator allows you to apply an aggregate to all values. 
+**SUM** uses the **ALL** operator by default. 
+you have the set (1,2,3,3,NULL), the **SUM** function returns 9. Note that
+the **SUM** function ignores **NULL** values.
 
-Щоб обчислити суму унікальних значень, використовуємо
-оператор **DISTINCT**. Наприклад, **SUM**(**DISTINCT**) набору (1,2,3,3,NULL) дорівнює 6**.**
+To calculate the sum of unique values, we use
+the **DISTINCT** operator. 
 
-<h2 align="center">Приклад SUM</h2>
+<h2 align="center">SUM example</h2>
 
-Щоб отримати суму зарплат усіх співробітників, ми застосуємо
-функцію **SUM** до стовпця зарплати, як у наступному запиті:
+To get the sum of salaries of all employees, we will apply
+**SUM** function to the salary column, as in the following query:
 
 ```sql
 SELECT SUM(salary)
@@ -782,14 +784,14 @@ FROM HR.employees;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image18.png" width="600" />
 </div>
 
-<h2 align="center">Приклад SUM із GROUP BY</h2>
+<h2 align="center">Example of SUM with GROUP BY</h2>
 
-Ми часто використовуємо функцію **SUM** у поєднанні **з GROUP BY**, щоб
-обчислити суми для кожної групи.
+We often use the **SUM** function in combination **with GROUP BY** to
+calculate the totals for each group.
 
-Наприклад, щоб обчислити суму зарплат співробітників для кожного
-відділу, ми застосовуємо функцію **SUM** до стовпця **salary** та
-групуємо рядки за стовпцями **department_id**:
+For example, to calculate the sum of employees' salaries for each
+department, we apply the **SUM** function to the **salary** column and
+group rows by **department_id** columns:
 
 ```sql
 SELECT  department_id
@@ -802,19 +804,19 @@ GROUP BY department_id
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image19.png" width="600" />
 </div>
 
-Отже, ми розібрали основні функції агрегації.
+So, we analyzed the main functions of aggregation.
 
-<h2 align="center">Використання HAVING для фільтрації агрегованих даних</h2>
+<h2 align="center">Using HAVING to filter aggregated data</h2>
 
-При групуванні даних у **SQL** ми можемо використовувати
-оператор **HAVING** для того, щоб фільтрувати дані на рівні агрегації.
+When grouping data in **SQL** we can use
+**HAVING** operator to filter data at the aggregation level.
 
-**HAVING** можна використовувати як **WHERE**, якщо потрібна фільтрація
-за ключами, які застосовуються у **GROUP BY**, або використовувати разом
-з функціями агрегації.
+**HAVING** can be used as **WHERE** if filtering is required
+by keys used in **GROUP BY**, or used together
+with aggregation functions.
 
-Наприклад, ми можемо відфільтрувати департаменти за їхніми
-ідентифікаторами:
+For example, we can filter departments by their
+identifiers:
 ```sql
 SELECT department_id
 , SUM(salary)
@@ -826,7 +828,7 @@ HAVING department_id <= 5;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image20.png" width="600" />
 </div>
 
-Або за сумою зарплат:
+Or by the amount of salaries:
 ```sql
 SELECT department_id
      , SUM(salary)
@@ -839,33 +841,33 @@ HAVING SUM(salary) > 5000;
   <img src="../../assets/images/lesson_2_bazovi_funkcii_sql/media/image21.png" width="600" />
 </div>
 
-Результат, який ми отримаємо в першому випадку, не відрізнятиметься від
-результату, який ми отримали б, використовуючи WHERE. Проте,
-відрізнятиметься сам процес: фільтрація за допомогою WHERE відбувається
-до групування й агрегації, а за допомогою **HAVING** --- уже після.
+The result we get in the first case will not differ from
+of the result we would get using WHERE. 
+the process itself will be different: filtering using WHERE takes place
+before grouping and aggregation, and with **HAVING** --- already after.
 
 **<div align="center" style="text-align: font-size: 24px">Підіб'ємо підсумки щодо теми агрегації даних:</div>**
 
--   **Агрегація даних у SQL** дозволяє сумувати, підраховувати,
-    знаходити середні значення та виконувати інші **операції з групами
-    даних**.
+- **Data Aggregation in SQL** allows you to sum, count,
+find averages and perform other **operations with groups
+data**.
 
--   Операції агрегації виконуються за допомогою агрегатних функцій,
-    таких як **SUM, COUNT, AVG, MIN, MAX** та інших.
+- Aggregation operations are performed using aggregate functions,
+such as **SUM, COUNT, AVG, MIN, MAX** and others.
 
--   Групування даних за допомогою оператора **GROUP BY** дозволяє
-    розбити дані на підгрупи для агрегації.
+- Grouping data using the **GROUP BY** operator allows
+break the data into subgroups for aggregation.
 
--   Агрегація даних корисна для аналізу великих обсягів інформації та
-    отримання узагальненої інформації.
+- Data aggregation is useful for analyzing large amounts of information and
+obtaining generalized information.
 
--   Результати агрегації можуть бути виведені на екран, збережені в нову
-    таблицю або використані для подальших обчислень і запитів.
+- Aggregation results can be displayed, saved in a new
+table or used for further calculations and queries.
 
--   **Агрегація даних у SQL є важливим інструментом для сумування й
-    аналізу даних**, а також для прийняття обґрунтованих рішень на
-    основі цих даних.
+- **Data Aggregation in SQL is an important tool for summarizing and
+data analysis**, as well as for making informed decisions on
+based on these data.
 
-Загалом агрегація даних у **SQL** дозволяє перетворювати й
-організовувати великі обсяги інформації, роблячи їх зручними для аналізу
-та використання в бізнес-контексті.
+In general, data aggregation in **SQL** allows you to transform and
+organize large amounts of information, making it easy to analyze
+and use in a business context.

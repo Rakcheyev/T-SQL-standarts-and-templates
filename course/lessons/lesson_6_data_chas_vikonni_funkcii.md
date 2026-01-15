@@ -1,154 +1,156 @@
-<h2 align="center">Оптимізація запитів SQL</h2>
+﻿**Language:** English | [Українська](../../i18n/uk/course/lessons/lesson_6_data_chas_vikonni_funkcii.md)
 
-**Оптимізація запитів SQL** є важливою складовою систем керування базами
-даних, так само як будь-який інший компонент. Якщо не оптимізувати
-запити, які отримують доступ до даних, продуктивність бази даних може
-знизитися. У багатьох випадках це сповільнення може завадити
-користувачам швидко отримати доступ до необхідної інформації.
+<h2 align="center">Optimization of SQL queries</h2>
 
-Поговоримо про різні методи оптимізації запитів SQL, які можна
-використовувати для покращення їхньої продуктивності.
+**Optimization of SQL queries** is an important component of database management systems
+data just like any other component. 
+queries that access data, database performance can
+to go down 
+users to quickly access the necessary information.
 
-1.  Замість (\*) використовуй **імена стовпців** в операторі SELECT
+Let's talk about the different methods you can use to optimize SQL queries
+use to improve their performance.
 
-Якщо ти хочеш вибрати **лише певну кількість стовпців**, тоді слід
-використовувати імена стовпців замість (\*) в операторі SELECT.
+1. Instead of (\*), use **column names** in the SELECT statement
 
-Хоча (\*) простіше написати, базі даних знадобиться більше часу на
-обробку такого запиту. **Обмеживши кількість вибраних стовпців, ти можеш
-зменшити розмір таблиці результатів, скоротити мережевий трафік і
-підвищити загальну продуктивність запиту.**
+If you want to select **only a certain number of columns**, then you should
+use column names instead of (\*) in the SELECT statement.
 
-2.  У реляційних базах даних, таких як PostgreSQL,
-    оператор **HAVING** використовується для фільтрації результатів
-    групування, тоді як оператор **WHERE** --- для фільтрації рядків
-    перед групуванням.
+Although (\*) is easier to write, it will take more time for the database to
+processing of such a request. 
+reduce the size of the result table, reduce network traffic and
+improve overall query performance.**
 
-**Рекомендується використовувати оператор WHERE для визначення фільтрів,
-коли це можливо. Це забезпечує більш оптимальну роботу запиту.**
+2. In relational databases such as PostgreSQL,
+**HAVING** operator is used to filter the results
+grouping, while the **WHERE** statement is for filtering rows
+before grouping.
 
-<h2 align="center">Важливо</h2>
+**It is recommended to use the WHERE statement to define filters,
+whenever possible. 
 
-*Оператор **HAVING** усе ще є корисним, коли тобі потрібно фільтрувати
-результати групування на основі обчислених значень агрегатних функцій.
-Але якщо в тебе немає потреби використовувати агрегатні функції або
-групувати дані, краще використовувати оператор **WHERE** для фільтрації
-рядків перед групуванням.*
+<h2 align="center">Importantly</h2>
 
-3.  Оператор **DISTINCT** використовується для видалення дублікатів із
-    результатів запиту, тобто він забезпечує унікальність рядків. Але в
-    деяких випадках його використовують без потреби, що призводить до
-    зайвої обробки даних і втрати продуктивності.
+*The **HAVING** operator is still useful when you need to filter
+grouping results based on the calculated values ​​of aggregate functions.
+But if you do not need to use aggregate functions or
+to group data, it is better to use the **WHERE** statement for filtering
+rows before grouping.*
 
-Ось кілька ситуацій, коли варто уникати зайвого
-використання **DISTINCT**:
+3. The **DISTINCT** operator is used to remove duplicates from
+of the query results, that is, it ensures the uniqueness of the rows. 
+in some cases it is used unnecessarily, which leads to
+redundant data processing and loss of productivity.
 
--   Колонки в запиті вже є унікальними. Якщо результати запиту вже
-    гарантують унікальність значень рядків, то
-    використання **DISTINCT** є зайвим. Наприклад, якщо в тебе
-    є **PRIMARY KEY** або унікальні індекси на колонки, результати
-    будуть унікальними за замовчуванням.
+Here are a few situations where you should avoid overdoing it
+using **DISTINCT**:
 
--   Зайва повторюваність таблиць у **JOIN**. Іноді неправильне
-    використання операцій **JOIN** може призводити до виникнення
-    дублікатів у результаті запиту. У такому випадку слід виправити
-    логіку з\'єднання таблиць, щоб уникнути дублікатів, замість того щоб
-    використовувати **DISTINCT** для їх видалення.
+- Columns in the query are already unique. 
+guarantee the uniqueness of row values, then
+using **DISTINCT** is redundant. 
+are **PRIMARY KEY** or unique indexes on columns, results
+will be unique by default.
 
--   Відсутність дублікатів у вихідних даних. Якщо вихідні дані вже не
-    містять дублікатів, наприклад, через використання агрегатних
-    функцій, то використання **DISTINCT** є зайвим.
+- Redundant duplication of tables in **JOIN**. 
+using **JOIN** operations can cause
+duplicates as a result of the request. 
+logic for joining tables to avoid duplicates, instead of
+use **DISTINCT** to remove them.
 
-**Уникнення непотрібного використання DISTINCT може покращити
-продуктивність запиту, оскільки обробка й видалення дублікатів можуть
-бути витратними операціями.**
+- No duplicates in the source data. 
+contain duplicates, for example, due to the use of aggregates
+functions, then using **DISTINCT** is redundant.
 
-Тому, якщо це можливо, варто перевірити, чи дійсно потрібно
-використовувати **DISTINCT** у запиті та оптимізувати його.
+**Avoiding unnecessary use of DISTINCT can improve
+query performance, as processing and deduplication can
+be expense transactions.**
 
-4.  Використання **JOIN** замість **SUBQUERY**
+So, if possible, it's worth checking if you really need it
+use **DISTINCT** in the query and optimize it.
 
-У **підзапиті** виконується окремий запит до бази даних для отримання
-підмножини даних, яку потім використовують в основному запиті.
-**Підзапити** можуть бути корисні в деяких ситуаціях, але водночас у
-деяких випадках вони можуть бути неефективними і спричиняти додаткове
-навантаження на базу даних.
+4. Using **JOIN** instead of **SUBQUERY**
 
-Операція **JOIN** дозволяє з\'єднувати різні таблиці на основі умови
-з\'єднання.
+A **subquery** makes a separate query to the database for retrieval
+a subset of the data that is then used in the main query.
+**Subqueries** can be useful in some situations, but at the same time in
+in some cases they may not be effective and cause additional
+database load.
 
-Використання **JOIN** замість підзапиту може мати кілька переваг:
+The **JOIN** operation allows you to join different tables based on a condition
+connection
 
--   Менше обробки даних. При використанні **JOIN** усі дані, необхідні
-    для об\'єднання, використовуються в одному запиті, що може призвести
-    до меншого обсягу даних, які потрібно обробляти й передавати між
-    базою даних і застосунком.
+Using **JOIN** instead of a subquery can have several advantages:
 
--   Більш ефективне виконання. Використання **JOIN** дозволяє базі даних
-    використовувати більш оптимальні плани виконання запиту, такі як
-    застосування індексів і з\'єднання на ранніх етапах запиту.
+- Less data processing. 
+to join, are used in a single query, which may result
+to less data to be processed and transferred between
+database and application.
 
--   Краща читабельність запиту. Використання **JOIN** зазвичай
-    забезпечує кращу читабельність запиту, особливо у складних запитах
-    із багатьма таблицями й умовами з\'єднання.
+- More efficient execution. 
+use more optimal query execution plans such as
+the use of indexes and joins in the early stages of a query.
 
-Однак варто враховувати, що в деяких ситуаціях **підзапити** можуть бути
-доцільними або навіть необхідними. Наприклад, коли потрібно обмежити
-результати групування або використати **підзапит** для отримання
-підмножини даних перед використанням **JOIN**.
+- Better query readability. 
+provides better query readability, especially in complex queries
+with many tables and connection conditions.
 
-<h2 align="center">Висновки</h2>
+However, it is worth considering that in some situations there may be **sub-requests**
+appropriate or even necessary. 
+grouping results or use a **subquery** to retrieve
+subsets of the data before using **JOIN**.
 
-Ми розглянули лише кілька рекомендацій щодо оптимізації SQL-запитів. Під
-час роботи й набуття досвіду ти зможеш розширити цей список для
-підвищення продуктивності та ефективності роботи з базами даних.
+<h2 align="center">Conclusions</h2>
 
-Тут залишаємо для тебе ключові моменти щодо оптимізації, які варто
-запам\'ятати:
+We have covered only a few recommendations for optimizing SQL queries. 
+time of work and gaining experience you will be able to expand this list for
+increasing productivity and efficiency of working with databases.
 
--   Оптимізація SQL-запитів спрямована на покращення часу виконання
-    запитів, скорочення використання ресурсів та оптимальне використання
-    індексів і структур даних.
+Here we leave you the key optimization points that are worth it
+remember:
 
--   Правильне проєктування бази даних з урахуванням нормалізації,
-    індексації та оптимального розподілу даних може значно покращити
-    продуктивність запитів.
+- Optimization of SQL queries aimed at improving execution time
+requests, reducing resource usage and optimal utilization
+indexes and data structures.
 
--   Аналіз і профілювання запитів дозволяють ідентифікувати складні
-    місця та проблемні запити, які потребують оптимізації.
+- Proper design of the database taking into account normalization,
+indexing and optimal data distribution can significantly improve
+query performance.
 
--   Правильне використання
-    операторів **SELECT, HAVING, WHERE, DISCTINCT, JOIN** і підзапитів може
-    значно покращити продуктивність запитів.
+- Analyzing and profiling requests to identify complex ones
+locations and problematic queries that need optimization.
 
--   Постійний моніторинг та оновлення статистики бази даних допомагають
-    підтримувати оптимальну продуктивність запитів у довгостроковій
-    перспективі.
+- Correct use
+**SELECT, HAVING, WHERE, DISCTINCT, JOIN** statements and subqueries can
+significantly improve query performance.
 
--   Оптимізація запитів SQL є процесом, який вимагає аналізу,
-    експериментів і постійного вдосконалення для досягнення найкращих
-    результатів.
+- Constantly monitoring and updating database statistics helps
+maintain optimal query performance in the long term
+perspective
 
-Важливо пам\'ятати, що оптимізація запитів SQL є специфічною для кожної
-бази даних і потребує індивідуального підходу. Постійне навчання та
-вдосконалення в галузі оптимізації запитів допоможуть досягти
-оптимальної продуктивності та ефективності роботи з даними в SQL.
+- Optimizing SQL queries is a process that requires analysis,
+experimentation and continuous improvement to achieve the best
+results
 
-<h2 align="center">JSON --- структурований формат обміну даними</h2>
+It is important to remember that optimizing SQL queries is specific to each
+database and requires an individual approach. 
+improvements in the field of query optimization will help achieve
+optimal performance and efficiency of working with data in SQL.
 
-**JSON** розшифровується як **JavaScript Object Notation**.
+<h2 align="center">JSON --- a structured data exchange format</h2>
 
-**JSON** --- це відкритий стандартний формат, який складається з пар
-«ключ-значення».
+**JSON** stands for **JavaScript Object Notation**.
 
-Основним призначенням **JSON** є передача даних між сервером і
-вебпрограмою. На відміну від інших форматів, **JSON** --- це текст, який
-читається людиною.
+**JSON** is an open standard format that consists of pairs
+"key-value".
 
-PostgreSQL підтримує власний тип даних **JSON** з версії 9.2. Він надає
-багато функцій і операторів для роботи з даними **JSON**.
+The main purpose of **JSON** is to transfer data between the server and
+web program. 
+human readable
 
-Давай почнемо зі створення нової таблиці для практики з типом даних
+PostgreSQL supports its own **JSON** data type since version 9.2. 
+many functions and operators for working with **JSON** data.
+
+Let's start by creating a new table to practice with the data type
 JSON.
 
 ```sql
@@ -158,15 +160,15 @@ CREATE TABLE orders (
 );
 ```
 
-Таблиця **orders** містить два стовпці:
+The **orders** table contains two columns:
 
--   Стовпець **«ID» **є первинним ключем ідентифікації замовлення.
--   Стовпець **«Info»** зберігає дані у формі **JSON**.
+- The **"ID"** column is the primary order identification key.
+- The **"Info"** column stores data in the form of **JSON**.
 
-Перш ніж вставити дані у стовпець **JSON**, важливо переконатися, що
-дані мають дійсний формат **JSON**.
+Before inserting data into a **JSON** column, it is important to make sure that
+the data is in valid **JSON** format.
 
-Наступний оператор **INSERT** додає новий рядок до таблиці **orders**.
+The following **INSERT** statement adds a new row to the **orders** table.
 
 ```sql
 INSERT INTO orders (info)
@@ -181,9 +183,9 @@ VALUES (
 );
 ```
 
-Це означає, що John Doe придбав 6 пляшок beers
+This means that John Doe purchased 6 bottles of beers
 
-Наступний оператор додає кілька рядків одночасно.
+The following statement adds multiple rows at once.
 
 ```sql
 INSERT INTO orders (info)
@@ -199,7 +201,7 @@ VALUES
 );
 ```
 
-Щоб отримати дані у форматі **JSON**, використовуй звичайний **SELECT**.
+To retrieve data in **JSON** format, use plain **SELECT**.
 
 ```sql
 SELECT info FROM orders;
@@ -208,18 +210,18 @@ SELECT info FROM orders;
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image1.png" width="600" />
 </div>
 
-PostgreSQL повертає набір результатів у форматі JSON.
+PostgreSQL returns a result set in JSON format.
 
-<h2 align="center">Оператори JSON у PostgreSQL</h2>
+<h2 align="center">JSON operators in PostgreSQL</h2>
 
-**PostgreSQL** надає два власні оператори, щоб допомогти тобі отримати
-дані **JSON**.
+**PostgreSQL** provides two custom operators to help you get
+**JSON** data.
 
--   **->** повертає значення поля об'єкта JSON за ключем.
--   **->>** повертає значення поля об'єкта JSON за текстом.
+- **->** returns the field value of a JSON object by key.
+- **->>** returns the field value of a JSON object by text.
 
-Наступний запит використовує оператор -> для отримання всіх клієнтів у
-форматі JSON:
+The following query uses the -> operator to retrieve all customers in
+JSON format:
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image2.png" width="600" />
@@ -231,8 +233,8 @@ SELECT
 FROM orders;
 ```
 
-А наступний запит використовує оператор -\>\>, щоб отримати всіх
-клієнтів у вигляді тексту:
+And the next query uses the -\>\> operator to get all of them
+customers in the form of text:
 
 ```sql
 SELECT info -\>\> \'customer\' AS customer
@@ -242,9 +244,9 @@ SELECT info -\>\> \'customer\' AS customer
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image3.png" width="600" />
 </div>
 
-Оскільки оператор -> повертає об'єкт JSON, ти можеш поєднати його
-з оператором ->>, щоб отримати певний вузол. Наприклад, наступний
-оператор повертає всі продані продукти:
+Since the -> operator returns a JSON object, you can concatenate it
+with the ->> operator to get a specific node. 
+the operator returns all sold products:
 
 ```sql
 SELECT info -> 'items' ->> 'product' as product
@@ -255,16 +257,16 @@ ORDER BY product;
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image4.png" width="200" />
 </div>
 
-Спочатку **info -> 'items'** повертає елементи як об'єкти **JSON**.
-А потім **info -> 'items' ->> 'product'** повертає всі продукти як текст.
+First, **info -> 'items'** returns the items as **JSON** objects.
+And then **info -> 'items' ->> 'product'** returns all products as text.
 
-<h2 align="center">Оператор JSON у реченні WHERE</h2>
+<h2 align="center">A JSON statement in a WHERE clause</h2>
 
-Ми можемо використовувати оператори **JSON** у розділі **WHERE**,
-щоб фільтрувати рядки.
+We can use **JSON** statements in the **WHERE** section,
+to filter the rows.
 
-Наприклад, щоб дізнатися, хто купив **Diaper**, ми використовуємо такий
-запит:
+For example, to find out who bought **Diaper**, we use the following
+request:
 ```sql
 SELECT
     info ->> 'customer' AS customer
@@ -277,8 +279,8 @@ FROM orders
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image5.png" width="600" />
 </div>
 
-Щоб дізнатися, хто купив два товари одночасно, ми використовуємо такий
-запит:
+To find out who bought two items at the same time, we use the following
+request:
 
 ```sql
 SELECT info ->> 'customer' AS customer
@@ -291,15 +293,15 @@ FROM orders
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image6.png" width="600" />
 </div>
 
-Зверни увагу, що ми використовували приведення типу, щоб перетворити **qty** в **INTEGER**.
+Note that we used type casting to convert **qty** to **INTEGER**.
 
-<h2 align="center">Застосування агрегатних функцій до даних JSON</h2>
+<h2 align="center">Applying aggregate functions to JSON data</h2>
 
-Ми можемо застосовувати агрегатні функції, такі
-як **MIN, MAX, AVERAGE, SUM** тощо, до даних **JSON**.
+We can apply aggregate functions such as
+like **MIN, MAX, AVERAGE, SUM** etc. to **JSON** data.
 
-Наприклад, наступний оператор повертає мінімальну кількість, максимальну
-кількість, середню кількість і загальну кількість проданих продуктів.
+For example, the following statement returns the minimum quantity, the maximum
+number, average number and total number of products sold.
 
 ```sql
 SELECT
@@ -314,10 +316,10 @@ FROM orders;
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image7.png" width="600" />
 </div>
 
-<h2 align="center">Функція json_each</h2>
+<h2 align="center">The json_each function</h2>
 
-Функція **json_each () **дозволяє розширити зовнішній об'єкт JSON у
-набір пар «ключ-значення». Дивись наступний запит:
+The **json_each()** function allows you to extend an external JSON object in
+a set of key-value pairs. 
 
 ```sql
 SELECT json_each (info)
@@ -328,18 +330,18 @@ FROM orders;
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image8.png" width="600" />
 </div>
 
-<h2 align="center">Функція json_each_text</h2>
+<h2 align="center">The json_each_text function</h2>
 
-Якщо ти хочеш отримати набір пар «ключ-значення» у вигляді
-тексту, замість цього використовуй функцію **json_each_text ().**
+If you want to get a set of key-value pairs in the form
+text, use the **json_each_text() function instead.**
 
-Функція **json_object_keys**
+**json_object_keys** function
 
-Щоб отримати набір ключів у зовнішньому об'єкті **JSON**,
-використовуй функцію **json_object_keys ().**
+To get a set of keys in an external **JSON** object,
+use the **json_object_keys() function.**
 
-Наступний запит повертає всі ключі вкладеного об'єкта **items** у
-стовпці **info**.
+The following query returns all the keys of the nested object **items** in
+**info** columns.
 
 ```sql
 SELECT json_object_keys ( info->'items' )
@@ -350,167 +352,167 @@ FROM orders;
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image9.png" width="600" />
 </div>
 
-<h2 align="center">Переваги використання JSON</h2>
+<h2 align="center">Advantages of using JSON</h2>
 
-Використання JSON у базі даних PostgreSQL має декілька переваг:
+Using JSON in a PostgreSQL database has several advantages:
 
--   **Гнучкість даних**. **JSON** дозволяє зберігати структуровані дані
-    без вимог до фіксованої схеми бази даних. Ти можеш зберігати дані з
-    різною структурою в одному стовпці, що дозволяє легко зберігати
-    набори даних з різноманітною структурою, які можуть змінюватися з
-    часом.
+- **Data Flexibility**. 
+with no fixed database schema requirements. 
+different structure in one column, which allows easy storage
+data sets with a variety of structures that can vary from
+sometimes.
 
--   **Простота обробки**. **PostgreSQL** надає широкий набір функцій для
-    роботи з даними у форматі **JSON**. Ти можеш здійснювати пошук,
-    фільтрацію, сортування й агрегацію за допомогою вбудованих
-    операторів та функцій **JSON**. Крім того, **PostgreSQL** має
-    підтримку для індексування та повнотекстового пошуку даних **JSON**.
+- **Ease of processing**. 
+working with data in **JSON** format. 
+filtering, sorting and aggregation using built-in
+**JSON** operators and functions. 
+support for indexing and full-text search of **JSON** data.
 
--   **Інтеграція із застосунками**. **JSON** є популярним форматом для
-    обміну даними між різними застосунками й системами. Використання
-    **JSON** у базі даних дозволяє легко обмінюватися даними з іншими
-    застосунками та вебсервісами, що підтримують **JSON**.
+- **Integration with applications**. 
+data exchange between different applications and systems. 
+**JSON** in the database makes it easy to share data with others
+applications and web services that support **JSON**.
 
--   **Наявність операторів і функцій. PostgreSQL** надає широкий набір
-    операторів і функцій для роботи із **JSON**. Ти можеш виконувати
-    операції з об\'єктами **JSON**, отримувати доступ до елементів,
-    виконувати пошук за ключем або значенням, здійснювати маніпуляції з
-    масивами **JSON** та багато іншого.
+- **Availability of operators and functions. 
+operators and functions for working with **JSON**. 
+operations with **JSON** objects, access elements,
+search by key or value, perform manipulations with
+**JSON** arrays and much more.
 
--   **Підтримка вбудованих типів даних. PostgreSQL** має вбудовані типи
-    даних для зберігання **JSON**, такі як **json** (без перевірки на
-    правильність синтаксису) і **jsonb** (з перевіркою на правильність
-    синтаксису та більш ефективним зберіганням). Використання jsonb
-    дозволяє виконувати більш ефективні операції пошуку та фільтрації
-    **JSON**-даних.
+- **Support for built-in data types. 
+data to store **JSON** such as **json** (no validation on
+syntax correctness) and **jsonb** (validated
+syntax and more efficient storage). 
+allows you to perform more efficient search and filtering operations
+**JSON** data.
 
-Загалом використання формату **JSON** у базі даних **PostgreSQL**
-дозволяє зберігати, опрацьовувати й обмінюватися структурованими даними
-гнучким та ефективним способом.
-| Завдання | PostgreSQL | MS SQL Server (T-SQL) | Oracle SQL |
+In general, the use of the **JSON** format in the **PostgreSQL** database
+allows you to store, process and exchange structured data
+in a flexible and efficient way.
+| 
 |---|---:|---:|---:|
-| Вибірка (отримати текстове значення) | `json_column ->> 'path'`<br/>Приклад: `info ->> 'customer'` | `JSON_VALUE(json_column, '$.path')`<br/>Приклад: `JSON_VALUE(info, '$.customer')` | `JSON_VALUE(json_column, '$.path')`<br/>Приклад: `JSON_VALUE(info, '$.customer')` |
-| Вибірка (отримати JSON-об'єкт) | `json_column -> 'path'`<br/>Приклад: `info -> 'items'` | Для отримання об'єкта використовують `OPENJSON` або парсинг; `JSON_QUERY(json_column, '$.path')` | `JSON_QUERY(json_column, '$.path')` |
-| Фільтрація (WHERE) | `info -> 'items' ->> 'product' = 'Diaper'`<br/>або `CAST(info -> 'items' ->> 'qty' AS INTEGER) = 2` | `JSON_VALUE(json_column, '$.path.subpath') = 'value'`<br/>або `CAST(JSON_VALUE(json_column, '$.path.qty') AS INT) = 2` | `JSON_VALUE(json_column, '$.path.subpath') = 'value'`<br/>або `TO_NUMBER(JSON_VALUE(json_column, '$.path.qty')) = 2` |
+| 
+| 
+| 
 
-Примітки:
-- У PostgreSQL `->` повертає JSON, `->>` повертає текст.
-- У T‑SQL та Oracle для простих скалярних значень використовується `JSON_VALUE`, для повернення підоб'єктів — `JSON_QUERY` / `OPENJSON`.
-- Підставляйте реальні імена стовпців і шляхів (`json_column`, `$.path`) відповідно до схеми.
+Notes:
+- In PostgreSQL `->` returns JSON, `->>` returns text.
+- T‑SQL and Oracle use `JSON_VALUE` for simple scalar values, `JSON_QUERY` / `OPENJSON` to return subobjects.
+- Substitute real column names and paths (`json_column`, `$.path`) according to the scheme.
 
-<h2 align="center">Робота з датами та часовими даними в SQL</h2>
+<h2 align="center">Working with dates and time data in SQL</h2>
 
-Уміння обробляти **часові масиви** інформації є дуже важливим у роботі
-аналітика, адже це надає можливості для:
+The ability to process **temporal arrays** of information is very important in work
+analytics, because it provides opportunities for:
 
--   **Сортування і фільтрації даних.** У SQL дані можна сортувати за
-    датою та часом, що дозволяє здійснювати ефективний пошук і
-    фільтрацію за певними періодами. Наприклад, ти можеш вибрати всі
-    записи, які були створені протягом останньої години, або всі
-    замовлення за певний період.
+- **Sorting and filtering data.** In SQL, data can be sorted by
+date and time, which allows effective search and
+filtering by certain periods. 
+records that were created within the last hour, or all
+order for a certain period.
 
--   **Обчислення інтервалів.** SQL дозволяє виконувати розрахунки на
-    основі дат і часу. Наприклад, ти можеш обчислити тривалість між
-    двома датами, знайти середній час обробки замовлення або визначити,
-    скільки днів залишилося до певної події.
+- **Interval Calculations.** SQL allows you to perform calculations on
+based on dates and times. 
+two dates, find the average order processing time or determine
+how many days are left until a certain event.
 
--   **Групування й агрегації даних.** Ти можеш групувати дані за певними
-    інтервалами часу (наприклад, за днями, тижнями або місяцями) і
-    використовувати агрегатні функції (такі як **SUM, COUNT, AVG**) для
-    обчислення статистичних даних або отримання зведених результатів.
+- **Grouping and aggregation of data.** You can group data by certain
+by time intervals (for example, by days, weeks or months) and
+use aggregate functions (such as **SUM, COUNT, AVG**) for
+calculating statistical data or obtaining summary results.
 
--   **Роботи з часовими рядами.** Часові ряди є важливою складовою
-    багатьох галузей, таких як фінансовий аналіз, прогнозування попиту,
-    вебаналітика тощо. SQL надає можливість зберігати, оновлювати,
-    аналізувати й виконувати операції з часовими рядами, що дозволяє
-    отримувати цінну інформацію з цих даних.
+- **Working with time series.** Time series is an important component
+many industries, such as financial analysis, demand forecasting,
+web analytics, etc. 
+analyze and perform operations with time series, which allows
+extract valuable information from this data.
 
--   **Планування й керування**. SQL може бути використана для планування
-    та керування розкладом подій, завдань або процесів, що відбуваються
-    в певний час. Ти можеш створювати регулярні завдання, встановлювати
-    таймери чи автоматично виконувати певні дії на основі певних дат або
-    часових подій.
+- **Planning and management**. 
+and managing the schedule of events, tasks, or processes that occur
+at a certain time 
+timers or automatically perform certain actions based on certain dates or
+time events.
 
-<h2 align="center">Типи даних для зберігання дат і часу</h2>
+<h2 align="center">Data types for storing dates and times</h2>
 
-У **PostgreSQL** існує кілька типів даних для зберігання дат і часу.
-Основними серед них є **DATE, TIME, TIMESTAMP** та їхні варіації.
+**PostgreSQL** has several data types for storing dates and times.
+Chief among them are **DATE, TIME, TIMESTAMP** and their variations.
 
-Ось короткий опис кожного типу:
+Here is a brief description of each type:
 
--   **DATE** --- Цей тип даних використовується для зберігання дати без
-    часу. Він відображає дату у форматі **«YYYY-MM-DD».** Наприклад,
+- **DATE** --- This data type is used to store a date without
+time 
     **«2023-06-09».**
 
--   **TIME** --- Цей тип даних призначений для зберігання часу без дати.
-    Він відображає час у форматі **«HH:MI:SS»** (години, хвилини,
-    секунди). Наприклад, **«12:34:56».**
+- **TIME** --- This data type is designed to store time without a date.
+It displays the time in **"HH:MI:SS"** format (hours, minutes,
+seconds). 
 
--   **TIMESTAMP** --- Цей тип даних використовується для зберігання дати
-    та часу. Він відображає дату і час у форматі **«YYYY-MM-DD
-    HH:MI:SS».** Наприклад, **«2023-06-09 12:34:56».**
+- **TIMESTAMP** --- This data type is used to store a date
+and time 
+HH:MI:SS".** For example, **"2023-06-09 12:34:56".**
 
--   **TIMESTAMP WITH TIME ZONE** --- Цей тип даних призначений для
-    зберігання дати та часу, який містить інформацію про часовий пояс.
-    Він відображає дату та час у форматі **«YYYY-MM-DD HH:MI:SS TZ».**
-    Наприклад, **«2023-06-09 12:34:56 +03».**
+- **TIMESTAMP WITH TIME ZONE** --- This data type is for
+date and time storage that contains information about the time zone.
+It displays date and time in **"YYYY-MM-DD HH:MI:SS TZ" format.**
+For example, **"2023-06-09 12:34:56 +03".**
 
--   **INTERVAL** --- Цей тип даних використовується для зберігання
-    інтервалів часу, наприклад, різниці між двома датами або часами.
+- **INTERVAL** --- This data type is used for storage
+time intervals, such as the difference between two dates or times.
 
-Ці типи даних дозволяють зберігати й виконувати операції з датами і
-часом у PostgreSQL.
+These data types allow you to store and perform operations on dates and
+sometimes in PostgreSQL.
 
-<h2 align="center">Функції CURRENT_DATE і CURRENT_TIMESTAMP</h2>
+<h2 align="center">CURRENT_DATE and CURRENT_TIMESTAMP functions</h2>
 
-У PostgreSQL є дві функції: **CURRENT_DATE і CURRENT_TIMESTAMP** --- які
-повертають поточну дату та час відповідно.
+PostgreSQL has two functions: **CURRENT_DATE and CURRENT_TIMESTAMP** --- which
+return the current date and time respectively.
 
 -   **CURRENT_DATE**
 
-Ця функція повертає поточну дату (без часу) у форматі **DATE**. Вона
-корисна, коли тобі потрібно отримати лише дату без зазначення часу.
+This function returns the current date (without time) in **DATE** format. 
+useful when you only need to get the date without specifying the time.
 
-Приклад використання CURRENT_DATE:
+Example of using CURRENT_DATE:
 
 ```sql
 SELECT CURRENT_DATE;
 ```
 -   **CURRENT_TIMESTAMP**
 
-Ця функція повертає поточну дату та час у форматі **TIMESTAMP**. Вона
-містить як дату, так і час з точністю до мілісекунди. Використовується,
-коли тобі потрібно відобразити точний час і дату.
+This function returns the current date and time in **TIMESTAMP** format. 
+contains both date and time with millisecond accuracy. 
+when you need to display the exact time and date.
 
-Приклад використання **CURRENT_TIMESTAMP**:
+Example of using **CURRENT_TIMESTAMP**:
 
 ```sql
 SELECT CURRENT_TIMESTAMP;
 ```
-Обидві функції: **CURRENT_DATE** і **CURRENT_TIMESTAMP** --- не
-приймають аргументів і повертають значення відповідного типу дати. Вони
-корисні для отримання поточної дати та часу при виконанні запитів у
+Both functions **CURRENT_DATE** and **CURRENT_TIMESTAMP** are not
+accepts arguments and returns a value of the corresponding date type. 
+useful for getting the current date and time when performing queries in
 PostgreSQL.
 
--   **Функція date_trunc**
+- **date_trunc function**
 
-Функція **date_trunc** у PostgreSQL використовується для обрізання або
-відсікання частини дати або часу відповідно до певної одиниці
-вимірювання.
+The **date_trunc** function in PostgreSQL is used to truncate or
+clipping a portion of a date or time according to a specific unit
+measurement.
 
-Це дозволяє округлити значення до більшої або меншої одиниці
-вимірювання, залежно від потреби.
+This allows you to round the value up or down
+measurement, depending on the need.
 
-Синтаксис функції date_trunc такий:
+The syntax of the date_trunc function is as follows:
 ```sql
 date_trunc('unit', timestamp)
 ```
-У цьому синтаксисі:
+In this syntax:
 
--   **unit** вказує одиницю, до якої треба обрізати частину дати або часу.
--   **timestamp** --- дата або час, який потрібно обрізати.
+- **unit** specifies the unit to which the date or time portion should be trimmed.
+- **timestamp** --- the date or time to be trimmed.
 
-Для демонстрації використаємо таблицю employees зі схеми відділу HR:
+For demonstration, we will use the employees table from the HR department schema:
 
 ```sql
 SELECT
@@ -524,28 +526,28 @@ FROM HR.employees;
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image10.png" width="600" />
 </div>
 
-У цьому прикладі ми використовуємо функцію **date_trunc** для обрізання
-дати в полі **hire_date** до рівня року. Результат буде містити лише
-рік, а місяці, дні, години, хвилини та секунди залишаться у своїх
-початкових значеннях.
+In this example, we use the **date_trunc** function for truncation
+dates in the **hire_date** field to the year level. 
+a year, and months, days, hours, minutes and seconds will remain in their own
+initial values.
 
-Таким чином, функція **date_trunc** дозволяє обрізати дату або час до
-певної одиниці вимірювання, що може бути корисним при агрегації або
-групуванні даних за певним періодом.
+So the **date_trunc** function allows you to truncate a date or time to
+of a certain unit of measurement, which can be useful in aggregation or
+grouping of data by a certain period.
 
--   **Функція date_add**
+- **date_add function**
 
-У PostgreSQL відсутня вбудована функція **date_add**, але ти можеш
-досягти аналогічного результату, використовуючи оператор **+** та
-інтервали для додавання до дат.
+PostgreSQL doesn't have a built-in **date_add** function, but you can
+achieve a similar result by using the operator **+** and
+intervals to add to dates.
 
-Оператор **+** у PostgreSQL може бути використаний для додавання
-інтервалів до дати або часу. Ти можеш використовувати різні одиниці
-вимірювання, такі як **year, month, day, hour, minute, second** тощо.
+The **+** operator in PostgreSQL can be used to add
+intervals to a date or time. 
+measurements such as **year, month, day, hour, minute, second** etc.
 
-Наприклад, ми маємо таблицю **employees** зі схеми відділу **HR** і нам
-потрібно додати один рік до значення **hire_date** для кожного
-співробітника:
+For example, we have a **employees** table from the **HR** department schema and us
+one year must be added to the **hire_date** value for each
+employee:
 
 ```sql
 SELECT hire_date + INTERVAL \'1 year\' AS new_date
@@ -557,35 +559,35 @@ FROM \"HR\".employees;
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image11.png" width="600" />
 </div>
 
-У цьому прикладі **INTERVAL «1 year»** вказує, що ми додаємо 1 рік до
-дати. Результатом є значення **new_date**, яке є **hire_date**,
-збільшене на 1 рік.
+In this example, **INTERVAL "1 year"** indicates that we are adding 1 year to the
+to give 
+increased by 1 year.
 
--   **Функція date_diff**
+- **date_diff function**
 
-У багатьох СУБД існує функція **date_diff**, яка повертає різницю між
-двома датами, проте в Postgre ситуація трішки відрізняється.
+Many DBMSs have a **date_diff** function that returns the difference between
+two dates, but in Postgre the situation is a little different.
 
-Ти можеш використовувати функцію **date_part** для отримання різниці між
-двома датами або часами в певній одиниці вимірювання.
+You can use the **date_part** function to get the difference between
+two dates or times in a specific unit of measurement.
 
-Функція **date_part** дозволяє отримати значення певної одиниці
-(наприклад, рік, місяць, день, годину, хвилину, секунду) з дати або
-часу. Ти можеш використати цю функцію для отримання значень із двох дат
-або часів та обчислення їх різниці.
+The **date_part** function allows you to get the value of a specific unit
+(eg year, month, day, hour, minute, second) from the date or
+time 
+or times and calculating their difference.
 
-Ось синтаксис функції **date_part**:
+Here is the syntax for the **date_part** function:
 ```sql
 date_part('unit', timestamp)
 ```
-У цьому синтаксисі:
--   **unit** --- одиниця вимірювання, для якої ти хочеш отримати
-    значення.
--   **timestamp** --- дата або час, з яких ти отримуєш значення.
+In this syntax:
+- **unit** --- the unit of measurement for which you want to get
+value.
+- **timestamp** --- the date or time from which you get the value.
 
-Наприклад, для обчислення різниці в роках між двома датами з
-таблиці **employees** зі схеми відділу **HR** ти можеш скористатися
-таким запитом:
+For example, to calculate the difference in years between two dates with
+you can use the **employees** table from the **HR** department schema
+with the following request:
 
 ```sql
 SELECT date_part( 'year', age( '2023-01-01', hire_date ) ) AS diff_years
@@ -596,34 +598,34 @@ FROM HR.employees;
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image12.png" width="600" />
 </div>
 
-У цьому прикладі ми використовуємо функцію **age**, яка повертає різницю
-між двома датами або часами у форматі **interval**. Потім за
-допомогою функції **date_part** ми отримуємо різницю в роках із
-цього **interval**.
+In this example we use the **age** function which returns the difference
+between two dates or times in **interval** format. 
+using the **date_part** function we get the difference in years from
+of this **interval**.
 
-Отже, хоча у PostgreSQL немає вбудованої функції **date_diff**, ти можеш
-використовувати комбінацію функцій **age** і **date_part**, щоб
-обчислити різницю між двома датами або часами в певній одиниці
-вимірювання.
+So, while PostgreSQL doesn't have a built-in **date_diff** function, you can
+use a combination of **age** and **date_part** functions to
+calculate the difference between two dates or times in a specific unit
+measurement.
 
--   **Функція EXTRACT**
+- **EXTRACT function**
 
-У PostgreSQL функція **EXTRACT** використовується для отримання значення
-певної одиниці вимірювання з дати або часу. Вона дозволяє отримати
-значення року, місяця, дня, години, хвилини, секунди або іншої одиниці
-вимірювання з дати або часу.
+In PostgreSQL, the **EXTRACT** function is used to retrieve the value
+a specific unit of measurement from a date or time. 
+value of year, month, day, hour, minute, second, or other unit
+measurement from date or time.
 
-Ось синтаксис функції **EXTRACT**:
+Here is the syntax for the **EXTRACT** function:
 ```sql
 EXTRACT( 'unit' FROM timestamp )
 ```
-У цьому синтаксисі:
--   **unit** --- одиниця вимірювання, яку ти хочеш отримати.
--   **timestamp** --- дата або час, з яких ти отримуєш значення.
+In this syntax:
+- **unit** --- the unit of measurement you want to get.
+- **timestamp** --- the date or time from which you get the value.
 
-Наприклад, для отримання значення року з поля **hire_date** у
-таблиці **employees** зі схеми відділу **HR** можна скористатися таким
-запитом:
+For example, to retrieve the year value from the **hire_date** field in
+the **employees** table from the **HR** department schema can be used as follows
+request:
 
 ```sql
 SELECT EXTRACT(year FROM hire_date) AS hire_year
@@ -633,28 +635,28 @@ FROM HR.employees;
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image13.png" width="600" />
 </div>
 
-У цьому прикладі ми використовуємо функцію **EXTRACT** для отримання
-значення року з поля **hire_date**. Результатом буде
-значення **hire_year**, яке представляє рік з кожного запису.
+In this example, we use the **EXTRACT** function to retrieve
+the year value from the **hire_date** field. 
+a **hire_year** value that represents the year from each record.
 
-**EXTRACT** також можна використовувати для отримання інших одиниць
-вимірювання, наприклад, місяця, дня, години, хвилини, секунди тощо.
-Наприклад, для отримання значення місяця з **hire_date** ти можеш
-замінити **year** на **month** у запиті.
+**EXTRACT** can also be used to get other units
+measurements such as month, day, hour, minute, second, etc.
+For example, to get the month value from **hire_date** you can
+replace **year** with **month** in the query.
 
-<h2 align="center">Функції date and time type conversion</h2>
+<h2 align="center">Date and time type conversion functions</h2>
 
-У PostgreSQL для конвертації типів дати та часу
-використовуються функції **CAST** і **TO_CHAR**.
+In PostgreSQL to convert date and time types
+**CAST** and **TO_CHAR** functions are used.
 
--   **Конвертація в рядок (string)**
+- **Conversion to string**
 
-Для перетворення типу дати або часу в рядок
-використовується функція **TO_CHAR**.
+To convert a date or time type to a string
+the **TO_CHAR** function is used.
 
-Наприклад, для конвертації поля **hire_date** з типу **date** у рядок
-формату **«YYYY-MM-DD»** у таблиці **employees** зі схеми відділу **HR**
-ти можеш використати такий запит:
+For example, to convert the **hire_date** field from the **date** type to a string
+format **"YYYY-MM-DD"** in the **employees** table from the **HR** department schema
+you can use the following query:
 
 ```sql
 SELECT TO_CHAR( hire_date, 'YYYY-MM-DD' ) AS hire_date_str
@@ -665,16 +667,16 @@ FROM HR.employees;
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image14.png" width="600" />
 </div>
 
-Результат буде містити значення **hire_date** у вигляді рядків у форматі
+The result will contain **hire_date** values ​​as strings in the format
 <h2 align="center">«YYYY-MM-DD».</h2>
 
--   **Конвертація з рядка (string) на тип дати або часу**
+- **Conversion from string to date or time type**
 
-Для перетворення рядка на тип дати або часу
-використовується функція **CAST**.
+To convert a string to a date or time type
+the **CAST** function is used.
 
-Наприклад, для конвертації рядка **«2022-05-10»** у тип **date** можна
-скористатися таким запитом:
+For example, you can convert the string **"2022-05-10"** to the **date** type
+use the following query:
 
 ```sql
 SELECT CAST('2022-05-10' AS date) AS converted_date;
@@ -683,52 +685,52 @@ SELECT CAST('2022-05-10' AS date) AS converted_date;
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image15.png" width="600" />
 </div>
 
-Результат буде містити значення **«2022-05-10»** у форматі типу
+The result will contain the value **"2022-05-10"** in type format
 **date**.
 
-Отже, функція **TO_CHAR** використовується для конвертації типів дати та
-часу в рядок, а функція **CAST** дозволяє конвертувати рядок у тип дати
-або часу.
+So the **TO_CHAR** function is used to convert date types and
+time to a string, and the **CAST** function allows you to convert a string to a date type
+or time
 
-<h2 align="center">Висновки</h2>
+<h2 align="center">Conclusions</h2>
 
-Робота з датами та часом у SQL з використанням типів даних **DATE,
-TIME** і **TIMESTAMP** є важливою частиною розробки баз даних та аналізу
-даних. Ось основні висновки щодо цієї теми:
+Working with dates and times in SQL using **DATE data types,
+TIME** and **TIMESTAMP** are an important part of database design and analysis
+data 
 
--   Тип даних **DATE** використовується для зберігання лише дати без
-    часу. Він дає можливість виконувати операції з датами, такі як
-    порівняння, отримання компонентів дати, арифметичні операції з
-    датами.
+- The **DATE** data type is used to store only the date without
+time 
+comparison, obtaining date components, arithmetic operations with
+dates
 
--   Тип даних **TIME** використовується для зберігання лише часу без
-    дати. Він дозволяє виконувати операції з часом, такі як порівняння,
-    отримання компонентів часу, арифметичні операції з часом.
+- The **TIME** data type is used to store only time without
+to give 
+obtaining time components, arithmetic operations with time.
 
--   Тип даних **TIMESTAMP** представляє комбінацію дати і часу. Він
-    дозволяє зберігати точні відмітки часу й надає можливість виконувати
-    операції з датою і часом одночасно.
+- The **TIMESTAMP** data type represents a combination of date and time. 
+allows you to keep accurate timestamps and allows you to execute
+date and time operations at the same time.
 
--   SQL надає різні функції та оператори для роботи з датами та часом.
-    Вона містить функції для форматування дати та часу, отримання
-    компонентів дати та часу, виконання арифметичних операцій і
-    перетворення між різними форматами.
+- SQL provides various functions and operators to work with dates and times.
+It contains functions for formatting date and time, receiving
+date and time components, performing arithmetic operations and
+conversion between different formats.
 
--   Під час роботи з датами та часом у SQL варто враховувати локалізацію
-    та часові пояси. SQL надає функції для роботи з часовими поясами та
-    перетворення часу між різними часовими поясами.
+- Localization should be considered when working with dates and times in SQL
+and time zones. 
+time conversion between different time zones.
 
--   Правильне використання типів даних **DATE, TIME** і **TIMESTAMP** у
-    SQL дозволяє ефективно аналізувати часові дані в базі даних, такі як
-    записи подій, транзакції або зміни, і керувати ними.
+- Correct use of **DATE, TIME** and **TIMESTAMP** data types in
+SQL allows efficient analysis of temporal data in a database such as
+record and manage events, transactions or changes.
 
-Загалом розуміння і вміння працювати з датами та часом в SQL є важливою
-навичкою для аналітиків даних, що дозволяє ефективно обробляти й
-аналізувати часові дані в базах даних.
+In general, an understanding and ability to work with dates and times in SQL is important
+a skill for data analysts that allows you to effectively process and
+analyze time data in databases.
 
-<h2 align="center">Віконні функції (Window functions)</h2>
+<h2 align="center">Window functions (Window functions)</h2>
 
-Для кращого розуміння цієї теми створимо додаткові таблиці.
+For a better understanding of this topic, we will create additional tables.
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image16.png" width="600" />
@@ -749,7 +751,7 @@ CREATE TABLE products (
 );
 ```
 
-Також додамо деяку інформацію до наших таблиць:
+Let's also add some information to our tables:
 
 ```sql
 INSERT INTO product_groups (group_name)
@@ -779,16 +781,16 @@ VALUES
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image17.png" width="600" />
 </div>
 
-<h2 align="center">Порівняння агрегатних функцій з віконними функціями</h2>
+<h2 align="center">Comparison of aggregate functions with window functions</h2>
 
-Найпростіший спосіб зрозуміти віконні функції --- почати з
-перегляду [**[агрегатних
-функцій]{.underline}**](https://www.postgresqltutorial.com/postgresql-aggregate-functions/). Агрегатна
-функція об'єднує дані з набору рядків в один рядок.
+The easiest way to understand window features is to start with
+viewing [**[aggregate
+functions]{.underline}**](https://www.postgresqltutorial.com/postgresql-aggregate-functions/). 
+function combines data from a set of rows into a single row.
 
-У наступному прикладі використовується агрегатна
-функція [**AVG**](https://www.postgresqltutorial.com/postgresql-avg-function/) для
-обчислення середньої ціни всіх продуктів у таблиці **products**.
+The following example uses an aggregate
+[**AVG**](https://www.postgresqltutorial.com/postgresql-avg-function/) function for
+calculating the average price of all products in the **products** table.
 
 ```sql
 SELECT AVG(price)
@@ -798,9 +800,9 @@ FROM products;
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image18.png" width="600" />
 </div>
 
-Щоб застосувати агрегатну функцію до підмножини рядків, ми
-використовуємо **GROUP BY**. Наступний приклад повертає середню ціну для
-кожної групи продуктів.
+To apply an aggregate function to a subset of rows, we
+we use **GROUP BY**. 
+of each product group.
 
 ```sql
 SELECT
@@ -814,21 +816,21 @@ GROUP BY group_name;
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image19.png" width="600" />
 </div>
 
-Як ми бачимо, агрегатні функції зменшують кількість рядків.
+As we can see, aggregate functions reduce the number of rows.
 
-Подібно до агрегатної функції, віконна функція працює з набором рядків.
+Similar to the aggregate function, the window function works with a set of rows.
 
-Однак це не зменшує кількість рядків, які повертає запит.
+However, this does not reduce the number of rows returned by the query.
 
-Термін **«вікно»** описує набір рядків, у яких виконується віконна
-функція.
+The term **"window"** describes the set of lines on which the windowing is performed
+function.
 
-Віконна функція повертає значення з рядків у межах вікна.
+The window function returns values ​​from the rows within the window.
 
-Наприклад, у наступному запиті повертаються назва продукту, ціна, назва
-групи
+For example, the following query returns product name, price, name
+groups
 
-продуктів разом із середніми цінами для кожної групи продуктів.
+products along with average prices for each product group.
 
 ```sql
 SELECT product_name
@@ -845,46 +847,46 @@ INNER JOIN product_groups USING (group_id);
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image20.png" width="600" />
 </div>
 
-У цьому запиті використовується віконна функція **AVG (price) OVER
+This query uses the **AVG (price) OVER window function
 (PARTITION BY group_name)**.
 
-Розглянемо, як вона працює:
+Let's consider how it works:
 
-1.  Спочатку з таблиці products отримуються дані про назву
-    продукту **(product_name),** ціну** (price)** і назву
-    групи **(group_name).**
+1. First, name data is obtained from the products table
+product **(product_name),** price** (price)** and name
+groups **(group_name).**
 
-2.  За допомогою **INNER JOIN** таблиці **products** із
-    таблицею **product_groups** злито за спільним стовпцем **group_id**.
-    Це дозволяє отримати інформацію про групу, до якої належить кожен
-    продукт.
+2. Using **INNER JOIN** table **products** from
+the table **product_groups** is merged by the common column **group_id**.
+This allows you to get information about the group to which everyone belongs
+product.
 
-3.  Віконна функція **AVG (price) OVER (PARTITION BY
-    group_name)** використовується для обчислення середньої
-    ціни** (price)** в межах кожної групи **(group_name).** Це означає,
-    що дані будуть групуватися за значенням **group_name** і для кожної
-    окремої групи буде обчислюватися середня ціна.
+3. Window function **AVG (price) OVER (PARTITION BY
+group_name)** is used to calculate the average
+prices** (price)** within each group **(group_name).** This means,
+that the data will be grouped by **group_name** and for each
+the average price of a separate group will be calculated.
 
-Результат запиту буде містити всі вибрані стовпці **(product_name,
-price, group_name)**, а також додатковий стовпець, який відображає
-середню ціну **( AVG (price) OVER (PARTITION BY group_name ))** для
-кожної групи продуктів.
+The query result will contain all selected columns **(product_name,
+price, group_name)** and an additional column that displays
+average price **( AVG (price) OVER (PARTITION BY group_name ))** for
+of each product group.
 
-Основна ідея віконних функцій полягає в можливості обчислювати значення
-з урахуванням контексту визначеного вікна (у цьому випадку група
-продуктів) замість окремих рядків.
+The main idea behind window functions is to be able to calculate values
+taking into account the context of the specified window (in this case, the group
+products) instead of individual lines.
 
-У цьому запиті **AVG (price) OVER ( PARTITION BY group_name )** обчислює
-середню ціну для кожної групи продуктів, дозволяючи аналізувати ціни в
-межах кожної окремої групи замість аналізу всіх продуктів загалом.
+In this query, **AVG (price) OVER ( PARTITION BY group_name )** calculates
+average price for each product group, allowing price analysis in
+within each individual group instead of analyzing all products in general.
 
-<h2 align="center">Синтаксис віконних функцій PostgreSQL</h2>
+<h2 align="center">Syntax of PostgreSQL window functions</h2>
 
-У PostgreSQL синтаксис віконних функцій містить ключові
-слова **OVER** і **PARTITION BY**, а також вказівники вікна, такі
-як **ORDER BY, ROWS, RANGE** тощо.
+In PostgreSQL, the syntax of window functions contains keys
+the words **OVER** and **PARTITION BY** and window pointers are as follows
+like **ORDER BY, ROWS, RANGE** etc.
 
-Основний синтаксис віконних функцій у Postgre виглядає так:
+The basic syntax of window functions in Postgre looks like this:
 ```sql
 <функція>
 OVER ([PARTITION BY <стовпець1>, <стовпець2>, ...]
@@ -892,103 +894,103 @@ OVER ([PARTITION BY <стовпець1>, <стовпець2>, ...]
 [ROWS <розмір_вікна>] [<додаткові_вказівники_вікна>]
 )
 ```
-Де:
+Where:
 
--   **<функція>** --- це вираз, який відображає віконну функцію,
-    наприклад, **SUM, AVG, RANK** тощо.
+- **<function>** is an expression that represents a window function,
+eg **SUM, AVG, RANK** etc.
 
--   **PARTITION BY <стовпець1>, <стовпець2>,** ... --- вказує, за
-    якими стовпцями слід групувати дані перед обчисленням віконної
-    функції.
+- **PARTITION BY <column1>, <column2>,** ... --- indicates, by
+which columns should group the data before calculating the window
+functions.
 
--   **ORDER BY <стовпець> [ASC|DESC],** ... --- визначає порядок
-    сортування рядків, у межах яких відбувається обчислення віконної
-    функції.
+- **ORDER BY <column> [ASC|DESC],** ... --- specifies the order
+sorting of lines within which the calculation of the window takes place
+functions.
 
--   **ROWS <розмір_вікна> **--- вказує, які рядки повинні бути
-    включені до вікна. Це можуть бути, наприклад, попередні **N** рядків
-    **(ROWS BETWEEN <start> PRECEDING AND <end> FOLLOWING)** або
-    діапазон значень **(RANGE BETWEEN <start> AND <end>).**
+- **ROWS <window_size> **--- specifies what rows should be
+included in the window. 
+**(ROWS BETWEEN <start> PRECEDING AND <end> FOLLOWING)** or
+range of values ​​**(RANGE BETWEEN <start> AND <end>).**
 
--   **\<додаткові_вказівники_вікна\>** --- додаткові вказівники вікна,
-    такі як **ROWS BETWEEN** **UNBOUNDED PRECEDING AND CURRENT ROW,
-    GROUPS, EXCLUDE** тощо.
+- **\<additional_window_pointers\>** --- additional window pointers,
+such as **ROWS BETWEEN** **UNBOUNDED PRECEDING AND CURRENT ROW,
+GROUPS, EXCLUDE** etc.
 
-Ти можеш використовувати цей синтаксис для визначення віконних функцій у
-PostgreSQL, де **OVER** вказує початок віконної функції, а вказівники
-вікна дозволяють тобі налаштовувати контекст обчислення функції.
+You can use this syntax to define window functions in
+PostgreSQL where **OVER** indicates the start of the window function and pointers
+windows allow you to set the function calculation context.
 
-<h2 align="center">Список віконних функцій PostgreSQL</h2>
+<h2 align="center">List of PostgreSQL window functions</h2>
 
-У PostgreSQL доступно багато віконних функцій, які можна використовувати
-для аналізу й обробки даних. Ось кілька поширених віконних функцій у
+PostgreSQL has many windowing functions available that you can use
+for data analysis and processing. 
 PostgreSQL:
 
--   **ROW_NUMBER ()** --- Присвоює \*\*\*\* унікальний номер кожному
-    рядку в межах вікна. Номери рядків відповідають порядку вибірки без
-    сортування.
+- **ROW_NUMBER ()** --- Assigns a \*\*\*\* unique number to each
+line within the window. 
+sorting.
 
--   **RANK ()** --- Призначає ранг кожному рядку, відповідно до
-    вказаного виразу сортування. Рядки з однаковими значеннями отримують
-    однаковий ранг, пропускаючи наступні ранги.
+- **RANK ()** --- Assigns a rank to each row, according to
+of the specified sort expression. 
+the same rank, skipping the next ranks.
 
--   **DENSE_RANK ()** --- Призначає «щільний» ранг кожному рядку,
-    відповідно до вказаного виразу сортування. Рядки з однаковими
-    значеннями отримують однаковий ранг, не пропускаючи наступні ранги.
+- **DENSE_RANK ()** --- Assigns a "dense" rank to each row,
+according to the specified sort expression. 
+values ​​receive the same rank without skipping the next ranks.
 
--   **NTILE (n)** --- Розбиває вибірку на n груп і присвоює кожному
-    рядку номер групи, до якої він належить.
+- **NTILE (n)** --- Divides the sample into n groups and assigns to each
+line number of the group to which it belongs.
 
--   **LAG (expression \[, offset \[, default\]\])** --- Повертає
-    значення виразу, що передує поточному рядку у вікні. Можна вказати
-    зсув і значення за замовчуванням для випадку, коли попереднє
-    значення недоступне.
+- **LAG (expression \[, offset \[, default\]\])** --- Returns
+the value of the expression preceding the current line in the window. 
+offset and the default value for the case where the previous
+value not available.
 
--   **LEAD (expression \[, offset \[, default\]\])** --- Повертає
-    значення виразу, що слідує за поточним рядком у вікні. Можна вказати
-    зсув і значення за замовчуванням для випадку, коли наступне значення
-    недоступне.
+- **LEAD (expression \[, offset \[, default\]\])** --- Returns
+the value of the expression following the current line in the window. 
+offset and the default value for the case where the following value
+unavailable
 
--   **FIRST_VALUE (expression)** --- Повертає значення виразу для
-    першого рядка у вікні.
+- **FIRST_VALUE (expression)** --- Returns the value of the expression for
+the first line in the window.
 
--   **LAST_VALUE (expression)** --- Повертає значення виразу для
-    останнього рядка у вікні.
+- **LAST_VALUE (expression)** --- Returns the value of the expression for
+the last line in the window.
 
--   **SUM (expression)** --- Обчислює суму значень виразу в межах вікна.
+- **SUM (expression)** --- Computes the sum of the expression values ​​within the window.
 
--   **AVG (expression)** --- Обчислює середнє значення виразу в межах
-    вікна.
+- **AVG (expression)** --- Computes the average value of an expression within a range
+windows
 
-Це лише кілька прикладів віконних функцій, доступних у PostgreSQL.
+These are just a few examples of the windowing functions available in PostgreSQL.
 
-Віконні функції дозволяють виконувати розширений аналіз та обробку
-даних, використовуючи контекст вікна, яке охоплює певні рядки або групи
-рядків у результаті запиту. Познайомимося з тими, що найчастіше
-трапляються в роботі аналітика.
+Windowing functions allow for advanced analysis and processing
+data using a window context that spans specific rows or groups
+rows as a result of the query. 
+occur in the analyst's work.
 
-Функції **ROW_NUMBER, RANK** і **DENSE_RANK**
+**ROW_NUMBER, RANK** and **DENSE_RANK** functions
 
--   **ROW_NUMBER ()** --- Ця функція призначає унікальний порядковий
-    номер кожному рядку в межах вікна. Номери рядків відповідають
-    порядку, в якому рядки вибрані без сортування. Інакше кажучи, перший
-    рядок отримує номер 1, другий --- 2 і так далі.
+- **ROW_NUMBER ()** --- This function assigns a unique ordinal
+the number of each line within the window. 
+the order in which rows are selected without sorting. 
+row gets number 1, second --- 2 and so on.
 
--   **RANK ()** --- Ця функція призначає ранг кожному рядку, відповідно
-    до вказаного порядку сортування. Ранги можуть пропускатись, якщо є
-    рядки з однаковими значеннями. Наприклад, якщо два рядки мають
-    однакове значення й займають друге та третє місця, то наступний
-    рядок отримає ранг 4.
+- **RANK ()** --- This function assigns a rank to each row, respectively
+to the specified sort order. 
+rows with the same values. 
+have the same value and occupy the second and third places, then the following
+the row will get rank 4.
 
--   **DENSE_RANK ()** --- Ця функція призначає «щільний» ранг кожному
-    рядку, відповідно до вказаного порядку сортування. Ранги не
-    пропускаються, навіть якщо є рядки з однаковими значеннями.
-    Наприклад, якщо два рядки мають однакове значення і займають друге
-    та третє місця, то наступний рядок отримає ранг 3.
+- **DENSE_RANK ()** --- This function assigns a "dense" rank to each
+row, according to the specified sort order. 
+are skipped even if there are rows with the same values.
+For example, if two lines have the same value and occupy the second
+and the third place, then the next line will receive rank 3.
 
-Розглянемо три запити та їхні результати.
+Consider three queries and their results.
 
-<h2 align="center">Запит 1</h2>
+<h2 align="center">Request 1</h2>
 
 ```sql
 SELECT product_name
@@ -1007,12 +1009,12 @@ INNER JOIN product_groups USING (group_id);
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image21.png" width="600" />
 </div>
 
-У першому запиті використовується функція ROW_NUMBER (). Ця
-функція призначає унікальний порядковий номер кожному рядку в межах
-вікна, відповідно до вказаного порядку без сортування. Тобто перший
-рядок буде під номером 1, другий рядок --- під номером 2 і так далі.
+The first query uses the ROW_NUMBER() function. 
+function assigns a unique sequence number to each row within the range
+windows in the specified order without sorting. 
+row will be number 1, second row --- number 2 and so on.
 
-<h2 align="center">Запит 2</h2>
+<h2 align="center">Request 2</h2>
 
 ```sql
 SELECT product_name
@@ -1030,13 +1032,13 @@ INNER JOIN product_groups USING (group_id);
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image22.png" width="600" />
 </div>
 
-У другому запиті використовується функція RANK (). Ця функція призначає
-ранг кожному рядку, відповідно до вказаного порядку сортування. Ранги
-можуть пропускатись, якщо є рядки з однаковими значеннями. Наприклад,
-якщо два рядки мають однакове значення й займають друге та третє місця,
-то наступний рядок отримає ранг 4.
+The second query uses the RANK() function. 
+the rank of each row, according to the specified sort order. 
+can be skipped if there are rows with the same values. 
+if two rows have the same value and occupy the second and third places,
+then the next line will get rank 4.
 
-<h2 align="center">Запит 3</h2>
+<h2 align="center">Request 3</h2>
 
 ```sql
 SELECT product_name
@@ -1054,32 +1056,32 @@ INNER JOIN product_groups USING (group_id);
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image23.png" width="600" />
 </div>
 
-У третьому запиті використовується функція **DENSE_RANK ()**. Ця
-функція призначає «щільний» ранг кожному рядку, відповідно до вказаного
-порядку сортування. Ранги не пропускаються, навіть якщо є рядки з
-однаковими значеннями. Наприклад, якщо два рядки мають однакове значення
-й займають друге та третє місця, то наступний рядок отримає ранг 3.
+The third query uses the **DENSE_RANK()** function. 
+function assigns a "dense" rank to each row, as specified
+sorting order. 
+the same values. 
+and occupy the second and third places, then the next line will receive rank 3.
 
-<h2 align="center">Функції FIRST_VALUE і LAST_VALUE</h2>
+<h2 align="center">Functions FIRST_VALUE and LAST_VALUE</h2>
 
-У PostgreSQL існують дві віконні функції, які дозволяють отримати
-значення першого й останнього рядків у межах
-вікна: **FIRST_VALUE()** та **LAST_VALUE().**
+There are two window functions in PostgreSQL that allow you to retrieve
+values ​​of the first and last rows within the range
+windows: **FIRST_VALUE()** and **LAST_VALUE().**
 
-Ось їх опис:
+Here is their description:
 
--   **FIRST_VALUE (expression)** --- Ця функція повертає значення виразу
-    для першого рядка вікна. Вираз може бути будь-яким стовпцем або
-    виразом, який ти хочеш отримати з першого рядка. Значення
-    повертається для кожного рядка в межах вікна.
+- **FIRST_VALUE (expression)** --- This function returns the value of an expression
+for the first line of the window. 
+the expression you want to get from the first line. 
+is returned for each row within the window.
 
--   **LAST_VALUE (expression)** --- Ця функція повертає значення виразу
-    для останнього рядка вікна. Вираз може бути будь-яким стовпцем або
-    виразом, який ти хочеш отримати з останнього рядка. Значення
-    повертається для кожного рядка в межах вікна.
+- **LAST_VALUE (expression)** --- This function returns the value of an expression
+for the last line of the window. 
+the expression you want to get from the last line. 
+is returned for each row within the window.
 
-Наступний оператор використовує **FIRST_VALUE (price)** для повернення
-найнижчої ціни для кожної групи продуктів.
+The following statement uses **FIRST_VALUE (price)** to return
+the lowest price for each group of products.
 
 ```sql
 SELECT product_name
@@ -1097,8 +1099,8 @@ INNER JOIN product_groups USING (group_id);
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image24.png" width="600" />
 </div>
 
-Наступний оператор використовує **LAST_VALUE (price)** функцію для
-повернення найвищої ціни для кожної групи продуктів.
+The following statement uses the **LAST_VALUE (price)** function to
+returning the highest price for each product group.
 
 ```sql
 SELECT product_name
@@ -1117,47 +1119,47 @@ INNER JOIN product_groups USING (group_id);
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image25.png" width="600" />
 </div>
 
-<h2 align="center">Вираз RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING</h2>
+<h2 align="center">Expression RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING</h2>
 
-📌 ***RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING** --- це
-вираз у межах віконного виразу SQL, який визначає діапазон (range) для
-вікна, що охоплює всі рядки від першого до останнього рядка вікна, без
-будь-яких обмежень.*
+📌 ***RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING** --- this
+expression within an SQL window expression that defines the range for
+window covering all lines from the first to the last line of the window, without
+any restrictions.*
 
-Коли використовується вираз **RANGE BETWEEN UNBOUNDED PRECEDING AND
-UNBOUNDED FOLLOWING**, він вказує, що віконний фрейм повинен охоплювати
-всі рядки від початку вікна до його кінця, без обмежень за значеннями
-стовпців, використаних для сортування.
+When the **RANGE BETWEEN UNBOUNDED PRECEDING AND expression is used
+UNBOUNDED FOLLOWING**, it specifies that the window frame should span
+all lines from the beginning of the window to its end, without limits on values
+columns used for sorting.
 
-Це означає, що функції агрегації або віконні функції, які використовують
-цей вираз, будуть обчислювати значення на основі всіх рядків вікна,
-незалежно від значень стовпців сортування.
+This means that aggregation functions or window functions that use
+this expression, will calculate the value based on all the rows of the window,
+regardless of the values ​​of the sort columns.
 
-<h2 align="center">Функції LAG і LEAD</h2>
+<h2 align="center">LAG and LEAD functions</h2>
 
-У PostgreSQL існують дві віконні функції, які дозволяють отримувати
-значення попереднього рядка **(LAG)** та наступного рядка **(LEAD)** в
-межах вікна.
+In PostgreSQL, there are two window functions that allow you to get
+the value of the previous line **(LAG)** and the next line **(LEAD)** in
+within the window.
 
-Ось їх опис:
+Here is their description:
 
--   **LAG (expression [, offset [, default]] )** --- Ця функція
-    повертає значення виразу для попереднього рядка вікна. Вираз може
-    бути будь-яким стовпцем або виразом, який ти хочеш отримати з
-    попереднього рядка.
+- **LAG (expression [, offset [, default]] )** --- This function
+returns the value of the expression for the previous row of the window. 
+be any column or expression you want to retrieve from
+of the previous line.
 
--   Параметр **offset** визначає, скільки рядків назад від поточного
-    рядка вікна необхідно переглянути (за замовчуванням **offset = 1**,
-    тобто попередній рядок).
+- The **offset** parameter defines how many rows back from the current one
+line of the window must be viewed (by default **offset = 1**,
+i.e. previous line).
 
--   Параметр **default** вказує значення, яке буде повернено, якщо
-    попередній рядок не існує (за замовчуванням **default = NULL**).
+- The **default** parameter specifies the value to be returned if
+previous row does not exist (default = NULL**).
 
-<h2 align="center">Приклад використання функції LAG</h2>
+<h2 align="center">An example of using the LAG function</h2>
 
-Наступний оператор використовує функцію **LAG ()** для отримання цін із
-попереднього рядка й обчислення різниці між ціною поточного рядка та
-попереднього рядка.
+The following statement uses the **LAG()** function to get prices from
+of the previous line and calculating the difference between the price of the current line and
+of the previous line.
 
 ```sql
 SELECT
@@ -1180,23 +1182,23 @@ INNER JOIN product_groups USING (group_id);
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image26.png" width="600" />
 </div>
 
--   **LEAD (expression [, offset [, default]])** --- Ця функція
-    повертає значення виразу для наступного рядка вікна. Вираз може бути
-    будь-яким стовпцем або виразом, який ти хочеш отримати з наступного
-    рядка.
+- **LEAD (expression [, offset [, default]])** -- This function
+returns the value of the expression for the next line of the window. 
+any column or expression you want to get from the following
+line
 
--   Параметр **offset** визначає, скільки рядків уперед від поточного
-    рядка вікна необхідно переглянути (за замовчуванням **offset = 1**,
-    тобто наступний рядок).
+- The **offset** parameter defines how many lines ahead of the current one
+line of the window must be viewed (by default **offset = 1**,
+i.e. the next line).
 
--   Параметр **default** вказує значення, яке буде повернено, якщо
-    наступний рядок не існує (за замовчуванням **default = NULL**).
+- The **default** parameter specifies the value to be returned if
+the next line does not exist (by default **default = NULL**).
 
-<h2 align="center">Приклад використання функції LEAD</h2>
+<h2 align="center">An example of using the LEAD function</h2>
 
-Наступний оператор використовує функцію **LEAD ()** для отримання цін із
-наступного рядка й обчислення різниці між ціною поточного рядка та
-наступного рядка.
+The following statement uses the **LEAD ()** function to get prices from
+of the next line and calculating the difference between the price of the current line and
+next line
 ```sql
 SELECT
     product_name
@@ -1218,252 +1220,252 @@ INNER JOIN product_groups USING (group_id);
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image27.png" width="600" />
 </div>
 
-<h2 align="center">Висновки</h2>
+<h2 align="center">Conclusions</h2>
 
-Віконні функції в SQL надають можливість виконувати обчислення,
-агрегацію та аналіз даних у межах певних вікон або груп рядків.
-Вони доповнюють стандартні агрегатні функції, які працюють з усіма
-рядками в наборі результатів.
+Window functions in SQL provide the ability to perform calculations that
+aggregation and analysis of data within certain windows or groups of rows.
+They complement standard aggregate functions that work with everyone
+rows in the result set.
 
-Основні переваги віконних функцій:
+The main advantages of window functions:
 
--   **Розширена функціональність**. Віконні функції дозволяють
-    виконувати розрахунки й агрегації на підмножинах даних, визначених у
-    межах вікон. Це дозволяє здійснювати складні обчислення й
-    аналізувати дані на більш гранульованому рівні.
+- **Advanced functionality**. 
+perform calculations and aggregations on subsets of data defined in
+within the windows. 
+analyze data at a more granular level.
 
--   **Гнучкість**. Віконні функції можуть бути налаштовані з
-    використанням різних параметрів, таких як сортування, розбиття на
-    групи й діапазони. Це дозволяє виконувати обчислення залежно від
-    конкретних умов і впливати на розподіл результатів.
+- **Flexibility**. 
+using various parameters, such as sorting, splitting on
+groups and ranges. 
+specific conditions and affect the distribution of results.
 
--   **Ефективність**. Віконні функції дозволяють виконувати обчислення
-    на базі вікон без необхідності використовувати підзапити або
-    з\'єднання таблиць. Це може покращити продуктивність запитів і
-    зменшити складність запиту.
+- **Efficiency**. 
+based on windows without the need to use subqueries or
+connection of tables. 
+reduce query complexity.
 
-Застосування віконних функцій може бути широким --- від **розрахунку
-агрегатних показників до аналізу трендів, рейтингів, змін і патернів у
-даних**. Вони дозволяють здійснювати більш гнучкий і потужний аналіз
-даних, що відкриває нові можливості для отримання інсайтів із великих
-обсягів даних.
+The application of window functions can be extensive --- from **calculation
+aggregate indicators for the analysis of trends, ratings, changes and patterns in
+data**. 
+data, which opens up new opportunities for obtaining insights from large
+volumes of data.
 
-<h2 align="center">Найкращі практики написання та форматування коду</h2>
+<h2 align="center">Best practices for writing and formatting code</h2>
 
-Щоб бути успішним аналітиком даних, необхідно не лише мати глибокі
-знання аналітичних методів, а й уміти ефективно писати та форматувати
-SQL-код.
+To be a successful data analyst, you need more than just deep
+knowledge of analytical methods, but also be able to write and format effectively
+SQL code.
 
-Тому ми зібрали для тебе найкращі практики написання та форматування
-коду в SQL, спеціально в контексті аналітики даних. Ці рекомендації
-допоможуть покращити читабельність, підтримку й ефективність SQL-коду,
-що зі свого боку дозволить заощадити час, уникнути помилок та підвищити
-якість аналітичних рішень.
+That's why we've compiled the best writing and formatting practices for you
+code in SQL, especially in the context of data analytics. 
+will help improve the readability, maintainability and efficiency of SQL code,
+which in turn will save time, avoid mistakes and increase
+quality of analytical solutions.
 
-Сьогодні розглянемо основні принципи та стандарти форматування,
-правильне найменування об\'єктів бази даних, використання коментарів і
-документації.
+Today we will look at the basic principles and standards of formatting,
+correct naming of database objects, use of comments and
+documentation.
 
-<h2 align="center">Хороший стиль</h2>
+<h2 align="center">Good style</h2>
 
-Хороший стиль написання коду є невід\'ємною частиною розробки
-програмного забезпечення та SQL-запитів. Ось кілька ключових аспектів,
-які сприяють створенню чистого, зрозумілого та підтримуваного коду:
+Good code writing style is an integral part of development
+software and SQL queries. 
+which contribute to clean, understandable and maintainable code:
 
--   **Ідентифікатори й імена.** Правильне й осмислене найменування
-    ідентифікаторів та об\'єктів бази даних відіграє важливу роль у
-    зрозумілості коду. Також важливо, щоб вони були написані в єдиному
-    стилі.
+- **Identifiers and names.** Correct and meaningful naming
+identifiers and database objects plays an important role in
+code clarity. 
+styles
 
--   **Пробіли і відступи**. Правильне форматування коду з використанням
-    пропусків і відступів має велике значення для покращення його
-    зрозумілості. Логічне розташування пропусків і відступів допоможе
-    створювати код з більш зрозумілою структурою.
+- **Spaces and indents**. 
+omissions and indents is of great importance to improve it
+intelligibility 
+create code with a more understandable structure.
 
--   **Дата і час**. Щоб забезпечити сумісність і консистентність даних,
-    використовуй стандарт **[ISO
-    8601](https://en.wikipedia.org/wiki/ISO_8601): YYYY-MM-DD і HH:MM:SS.SSSSS **---
-    для отримання дати та часу в SQL.
+- **Date and time**. 
+use the standard **[ISO
+8601](https://en.wikipedia.org/wiki/ISO_8601): YYYY-MM-DD and HH:MM:SS.SSSSS **---
+to get the date and time in SQL.
 
--   **Функції SQL.** Одним із важливих аспектів хорошого стилю є
-    використання стандартних SQL-функцій замість специфічних функцій,
-    які надаються конкретним постачальником бази даних. Це забезпечує
-    кращу переносимість запиту.
+- **SQL Functions.** One important aspect of good style is
+using standard SQL functions instead of specific functions,
+which are provided by a particular database provider. 
+better query portability.
 
--   **Код**. Лаконічність коду відіграє важливу роль у його зрозумілості
-    та підтримці. Прикладами зайвого коду можуть бути непотрібні лапки,
-    дужки або надмірне використання оператора WHERE.
+- **Code**. 
+and support. 
+parentheses or overuse of the WHERE statement.
 
--   **Коментарі**. Коментарі є невід\'ємною частиною хорошого стилю.
-    Бажано використовувати коментарі у стилі C **--- / (початок) і \*/
-    (кінець)\*.** Або можна додавати --- перед коментарем, тоді кінцем
-    коментаря буде новий рядок.
+- **Comments**. 
+C-style comments are preferred **--- / (start) and \*/
+(end)\*.** Or you can add --- before the comment, then at the end
+the comment will be a new line.
 
-Нижче наведені приклади запитів, які оформлені відповідно до принципів
-хорошого стилю:
+Below are examples of requests that follow the guidelines
+good style:
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image28.png" width="600" />
 </div>
 
-<h2 align="center">Поганий стиль</h2>
+<h2 align="center">Bad style</h2>
 
-Поганий стиль коду може призвести до низької зрозумілості, складнощів у
-підтримці та розумінні коду іншими розробниками. Розглянемо кілька
-прикладів, щоб уникнути поширених помилок і поганого стилю в SQL-коді:
+Bad code style can lead to low comprehensibility, complexities in
+support and understanding of the code by other developers. 
+examples to avoid common mistakes and bad style in SQL code:
 
--   **CamelCase**. Використання CamelCase (де кожне слово починається з
-    великої літери, крім першого) для назв таблиць, стовпців або інших
-    об\'єктів бази даних може знизити зрозумілість коду. Рекомендується
-    використовувати роздільник між словами, такий як підкреслення або
-    пунктуаційний знак, щоб назви були більш зрозумілими,
-    наприклад, order_date замість orderDate.
+- **CamelCase**. 
+capital letters except the first) for table, column, or other names
+database objects can reduce code comprehensibility. 
+use a word separator such as an underscore or
+punctuation mark to make names more clear,
+for example, order_date instead of orderDate.
 
--   **Префікси та [[угорська
-    нотація]{.underline}](https://en.wikipedia.org/wiki/Hungarian_notation)**.
-    Використання префіксів, таких як sp\_ для збережених процедур
-    або tbl\_ для таблиць є зайвим. Ці префікси не несуть додаткової
-    інформації та ускладнюють читання коду. Рекомендується
-    використовувати змістовні назви без префіксів.
+- **Prefixes and [[Hungarian
+notation]{.underline}](https://en.wikipedia.org/wiki/Hungarian_notation)**.
+Using prefixes such as sp\_ for stored procedures
+or tbl\_ for tables is redundant. 
+information and make the code more difficult to read. 
+use meaningful names without prefixes.
 
--   **Множина**. Використання множини для назв таблиць або стовпців може
-    викликати плутанину. Рекомендується використовувати більш природні
-    колективні поняття для назв, щоб покращити розуміння коду.
-    Наприклад, staff замість employees або people замість individuals.
+- **Plurality**. 
+cause confusion 
+collective concepts for names to improve code understanding.
+For example, staff instead of employees or people instead of individuals.
 
--   **Ідентифікатори в лапках**. Якщо тобі дійсно необхідно використати
-    ідентифікатори в лапках, то слід використовувати подвійні лапки,
-    визначені у
-    стандарті [[SQL-92]{.underline}](https://en.wikipedia.org/wiki/SQL-92).
-    Це забезпечить кращу переносимість коду між різними системами
-    керування базами даних.
+- **Identifiers in quotation marks**. 
+identifiers in quotes, double quotes should be used,
+defined in
+standards [[SQL-92]{.underline}](https://en.wikipedia.org/wiki/SQL-92).
+This will ensure better code portability between different systems
+database management.
 
-<h2 align="center">Умови найменування</h2>
+<h2 align="center">Naming conditions</h2>
 
--   Переконайся, що ім'я є **унікальним** і не є зарезервованим ключовим
-    словом.
+- Make sure the name is **unique** and not a reserved key
+in a word
 
--   Максимальна довжина становить 30 байтів --- на практиці це 30
-    символів, якщо ти не використовуєш багатобайтовий набір символів.
+- The maximum length is 30 bytes --- in practice it is 30
+characters unless you are using a multibyte character set.
 
--   **Імена повинні починатися з літери** й не можуть закінчуватися
-    символом підкреслення.
+- **Names must start with a letter** and cannot end
+underscore character.
 
--   Використовуй лише літери, цифри та підкреслення в іменах.
+- Use only letters, numbers and underscores in names.
 
--   **Уникай використання кількох послідовних символів підкреслення**
-    --- їх важко прочитати.
+- **Avoid multiple consecutive underscores**
+--- they are difficult to read.
 
--   **Використовуй символи підкреслення там, де ти природно додав
-    би/додала б пробіл** до назви (наприклад, ім'я буде **first_name**,
-    а не **first name**).
+- **Use underscores where you would naturally add them
+would add a space** to the name (for example, the name would be **first_name**,
+not **first name**).
 
--   **Уникай скорочень**, і якщо тобі потрібно їх використовувати,
-    переконайся, що вони зрозумілі або широко застосовуються.
+- **Avoid abbreviations** and if you must use them,
+make sure they are clear or widely applicable.
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image29.png" width="600" />
 </div>
 
-<h2 align="center">Таблиці</h2>
+<h2 align="center">Tables</h2>
 
--   **Використовуй збірну назву** або, що менш ідеально, форму множини.
-    Наприклад (у порядку переваги), staff і employees.
+- **Use the collective name** or, less ideally, the plural form.
+For example (in order of preference), staff and employees.
 
--   **Не використовуй префікс tbl**, або будь-який інший такий описовий
-    префікс, або угорську нотацію.
+- **Do not use tbl prefix** or any other such descriptive
+prefix, or Hungarian notation.
 
--   **Ніколи не називай таблицю так само, як один з її стовпців**, і
-    навпаки.
+- **Never name a table the same as one of its columns**, and
+vice versa.
 
--   Уникай, де це можливо, об'єднання двох імен таблиць разом, щоб
-    створити назву таблиці зв'язків. Замість cars_mechanics віддавай
-    перевагу services.
+- Avoid, where possible, joining two table names together to
+create relationship table name. 
+service preference.
 
-<h2 align="center">Стовпці</h2>
+<h2 align="center">Columns</h2>
 
--   **Завжди використовуй назву в однині**.
+- **Always use singular title**.
 
--   **Якщо можливо, уникай простого використання id** як основного
-    ідентифікатора для таблиці (або використовуй конвенції, прийняті
-    спільнотою).
+- **Avoid simply using id** as the primary if possible
+identifier for the table (or use the conventions accepted
+community).
 
--   **Не додавай стовпець з такою самою назвою, як у таблиці**, і
-    навпаки.
+- **Do not add a column with the same name as in the table**, and
+vice versa.
 
--   **Завжди використовуй нижній регістр**, за винятком тих випадків,
-    коли верхній регістр може мати сенс, наприклад, власні назви.
+- **Always use lower case**, except when
+when uppercase can make sense, such as proper names.
 
-<h2 align="center">Псевдонім або кореляції</h2>
+<h2 align="center">Alias ​​or correlations</h2>
 
--   Повинні певним чином пов'язуватися з об'єктом або виразом, який вони
-    створюють.
+- Must be associated in a certain way with the object or expression that they are
+create
 
--   Як правило, ім'я кореляції має починатися з першої літери кожного
-    слова в назві об\'єкта.
+- As a general rule, the correlation name should start with the first letter of each
+words in the name of the object.
 
--   Якщо вже існує кореляція з такою самою назвою, додай число.
+- If there is already a correlation with the same name, add the number.
 
--   **Завжди додавай ключове слово AS** --- це полегшує читання,
-    оскільки воно є явним.
+- **Always add the AS keyword** --- it makes it easier to read,
+because it is obvious.
 
--   Для обчислюваних даних (**SUM()** або **AVG()**) використовуй ім'я,
-    яке ти б дав/-ла їм, якби цей стовпець був визначений у схемі.
+- For calculated data (**SUM()** or **AVG()**) use the name
+which you would give them if this column was defined in the schema.
 
-<h2 align="center">Збережені процедури</h2>
+<h2 align="center">Stored procedures</h2>
 
-Назва має містити дієслово.
+The name must contain a verb.
 
-Не використовуй префікс **sp\_**, або будь-який інший описовий префікс,
-чи угорську нотацію.
+Do not use the **sp\_** prefix, or any other descriptive prefix,
+or Hungarian notation.
 
-<h2 align="center">Однорідні суфікси</h2>
+<h2 align="center">Homogeneous suffixes</h2>
 
-Наступні суфікси мають універсальне значення, що забезпечує легке
-читання та розуміння стовпців із коду SQL. Використовуй правильний
-суфікс там, де це доречно.
+The following suffixes have a universal meaning that provides easy
+reading and understanding columns from SQL code. 
+suffix where appropriate.
 
--   **\_id** --- унікальний ідентифікатор, наприклад, стовпець, що є
-    первинним ключем;
+- **\_id** --- a unique identifier, such as the column that is
+primary key;
 
--   **\_status** --- значення прапорця або інший статус будь-якого типу,
-    наприклад, publication_status;
+- **\_status** --- flag value or other status of any type,
+for example, publication_status;
 
--   **\_total** --- загальна сума або сума набору значень;
+- **\_total** --- total sum or sum of a set of values;
 
--   **\_num** --- позначає, що поле містить будь-який тип чисел;
+- **\_num** --- indicates that the field contains any type of numbers;
 
--   **\_name** --- позначає таке ім'я, як first_name;
+- **\_name** --- denotes a name such as first_name;
 
--   **\_seq** --- містить безперервну послідовність значень;
+- **\_seq** --- contains a continuous sequence of values;
 
--   **\_date** --- позначає стовпець, що містить дату;
+- **\_date** --- denotes a column containing a date;
 
--   **\_tally** --- підрахунок;
+- **\_tally** --- tally;
 
--   **\_size** --- розмір чогось, наприклад, файлу або одягу;
+- **\_size** --- the size of something, for example, a file or clothes;
 
--   **\_addr** --- адреса для запису, може бути фізичною або
-    нематеріальною, наприклад, ip_addr.
+- **\_addr** --- address to write, can be physical or
+intangible, such as ip_addr.
 
-<h2 align="center">Зарезервовані слова</h2>
+<h2 align="center">Reserved words</h2>
 
-Найкраще уникати скорочених ключових слів і використовувати повні
-ключові слова, якщо вони доступні (віддавай
-перевагу **ABSOLUTE** замість **ABS**).
+It is best to avoid abbreviated keywords and use full keywords
+keywords, if they are available (give
+prefer **ABSOLUTE** instead of **ABS**).
 
-Не використовуй ключові слова, специфічні для сервера баз даних, якщо
-існує відповідне ключове слово **ANSI SQL**, яке виконує таку саму
-функцію. Це допомагає зробити код більш переносимим.
+Do not use database server-specific keywords unless
+there is a corresponding **ANSI SQL** keyword that does the same thing
+function 
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image30.png" width="600" />
 </div>
 
-<h2 align="center">Порожній простір</h2>
+<h2 align="center">Empty space</h2>
 
-Для полегшення читання коду важливо використовувати правильне та
-узгоджене доповнення пробілів.
+It is important to use the correct and to make the code easier to read
+consistent padding of spaces.
 
 ```sql
 SELECT product_name
@@ -1485,55 +1487,55 @@ ORDER BY group_name
        , price DESC;
 ```
 
-Цей стиль форматування поєднує переваги вертикального вирівнювання з
-ізоляцією складних виразів, що забезпечує максимальну читабельність,
-підтримуваність та стійкість до помилок при редагуванні.
+This formatting style combines the benefits of vertical alignment with
+isolation of complex expressions, which ensures maximum readability,
+maintainability and resistance to editing errors.
 
-1.  **Використання ком на початку рядка (Prefix Commas)**
+1. **Use of commas at the beginning of the line (Prefix Commas)**
 
-Коми розміщуються на початку кожного рядка, що містить елемент списку
-(SELECT або ORDER BY).
+Commas are placed at the beginning of each line containing a list item
+(SELECT or ORDER BY).
 
-Чітка Ізоляція:
+Clear Isolation:
 
--   Кожен елемент списку починається з розділювача (коми), що робить
-    кожен рядок незалежним й зручним до сприйняття.
+- Each element of the list begins with a separator (comma), which does
+each line independent and easy to understand.
 
--   Стійкість до Помилок (Debugging): Щоб закоментувати або видалити
-    стовпець (group_name), Вам не потрібно змінювати попередній рядок і
-    видаляти кому. Це мінімізує ризик синтаксичних помилок і прискорює
-    тестування.
+- Resistance to Errors (Debugging): To comment or delete
+column (group_name), You do not need to change the previous row and
+remove comma 
+testing
 
--   Легке Додавання: Додавання нового стовпця завжди відбувається шляхом
-    вставлення нового рядка, що починається з ,.
+- Easy Addition: Adding a new column is always done by a path
+inserting a new line starting with ,.
 
-2.  **Вертикальне розділення віконних функцій (LAG OVER)**
+2. **Vertical separation of window functions (LAG OVER)**
 
--   **clause** **OVER** має бути розділена на окремі рядки з додатковим
-    відступом.
+- **clause** **OVER** must be separated into separate lines with additional
+retreat
 
--   Чітке Виділення Логіки: Віконні функції **(LAG, ROW_NUMBER, SUM**
-    тощо) є найскладнішими частинами запиту. Виділення вмісту **OVER**
-    на окремі рядки **(PARTITION BY, ORDER BY)** робить логіку
-    визначення вікна миттєво зрозумілою.
+- Clear Selection of Logic: Window functions **(LAG, ROW_NUMBER, SUM**
+etc.) are the most difficult parts of the query. 
+on individual lines **(PARTITION BY, ORDER BY)** makes logic
+the definition of the window is instantly clear.
 
--   Читабельність Складових Частин: Замість одного довгого рядка, який
-    ховається за полем зору, логіка вирівнюється вертикально, що нагадує
-    структуру **GROUP BY** та **ORDER BY**.
+- Readability of Constituent Parts: Instead of one long line which
+hides behind the field of vision, the logic is aligned vertically, which reminds
+structure **GROUP BY** and **ORDER BY**.
 
-3.  **Групування та відступи clause**
+3. **Grouping and indentation clause**
 
--   **Основні clause** **(FROM, WHERE, ORDER BY)** починаються на новому
-    рядку без відступу.
+- **Main clauses** **(FROM, WHERE, ORDER BY)** start on a new one
+line without indentation.
 
--   **Логічні Блоки**: З\'єднання **(INNER JOIN)** та умови фільтрації
-    (WHERE) починаються на новому рядку, але наступні елементи **(USING,
-    AND)** також мають відступи для візуального зв\'язку з батьківською
+- **Logical Blocks**: Connection **(INNER JOIN)** and filtering conditions
+(WHERE) start on a new line, but the following elements **(USING,
+AND)** are also indented for visual communication with the parent
     clause.
 
--   **Умови Фільтрації**: Кожна незалежна умова у **WHERE** (з\'єднана
-    **AND** або **OR**) має бути на новому рядку, щоб чітко бачити
-    логіку фільтрації.
+- **Filtering Conditions**: Each independent condition in **WHERE** (connected
+**AND** or **OR**) must be on a new line to see clearly
+filtering logic.
 
-Такий стиль забезпечує послідовність та прозорість коду, що є критичним
-для довгострокової підтримки та співпраці.
+This style ensures code consistency and transparency, which is critical
+for long-term support and cooperation.

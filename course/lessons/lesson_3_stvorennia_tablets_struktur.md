@@ -1,79 +1,81 @@
-<h2 align="center">Мова опису даних (DDL) (views, materialized views, tables)</h2>
+﻿**Language:** English | [Українська](../../i18n/uk/course/lessons/lesson_3_stvorennia_tablets_struktur.md)
 
-**Data Definition Language (DDL)** --- це мова, яка використовується для
-створення, модифікації та видалення структур бази даних. Вона дозволяє
-нам створювати та змінювати таблиці, визначати стовпці, а також
-створювати індекси та обмеження. **DDL** також включає команди для
-управління іншими об'єктами, такими як схеми, представлення (views) **та матеріалізовані представлення **(materialized views).**
+<h2 align="center">Data description language (DDL) (views, materialized views, tables)</h2>
 
--   **Таблиці (tables)** --- це основні об\'єкти бази даних, у яких
-    зберігаються фактичні дані. Вони складаються з рядків і стовпців,
-    які організовують інформацію у структурованому форматі. Таблиці є
-    основою для зберігання, керування й обробки даних у базі даних.
+**Data Definition Language (DDL)** is the language used to
+creation, modification and deletion of database structures. 
+us to create and modify tables, define columns, and
+create indexes and constraints. 
+managing other objects, such as schemas, views, and materialized views.**
 
--   **Представлення (views)** --- це віртуальні таблиці, які базуються
-    на реальних даних з однієї або декількох таблиць. Вони дозволяють
-    нам створювати «види» даних, які відображають лише потрібну
-    інформацію та приховують складні запити або конфіденційні дані.
-    Представлення спрощують роботу з даними, забезпечуючи зручний доступ
-    до необхідної інформації.
+- **Tables** --- these are the main database objects in which
+actual data is stored. 
+which organize information in a structured format. 
+the basis for storing, managing and processing data in the database.
 
--   **Матеріалізовані представлення (materialized views)** --- це
-    спеціальний тип представлень, які зберігають фактичні дані у вигляді
-    фізичної таблиці. Вони корисні, коли нам потрібно створити кеш або
-    попередньо обчислені дані для оптимізації продуктивності запитів.
-    **Матеріалізовані представлення можуть значно прискорити виконання
-    запитів і покращити продуктивність бази даних.**
+- **Views** --- these are virtual tables that are based
+on real data from one or more tables. 
+we need to create "views" of data that display only what we need
+information and hide complex queries or sensitive data.
+Views simplify working with data by providing convenient access
+to the necessary information.
 
-*📎 Вивчення **мови опису даних (DDL)** надає нам можливість створювати,
-змінювати структуру бази даних і керувати нею. Ми можемо створювати
-таблиці для зберігання даних, встановлювати типи даних та обмеження для
-стовпців, а також створювати представлення та матеріалізовані
-представлення для зручного доступу до інформації.*
+- **Materialized views (materialized views)** --- this
+a special type of views that store actual data in a form
+physical table. 
+precomputed data to optimize query performance.
+**Materialized views can significantly speed up execution
+queries and improve database performance.**
 
-Розуміння **мови опису даних (DDL)** допомагає ефективно працювати з
-базами даних, створювати правильні структури даних, оптимізувати
-продуктивність запитів і забезпечувати зручний доступ до необхідної
-інформації.
+*📎 Learning **data description language (DDL)** gives us the ability to create,
+change the structure of the database and manage it. 
+tables to store data, set data types and restrictions for
+columns, and create views and materialized
+presentation for convenient access to information.*
 
-<h2 align="center">Команди DDL</h2>
+An understanding of **data description language (DDL)** helps to work efficiently with
+databases, create correct data structures, optimize
+query performance and provide convenient access to the necessary
+information
 
-DDL --- це набір команд SQL, які використовуються для створення, зміни
-та видалення структур бази даних, але не даних. Ці команди переважно не
-застосовуються звичайним користувачем бази. Вони є частиною роботи
-архітекторів і бізнес-аналітиків.
+<h2 align="center">DDL commands</h2>
 
-Список команд DDL:
+DDL is a set of SQL commands used to create, modify
+and deleting database structures but not data. 
+are used by an ordinary user of the database. 
+architects and business analysts.
 
--   **Команда CREATE** використовується для створення бази даних або її
-    об'єктів (таблиці, індексу, функції, представлень, процедури
-    зберігання та тригерів). Наприклад, CREATE TABLE використовується
-    для створення таблиці, CREATE VIEW --- для створення представлення.
+List of DDL commands:
 
--   **Команда DROP** використовується для видалення об'єктів із бази
-    даних. Наприклад, DROP TABLE видаляє таблицю, DROP VIEW видаляє
-    представлення.
+- The **CREATE** command is used to create a database or its
+objects (tables, indexes, functions, representations, procedures
+storage and triggers). 
+to create a table, CREATE VIEW--- to create a view.
 
--   Команда ALTER використовується для зміни структури бази даних.
-    Наприклад, ALTER TABLE використовується для додавання, зміни або
-    видалення стовпців у таблиці.
+- The **DROP** command is used to remove objects from the database
+data 
+representation.
 
--   **Команда TRUNCATE** використовується для видалення всіх записів із
-    таблиці, зокрема для видалення усіх виділених для записів місць. Це
-    швидший спосіб видалення даних, аніж використання команди DELETE.
+- The ALTER command is used to change the structure of a database.
+For example, ALTER TABLE is used to add, modify, or
+deleting columns in a table.
 
--   **Команда RENAME** використовується для перейменування об'єкта, що
-    існує в базі даних. Наприклад, RENAME TABLE дозволяє перейменувати
-    таблицю.
+- **TRUNCATE** command is used to remove all records from
+table, in particular to delete all places allocated for records. 
+a faster way to delete data than using the DELETE command.
 
-Давай розглянемо детальніше команду **CREATE**, оскільки вона часто
-зустрічається в різних документаціях, тому ти постійно будеш бачити цей
-синтаксис. Із рештою команд ти зможеш ознайомитися самостійно.
+- The **RENAME** command is used to rename an object that
+exists in the database. 
+table
 
-<h2 align="center">Команда CREATE</h2>
+Let's take a closer look at the **CREATE** command, since it is frequent
+appears in various documentation, so you'll see this one all the time
+syntax. 
 
-Щоб створити нову таблицю, тобі потрібно використати **CREATE TABLE** із
-таким синтаксисом:
+<h2 align="center">The CREATE command</h2>
+
+To create a new table, you need to use **CREATE TABLE** with
+with the following syntax:
 
 ```sql
 CREATE TABLE table_name (
@@ -84,31 +86,31 @@ CREATE TABLE table_name (
 );
 ```
 
-Мінімально необхідна інформація для створення нової таблиці --- це ім\'я
-таблиці та ім\'я стовпця.
+The minimum information required to create a new table is a name
+table and column name.
 
-Ім\'я таблиці повинно бути унікальним у базі даних. Якщо ти створюєш
-таблицю з ім\'ям, яке вже існує, система баз даних видасть помилку.
+The table name must be unique in the database. 
+table with a name that already exists, the database system will issue an error.
 
-У **CREATE TABLE** ти вказуєш список стовпців, розділених комами. Кожен
-стовпець визначається ім\'ям, типом даних, значенням за замовчуванням і
-за потреби одним або декількома обмеженнями.
+In **CREATE TABLE** you specify a list of columns separated by commas. 
+column is defined by name, data type, default value, and
+if necessary by one or more restrictions.
 
--   **Тип даних** стовпця визначає, які типи даних можуть бути збережені
-    в цьому стовпці. Це можуть бути числа, рядки, дати тощо (ми
-    обговорювали це раніше).
+- The **DataType** of the column defines what types of data can be stored
+in this column. 
+discussed this earlier).
 
--   **Обмеження стовпця** визначає тип значення, яке можна зберігати у
-    стовпці. Наприклад, **NOT** **NULL** гарантує, що стовпець не
-    містить значення **NULL**.
+- **Column Constraint** determines the type of value that can be stored in
+columns 
+contains the value **NULL**.
 
--   **Стовпець може мати кілька обмежень**. Наприклад, username може
-    мати обидва обмеження: **NOT NULL** і **UNIQUE**.
+- **Column may have multiple constraints**. 
+have both **NOT NULL** and **UNIQUE** constraints.
 
-Припустимо, що ти хочеш додати до нашої схеми таблицю із тренінговими
-програмами для співробітників.
+Suppose you want to add a table with training values ​​to our scheme
+programs for employees.
 
-Наступна команда створює таблицю з курсами:
+The following command creates a table with rates:
 
 ```sql
 CREATE TABLE courses (
@@ -117,140 +119,140 @@ CREATE TABLE courses (
 );
 ```
 
-Тип даних **course_id** позначається ключовим словом **SERIAL**.
+The **course_id** data type is denoted by the **SERIAL** keyword.
 
-Значення стовпця **course_id** дорівнює **PRIMARY KEY**. Це означає, що
-коли ти вставляєш новий рядок у courses без надання значення для
-**course_id**, система бази даних згенерує ціле значення для стовпця.
+The **course_id** column value is **PRIMARY KEY**. 
+when you insert a new line in courses without providing a value for
+**course_id**, the database system will generate an integer value for the column.
 
--   **Course_name** --- назви курсів. Його типом даних є рядок символів
-    **(VARCHAR)** з максимальною довжиною 50 символів.
+- **Course_name** --- course names. 
+**(VARCHAR)** with a maximum length of 50 characters.
 
--   **NOT NULL** гарантує, що у стовпці не зберігаються
-    значення **NULL** (адже курси без назв нас не цікавлять).
+- **NOT NULL** ensures that the column is not stored
+the value **NULL** (because we are not interested in courses without names).
 
-**Створення спеціальних об\'єктів в SQL (представлення та
-матеріалізовані представлення)**
+**Creation of special objects in SQL (presentation and
+materialized views)**
 
-<h2 align="center">Views у SQL</h2>
+<h2 align="center">Views in SQL</h2>
 
-📌 Представлення **(View)** --- це логічна й віртуальна копія таблиці,
-яка створюється шляхом виконання оператора **SELECT**. **View**
---- логічна структура даних, яка не містить власних фізичних значень, а
-формується на основі даних, що вже зберігаються в інших
-таблицях. **View** не зберігаються окремо на диску. Таким чином, кожного
-разу, коли тобі необхідні певні дані, потрібно виконувати запит до
-відповідного представлення. Але сам вираз запиту зберігається на диску.
+📌 Representation **(View)** --- is a logical and virtual copy of the table,
+which is created by executing a **SELECT** statement. 
+--- a logical data structure that does not contain physical values ​​of its own, a
+is formed on the basis of data already stored in others
+tables. 
+whenever you need certain data, you need to perform a query to
+corresponding representation. 
 
-**View** не мають вартості зберігання/оновлення. Перегляди розроблено з
-особливою архітектурою, яка означає, що для визначення структури
-представлення існує стандарт **SQL**. Представлення використовуються,
-коли доступ до даних необхідний рідко, але дані часто оновлюються.
+**View** have no storage/update cost. 
+special architecture, which means that to define the structure
+representation there is a standard **SQL**. 
+when access to the data is rarely needed, but the data is frequently updated.
 
-Навіщо нам потрібні **Views?** Ось декілька важливих причин:
+Why do we need **Views?** Here are some important reasons:
 
--   **Спрощення запитів**
+- **Simplification of requests**
 
-Представлення дозволяють нам створювати «види» даних, які відображають
-лише потрібну інформацію з однієї або декількох таблиць. Ми можемо
-об\'єднувати, фільтрувати та перетворювати дані у представленнях, щоб
-отримати потрібні результати. Це спрощує запити до даних і робить їх
-більш читабельними та зрозумілими.
+Views allow us to create "views" of data that we represent
+only the necessary information from one or more tables. 
+combine, filter, and transform data in views to
+get the results you want. 
+more readable and understandable.
 
--   **Приховані складності**
+- **Hidden Difficulties**
 
-Якщо в нас є складні запити, які часто використовуються в нашому
-застосунку, ми можемо створити представлення для цих запитів. Це
-дозволяє нам приховати складність запиту за простим ім\'ям
-представлення. Ми можемо звертатися до представлення замість написання
-довгого і складного запиту кожного разу.
+If we have complex queries that are often used in our
+application, we can create views for these queries. 
+allows us to hide the complexity of the query behind a simple name
+representation. 
+a long and complex request every time.
 
--   **Безпека й обмеження**
+- **Safety and Restrictions**
 
-Представлення можуть бути використані для обмеження доступу до даних. Ми
-можемо створювати представлення, які показують лише певні стовпці або
-рядки даних, приховуючи конфіденційну інформацію. Також ми можемо
-надавати різні права доступу до представлень для різних користувачів або
-ролей, гарантуючи безпеку даних.
+Views can be used to restrict access to data. 
+can create views that show only certain columns or
+rows of data, hiding sensitive information. 
+provide different access rights to views for different users or
+roles, ensuring data security.
 
--   **Модульність і повторне використання**
+- **Modularity and Reusability**
 
-Представлення можуть бути застосовані для створення модульних блоків
-даних, які можуть бути повторно використані в різних частинах системи.
-Ми можемо створювати представлення для різних звітів, аналізів або інших
-завдань і використовувати їх у різних запитах або застосунках.
+Representations can be applied to create modular blocks
+data that can be reused in different parts of the system.
+We can create views for various reports, analysis or others
+tasks and use them in different queries or applications.
 
--   **Оптимізація продуктивності**
+- **Performance optimization**
 
-Представлення можуть бути використані для створення попередньо
-обчислених результатів запитів. Ми можемо створити представлення, яке
-містить складний запит з обчисленнями або агрегатними функціями, і
-зберегти його результати. Це дозволяє прискорити виконання запитів,
-оскільки вони можуть звертатися до попередньо обчислених даних замість
-виконання складних операцій кожного разу.
+Presentations can be used to create a pre
+calculated query results. 
+contains a complex query with calculations or aggregate functions, and
+save its results. 
+because they can refer to precomputed data instead
+performing complex operations every time.
 
-📌 Представлення **(Views)** покращують читабельність запитів, сприяють
-безпеці даних, дозволяють повторно використовувати код і покращують
-продуктивність системи.
+📌 Presentations **(Views)** improve the readability of requests, contribute
+data security, allow code reuse and improve
+system performance.
 
 <h2 align="center">Materialized views</h2>
 
-📌 **Materialized views** (матеріалізовані представлення) в SQL є
-спеціальним типом представлень **(views)**, які фізично зберігають дані
-у вигляді таблиці. Матеріалізовані представлення містять реальні дані,
-на відміну від звичайних представлень, що є віртуальними і формуються
-динамічно під час виконання запиту. Їх можна оновлювати періодично або
-за запитом.
+📌 There are **Materialized views** (materialized views) in SQL
+a special type of **(views)** that physically store data
+in the form of a table. 
+in contrast to ordinary representations, which are virtual and formative
+dynamically during query execution. 
+upon request
 
-Продуктивність **materialized views** краща, ніж у звичайних. Це тому,
-що дані зберігаються на диску.
+The performance of **materialized views** is better than that of ordinary views. 
+that data is stored on disk.
 
-Іноді **Materialized views** також називають **«індексованими
-представленнями»**, оскільки таблиця, створена після запиту,
-індексується, що дозволяє отримати доступ до неї швидше й ефективніше.
-Materialized views використовуються, коли необхідно часто звертатися до
-даних, а дані в таблиці оновлюються нечасто.
+Sometimes **Materialized views** are also called **"indexed".
+views"**, since the table created after the query
+is indexed, which allows you to access it faster and more efficiently.
+Materialized views are used when you need to refer to frequently
+data, and the data in the table is updated infrequently.
 
-Для чого нам потрібні матеріалізовані представлення? Ось кілька важливих
-причин:
+Why do we need materialized views? 
+reasons:
 
--   **Покращення продуктивності запитів**
+- **Improving query performance**
 
-Матеріалізовані представлення дозволяють зберігати результати складних
-запитів або агрегатних функцій у вигляді фізичної таблиці. Це
-дозволяє прискорити виконання запитів, оскільки вони можуть отримувати
-доступ до попередньо обчислених даних, замість того, щоб виконувати
-складні операції кожного разу. Матеріалізовані представлення особливо
-корисні в ситуаціях, коли запити вимагають значного обсягу обчислень або
-працюють з великими обсягами даних.
+Materialized views allow you to store complex results
+queries or aggregate functions in the form of a physical table. 
+allows you to speed up the execution of requests as they can receive
+access precomputed data instead of executing
+complex operations every time. 
+useful in situations where queries require a significant amount of computation or
+work with large volumes of data.
 
--   **Зменшення навантаження на базу даних**
+- **Reducing the load on the database**
 
-Якщо в нас є складні запити, які виконуються часто й вимагають значних
-ресурсів, матеріалізовані представлення дозволяють зменшити навантаження
-на базу даних. Ми можемо попередньо обчислити та зберегти результати цих
-запитів у матеріалізованих представленнях, що зменшує кількість виконань
-складних операцій і скорочує час для відгуку системи.
+If we have complex queries that are executed frequently and require significant
+resources, materialized views allow you to reduce the load
+to the database. 
+queries in materialized views, which reduces the number of executions
+complex operations and reduces system response time.
 
--   **Підтримка звітності й аналітики**
+- **Reporting and analytics support**
 
-Матеріалізовані представлення можуть бути використані для попередньої
-підготовки даних для звітів та аналітичних задач. Ми можемо створити
-матеріалізоване представлення, яке містить складні обчислення, агрегатні
-функції або зведені дані, і періодично оновлювати його. Це дозволяє нам
-швидко отримувати результати для звітів та аналізу без необхідності
-виконувати тривалі запити кожного разу.
+Materialized views can be used for the former
+preparation of data for reports and analytical tasks. 
+a materialized view that contains complex calculations, aggregates
+features or aggregated data, and update it periodically. 
+quickly get results for reports and analysis without the need
+perform long queries every time.
 
--   **Підтримка реплікації даних**
+- **Support for data replication**
 
-Матеріалізовані представлення можуть бути використані для створення
-локальних копій даних на віддалених серверах або в різних базах даних.
-Це забезпечує швидкий доступ до даних на віддалених вузлах без
-необхідності передавати дані через мережу. Матеріалізовані представлення
-можуть бути оновлені за розкладом або за вимогою, щоб синхронізувати
-дані з джерелом.
+Materialized views can be used to create
+local copies of data on remote servers or in different databases.
+It provides fast access to data on remote nodes without
+the need to transfer data over the network. 
+can be updated on a schedule or on demand to synchronize
+data with source.
 
-<h2 align="center">Відмінність views від materialized views</h2>
+<h2 align="center">The difference between views and materialized views</h2>
 
 
 <div align="center" style="text-align:  font-size: 24px">Основна різниця між звичайними представленнями (views) і матеріалізованими представленнями (materialized views) в SQL:</div>
@@ -260,12 +262,12 @@ Materialized views використовуються, коли необхідн�
   <img src="../../assets/images/lesson_3_stvorennia_tablets_struktur/media/image1.png" width="600" />
 </div>
 
-Як створювати **views** та **materialized views**
+How to create **views** and **materialized views**
 
-Давай спробуємо створити два типи **View** на практиці за допомогою
-команди **CREATE**.
+Let's try to create two types of **View** in practice using
+**CREATE** commands.
 
-Запит для **View**:
+Request for **View**:
 
 ```sql
 CREATE VIEW employees_details AS
@@ -276,11 +278,11 @@ SELECT employee_id
 FROM HR.employees;
 ```
 
-У цьому прикладі ми створюємо **VIEW** з назвою **«employee_details»**,
-який відображає інформацію про співробітників, зокрема їхні
-ідентифікатори, імена та робочий відділ.
+In this example, we create a **VIEW** named **"employee_details"**,
+which displays information about employees, including their
+identifiers, names and work department.
 
-Запит для **Materialized View**:
+Request for **Materialized View**:
 
 ```sql
 CREATE MATERIALIZED VIEW department_statistics AS
@@ -290,83 +292,83 @@ FROM HR.employees
 GROUP BY department_id;
 ```
 
-У цьому прикладі ми створюємо матеріалізований **VIEW** з назвою
-**«department_statistics»**, який містить статистику за
-відділами. **Materialized View** зберігає результати запиту до таблиці,
-що дозволяє швидший доступ до даних, але може потребувати оновлення у
-процесі зміни даних у базі даних.
+In this example, we create a materialized **VIEW** named
+**"department_statistics"**, which contains statistics for
+departments 
+which allows faster access to data, but may require an update to the
+the process of changing data in the database.
 
-Розташовані вони в окремому переліку у схемі даних. Дивимося на скрін:
+They are located in a separate list in the data schema. 
 
 <div align="center">
   <img src="../../assets/images/lesson_3_stvorennia_tablets_struktur/media/image2.png" width="600" />
 </div>
 
-Отож, зафіксуємо найголовніше:
+So, let's fix the most important thing:
 
--   **Мова опису даних** **(DDL)** і **команди** **DDL** дозволяють
-    створювати, змінювати й видаляти об\'єкти бази даних, ефективно
-    керувати структурою даних та забезпечувати цілісність бази даних.
+- **Data Description Language** **(DDL)** and **DDL** commands** allow
+create, modify and delete database objects efficiently
+manage data structure and ensure database integrity.
 
--   **Таблиці** **(tables)** --- основні об\'єкти зберігання даних у
-    базі даних. Вони визначають структуру даних, їх типи та зв\'язки між
-    ними.
+- **Tables** **(tables)** --- the main objects of data storage in
+database. 
+them
 
--   **Представлення (views)** --- це віртуальні таблиці, які дають
-    можливість зручно об\'єднати дані з однієї або кількох таблиць і
-    представити їх у вигляді логічної структури.
+- **Views** --- these are virtual tables that give
+the ability to conveniently combine data from one or more tables and
+present them in the form of a logical structure.
 
--   **Представлення (views)** поліпшують читабельність і безпеку
-    запитів, дозволяють повторно використовувати код і покращують
-    продуктивність, забезпечуючи спрощений доступ до даних.
+- **Views** improve readability and security
+requests, allow code reuse and improve
+productivity by providing simplified access to data.
 
--   **Матеріалізовані представлення (materialized views)** --- це
-    спеціальний тип представлень, які фізично зберігають дані у вигляді
-    таблиці.
+- **Materialized views (materialized views)** --- this
+a special type of representation that physically stores data in a form
+tables.
 
--   **Матеріалізовані представлення (materialized views)** дозволяють
-    покращити продуктивність запитів, знизити навантаження на базу
-    даних, підтримувати звітність і аналітику, а також забезпечувати
-    локальну реплікацію даних.
+- **Materialized views** are allowed
+improve the performance of requests, reduce the load on the database
+data, support reporting and analytics, and provide
+local data replication.
 
-<h2 align="center">Підзапити та віртуальні таблиці CTE</h2>
+<h2 align="center">Subqueries and CTE virtual tables</h2>
 
-Підзапити та віртуальні таблиці **CTE (Common Table Expressions)** ---
-це функціональні можливості, що використовуються в мові запитів **SQL**
-для побудови складних та ефективних запитів.
+Subqueries and Virtual Tables **CTE (Common Table Expressions)** ---
+is the functionality used in the query language **SQL**
+to build complex and efficient queries.
 
-📌 **Підзапити в SQL** --- це запити, які вкладаються в основний запит і
-виконуються перед ним. Результат виконання підзапиту потім
-використовується в основному запиті.
+📌 **Subqueries in SQL** --- these are queries that are nested in the main query and
+are performed before him. 
+used in the main query.
 
-Підзапит може бути використаний у різних частинах **SQL**-запиту, таких
-як **SELECT, FROM, WHERE, JOIN** або **UNION**, і може повертати одне
-або кілька значень.
+A subquery can be used in different parts of an **SQL** query, such as
+as **SELECT, FROM, WHERE, JOIN**, or **UNION**, and can return one
+or multiple values.
 
-📌 **CTE (Common Table Expression)** --- це назва тимчасової таблиці,
-яка створюється в пам\'яті під час виконання
-**SQL**-запиту. **CTE** використовується для організації складних
-запитів шляхом розбиття їх на менші, зрозуміліші частини. Результати
-**CTE** можуть бути використані в основному запиті, ніби це єдине
-джерело даних.
+📌 **CTE (Common Table Expression)** --- this is the name of a temporary table,
+which is created in memory during execution
+**SQL** query. 
+queries by breaking them into smaller, more understandable parts. 
+**CTEs** can be used in the main query as if it were the only one
+data source.
 
-Основними перевагами використання підзапитів і **CTE** є зручність,
-можливість зробити запит більш читабельним та підтримуваним. Крім того,
-вони дозволяють уникнути дублювання коду, полегшити оптимізацію запиту й
-забезпечити більшу гнучкість під час конструювання складних запитів.
+The main advantages of using subqueries and **CTE** are convenience,
+the ability to make the request more readable and maintainable. 
+they allow you to avoid code duplication, facilitate query optimization, and
+provide greater flexibility when constructing complex queries.
 
-Використання підзапитів і **CTE** дозволяє реалізувати більш складні
-логічні операції та запити в **SQL**, що робить їх потужними
-інструментами для роботи з базами даних.
+Using subqueries and **CTE** allows more complex implementations
+logical operations and queries in **SQL**, making them powerful
+tools for working with databases.
 
-<h2 align="center">Підзапити в SQL</h2>
+<h2 align="center">Subqueries in SQL</h2>
 
-Розпочнемо із задачі.
+Let's start with the problem.
 
-Припустимо, нам потрібно знайти всіх співробітників, які знаходяться в
-локації з ідентифікатором 1700. Це можна реалізувати так:
+Suppose we need to find all employees who are in
+locations with the identifier 1700. This can be implemented as follows:
 
-1.  Спочатку знайдемо всі відділи, розташовані в локації з **id** 1700:
+1. First, we will find all departments located in the location with **id** 1700:
 
 ```sql
 SELECT * 
@@ -378,9 +380,9 @@ WHERE location_id = 1700;
   <img src="../../assets/images/lesson_3_stvorennia_tablets_struktur/media/image3.png" width="600" />
 </div>
 
-2.  Тепер знайдемо всіх співробітників, які належать до відділу з
-    локацією 1700, використовуючи список ідентифікаторів відділу з
-    попереднього запиту:
+2. Now we will find all the employees who belong to the department with
+location 1700, using the list of identifiers of the department with
+previous request:
 
 ```sql
 SELECT employee_id
@@ -395,20 +397,20 @@ ORDER BY first_name, last_name;
   <img src="../../assets/images/lesson_3_stvorennia_tablets_struktur/media/image4.png" width="600" />
 </div>
 
-<h2 align="center">Однак, це рішення має дві проблеми:</h2>
+<h2 align="center">However, this solution has two problems:</h2>
 
-Почнемо з того, що ти переглядав/-ла таблицю **departments**, щоб
-перевірити, який відділ належить до локації 1700. Але початкове
-запитання не стосувалося відділів, а було пов'язане з місцем з кодом
+Let's start with the fact that you were looking at the **departments** table to
+to check which department belongs to location 1700. But initial
+the question was not about the departments but about the code location
 1700.
 
-Через невеликий обсяг даних ти можеш легко отримати список відділу й
-підставити його в інший запит. Однак у реальній системі з великим
-обсягом даних це може стати проблемою.
+Due to the small amount of data, you can easily get a list of department and
+substitute it in another query. 
+volume of data, this can become a problem.
 
-Набагато кращим розв\'язанням цієї проблеми є використання підзапиту.
+A much better solution to this problem is to use a subquery.
 
-Ось як це виглядає для нашої задачі:
+Here's what it looks like for our problem:
 
 ```sql
 SELECT employee_id
@@ -425,19 +427,19 @@ ORDER BY first_name
        , last_name;
 ```
 
-Ти можеш використовувати підзапит у багатьох місцях, наприклад:
+You can use a subquery in many places, for example:
 
--   з оператором **IN** або **NOT IN**
--   з оператором **SELECT**
--   з оператором **WHERE**
+- with **IN** or **NOT IN** operator
+- with the **SELECT** statement
+- with **WHERE** statement
 
-<h2 align="center">Підзапит SQL з оператором IN або NOT IN</h2>
+<h2 align="center">An SQL subquery with an IN or NOT IN statement</h2>
 
-У попередньому прикладі ти бачив/-ла, як підзапит використовувався з
-оператором IN.
+In the previous example, you saw how a subquery was used with
+by the IN operator.
 
-У наступному прикладі використовується підзапит з NOT IN для пошуку всіх
-співробітників, які не знаходяться в локації 1700:
+The following example uses a subquery with NOT IN to find all
+employees who are not in location 1700:
 
 ```sql
 SELECT employee_id
@@ -453,12 +455,12 @@ FROM HR.employees
 ORDER BY first_name, last_name;
 ```
 
-<h2 align="center">Підзапит SQL з операторами порівняння</h2>
+<h2 align="center">SQL subquery with comparison operators</h2>
 
--   **Приклад 1 (оператор порiвняння =)**
+- **Example 1 (comparison operator =)**
 
-У наступному прикладі показано співробітників, які мають найвищу
-зарплату:
+The following example shows the employees who have the highest
+salary:
 
 ```sql
 SELECT employee_id
@@ -474,14 +476,14 @@ ORDER BY first_name
        , last_name;
 ```
 
-У цьому прикладі **підзапит** повертає найвищу зарплату з усіх
-працівників, а зовнішній запит знаходить працівників, чия зарплата
-дорівнює цій найвищій сумі.
+In this example, the **subquery** returns the highest salary of all
+employees, and the outer query finds employees whose salary
+equal to this highest amount.
 
-<h2 align="center">Приклад 2 (оператор порiвняння \>)</h2>
+<h2 align="center">Example 2 (comparison operator \>)</h2>
 
-Наступний запит виводить усіх працівників, чия зарплата перевищує
-середню зарплату:
+The following query returns all employees whose salary exceeds
+average salary:
 
 ```sql
 SELECT employee_id
@@ -496,23 +498,23 @@ FROM HR.employees
 ORDER BY first_name, last_name;
 ```
 
-У цьому прикладі спочатку **підзапит** повертає середню зарплату всіх
-працівників. Потім у зовнішньому запиті використовується оператор
-«більше», щоб знайти всіх працівників, чия зарплата вища за середню.
+In this example, the **subquery** first returns the average salary of everyone
+employees 
+"more" to find all workers whose salary is higher than the average.
 
-<h2 align="center">Підзапит SQL у виразі FROM</h2>
+<h2 align="center">SQL subquery in the FROM clause</h2>
 
-Ти можеш використовувати **підзапит** у виразі **FROM** таким чином:
+You can use a **subquery** in a **FROM** expression like this:
 
 ```sql
 SELECT *
 FROM (subquery) AS table_name;
 ```
 
-У цьому синтаксисі псевдонім таблиці є обов'язковим, оскільки всі
-таблиці у виразі FROM повинні мати назву.
+In this syntax, the table alias is required because all
+the tables in the FROM expression must have a name.
 
-Наступний запит повертає середню зарплату кожного відділу:
+The following query returns the average salary for each department:
 
 ```sql
 SELECT AVG(salary) AS average_salary
@@ -520,8 +522,8 @@ FROM HR.employees
 GROUP BY department_id;
 ```
 
-Ти можеш використовувати цей запит як **підзапит** у виразі **FROM** для
-обчислення середньої зарплати відділів таким чином:
+You can use this query as a **subquery** in the **FROM** expression for
+calculation of the average salary of departments as follows:
 
 ```sql
 SELECT ROUND(AVG(average_salary), 0)
@@ -532,12 +534,12 @@ FROM (
         ) department_salary;
 ```
 
-<h2 align="center">Підзапит SQL у виразі SELECT</h2>
+<h2 align="center">An SQL subquery in a SELECT statement</h2>
 
-**Підзапит** можна використовувати й у виразі **SELECT**. У наступному
-прикладі знайдено значення зарплати всіх працівників, їхню середню
-зарплату й різницю між зарплатою кожного працівника та середньою
-зарплатою.
+A **subquery** can also be used in a **SELECT** expression. 
+example, the value of the salary of all employees, their average, is found
+salary and the difference between each employee's salary and the average
+salary
 
 ```sql
 SELECT employee_id
@@ -557,19 +559,19 @@ ORDER BY first_name
        , last_name;
 ```
 
-Як бачимо, **підзапити** --- справді потужний інструмент для вибірки
-інформації. Але потрібно бути обережними, оскільки велика кількість
-**підзапитів** або неправильне їх застосування можуть суттєво знизити
-продуктивність (тобто швидкість виконання) запитів.
+As you can see, **subqueries** are a really powerful sampling tool
+information 
+**subqueries** or their incorrect use can significantly reduce
+performance (i.e. execution speed) of requests.
 
 <h2 align="center">CTE (Common Table Expression)</h2>
 
-**CTE (спільний вираз таблиці)** --- це тимчасовий іменований
-підзапитний вираз у мові SQL, який може бути використаний всередині
-запиту. Він дозволяє створювати й використовувати тимчасові таблиці, які
-можуть бути опрацьовані, незалежно від основного запиту.
+**CTE (Common Table Expression)** --- This is a named temporary
+a subquery expression in SQL that can be used internally
+request 
+can be processed regardless of the main request.
 
-Ось синтаксис **CTE** в SQL:
+Here is the **CTE** syntax in SQL:
 
 ```sql
 WITH *імʼя_*CTE AS 
@@ -578,102 +580,102 @@ WITH *імʼя_*CTE AS
 *Основний_запит*
 ```
 
-Де:
+Where:
 
-**WITH** --- ключове слово, яке починає підзапитний вираз **CTE**.
+**WITH** is the keyword that starts a **CTE** subquery expression.
 
-***ім'я_CTE*** --- ім'я, яке ти вибираєш для іменування **CTE**. Це
-ім'я буде використовуватися для звернення до CTE всередині основного
-запиту.
+***CTE_name*** --- the name you choose to name the **CTE**. 
+name will be used to refer to the CTE inside main
+request
 
-***Запит*** --- запит, який виконується для створення тимчасової
-таблиці.
+***Request*** --- a request that is executed to create a temporary
+tables.
 
-***Основний_запит*** --- запит, у якому використовується **CTE**. Він
-може посилатися на ім'я_**CTE** й обробляти результати **CTE**.
+***Main_query*** --- a request that uses a **CTE**. 
+can refer to **CTE**_name and process **CTE** results.
 
-**CTE** надає зручний спосіб створення складних запитів, які можуть
-містити рекурсивні або ітеративні операції над даними. Він також
-дозволяє покращити читабельність і підтримуваність SQL-запитів.
+The **CTE** provides a convenient way to create complex queries that can
+contain recursive or iterative operations on data. 
+allows you to improve the readability and maintainability of SQL queries.
 
-Віртуальні таблиці **CTE** дозволяють створювати тимчасові набори даних,
-які можна використовувати в межах одного запиту. Вони полегшують читання
-та написання складних запитів, дозволяючи створювати тимчасові іменовані
-таблиці всередині запиту. **CTE** зазвичай починаються з ключового
-слова **WITH**, а потім визначаються як звичайна таблиця зі своїми
-стовпцями та даними.
+**CTE** virtual tables allow you to create temporary data sets that
+which can be used within a single request. 
+and writing complex queries, allowing you to create temporary named
+tables inside the query. 
+**WITH** words and then defined as a normal table with its own
+columns and data.
 
-📎 *Ти можеш визначати декілька **СТЕ** в одному запиті **WITH**. Кожна
-наступна **СТЕ** відділяється від попередньої комою. **СТЕ** виконуються
-послідовно, то ж ти можеш використати попередню **СТЕ** для розрахунку
-наступної в межах одного запиту, що розпочався з **WITH**.*
+📎 *You can define several **STE** in one **WITH** query. 
+the following **STE** is separated from the previous one by a comma. 
+consecutively, then you can use the previous **STE** for calculation
+next within the same query that started with **WITH**.*
 
-Загалом використання **підзапитів** і віртуальних таблиць **CTE** в
-SQL дозволяє більш гнучко й ефективно працювати з даними, створювати
-складні запити та спрощувати аналіз інформації.
+In general, the use of **subqueries** and virtual tables **CTE** c
+SQL allows you to work more flexibly and efficiently with data, to create
+complex queries and simplify information analysis.
 
-Давай підсумуємо основні моменти:
+Let's summarize the main points:
 
--   **Підзапити** дозволяють включати один запит всередині іншого
-    запиту. Вони використовуються для отримання більш точних і
-    специфічних результатів, фільтрації даних або отримання пов'язаних
-    значень з інших таблиць. Підзапити можуть бути використані в різних
-    частинах запиту, таких як **SELECT, FROM, WHERE**, і можуть бути
-    вкладеними.
+- **Subqueries** allow one query to be nested inside another
+request 
+specific results, filtering data or obtaining related
+values ​​from other tables. 
+parts of the query, such as **SELECT, FROM, WHERE**, and can be
+nested
 
--   **Віртуальні таблиці CTE** дозволяють створювати тимчасові набори
-    даних, які можна використовувати в межах одного запиту. Вони
-    полегшують читання й написання складних запитів, дозволяючи
-    створювати тимчасові іменовані таблиці всередині
-    запиту. **CTE** зазвичай починаються з ключового слова **WITH**, а
-    потім визначаються як звичайна таблиця зі своїми стовпцями й даними.
+- **CTE Virtual Tables** allow temporary sets to be created
+data that can be used within a single request. 
+make complex queries easier to read and write by allowing
+create temporary named tables inside
+request 
+then defined as a normal table with its own columns and data.
 
--   **Підзапити та віртуальні таблиці CTE** дозволяють більш гнучко й
-    ефективно керувати даними та створювати складні запити. Вони
-    полегшують читання й розуміння запитів, розбиваючи їх на логічні
-    частини, та дозволяють використовувати результати одного запиту в
-    іншому.
+- **Subqueries and CTE Virtual Tables** allow more flexible and
+efficiently manage data and create complex queries. 
+make it easier to read and understand queries by breaking them down into logical ones
+part, and allow you to use the results of one query in
+to another
 
--   Також вони забезпечують модульність і повторне використання коду. Ти
-    можеш визначити складний **підзапит** або **CTE** один раз і потім
-    використовувати його у різних частинах запиту або навіть в різних
-    запитах. Це покращує підтримку та спрощує зміни запитів у
-    майбутньому.
+- They also provide modularity and code reuse. 
+you can define a complex **subquery** or **CTE** once and then
+use it in different parts of the query or even in different ones
+I asked 
+in the future
 
--   **Підзапити** та **віртуальні таблиці** **CTE** можуть бути
-    використані для виконання різних операцій, таких як фільтрація
-    даних, агрегація, з\'єднання таблиць і багато іншого. Вони
-    допомагають впоратися з складними запитами й ефективно обробляти
-    великі обсяги даних.
+- **Subqueries** and **virtual tables** **CTE** can be
+used to perform various operations such as filtering
+data, aggregation, connection of tables and much more. 
+help to cope with complex requests and process effectively
+large volumes of data.
 
-<h2 align="center">Команди UNION та UNION ALL</h2>
+<h2 align="center">UNION and UNION ALL commands</h2>
 
-Поговоримо про дві особливі команди в SQL --- **UNION** та **UNION
-ALL**, які стануть твоїми найкращими помічниками під час роботи з
-даними.
+Let's talk about two special commands in SQL --- **UNION** and **UNION
+ALL**, which will become your best assistants when working with
+data
 
-Ці команди є потужними інструментами для об\'єднання даних і створення
-більш повної картини. Ми можемо отримати всю необхідну інформацію в
-одному місці, що робить аналіз і роботу з даними простішими та
-зручнішими.
+These commands are powerful tools for combining data and creating
+a more complete picture. 
+one place, which makes analysis and working with data easier and
+more convenient
 
-Крім того, розуміння **UNION** та **UNION ALL** допоможе нам будувати
-складні запити й отримувати потрібні результати.
+Also, understanding **UNION** and **UNION ALL** will help us build
+complex queries and get the results you want.
 
-Ці команди дозволять зібрати всі частинки головоломки разом і побачити
-їх загальну картину.
+These commands will allow you to put all the pieces of the puzzle together and see
+their overall picture.
 
-<h2 align="center">Команда UNION</h2>
+<h2 align="center">The UNION command</h2>
 
-Уяви, що ти маєш кілька таблиць з інформацією і хочеш об\'єднати їх в
-одну велику таблицю для зручнішого аналізу. Ось де на допомогу приходить
-команда **UNION**! Вона дозволяє з\'єднувати дані з різних таблиць і
-створювати нову таблицю, яка містить усі рядки з усіх вихідних таблиць.
+Imagine that you have several tables with information and want to combine them into one
+one large table for more convenient analysis. 
+team **UNION**! 
+create a new table that contains all rows from all source tables.
 
-Оператор **UNION** поєднує набори результатів двох або більше
-операторів SELECT в один набір результатів. Наступний оператор ілюструє,
-як використовувати оператор **UNION** для з\'єднання наборів результатів
-двох запитів:
+The **UNION** operator combines the result sets of two or more
+SELECT statements into a single result set. 
+how to use the **UNION** operator to join result sets
+two requests:
 
 ```sql
 SELECT column1
@@ -685,35 +687,35 @@ SELECT column3
 FROM table2;
 ```
 
-Щоб використовувати оператор **UNION**, потрібно прописати окремі
-оператори SELECT та об'єднати їх за допомогою ключового слова **UNION**.
+To use the **UNION** operator, you must write separate
+SELECT statements and join them using the **UNION** keyword.
 
-<h2 align="center">Важливо</h2>
+<h2 align="center">Importantly</h2>
 
-Стовпці, які повертаються операторами SELECT, повинні мати **однаковий
-(або конвертований) тип даних, розмірність і знаходитися в однаковому
-порядку**.
+Columns returned by SELECT statements must be **equal
+(or converted) data type, dimension and be in the same
+of order**
 
-Система бази даних обробляє запит, спочатку виконуючи два
-оператори SELECT. Потім запит поєднує два окремі набори результатів в
-один й усуває повторювані рядки. Щоб усунути повторювані рядки, система
-бази даних сортує об'єднаний набір результатів за кожним стовпцем і
-сканує його для пошуку відповідних рядків, які знаходяться поруч.
+The database system processes the query by first executing two
+SELECT statements. 
+one and removes duplicate lines. 
+database sorts the combined result set by each column and
+scans it for matching strings that are nearby.
 
-На практиці ми часто використовуємо оператор **UNION** для об\'єднання
-даних з різних таблиць. Розглянемо це на прикладі.
+In practice, we often use the **UNION** operator to join
+data from different tables. 
 
 <div align="center">
   <img src="../../assets/images/lesson_3_stvorennia_tablets_struktur/media/image5.png" width="600" />
 </div>
 
-У наведеному нижче прикладі використовується оператор **UNION** для
-об'єднання імені та прізвища співробітників та їхніх родичів (дружина,
-діти, батьки). Якщо в даних виникає ситуація, коли хтось з родичів також
-є працівником компанії, то таке ім\'я та прізвище зустрінеться лише один
-раз у таблиці результатів, тобто отримаємо лише унікальні записи. (Якщо
-ми все ж хочемо зберегти всі записи, враховуючи дублікати, читай далі
-про **UNION ALL**.) 
+The following example uses the **UNION** operator for
+combining the names and surnames of employees and their relatives (wife,
+children, parents). 
+is an employee of the company, then only one such name and surname will be found
+once in the results table, that is, we will receive only unique records. 
+we still want to save all records, considering duplicates, read on
+about **UNION ALL**.) 
 <div align="center">
   <img src="../../assets/images/lesson_3_stvorennia_tablets_struktur/media/image6.png" width="600" />
 </div>
@@ -729,36 +731,36 @@ FROM HR.dependents
 ORDER BY last_name;
 ```
 
-<h2 align="center">Команда UNION ALL</h2>
+<h2 align="center">UNION ALL command</h2>
 
-📎 *Щоб зберегти повторювані рядки в наборі результатів, використовуй
-оператор **UNION ALL**.*
+📎 *To save repeated rows in the result set, use
+operator **UNION ALL**.*
 
-Команда **UNION ALL** працює аналогічно, але з невеликою
-відмінністю. **UNION ALL** просто об\'єднує всі рядки з різних таблиць
-без перевірки на дублікати. Це означає, що коли в тебе є однакові рядки
-в різних таблицях, **UNION ALL** збереже їх усі, не видаляючи жодного.
-Це схоже на збір усіх книжок, де жодна сторінка не буде пропущена або
-викинута.
+The **UNION ALL** command works similarly, but with a small twist
+difference 
+without checking for duplicates. 
+in different tables, **UNION ALL** will keep them all without deleting any.
+It is like collecting all the books where no page will be missed or
+thrown away
 
-Припустимо, що ми маємо два набори результатів: **A (1,2)** і **B
-(2,3)**. Наступне зображення ілюструє застосування **UNION**:
+Suppose we have two result sets: **A (1,2)** and **B
+(2,3)**. 
 
 <div align="center">
   <img src="../../assets/images/lesson_3_stvorennia_tablets_struktur/media/image7.png" width="600" />
 </div>
 
-А наступне зображення ілюструє **UNION ALL**:
+And the following image illustrates **UNION ALL**:
 
 <div align="center">
   <img src="../../assets/images/lesson_3_stvorennia_tablets_struktur/media/image8.png" width="600" />
 </div>
 
-Ти можеш для попереднього прикладу використати оператор **UNION
-ALL** для об\'єднання імені та прізвища співробітників та їх родичів
-(дружина, діти, батьки), але зі збереженням дублікатів. Тобто, якщо одна
-людина є працівником та водночас родичем іншого працівника --- то таке
-ім\'я та прізвище зустрінеться двічі у результаті.
+You can use the **UNION operator for the previous example
+ALL** to combine the first and last names of employees and their relatives
+(wife, children, parents), but with duplicates. 
+a person is an employee and at the same time a relative of another employee --- that's it
+first name and last name will be found twice in the result.
 
 ```sql
 SELECT first_name
@@ -769,37 +771,37 @@ SELECT first_name
      , last_name
 FROM HR.dependents
 ```
-Основні моменти, які варто підсумувати:
+The main points to summarize:
 
--   Команди **UNION** і **UNION ALL** дозволяють об\'єднувати дані з
-    кількох таблиць в одну, створюючи більш повні та комплексні набори
-    даних для аналізу.
+- The commands **UNION** and **UNION ALL** allow you to combine data with
+several tables into one, creating more complete and comprehensive sets
+data for analysis.
 
--   Команда **UNION** об\'єднує дані з різних таблиць, видаляючи
-    дублікати рядків. Це корисно, коли потрібно отримати унікальні
-    значення з кількох таблиць.
+- The **UNION** command combines data from different tables by deleting
+duplicate rows. 
+values ​​from multiple tables.
 
--   Команда **UNION ALL** також об\'єднує дані з різних таблиць, але не
-    видаляє дублікати рядків. Це корисно, коли потрібно зберегти всі
-    рядки вихідних таблиць, навіть якщо вони повторюються.
+- The **UNION ALL** command also joins data from different tables, but not
+removes duplicate rows. 
+rows of source tables, even if they are repeated.
 
--   Під час використання команд **UNION** і **UNION ALL** важливо,
-    щоб кількість та типи стовпців в об\'єднуваних таблицях
-    були сумісними. В іншому випадку може виникнути помилка.
+- When using the **UNION** and **UNION ALL** commands, it is important that
+so that the number and types of columns in the joined tables
+were compatible. 
 
--   Команди **UNION** і **UNION ALL** є потужними інструментами для
-    створення складних запитів, які об\'єднують дані й дозволяють
-    отримувати більш повну інформацію з кількох джерел.
+- The **UNION** and **UNION ALL** commands are powerful tools for
+creating complex queries that combine data and allow
+get more complete information from multiple sources.
 
--   Розуміння різниці між **UNION** і **UNION ALL** допоможе вибрати
-    відповідний варіант, залежно від конкретних потреб і вимог до даних.
+- Understanding the difference between **UNION** and **UNION ALL** will help you choose
+appropriate option, depending on specific needs and data requirements.
 
--   Під час використання команд **UNION** і **UNION** **ALL** слід
-    звернути увагу на продуктивність, особливо під час роботи з великими
-    обсягами даних. Іноді можна використовувати додаткові оптимізації
-    для покращення швидкості виконання запитів.
+- When using **UNION** and **UNION** **ALL** commands
+pay attention to performance, especially when working with large
+volumes of data. 
+to improve the speed of execution of requests.
 
-Отже, команди **UNION** і **UNION** **ALL** надають потужні можливості
-для об\'єднання даних в SQL. Вивчення їх функціональності і правильне
-застосування допоможуть тобі ефективно розв\'язувати різноманітні задачі
-з аналізу та маніпуляції даними в базах даних.
+So **UNION** and **UNION** **ALL** commands provide powerful capabilities
+for combining data in SQL. 
+applications will help you effectively solve various problems
+on the analysis and manipulation of data in databases.
