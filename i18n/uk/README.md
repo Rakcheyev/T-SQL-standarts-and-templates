@@ -24,3 +24,13 @@
 
 - Папка `.venv/` (локальне Python-середовище) не є частиною навчальних матеріалів і не повинна зберігатися в репозиторії; вона додана до `.gitignore`.
 - Тимчасові файли на кшталт `*.md.bak` також ігноруються (див. `.gitignore`).
+
+## Підтримка
+
+Щоб згенерувати індекси навігації та виконати швидку sanity-перевірку відповідності EN/UK уроків:
+
+- `powershell -ExecutionPolicy Bypass -File .\\scripts\\verify_repo.ps1`
+
+Щоб запустити лише перевірки без перегенерації навігації:
+
+- `powershell -ExecutionPolicy Bypass -File .\\scripts\\verify_repo.ps1 -SkipNavigation`

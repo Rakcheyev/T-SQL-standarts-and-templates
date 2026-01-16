@@ -18,6 +18,7 @@ Lessons are in [course/lessons/](course/lessons/).
 - Open each lesson in an editor (e.g., VS Code) and go top-to-bottom.
 - After each SQL example, try running it in your DBMS (and adapt if needed).
 - For quick lookups by topic/heading, use [navigation.md](navigation.md).
+- For quick lookups by topic/heading, use [navigation.md](navigation.md) (or the detailed index [navigation_detailed.md](navigation_detailed.md)).
 
 ## What’s inside
 

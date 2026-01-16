@@ -94,13 +94,23 @@ function Get-HeadingsFromMarkdown {
     return $headings
 }
 
-$lessonFiles = @(
-    "lesson_1_sql_vstup.md",
-    "lesson_2_bazovi_funkcii_sql.md",
-    "lesson_3_stvorennia_tablets_struktur.md",
-    "lesson_4_robota_z_danymy_dml.md",
-    "lesson_5_ochystka_danyh_riadkovi_funkcii.md",
-    "lesson_6_data_chas_vikonni_funkcii.md"
+$lessonIndex = @(
+    @{ Label = "1";  File = "lesson_1_sql_vstup.md" },
+    @{ Label = "2";  File = "lesson_2_bazovi_funkcii_sql.md" },
+    @{ Label = "3";  File = "lesson_3_stvorennia_tablets_struktur.md" },
+    @{ Label = "4";  File = "lesson_4_robota_z_danymy_dml.md" },
+    @{ Label = "5";  File = "lesson_5_ochystka_danyh_riadkovi_funkcii.md" },
+    @{ Label = "6";  File = "lesson_6_data_chas_vikonni_funkcii.md" },
+    @{ Label = "7";  File = "lesson_7_advanced_query_patterns.md" },
+    @{ Label = "7B"; File = "lesson_7b_window_functions_deep_dive.md" },
+    @{ Label = "8";  File = "lesson_8_transactions_concurrency.md" },
+    @{ Label = "9";  File = "lesson_9_stored_procedures_error_handling.md" },
+    @{ Label = "10"; File = "lesson_10_udf_tvf_and_views.md" },
+    @{ Label = "11"; File = "lesson_11_indexing_and_sargability.md" },
+    @{ Label = "12"; File = "lesson_12_etl_patterns_staging_upsert.md" },
+    @{ Label = "13"; File = "lesson_13_backup_restore_basics.md" },
+    @{ Label = "14"; File = "lesson_14_security_permissions.md" },
+    @{ Label = "Bonus"; File = "lesson_x_spatial_types_and_indexing.md" }
 )
 
 $lines = New-Object System.Collections.Generic.List[string]
@@ -109,6 +119,7 @@ $lines = New-Object System.Collections.Generic.List[string]
 $uaLanguage = -join @([char]0x0423,[char]0x043A,[char]0x0440,[char]0x0430,[char]0x0457,[char]0x043D,[char]0x0441,[char]0x044C,[char]0x043A,[char]0x0430)
 $uaWordMova = -join @([char]0x041C,[char]0x043E,[char]0x0432,[char]0x0430)
 $uaWordUrok = -join @([char]0x0423,[char]0x0440,[char]0x043E,[char]0x043A)
+$uaWordBonus = -join @([char]0x0411,[char]0x043E,[char]0x043D,[char]0x0443,[char]0x0441)
 
 $lines.Add(("**{0}:** [English](../../navigation_detailed.md) | {1}" -f $uaWordMova, $uaLanguage))
 $lines.Add("")
@@ -117,11 +128,12 @@ $lines.Add("")
 $lines.Add("This page lists Ukrainian lesson headings and links directly to them.")
 $lines.Add("")
 $lines.Add("- Simple index: [navigation.md](navigation.md)")
-$lines.Add("- Recommended order: [LEARNING_PATH.md](LEARNING_PATH.md)")
+$lines.Add("- Recommended order: [LEARNING_PATH.md](../../LEARNING_PATH.md)")
 $lines.Add("")
 
-for ($i = 0; $i -lt $lessonFiles.Count; $i++) {
-    $fileName = $lessonFiles[$i]
+for ($i = 0; $i -lt $lessonIndex.Count; $i++) {
+    $label = [string]$lessonIndex[$i].Label
+    $fileName = [string]$lessonIndex[$i].File
     $lessonFsPath = Join-Path -Path $LessonsDir -ChildPath $fileName
     if (-not (Test-Path -LiteralPath $lessonFsPath)) {
         throw "Lesson file not found: $lessonFsPath"
@@ -132,7 +144,11 @@ for ($i = 0; $i -lt $lessonFiles.Count; $i++) {
     $titleText = if ($null -ne $firstHeading) { [string]$firstHeading.Text } else { $fileName }
 
     $lessonHref = ("{0}/{1}" -f $LinkPrefix.TrimEnd('/'), $fileName).Replace('\\', '/').Replace('\', '/')
-    $lessonTitle = ("{0} {1}: {2}" -f $uaWordUrok, ($i + 1), $titleText)
+    $lessonTitle = if ($label -eq 'Bonus') {
+        ("{0}: {1}" -f $uaWordBonus, $titleText)
+    } else {
+        ("{0} {1}: {2}" -f $uaWordUrok, $label, $titleText)
+    }
     $lines.Add(("## [{0}]({1})" -f $lessonTitle, $lessonHref))
 
     $seen = @{}

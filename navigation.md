@@ -15,5 +15,18 @@ This is a **reference index** for quickly finding topics and headings in the les
 4. [Lesson 4: Data manipulation (DML and JOIN)](course/lessons/lesson_4_robota_z_danymy_dml.md)
 5. [Lesson 5: Data cleaning and string functions](course/lessons/lesson_5_ochystka_danyh_riadkovi_funkcii.md)
 6. [Lesson 6: Dates/time, JSON, and window functions](course/lessons/lesson_6_data_chas_vikonni_funkcii.md)
+7. [Lesson 7: Advanced query patterns](course/lessons/lesson_7_advanced_query_patterns.md)
+8. [Lesson 7B: Window functions deep dive](course/lessons/lesson_7b_window_functions_deep_dive.md)
+9. [Lesson 8: Transactions and concurrency](course/lessons/lesson_8_transactions_concurrency.md)
+10. [Lesson 9: Stored procedures and error handling](course/lessons/lesson_9_stored_procedures_error_handling.md)
+11. [Lesson 10: Views, UDFs, and TVFs](course/lessons/lesson_10_udf_tvf_and_views.md)
+12. [Lesson 11: Indexing and SARGability](course/lessons/lesson_11_indexing_and_sargability.md)
+13. [Lesson 12: ETL patterns (staging, upsert, batching)](course/lessons/lesson_12_etl_patterns_staging_upsert.md)
+14. [Lesson 13: Backup/restore basics](course/lessons/lesson_13_backup_restore_basics.md)
+15. [Lesson 14: Security and permissions](course/lessons/lesson_14_security_permissions.md)
 
-For a detailed, anchor-based index, use the Ukrainian navigation: [i18n/uk/navigation.md](i18n/uk/navigation.md).
+### Optional
+
+- [Bonus: Spatial types and indexing](course/lessons/lesson_x_spatial_types_and_indexing.md)
+
+For a detailed, anchor-based index, use [navigation_detailed.md](navigation_detailed.md).

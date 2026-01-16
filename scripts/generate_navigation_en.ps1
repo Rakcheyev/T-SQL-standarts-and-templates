@@ -108,7 +108,17 @@ $lessonIndex = @(
     @{ File = "lesson_3_stvorennia_tablets_struktur.md"; Title = "Lesson 3: Data structures (DDL, CTE, UNION)" },
     @{ File = "lesson_4_robota_z_danymy_dml.md"; Title = "Lesson 4: Data manipulation (DML and JOIN)" },
     @{ File = "lesson_5_ochystka_danyh_riadkovi_funkcii.md"; Title = "Lesson 5: Data cleaning and string functions" },
-    @{ File = "lesson_6_data_chas_vikonni_funkcii.md"; Title = "Lesson 6: Dates/time, JSON, and window functions" }
+    @{ File = "lesson_6_data_chas_vikonni_funkcii.md"; Title = "Lesson 6: Dates/time, JSON, and window functions" },
+    @{ File = "lesson_7_advanced_query_patterns.md"; Title = "Lesson 7: Advanced query patterns" },
+    @{ File = "lesson_7b_window_functions_deep_dive.md"; Title = "Lesson 7B: Window functions deep dive" },
+    @{ File = "lesson_8_transactions_concurrency.md"; Title = "Lesson 8: Transactions and concurrency" },
+    @{ File = "lesson_9_stored_procedures_error_handling.md"; Title = "Lesson 9: Stored procedures and error handling" },
+    @{ File = "lesson_10_udf_tvf_and_views.md"; Title = "Lesson 10: Views, UDFs, and TVFs" },
+    @{ File = "lesson_11_indexing_and_sargability.md"; Title = "Lesson 11: Indexing and SARGability" },
+    @{ File = "lesson_12_etl_patterns_staging_upsert.md"; Title = "Lesson 12: ETL patterns (staging, upsert, batching)" },
+    @{ File = "lesson_13_backup_restore_basics.md"; Title = "Lesson 13: Backup/restore basics" },
+    @{ File = "lesson_14_security_permissions.md"; Title = "Lesson 14: Security and permissions" },
+    @{ File = "lesson_x_spatial_types_and_indexing.md"; Title = "Bonus: Spatial types and indexing" }
 )
 
 $lines = New-Object System.Collections.Generic.List[string]
@@ -117,7 +127,7 @@ $ukLabel = -join @(
     [char]0x043D,[char]0x0441,[char]0x044C,[char]0x043A,[char]0x0430
 )
 
-$lines.Add(("**Language:** English | [{0}](i18n/uk/navigation.md)" -f $ukLabel))
+$lines.Add(("**Language:** English | [{0}](i18n/uk/navigation_detailed.md)" -f $ukLabel))
 $lines.Add("")
 $lines.Add("# Navigation (detailed heading index)")
 $lines.Add("")

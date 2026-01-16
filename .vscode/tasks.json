@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Repo: Verify (regen navigation + sanity checks)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\verify_repo.ps1"
+      ],
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Repo: Verify (sanity checks only)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\verify_repo.ps1",
+        "-SkipNavigation"
+      ],
+      "problemMatcher": [],
+      "group": "test"
+    }
+  ]
+}

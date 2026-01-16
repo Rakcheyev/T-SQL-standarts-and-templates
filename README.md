@@ -24,3 +24,13 @@ Lessons live in [course/lessons/](course/lessons/).
 
 - The `.venv/` folder (local Python environment) is not part of the learning materials and should not be committed; it’s listed in `.gitignore`.
 - Temporary files like `*.md.bak` are also ignored (see `.gitignore`).
+
+## Maintenance
+
+To regenerate navigation indexes and run a quick sanity check for EN/UK lesson parity:
+
+- `powershell -ExecutionPolicy Bypass -File .\scripts\verify_repo.ps1`
+
+To run only the sanity checks without regenerating navigation:
+
+- `powershell -ExecutionPolicy Bypass -File .\scripts\verify_repo.ps1 -SkipNavigation`
