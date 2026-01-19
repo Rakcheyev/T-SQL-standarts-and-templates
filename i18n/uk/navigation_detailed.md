@@ -301,6 +301,7 @@ This page lists Ukrainian lesson headings and links directly to them.
   - [Урок 11 — Індекси, SARGability та плани виконання (вступ)](course/lessons/11_indexing_and_sargability.md#урок-11-індекси-sargability-та-плани-виконання-вступ)
   - [Мета](course/lessons/11_indexing_and_sargability.md#мета)
   - [Передумови](course/lessons/11_indexing_and_sargability.md#передумови)
+  - [Чому це важливо у проді](course/lessons/11_indexing_and_sargability.md#чому-це-важливо-у-проді)
   - [Для кого цей урок](course/lessons/11_indexing_and_sargability.md#для-кого-цей-урок)
   - [Інструменти (рекомендовано)](course/lessons/11_indexing_and_sargability.md#інструменти-рекомендовано)
   - [Безпечний робочий цикл](course/lessons/11_indexing_and_sargability.md#безпечний-робочий-цикл)
@@ -317,6 +318,8 @@ This page lists Ukrainian lesson headings and links directly to them.
     - [Лаб 5 — Покриття через INCLUDE](course/lessons/11_indexing_and_sargability.md#лаб-5-покриття-через-include)
     - [Лаб 6 — Пастка implicit conversion (концепт)](course/lessons/11_indexing_and_sargability.md#лаб-6-пастка-implicit-conversion-концепт)
     - [Лаб 7 (опційно) — Query Store і регресії планів](course/lessons/11_indexing_and_sargability.md#лаб-7-опційно-query-store-і-регресії-планів)
+  - [Міні-оцінювання (самоперевірка)](course/lessons/11_indexing_and_sargability.md#міні-оцінювання-самоперевірка)
+  - [Домашнє (tradeoffs: коректність vs продуктивність vs підтримка)](course/lessons/11_indexing_and_sargability.md#домашнє-tradeoffs-коректність-vs-продуктивність-vs-підтримка)
   - [Підсумок](course/lessons/11_indexing_and_sargability.md#підсумок)
 
 ## [Урок 12: Урок 12 — ETL/ELT патерни: staging, upsert, batching](course/lessons/12_etl_patterns_staging_upsert.md)

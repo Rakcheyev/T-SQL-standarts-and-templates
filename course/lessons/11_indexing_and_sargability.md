@@ -18,6 +18,12 @@ Learn to reason about performance using (1) predicates, (2) indexes, and (3) act
 ## Prerequisites
 - Lessons 7–10
 
+## Why this matters in production
+
+Indexing and SARGability are not “micro-optimizations” — they decide whether a query reads 50 rows or 5,000,000 rows. In production, that difference shows up as timeouts, CPU spikes, blocked writers, and incident tickets that look random because they depend on data distribution, plan choice, and cache state.
+
+This lesson gives you a repeatable workflow you can use under pressure: baseline → actual plan → one controlled change → re-measure. It’s the fastest path from “this query is slow” to “we know exactly why and what fixed it”.
+
 ## Who this lesson is for
 - Analysts: helps you understand why the same query is fast one day and slow the next.
 - Engineers: gives you a structured way to tune (measure → change → re-measure).
@@ -215,6 +221,30 @@ Helpful docs:
 - https://learn.microsoft.com/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store
 
 **PostgreSQL equivalent (optional):** see [POSTGRESQL_NOTES.md](../../POSTGRESQL_NOTES.md) for `pg_stat_statements` + `auto_explain` as the rough analog.
+
+## Mini-assessment (self-check)
+
+1. What’s the difference between an index seek and an index scan in terms of work done?
+2. Why does applying a function to a column often break SARGability?
+3. For datetime filtering, why is `>=` and `<` typically safer than `BETWEEN`?
+4. What problem can `INCLUDE` solve, and what tradeoff does it introduce?
+5. How can an implicit conversion cause a scan even when an index exists?
+6. In a tuning loop, why should you change only one thing at a time?
+7. What evidence would you capture to justify an indexing change in a PR?
+
+## Homework (tradeoffs: correctness vs performance vs maintenance)
+
+1. Take the Lab 1 baseline query and propose **two** different index designs that could help.
+  - Explain which workloads each index favors and what write overhead you expect.
+
+2. Extend the query to filter by time range (like Lab 3) and make it SARGable.
+  - Write the non-SARGable version first, then rewrite it, and explain why the rewrite helps.
+
+3. Make a covering index for the Lab 5 query and compare it to a non-covering index.
+  - Capture `STATISTICS IO, TIME` and note whether key lookups disappear.
+
+4. Observability (optional): use Query Store (Lab 7) to demonstrate a plan regression.
+  - Write a short incident-style note: what changed, what got worse, how you would mitigate.
 
 ## Summary checklist
 Performance tuning becomes much less mysterious when you treat it as a repeatable experiment. You start from a correct query, you observe the plan and IO, and you make one change at a time.

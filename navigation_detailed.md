@@ -305,6 +305,7 @@ This page lists the lesson headings and links directly to them.
   - [Lesson 11 — Indexing, SARGability, and execution plans (intro)](course/lessons/11_indexing_and_sargability.md#lesson-11-indexing-sargability-and-execution-plans-intro)
   - [Goal](course/lessons/11_indexing_and_sargability.md#goal)
   - [Prerequisites](course/lessons/11_indexing_and_sargability.md#prerequisites)
+  - [Why this matters in production](course/lessons/11_indexing_and_sargability.md#why-this-matters-in-production)
   - [Who this lesson is for](course/lessons/11_indexing_and_sargability.md#who-this-lesson-is-for)
   - [Tooling (recommended)](course/lessons/11_indexing_and_sargability.md#tooling-recommended)
   - [Key terms](course/lessons/11_indexing_and_sargability.md#key-terms)
@@ -320,6 +321,8 @@ This page lists the lesson headings and links directly to them.
     - [Lab 5 — Covering with INCLUDE](course/lessons/11_indexing_and_sargability.md#lab-5-covering-with-include)
     - [Lab 6 — Implicit conversion trap (concept)](course/lessons/11_indexing_and_sargability.md#lab-6-implicit-conversion-trap-concept)
     - [Lab 7 (optional) — Query Store plan regression demo](course/lessons/11_indexing_and_sargability.md#lab-7-optional-query-store-plan-regression-demo)
+  - [Mini-assessment (self-check)](course/lessons/11_indexing_and_sargability.md#mini-assessment-self-check)
+  - [Homework (tradeoffs: correctness vs performance vs maintenance)](course/lessons/11_indexing_and_sargability.md#homework-tradeoffs-correctness-vs-performance-vs-maintenance)
   - [Summary checklist](course/lessons/11_indexing_and_sargability.md#summary-checklist)
 
 ## [Lesson 12: ETL patterns (staging, upsert, batching)](course/lessons/12_etl_patterns_staging_upsert.md)
