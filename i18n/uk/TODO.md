@@ -52,6 +52,11 @@
 
 ### Pro Engineer — capstone
 - [x] Capstone: end-to-end проєкт (OLTP schema + pipeline + reporting + ops runbook)
+  - [x] Специфікація capstone: `CAPSTONE_PROJECT.md` + `i18n/uk/CAPSTONE_PROJECT.md`
+  - [x] Ops runbook (покращено) + UK mirror: `capstone/ops_runbook.md` + `i18n/uk/capstone/ops_runbook.md`
+  - [x] Perf tuning notes (покращено) + UK mirror: `capstone/perf_tuning_notes.md` + `i18n/uk/capstone/perf_tuning_notes.md`
+  - [x] Індекс перевірок (validation checks) + UK mirror: `capstone/validation_checks.md` + `i18n/uk/capstone/validation_checks.md`
+  - [x] У SQL-скриптах додані validation-блоки: `capstone/sql/01_schema.sql`, `02_seed_data.sql`, `03_pipeline_load.sql`, `04_reporting_queries.sql`
 
 ---
 

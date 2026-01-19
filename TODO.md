@@ -467,6 +467,11 @@ Deliverables:
 ### Pro Engineer (full-stack data product)
 - [x] Capstone: end-to-end project (OLTP schema + pipeline + reporting + ops runbook)
   - [x] Capstone outputs: schema scripts, load scripts, 10–15 core queries, performance tuning notes, and an ops runbook
+  - [x] Capstone spec: `CAPSTONE_PROJECT.md` + `i18n/uk/CAPSTONE_PROJECT.md`
+  - [x] Ops runbook uplift + UK mirror: `capstone/ops_runbook.md` + `i18n/uk/capstone/ops_runbook.md`
+  - [x] Perf tuning notes uplift + UK mirror: `capstone/perf_tuning_notes.md` + `i18n/uk/capstone/perf_tuning_notes.md`
+  - [x] Validation checklist index + UK mirror: `capstone/validation_checks.md` + `i18n/uk/capstone/validation_checks.md`
+  - [x] SQL scripts include validation blocks: `capstone/sql/01_schema.sql`, `02_seed_data.sql`, `03_pipeline_load.sql`, `04_reporting_queries.sql`
 
 ---
 
