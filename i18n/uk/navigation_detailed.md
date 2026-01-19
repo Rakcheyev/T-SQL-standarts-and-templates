@@ -183,6 +183,7 @@ This page lists Ukrainian lesson headings and links directly to them.
   - [Урок 7 — Розширені патерни запитів (поза базою)](course/lessons/07_advanced_query_patterns.md#урок-7-розширені-патерни-запитів-поза-базою)
   - [Мета](course/lessons/07_advanced_query_patterns.md#мета)
   - [Передумови](course/lessons/07_advanced_query_patterns.md#передумови)
+  - [Чому це важливо у проді](course/lessons/07_advanced_query_patterns.md#чому-це-важливо-у-проді)
   - [Для кого цей урок](course/lessons/07_advanced_query_patterns.md#для-кого-цей-урок)
   - [Якщо ви прийшли з іншого бекграунду](course/lessons/07_advanced_query_patterns.md#якщо-ви-прийшли-з-іншого-бекграунду)
   - [Як проходити лаби (рекомендація)](course/lessons/07_advanced_query_patterns.md#як-проходити-лаби-рекомендація)
@@ -205,7 +206,9 @@ This page lists Ukrainian lesson headings and links directly to them.
     - [Лаб 4 — `UNION ALL` vs `UNION`](course/lessons/07_advanced_query_patterns.md#лаб-4-union-all-vs-union)
     - [Лаб 5 — Top 1 замовлення на клієнта (APPLY)](course/lessons/07_advanced_query_patterns.md#лаб-5-top-1-замовлення-на-клієнта-apply)
   - [Типові помилки](course/lessons/07_advanced_query_patterns.md#типові-помилки)
+  - [Міні‑оцінювання (самоперевірка)](course/lessons/07_advanced_query_patterns.md#мініоцінювання-самоперевірка)
   - [Підсумок](course/lessons/07_advanced_query_patterns.md#підсумок)
+  - [Домашнє](course/lessons/07_advanced_query_patterns.md#домашнє)
 
 ## [Урок 7B: Урок 7B — Віконні функції: поглиблено](course/lessons/07b_window_functions_deep_dive.md)
   - [Урок 7B — Віконні функції: поглиблено](course/lessons/07b_window_functions_deep_dive.md#урок-7b-віконні-функції-поглиблено)

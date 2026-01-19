@@ -183,6 +183,7 @@ This page lists the lesson headings and links directly to them.
   - [Lesson 7 — Advanced query patterns (beyond basics)](course/lessons/07_advanced_query_patterns.md#lesson-7-advanced-query-patterns-beyond-basics)
   - [Goal](course/lessons/07_advanced_query_patterns.md#goal)
   - [Prerequisites](course/lessons/07_advanced_query_patterns.md#prerequisites)
+  - [Why this matters in production](course/lessons/07_advanced_query_patterns.md#why-this-matters-in-production)
   - [Who this lesson is for](course/lessons/07_advanced_query_patterns.md#who-this-lesson-is-for)
   - [If you’re coming from another background](course/lessons/07_advanced_query_patterns.md#if-youre-coming-from-another-background)
   - [How to work through the labs (recommended)](course/lessons/07_advanced_query_patterns.md#how-to-work-through-the-labs-recommended)
@@ -205,6 +206,7 @@ This page lists the lesson headings and links directly to them.
     - [Lab 4 — `UNION ALL` vs `UNION`](course/lessons/07_advanced_query_patterns.md#lab-4-union-all-vs-union)
     - [Lab 5 — Top 1 order per customer (APPLY)](course/lessons/07_advanced_query_patterns.md#lab-5-top-1-order-per-customer-apply)
   - [Common mistakes](course/lessons/07_advanced_query_patterns.md#common-mistakes)
+  - [Mini-assessment (self-check)](course/lessons/07_advanced_query_patterns.md#mini-assessment-self-check)
   - [Summary](course/lessons/07_advanced_query_patterns.md#summary)
   - [Homework](course/lessons/07_advanced_query_patterns.md#homework)
 

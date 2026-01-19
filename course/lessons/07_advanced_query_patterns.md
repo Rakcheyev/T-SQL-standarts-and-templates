@@ -17,6 +17,12 @@ Move from “can write queries” to “can write safe and correct queries”, e
 - Lessons 1–6
 - Basic comfort with `SELECT`, `JOIN`, `GROUP BY`
 
+## Why this matters in production
+
+Most “SQL incidents” are not syntax failures — they’re correctness failures: double-counted revenue, missing rows in reports, users marked “inactive” incorrectly, or dedupe logic that silently drops valid facts. These bugs ship easily because the query runs, returns plausible output, and only breaks when data gets messier (duplicates, NULLs, one-to-many fanout).
+
+The patterns in this lesson are practical guardrails. They help you write queries that encode intent (existence vs missing vs aggregation) so reviewers can validate logic quickly and the engine can optimize without you masking problems with `DISTINCT`.
+
 ## Who this lesson is for
 - If you’re new to SQL: this teaches *safe defaults* so you don’t get surprised by duplicates and `NULL` behavior.
 - If you’re a data analyst: this helps you avoid “looks right” queries that are subtly wrong.
@@ -359,6 +365,15 @@ Treat the list below as a review checklist. When a query behaves oddly, these ar
 - Using `NOT IN (subquery)` without guarding against NULLs.
 - Using `DISTINCT` to hide fanout caused by a join.
 - Using `LEFT JOIN ... WHERE right.id IS NULL` without understanding duplicate amplification.
+
+## Mini-assessment (self-check)
+
+1. Why can a `JOIN` produce duplicates even when both tables are “correct”?
+2. When is `EXISTS` a better expression of intent than `JOIN`?
+3. Why can `NOT IN (subquery)` return 0 rows when the subquery contains a `NULL`?
+4. When is `LEFT JOIN ... WHERE right.key IS NULL` safe, and when is it easy to break?
+5. Why is `UNION ALL` the default in event-like datasets?
+6. In Lab 5, why do we include a tie-breaker (`OrderID`) in `ORDER BY`?
 
 ## Summary
 The patterns in this lesson are not “advanced syntax”; they’re advanced *intent*. The goal is to write SQL that makes your business question obvious and keeps you out of correctness traps.
