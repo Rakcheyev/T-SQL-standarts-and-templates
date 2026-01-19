@@ -95,22 +95,22 @@ function Get-HeadingsFromMarkdown {
 }
 
 $lessonIndex = @(
-    @{ Label = "1";  File = "lesson_1_sql_vstup.md" },
-    @{ Label = "2";  File = "lesson_2_bazovi_funkcii_sql.md" },
-    @{ Label = "3";  File = "lesson_3_stvorennia_tablets_struktur.md" },
-    @{ Label = "4";  File = "lesson_4_robota_z_danymy_dml.md" },
-    @{ Label = "5";  File = "lesson_5_ochystka_danyh_riadkovi_funkcii.md" },
-    @{ Label = "6";  File = "lesson_6_data_chas_vikonni_funkcii.md" },
-    @{ Label = "7";  File = "lesson_7_advanced_query_patterns.md" },
-    @{ Label = "7B"; File = "lesson_7b_window_functions_deep_dive.md" },
-    @{ Label = "8";  File = "lesson_8_transactions_concurrency.md" },
-    @{ Label = "9";  File = "lesson_9_stored_procedures_error_handling.md" },
-    @{ Label = "10"; File = "lesson_10_udf_tvf_and_views.md" },
-    @{ Label = "11"; File = "lesson_11_indexing_and_sargability.md" },
-    @{ Label = "12"; File = "lesson_12_etl_patterns_staging_upsert.md" },
-    @{ Label = "13"; File = "lesson_13_backup_restore_basics.md" },
-    @{ Label = "14"; File = "lesson_14_security_permissions.md" },
-    @{ Label = "Bonus"; File = "lesson_x_spatial_types_and_indexing.md" }
+    @{ Label = "1";  File = "01_sql_vstup.md" },
+    @{ Label = "2";  File = "02_bazovi_funkcii_sql.md" },
+    @{ Label = "3";  File = "03_stvorennia_tablets_struktur.md" },
+    @{ Label = "4";  File = "04_robota_z_danymy_dml.md" },
+    @{ Label = "5";  File = "05_ochystka_danyh_riadkovi_funkcii.md" },
+    @{ Label = "6";  File = "06_data_chas_vikonni_funkcii.md" },
+    @{ Label = "7";  File = "07_advanced_query_patterns.md" },
+    @{ Label = "7B"; File = "07b_window_functions_deep_dive.md" },
+    @{ Label = "8";  File = "08_transactions_concurrency.md" },
+    @{ Label = "9";  File = "09_stored_procedures_error_handling.md" },
+    @{ Label = "10"; File = "10_udf_tvf_and_views.md" },
+    @{ Label = "11"; File = "11_indexing_and_sargability.md" },
+    @{ Label = "12"; File = "12_etl_patterns_staging_upsert.md" },
+    @{ Label = "13"; File = "13_backup_restore_basics.md" },
+    @{ Label = "14"; File = "14_security_permissions.md" },
+    @{ Label = "Bonus"; File = "x_spatial_types_and_indexing.md" }
 )
 
 $lines = New-Object System.Collections.Generic.List[string]

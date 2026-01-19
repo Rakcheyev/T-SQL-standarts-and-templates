@@ -1,4 +1,4 @@
-# Course TODO / Roadmap (updated after Lessons 7–14)
+﻿# Course TODO / Roadmap (updated after Lessons 7–14)
 
 This file tracks the roadmap and remaining backlog for the course.
 
@@ -88,8 +88,8 @@ Topics:
 - [T-SQL] APPLY patterns: `CROSS APPLY`, `OUTER APPLY` (Top-N per group, parsing)
 
 Deliverables:
-- [x] Create EN lesson file: `course/lessons/lesson_7_advanced_query_patterns.md`
-- [x] Create UK lesson file: `i18n/uk/course/lessons/lesson_7_advanced_query_patterns.md`
+- [x] Create EN lesson file: `course/lessons/07_advanced_query_patterns.md`
+- [x] Create UK lesson file: `i18n/uk/course/lessons/07_advanced_query_patterns.md`
 - [x] Add labs with expected outputs
 - [x] Update learning path + navigation indexes
 
@@ -107,8 +107,8 @@ Topics:
 - [CORE] Gaps-and-islands (intro patterns)
 
 Deliverables:
-- [x] EN: `course/lessons/lesson_7b_window_functions_deep_dive.md`
-- [x] UK: `i18n/uk/course/lessons/lesson_7b_window_functions_deep_dive.md`
+- [x] EN: `course/lessons/07b_window_functions_deep_dive.md`
+- [x] UK: `i18n/uk/course/lessons/07b_window_functions_deep_dive.md`
 - [x] Labs: pattern library (multiple labs)
 - [x] Include a mini “pattern index” section for quick lookup
 
@@ -123,8 +123,8 @@ Topics (SQL Server oriented):
 - [CORE] Idempotency patterns for DML
 
 Deliverables:
-- [x] EN: `course/lessons/lesson_8_transactions_concurrency.md`
-- [x] UK: `i18n/uk/course/lessons/lesson_8_transactions_concurrency.md`
+- [x] EN: `course/lessons/08_transactions_concurrency.md`
+- [x] UK: `i18n/uk/course/lessons/08_transactions_concurrency.md`
 - [x] Labs: blocking/deadlock patterns + safe retry guidance
 
 ### Lesson 9 — Programmability: Stored procedures + error handling
@@ -139,8 +139,8 @@ Topics:
 - [CORE] Production hygiene: schema-qualify object names, predictable result shapes
 
 Deliverables:
-- [x] EN: `course/lessons/lesson_9_stored_procedures_error_handling.md`
-- [x] UK: `i18n/uk/course/lessons/lesson_9_stored_procedures_error_handling.md`
+- [x] EN: `course/lessons/09_stored_procedures_error_handling.md`
+- [x] UK: `i18n/uk/course/lessons/09_stored_procedures_error_handling.md`
 - [x] Labs: procedure + audit + rollback pattern
 
 ### Lesson 10 — UDF / TVF (pros/cons and when to use)
@@ -159,8 +159,8 @@ Topics:
 - [T-SQL] Table variables: where they shine, where they don’t (and why estimates matter)
 
 Deliverables:
-- [x] EN: `course/lessons/lesson_10_udf_tvf_and_views.md`
-- [x] UK: `i18n/uk/course/lessons/lesson_10_udf_tvf_and_views.md`
+- [x] EN: `course/lessons/10_udf_tvf_and_views.md`
+- [x] UK: `i18n/uk/course/lessons/10_udf_tvf_and_views.md`
 - [x] Labs: UDF/TVF/views patterns and tradeoffs
 
 ### Lesson 11 — Indexing & query optimization (deep, flagship)
@@ -183,8 +183,8 @@ Recommended structure inside the lesson:
 - A “plan reading glossary” for the operators used in labs
 
 Deliverables:
-- [x] EN: `course/lessons/lesson_11_indexing_and_sargability.md`
-- [x] UK: `i18n/uk/course/lessons/lesson_11_indexing_and_sargability.md`
+- [x] EN: `course/lessons/11_indexing_and_sargability.md`
+- [x] UK: `i18n/uk/course/lessons/11_indexing_and_sargability.md`
 - [x] Labs: index/seek/scan + SARGability + covering index patterns
 - [x] Provide a “tuning report template” for learners (optional): `templates/tuning_report_template.md`
 
@@ -203,8 +203,8 @@ Topics:
   - Avoiding implicit conversions between source and target
 
 Deliverables:
-- [x] EN: `course/lessons/lesson_12_etl_patterns_staging_upsert.md`
-- [x] UK: `i18n/uk/course/lessons/lesson_12_etl_patterns_staging_upsert.md`
+- [x] EN: `course/lessons/12_etl_patterns_staging_upsert.md`
+- [x] UK: `i18n/uk/course/lessons/12_etl_patterns_staging_upsert.md`
 - [x] Labs: staging + upsert + watermark + batching
 
 ### Lesson 13 — DBA essentials: backup/restore + HA/DR basics
@@ -216,8 +216,8 @@ Topics:
 - [T-SQL] HA/DR overview: log shipping / availability groups (conceptual)
 
 Deliverables:
-- [x] EN: `course/lessons/lesson_13_backup_restore_basics.md`
-- [x] UK: `i18n/uk/course/lessons/lesson_13_backup_restore_basics.md`
+- [x] EN: `course/lessons/13_backup_restore_basics.md`
+- [x] UK: `i18n/uk/course/lessons/13_backup_restore_basics.md`
 
 ### Lesson 14 — Security & governance
 Goal: least privilege + safe access patterns.
@@ -229,8 +229,8 @@ Topics:
 - [CORE] Auditing basics
 
 Deliverables:
-- [x] EN: `course/lessons/lesson_14_security_permissions.md`
-- [x] UK: `i18n/uk/course/lessons/lesson_14_security_permissions.md`
+- [x] EN: `course/lessons/14_security_permissions.md`
+- [x] UK: `i18n/uk/course/lessons/14_security_permissions.md`
 
 ---
 
@@ -443,8 +443,8 @@ Must-cover (SQL Server):
   - index-friendly filtering patterns (especially for `STIntersects`, `STContains`, sometimes `STDistance`)
 
 Deliverables:
-- [x] EN: `course/lessons/lesson_x_spatial_types_and_indexing.md`
-- [x] UK: `i18n/uk/course/lessons/lesson_x_spatial_types_and_indexing.md`
+- [x] EN: `course/lessons/x_spatial_types_and_indexing.md`
+- [x] UK: `i18n/uk/course/lessons/x_spatial_types_and_indexing.md`
 - [x] Labs: intro patterns + indexing template
 
 ---
@@ -506,3 +506,4 @@ For each lesson, require:
 - [ ] If the lesson claims performance impact: include IO/time measurements and a plan-based explanation
 - [ ] One mini-assessment (5–10 questions)
 - [ ] Homework that forces tradeoff thinking (correctness vs performance vs maintainability)
+
