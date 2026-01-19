@@ -101,6 +101,100 @@ appropriate or even necessary. 
 grouping results or use a **subquery** to retrieve
 subsets of the data before using **JOIN**.
 
+<h2 align="center">Examples (query + expected output)</h2>
+
+These are intentionally tiny and deterministic. The point is to show the *shape* of the idea.
+
+### Example 1 — Avoid `SELECT *` when you can
+```sql
+WITH People AS (
+  SELECT *
+  FROM (VALUES
+    (1, 'Alice', 'alice@example.com'),
+    (2, 'Bob',   'bob@example.com')
+  ) AS v(PersonID, Name, Email)
+)
+SELECT Name
+FROM People
+ORDER BY PersonID;
+```
+
+Expected output:
+
+| Name |
+|:---|
+| Alice |
+| Bob |
+
+### Example 2 — `WHERE` filters rows; `HAVING` filters groups
+Filter rows *before* aggregation (often cheaper):
+```sql
+WITH Sales AS (
+  SELECT *
+  FROM (VALUES
+    (1, 1, 10.00),
+    (2, 1,  5.00),
+    (3, 2, 100.00)
+  ) AS v(SaleID, CustomerID, Amount)
+)
+SELECT CustomerID, SUM(Amount) AS TotalAmount
+FROM Sales
+WHERE Amount >= 10
+GROUP BY CustomerID
+ORDER BY CustomerID;
+```
+
+Expected output:
+
+| CustomerID | TotalAmount |
+|---:|---:|
+| 1 | 10.00 |
+| 2 | 100.00 |
+
+Filter *groups* after aggregation:
+```sql
+WITH Sales AS (
+  SELECT *
+  FROM (VALUES
+    (1, 1, 10.00),
+    (2, 1,  5.00),
+    (3, 2, 100.00)
+  ) AS v(SaleID, CustomerID, Amount)
+)
+SELECT CustomerID, SUM(Amount) AS TotalAmount
+FROM Sales
+GROUP BY CustomerID
+HAVING SUM(Amount) >= 20
+ORDER BY CustomerID;
+```
+
+Expected output:
+
+| CustomerID | TotalAmount |
+|---:|---:|
+| 2 | 100.00 |
+
+### Example 3 — `DISTINCT` is redundant if you already have uniqueness
+```sql
+WITH Products AS (
+  SELECT *
+  FROM (VALUES
+    (1, 'Keyboard'),
+    (2, 'Mouse')
+  ) AS v(ProductID, ProductName)
+)
+SELECT ProductID, ProductName
+FROM Products
+ORDER BY ProductID;
+```
+
+Expected output:
+
+| ProductID | ProductName |
+|---:|:---|
+| 1 | Keyboard |
+| 2 | Mouse |
+
 <h2 align="center">Conclusions</h2>
 
 We have covered only a few recommendations for optimizing SQL queries. 
@@ -208,6 +302,27 @@ To retrieve data in **JSON** format, use plain **SELECT**.
 ```sql
 SELECT info FROM orders;
 ```
+
+More readable projection (same rows, but easier to reason about):
+
+```sql
+SELECT
+  info ->> 'customer' AS customer,
+  info -> 'items' ->> 'product' AS product,
+  (info -> 'items' ->> 'qty')::int AS qty
+FROM orders
+ORDER BY customer;
+```
+
+Expected output:
+
+| customer | product | qty |
+|:---|:---|---:|
+| John Doe | Beer | 6 |
+| Josh William | Toy Car | 1 |
+| Lily Bush | Diaper | 24 |
+| Mary Clark | Toy Train | 2 |
+
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image1.png" width="600" />
 </div>
@@ -235,13 +350,32 @@ SELECT
 FROM orders;
 ```
 
+Expected output:
+
+| customer | items |
+|:---|:---|
+| "John Doe" | {"product": "Beer", "qty": 6} |
+| "Lily Bush" | {"product": "Diaper", "qty": 24} |
+| "Josh William" | {"product": "Toy Car", "qty": 1} |
+| "Mary Clark" | {"product": "Toy Train", "qty": 2} |
+
 And the next query uses the -\>\> operator to get all of them
 customers in the form of text:
 
 ```sql
-SELECT info -\>\> \'customer\' AS customer
-
+SELECT info ->> 'customer' AS customer
+FROM orders
+ORDER BY customer;
 ```
+
+Expected output:
+
+| customer |
+|:---|
+| John Doe |
+| Josh William |
+| Lily Bush |
+| Mary Clark |
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image3.png" width="600" />
 </div>
@@ -252,8 +386,18 @@ the operator returns all sold products:
 
 ```sql
 SELECT info -> 'items' ->> 'product' as product
+FROM orders
 ORDER BY product;
 ```
+
+Expected output:
+
+| product |
+|:---|
+| Beer |
+| Diaper |
+| Toy Car |
+| Toy Train |
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image4.png" width="200" />

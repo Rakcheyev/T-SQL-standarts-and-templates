@@ -163,10 +163,20 @@ When you rerun the procedure with different prices, you should see the audit tra
 If you’re curious, this is also a good place to open the actual plan and observe that the update is keyed by `ProductID`. Good procedure design and good indexing go together.
 ```sql
 EXEC dbo.usp_UpdatePrice @ProductID = 1, @NewPrice = 60.00;
-SELECT * FROM dbo.Products;
-SELECT TOP (5) * FROM dbo.AuditLog ORDER BY AuditID DESC;
+SELECT ProductID, ProductName, Price FROM dbo.Products;
+SELECT TOP (5) AuditID, Event FROM dbo.AuditLog ORDER BY AuditID DESC;
 ```
-Expected: price changes to 60.00 and an audit row is added.
+Expected output (products):
+
+| ProductID | ProductName | Price |
+|---:|:---|---:|
+| 1 | Keyboard | 60.00 |
+
+Expected output (audit, newest first):
+
+| AuditID | Event |
+|---:|:---|
+| 1 | Updated ProductID=1 Price=60.00 |
 
 ### Lab 3 — Not found path
 “Not found” is not an edge case—it is one of the most common real error modes. IDs go stale, users click twice, messages are retried, and upstream systems race. If your procedure does not define how it behaves for “missing row”, your application will end up implementing that logic inconsistently.
@@ -179,6 +189,19 @@ EXEC dbo.usp_UpdatePrice @ProductID = 999, @NewPrice = 10.00;
 ```
 Expected: error 50001, and no audit row is added.
 
+Verification query (after the error):
+
+```sql
+SELECT COUNT(*) AS AuditRows
+FROM dbo.AuditLog;
+```
+
+Expected output:
+
+| AuditRows |
+|---:|
+| 1 |
+
 ### Lab 4 — Constraint violation path
 This scenario is about respecting the database as the last line of defense. The check constraint rejects negative prices. Your job is not to “work around” that—it’s to ensure that when the database rejects the change, your procedure behaves cleanly.
 
@@ -189,6 +212,19 @@ Again, validate the audit log: there should be no audit row, because the change 
 EXEC dbo.usp_UpdatePrice @ProductID = 1, @NewPrice = -1.00;
 ```
 Expected: check constraint error; transaction rolled back; no audit row.
+
+Verification query (after the error):
+
+```sql
+SELECT COUNT(*) AS AuditRows
+FROM dbo.AuditLog;
+```
+
+Expected output:
+
+| AuditRows |
+|---:|
+| 1 |
 
 ### Lab 5 — Permissions idea (concept)
 Permissions are where stored procedures really earn their keep. If you let an application role update tables directly, you’ve tied security to the shape of the schema and every query the app runs. If you grant only `EXECUTE` on curated procedures, you create controlled entry points.

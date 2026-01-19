@@ -33,10 +33,10 @@ Learn the tradeoffs between views, scalar functions, inline TVFs, and multi-stat
 3. Optional (recommended): view the **actual execution plan** and note whether the logic is “inlined” into the query shape.
 
 ## Quick map
-- [CROSS] **View**: stored `SELECT` definition (logical abstraction).
-- [CROSS] **Scalar UDF**: returns a single value per call.
-- [T-SQL] **Inline TVF**: returns a table, defined as a single `SELECT` (often optimizer-friendly).
-- [T-SQL] **Multi-statement TVF**: returns a table built via multiple statements (can have performance pitfalls).
+- [CROSS] **View**: stored `SELECT` definition (logical abstraction). Definition: [Lab 1](#lab-1--a-view-as-a-reusable-query)
+- [CROSS] **Scalar UDF**: returns a single value per call. Definition: [Lab 2](#lab-2--scalar-function-simple)
+- [T-SQL] **Inline TVF**: returns a table, defined as a single `SELECT` (often optimizer-friendly). Definition: [Lab 3](#lab-3--inline-tvf-often-preferred-over-mstvf)
+- [T-SQL] **Multi-statement TVF**: returns a table built via multiple statements (can have performance pitfalls). Definition: [Lab 4](#lab-4--multi-statement-tvf-shows-the-shape)
 
 ## What each construct is (and why you should care)
 ### Views
@@ -52,6 +52,25 @@ Learn the tradeoffs between views, scalar functions, inline TVFs, and multi-stat
 - [CROSS] a view is not automatically faster; it’s still a query the optimizer has to execute
 - [CROSS] stacking many views can make troubleshooting harder
 
+#### Example (query + expected output)
+After you run the **Lab setup** and create the view in **Lab 1**, this query returns invoice totals.
+
+Reference (view definition): [Lab 1 — `CREATE OR ALTER VIEW dbo.vInvoiceTotals`](#lab-1--a-view-as-a-reusable-query)
+
+```sql
+SELECT *
+FROM dbo.vInvoiceTotals
+ORDER BY InvoiceID;
+```
+
+Expected output:
+
+| InvoiceID | CustomerID | InvoiceDate | InvoiceTotal |
+|---:|---:|:---|---:|
+| 1 | 10 | 2025-01-01 | 120.00 |
+| 2 | 10 | 2025-01-03 | 50.00 |
+| 3 | 20 | 2025-01-04 | 25.00 |
+
 ### Scalar UDF
 **What it is:** a function that returns a single value.
 
@@ -65,6 +84,27 @@ Learn the tradeoffs between views, scalar functions, inline TVFs, and multi-stat
 - [CROSS] can be executed per-row and hurt performance if used on large result sets
 - [T-SQL] plan behavior depends on SQL Server version and whether it can inline the function
 
+#### Example (query + expected output)
+After you create the function in **Lab 2**, this query computes a per-line amount.
+
+Reference (function definition): [Lab 2 — `CREATE OR ALTER FUNCTION dbo.fn_LineAmount`](#lab-2--scalar-function-simple)
+
+```sql
+SELECT InvoiceID, LineNo,
+       dbo.fn_LineAmount(Qty, UnitPrice) AS LineAmount
+FROM dbo.LineItems
+ORDER BY InvoiceID, LineNo;
+```
+
+Expected output:
+
+| InvoiceID | LineNo | LineAmount |
+|---:|---:|---:|
+| 1 | 1 | 100.00 |
+| 1 | 2 | 20.00 |
+| 2 | 1 | 50.00 |
+| 3 | 1 | 25.00 |
+
 ### Inline TVF vs multi-statement TVF
 **Inline TVF:** essentially a parameterized view (single `SELECT`). Often integrates well into the caller query.
 
@@ -74,6 +114,24 @@ Beginner rule of thumb:
 - If you need a table-returning function, prefer an **inline TVF** unless you have a strong reason not to.
 
 Note: SQL Server 2019+ can inline some scalar UDFs (Scalar UDF Inlining), but not all.
+
+#### Example (query + expected output)
+After you create the function in **Lab 3** (inline TVF), this returns totals for one customer.
+
+Reference (function definition): [Lab 3 — `CREATE OR ALTER FUNCTION dbo.itvf_InvoiceTotals`](#lab-3--inline-tvf-often-preferred-over-mstvf)
+
+```sql
+SELECT *
+FROM dbo.itvf_InvoiceTotals(10)
+ORDER BY InvoiceID;
+```
+
+Expected output:
+
+| InvoiceID | InvoiceDate | InvoiceTotal |
+|---:|:---|---:|
+| 1 | 2025-01-01 | 120.00 |
+| 2 | 2025-01-03 | 50.00 |
 
 ## Labs
 
@@ -134,10 +192,13 @@ GO
 
 SELECT * FROM dbo.vInvoiceTotals ORDER BY InvoiceID;
 ```
-Expected totals:
-- Invoice 1 → 120.00
-- Invoice 2 → 50.00
-- Invoice 3 → 25.00
+Expected output:
+
+| InvoiceID | CustomerID | InvoiceDate | InvoiceTotal |
+|---:|---:|:---|---:|
+| 1 | 10 | 2025-01-01 | 120.00 |
+| 2 | 10 | 2025-01-03 | 50.00 |
+| 3 | 20 | 2025-01-04 | 25.00 |
 
 ### Lab 2 — Scalar function (simple)
 Scalar UDFs are attractive because they look like clean application code: you name a calculation and call it as if it were a built-in function. For small, repeated expressions, they can make queries more readable.
@@ -159,6 +220,15 @@ SELECT InvoiceID, LineNo,
 FROM dbo.LineItems
 ORDER BY InvoiceID, LineNo;
 ```
+
+Expected output:
+
+| InvoiceID | LineNo | LineAmount |
+|---:|---:|---:|
+| 1 | 1 | 100.00 |
+| 1 | 2 | 20.00 |
+| 2 | 1 | 50.00 |
+| 3 | 1 | 25.00 |
 
 ### Lab 3 — Inline TVF (often preferred over MSTVF)
 An inline TVF is best understood as a parameterized view. It returns a table, but it is defined as a single `SELECT`, which allows the optimizer to incorporate it into the outer query as if you had pasted the `SELECT` inline.
@@ -183,6 +253,13 @@ SELECT *
 FROM dbo.itvf_InvoiceTotals(10)
 ORDER BY InvoiceID;
 ```
+
+Expected output:
+
+| InvoiceID | InvoiceDate | InvoiceTotal |
+|---:|:---|---:|
+| 1 | 2025-01-01 | 120.00 |
+| 2 | 2025-01-03 | 50.00 |
 
 ### Lab 4 — Multi-statement TVF (shows the shape)
 Multi-statement TVFs look like a comfortable middle ground: you can build up a result step-by-step, perhaps with conditional logic, and return a table at the end. That style feels natural if you come from procedural programming.
@@ -216,6 +293,13 @@ FROM dbo.mstvf_InvoiceTotals(10)
 ORDER BY InvoiceID;
 ```
 
+Expected output:
+
+| InvoiceID | InvoiceDate | InvoiceTotal |
+|---:|:---|---:|
+| 1 | 2025-01-01 | 120.00 |
+| 2 | 2025-01-03 | 50.00 |
+
 ### Lab 5 — Compare alternatives to scalar UDF usage
 This lab demonstrates an important discipline: before you wrap a simple expression into a scalar UDF, try the set-based equivalent inline. Many calculations are perfectly readable as expressions, especially when you name them via aliases.
 
@@ -229,6 +313,15 @@ SELECT InvoiceID, LineNo,
 FROM dbo.LineItems
 ORDER BY InvoiceID, LineNo;
 ```
+
+Expected output:
+
+| InvoiceID | LineNo | LineAmount |
+|---:|---:|---:|
+| 1 | 1 | 100.00 |
+| 1 | 2 | 20.00 |
+| 2 | 1 | 50.00 |
+| 3 | 1 | 25.00 |
 
 ## Guidance (pragmatic)
 Think of these constructs as tools with different “optimization transparency”. Views and inline TVFs tend to be transparent: the optimizer can see through them. Scalar UDFs and MSTVFs can be opaque: they can hide work and distort estimates.

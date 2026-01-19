@@ -228,8 +228,11 @@ Pay attention to the correlated predicate `o.CustomerID = c.CustomerID`. That on
 Task: list customers who have orders.
 
 Expected result:
-- Alice
-- Bob
+
+| CustomerName |
+|:---|
+| Alice |
+| Bob |
 
 ```sql
 SELECT c.CustomerName
@@ -251,7 +254,10 @@ As a habit, always ask: “What is the grain of my result?” Here it should sti
 Task: list customers with no orders.
 
 Expected result:
-- Carla
+
+| CustomerName |
+|:---|
+| Carla |
 
 ```sql
 SELECT c.CustomerName
@@ -318,7 +324,13 @@ SELECT Product FROM dbo.OrderItems WHERE OrderID = 12
 ORDER BY Product;
 ```
 
-Expected: `Mouse` appears twice (order 10 and order 12).
+Expected:
+
+| Product |
+|:---|
+| Keyboard |
+| Mouse |
+| Mouse |
 
 ```sql
 SELECT Product FROM dbo.OrderItems WHERE OrderID = 10
@@ -327,7 +339,12 @@ SELECT Product FROM dbo.OrderItems WHERE OrderID = 12
 ORDER BY Product;
 ```
 
-Expected: each product appears once.
+Expected:
+
+| Product |
+|:---|
+| Keyboard |
+| Mouse |
 
 ### Lab 5 — Top 1 order per customer (APPLY)
 Top-1-per-group is a classic query shape, and it’s one that reveals whether you’re thinking in sets. Here the intent is “for each customer, find their latest order”.
@@ -352,9 +369,12 @@ ORDER BY c.CustomerName;
 ```
 
 Expected:
-- Alice → order 11
-- Bob → order 12
-- Carla → NULLs (because OUTER APPLY)
+
+| CustomerName | OrderID | OrderDate |
+|:---|---:|:---|
+| Alice | 11 | 2025-01-05 |
+| Bob | 12 | 2025-01-07 |
+| Carla | NULL | NULL |
 
 ## Common mistakes
 Most mistakes in this area come from the same root cause: the query does not match the intent. When the intent is “existence”, people write a join and then try to patch the output with `DISTINCT`. When the intent is “missing rows”, people write `NOT IN` and accidentally inherit a `NULL` from upstream.

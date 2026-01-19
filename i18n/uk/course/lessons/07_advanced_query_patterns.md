@@ -228,8 +228,11 @@ GO
 Задача: вивести клієнтів, які мають замовлення.
 
 Очікувано:
-- Alice
-- Bob
+
+| CustomerName |
+|:---|
+| Alice |
+| Bob |
 
 ```sql
 SELECT c.CustomerName
@@ -251,7 +254,10 @@ ORDER BY c.CustomerName;
 Задача: клієнти без замовлень.
 
 Очікувано:
-- Carla
+
+| CustomerName |
+|:---|
+| Carla |
 
 ```sql
 SELECT c.CustomerName
@@ -314,7 +320,13 @@ UNION ALL
 SELECT Product FROM dbo.OrderItems WHERE OrderID = 12
 ORDER BY Product;
 ```
-Очікувано: `Mouse` з’явиться двічі.
+Очікувано:
+
+| Product |
+|:---|
+| Keyboard |
+| Mouse |
+| Mouse |
 
 ```sql
 SELECT Product FROM dbo.OrderItems WHERE OrderID = 10
@@ -322,7 +334,12 @@ UNION
 SELECT Product FROM dbo.OrderItems WHERE OrderID = 12
 ORDER BY Product;
 ```
-Очікувано: кожен продукт лише один раз.
+Очікувано:
+
+| Product |
+|:---|
+| Keyboard |
+| Mouse |
 
 ### Лаб 5 — Top 1 замовлення на клієнта (APPLY)
 Top‑1‑per‑group — класична форма запиту, яка показує, чи ви мислите множинами. Намір тут: “для кожного клієнта знайди останнє замовлення”.
@@ -345,9 +362,12 @@ ORDER BY c.CustomerName;
 ```
 
 Очікувано:
-- Alice → order 11
-- Bob → order 12
-- Carla → NULL (бо `OUTER APPLY`)
+
+| CustomerName | OrderID | OrderDate |
+|:---|---:|:---|
+| Alice | 11 | 2025-01-05 |
+| Bob | 12 | 2025-01-07 |
+| Carla | NULL | NULL |
 
 ## Типові помилки
 Більшість помилок у цих патернах мають спільну причину: форма запиту не відповідає наміру. Коли намір — “існування”, пишуть join і потім “лікують” дублікати `DISTINCT`. Коли намір — “відсутність”, пишуть `NOT IN` і успадковують `NULL` з upstream.

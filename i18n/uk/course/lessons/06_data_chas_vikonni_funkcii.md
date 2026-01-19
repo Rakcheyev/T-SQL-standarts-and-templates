@@ -101,6 +101,100 @@
 результати групування або використати **підзапит** для отримання
 підмножини даних перед використанням **JOIN**.
 
+<h2 align="center">Приклади (запит + очікуваний результат)</h2>
+
+Ці приклади навмисно маленькі й детерміновані. Мета — показати *форму* ідеї.
+
+### Приклад 1 — Уникай `SELECT *`, якщо можеш
+```sql
+WITH People AS (
+    SELECT *
+    FROM (VALUES
+        (1, 'Alice', 'alice@example.com'),
+        (2, 'Bob',   'bob@example.com')
+    ) AS v(PersonID, Name, Email)
+)
+SELECT Name
+FROM People
+ORDER BY PersonID;
+```
+
+Очікуваний результат:
+
+| Name |
+|:---|
+| Alice |
+| Bob |
+
+### Приклад 2 — `WHERE` фільтрує рядки; `HAVING` фільтрує групи
+Фільтрація *до* агрегації (часто дешевше):
+```sql
+WITH Sales AS (
+    SELECT *
+    FROM (VALUES
+        (1, 1, 10.00),
+        (2, 1,  5.00),
+        (3, 2, 100.00)
+    ) AS v(SaleID, CustomerID, Amount)
+)
+SELECT CustomerID, SUM(Amount) AS TotalAmount
+FROM Sales
+WHERE Amount >= 10
+GROUP BY CustomerID
+ORDER BY CustomerID;
+```
+
+Очікуваний результат:
+
+| CustomerID | TotalAmount |
+|---:|---:|
+| 1 | 10.00 |
+| 2 | 100.00 |
+
+Фільтрація *груп* після агрегації:
+```sql
+WITH Sales AS (
+    SELECT *
+    FROM (VALUES
+        (1, 1, 10.00),
+        (2, 1,  5.00),
+        (3, 2, 100.00)
+    ) AS v(SaleID, CustomerID, Amount)
+)
+SELECT CustomerID, SUM(Amount) AS TotalAmount
+FROM Sales
+GROUP BY CustomerID
+HAVING SUM(Amount) >= 20
+ORDER BY CustomerID;
+```
+
+Очікуваний результат:
+
+| CustomerID | TotalAmount |
+|---:|---:|
+| 2 | 100.00 |
+
+### Приклад 3 — `DISTINCT` зайвий, якщо у вас уже є унікальність
+```sql
+WITH Products AS (
+    SELECT *
+    FROM (VALUES
+        (1, 'Keyboard'),
+        (2, 'Mouse')
+    ) AS v(ProductID, ProductName)
+)
+SELECT ProductID, ProductName
+FROM Products
+ORDER BY ProductID;
+```
+
+Очікуваний результат:
+
+| ProductID | ProductName |
+|---:|:---|
+| 1 | Keyboard |
+| 2 | Mouse |
+
 <h2 align="center">Висновки</h2>
 
 Ми розглянули лише кілька рекомендацій щодо оптимізації SQL-запитів. Під
@@ -208,6 +302,27 @@ VALUES
 ```sql
 SELECT info FROM orders;
 ```
+
+Більш читабельна проєкція (ті самі рядки, але зручніше мислити):
+
+```sql
+SELECT
+    info ->> 'customer' AS customer,
+    info -> 'items' ->> 'product' AS product,
+    (info -> 'items' ->> 'qty')::int AS qty
+FROM orders
+ORDER BY customer;
+```
+
+Очікуваний результат:
+
+| customer | product | qty |
+|:---|:---|---:|
+| John Doe | Beer | 6 |
+| Josh William | Toy Car | 1 |
+| Lily Bush | Diaper | 24 |
+| Mary Clark | Toy Train | 2 |
+
 <div align="center">
   <img src="../../../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image1.png" width="600" />
 </div>
@@ -235,13 +350,32 @@ SELECT
 FROM orders;
 ```
 
+Очікуваний результат:
+
+| customer | items |
+|:---|:---|
+| "John Doe" | {"product": "Beer", "qty": 6} |
+| "Lily Bush" | {"product": "Diaper", "qty": 24} |
+| "Josh William" | {"product": "Toy Car", "qty": 1} |
+| "Mary Clark" | {"product": "Toy Train", "qty": 2} |
+
 А наступний запит використовує оператор -\>\>, щоб отримати всіх
 клієнтів у вигляді тексту:
 
 ```sql
-SELECT info -\>\> \'customer\' AS customer
-
+SELECT info ->> 'customer' AS customer
+FROM orders
+ORDER BY customer;
 ```
+
+Очікуваний результат:
+
+| customer |
+|:---|
+| John Doe |
+| Josh William |
+| Lily Bush |
+| Mary Clark |
 <div align="center">
   <img src="../../../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image3.png" width="600" />
 </div>
@@ -252,8 +386,18 @@ SELECT info -\>\> \'customer\' AS customer
 
 ```sql
 SELECT info -> 'items' ->> 'product' as product
+FROM orders
 ORDER BY product;
 ```
+
+Очікуваний результат:
+
+| product |
+|:---|
+| Beer |
+| Diaper |
+| Toy Car |
+| Toy Train |
 
 <div align="center">
   <img src="../../../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image4.png" width="200" />

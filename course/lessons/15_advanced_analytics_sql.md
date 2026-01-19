@@ -153,9 +153,12 @@ ORDER BY SalesMonth;
 ```
 
 Expected output:
-- 2025-01-01: web=30, store=170, total=200
-- 2025-02-01: web=280, store=0, total=280
-- 2025-03-01: web=40, store=130, total=170
+
+| SalesMonth | web_revenue | store_revenue | total_revenue |
+|:---|---:|---:|---:|
+| 2025-01-01 | 30 | 170 | 200 |
+| 2025-02-01 | 280 | 0 | 280 |
+| 2025-03-01 | 40 | 130 | 170 |
 
 ### Lab 4 — `PIVOT` for a fixed set of columns
 Same report, using `PIVOT` (T-SQL specific). This is best when you truly need columns (e.g., export/reporting).
@@ -242,9 +245,15 @@ ORDER BY CohortMonth, MonthOffset;
 ```
 
 Expected output (by reasoning from the seed data):
-- Cohort 2025-01-01: offset 0 → 2 customers (1,2); offset 1 → 1 customer (1); offset 2 → 1 customer (1)
-- Cohort 2025-02-01: offset 0 → 1 customer (3); offset 1 → 1 customer (3)
-- Cohort 2025-03-01: offset 0 → 1 customer (4)
+
+| CohortMonth | MonthOffset | ActiveCustomers |
+|:---|---:|---:|
+| 2025-01-01 | 0 | 2 |
+| 2025-01-01 | 1 | 1 |
+| 2025-01-01 | 2 | 1 |
+| 2025-02-01 | 0 | 1 |
+| 2025-02-01 | 1 | 1 |
+| 2025-03-01 | 0 | 1 |
 
 ## Summary
 - `GROUPING SETS` is the most explicit way to request multiple aggregation levels in one query.

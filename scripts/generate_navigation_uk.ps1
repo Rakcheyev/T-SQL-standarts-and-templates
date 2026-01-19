@@ -56,7 +56,7 @@ function Get-HeadingsFromMarkdown {
     $inCodeFence = $false
     $headings = New-Object System.Collections.Generic.List[object]
 
-    foreach ($line in Get-Content -LiteralPath $FilePath) {
+    foreach ($line in Get-Content -LiteralPath $FilePath -Encoding UTF8) {
         if ($line -match '^```') {
             $inCodeFence = -not $inCodeFence
             continue

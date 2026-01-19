@@ -221,9 +221,13 @@ COMMIT;
 
 SELECT * FROM dbo.Customers ORDER BY CustomerID;
 ```
-Expected:
-- [CORE] Customer 2 updated
-- [CORE] Customer 3 inserted
+Expected output:
+
+| CustomerID | CustomerName | UpdatedAt |
+|---:|:---|:---|
+| 1 | Alice | 2025-01-01 00:00:00 |
+| 2 | Bob Jr | 2025-01-02 00:00:00 |
+| 3 | Carla | 2025-01-02 00:00:00 |
 
 ### Lab 3 — Detect deletes (optional)
 Upserts are about inserts and updates, but real loads sometimes need to reflect deletions as well. The tricky part is that a missing row in staging can mean different things: “the source deleted it”, “the source didn’t send it this batch”, or “your extract failed”. You need business semantics before you delete anything.

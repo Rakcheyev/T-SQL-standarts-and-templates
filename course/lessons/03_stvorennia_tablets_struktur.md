@@ -52,7 +52,7 @@ List of DDL commands:
 - The **CREATE** command is used to create a database or its
 objects (tables, indexes, functions, representations, procedures
 storage and triggers). 
-to create a table, CREATE VIEW--- to create a view.
+to create a table, [CREATE VIEW](#create-view-example) --- to create a view.
 
 - The **DROP** command is used to remove objects from the database
 data 
@@ -269,6 +269,8 @@ How to create **views** and **materialized views**
 Let's try to create two types of **View** in practice using
 **CREATE** commands.
 
+<a id="create-view-example"></a>
+
 Request for **View**:
 
 ```sql
@@ -280,7 +282,7 @@ SELECT employee_id
 FROM HR.employees;
 ```
 
-In this example, we create a **VIEW** named **"employee_details"**,
+In this example, we create a **VIEW** named **"employees_details"**,
 which displays information about employees, including their
 identifiers, names and work department.
 

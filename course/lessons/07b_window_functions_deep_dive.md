@@ -125,10 +125,13 @@ FROM x
 WHERE rn = 1
 ORDER BY CustomerID;
 ```
-Expected:
-- Customer 1 → SaleID 3 (latest tie-broken by SaleID)
-- Customer 2 → SaleID 5
-- Customer 3 → SaleID 6
+Expected output:
+
+| CustomerID | SaleID | SaleDate | Amount |
+|---:|---:|:---|---:|
+| 1 | 3 | 2025-01-02 | 15.00 |
+| 2 | 5 | 2025-01-03 | 20.00 |
+| 3 | 6 | 2025-01-05 | 5.00 |
 
 ### Lab 3 — Top 2 sales per customer
 Top-N per group is one of the most frequent analytics tasks: top 2 products per category, top 3 orders per customer, highest 5 days per region. The trick is always the same: assign a per-group row number, then filter.
@@ -150,6 +153,16 @@ FROM x
 WHERE rn <= 2
 ORDER BY CustomerID, rn;
 ```
+
+Expected output:
+
+| CustomerID | SaleID | SaleDate | Amount |
+|---:|---:|:---|---:|
+| 1 | 3 | 2025-01-02 | 15.00 |
+| 1 | 2 | 2025-01-02 | 15.00 |
+| 2 | 4 | 2025-01-01 | 50.00 |
+| 2 | 5 | 2025-01-03 | 20.00 |
+| 3 | 6 | 2025-01-05 | 5.00 |
 
 ### Lab 4 — Running total per customer (ROWS frame)
 Running totals are the canonical example of why window functions exist. You want each row to stay visible, but you also want a cumulative metric alongside it.

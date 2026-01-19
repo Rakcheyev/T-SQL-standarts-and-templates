@@ -117,6 +117,21 @@ ROLLBACK;
 ```
 Expected: balances return to original values after rollback.
 
+Verification query:
+
+```sql
+SELECT AccountID, Balance
+FROM dbo.Accounts
+ORDER BY AccountID;
+```
+
+Expected output:
+
+| AccountID | Balance |
+|---:|---:|
+| 1 | 100.00 |
+| 2 | 100.00 |
+
 ### Lab 2 — Blocking demo
 Blocking is easiest to understand if you visualize a single row as a resource that can be “held” by one session while it is being modified. When Session A updates the row for `AccountID = 1` and keeps the transaction open, it is effectively saying: “this row is in the middle of change; nobody else can modify it until I’m done.”
 
