@@ -446,6 +446,7 @@ This page lists the lesson headings and links directly to them.
   - [Goal](course/lessons/x_spatial_types_and_indexing.md#goal)
   - [Who this lesson is for](course/lessons/x_spatial_types_and_indexing.md#who-this-lesson-is-for)
   - [Prerequisites](course/lessons/x_spatial_types_and_indexing.md#prerequisites)
+  - [Why this matters in production](course/lessons/x_spatial_types_and_indexing.md#why-this-matters-in-production)
   - [Notes](course/lessons/x_spatial_types_and_indexing.md#notes)
   - [Types](course/lessons/x_spatial_types_and_indexing.md#types)
   - [Why spatial types exist](course/lessons/x_spatial_types_and_indexing.md#why-spatial-types-exist)
@@ -456,4 +457,6 @@ This page lists the lesson headings and links directly to them.
     - [Lab 4 — Simple radius search (within X meters)](course/lessons/x_spatial_types_and_indexing.md#lab-4-simple-radius-search-within-x-meters)
     - [Lab 5 — Spatial index (template)](course/lessons/x_spatial_types_and_indexing.md#lab-5-spatial-index-template)
   - [Summary](course/lessons/x_spatial_types_and_indexing.md#summary)
+  - [Mini-assessment (self-check)](course/lessons/x_spatial_types_and_indexing.md#mini-assessment-self-check)
+  - [Homework (tradeoffs: correctness vs performance)](course/lessons/x_spatial_types_and_indexing.md#homework-tradeoffs-correctness-vs-performance)
 

@@ -21,6 +21,12 @@ Get a safe, correct introduction to SQL Server spatial data types and typical qu
 - Basic `SELECT`/`WHERE`.
 - You don’t need GIS experience, but you must be careful with coordinate systems.
 
+## Why this matters in production
+
+Spatial features tend to fail “quietly”: results look plausible on a map even when coordinate order, SRID, or units are wrong. That leads to customer-facing bugs (wrong radius search, wrong delivery zone, wrong nearest store) that are hard to diagnose because the query still returns rows.
+
+The production mindset is: make assumptions explicit (SRID, units, coordinate order), add sanity checks, then optimize. If you skip the first two steps, a spatial index can make the wrong answer fast.
+
 ## Notes
 Spatial is a specialized topic. This lesson focuses on correct fundamentals and simple, verifiable demos.
 
@@ -167,8 +173,21 @@ If you take one thing away, let it be this: always keep SRID and units explicit,
 Once correctness is established, start thinking about performance: reduce the candidate set with normal filters, then apply spatial predicates and indexes where they help.
 - Use `geography` for lat/long on Earth, `geometry` for planar.
 - Validate results and coordinate systems (SRID).
-- [T-SQL] Use `geography` for lat/long on Earth, `geometry` for planar.
-- [T-SQL] Validate results and coordinate systems (SRID).
+
+## Mini-assessment (self-check)
+
+1. When should you choose `geography` over `geometry`, and why?
+2. What is SRID, and what can go wrong if you mix SRIDs?
+3. In SQL Server, what unit does `geography.STDistance(...)` return for SRID 4326?
+4. Why can a lat/long swap look “fine” at first?
+5. What’s a safe performance strategy for radius search before adding a spatial index?
+
+## Homework (tradeoffs: correctness vs performance)
+
+1. Add two more known points and validate distances with rough real-world estimates.
+2. Implement a “bounding box first, then exact distance” approach (even if it’s approximate) and compare the plan shape.
+3. Create a larger dataset (more rows) and test Lab 4 with and without a spatial index.
+  - Record IO/time and whether the plan uses a spatial index candidate selection step.
 
 **Microsoft Docs (Learn):**
 - [Spatial data types overview](https://learn.microsoft.com/sql/relational-databases/spatial/spatial-data-types-overview)

@@ -442,6 +442,7 @@ This page lists Ukrainian lesson headings and links directly to them.
   - [Мета](course/lessons/x_spatial_types_and_indexing.md#мета)
   - [Для кого цей урок](course/lessons/x_spatial_types_and_indexing.md#для-кого-цей-урок)
   - [Передумови](course/lessons/x_spatial_types_and_indexing.md#передумови)
+  - [Чому це важливо у проді](course/lessons/x_spatial_types_and_indexing.md#чому-це-важливо-у-проді)
   - [Примітка](course/lessons/x_spatial_types_and_indexing.md#примітка)
   - [Типи](course/lessons/x_spatial_types_and_indexing.md#типи)
   - [Що таке spatial-дані (для новачків)](course/lessons/x_spatial_types_and_indexing.md#що-таке-spatial-дані-для-новачків)
@@ -452,4 +453,6 @@ This page lists Ukrainian lesson headings and links directly to them.
     - [Лаб 4 — Пошук у радіусі](course/lessons/x_spatial_types_and_indexing.md#лаб-4-пошук-у-радіусі)
     - [Лаб 5 — Spatial index (шаблон)](course/lessons/x_spatial_types_and_indexing.md#лаб-5-spatial-index-шаблон)
   - [Підсумок](course/lessons/x_spatial_types_and_indexing.md#підсумок)
+  - [Міні-оцінювання (самоперевірка)](course/lessons/x_spatial_types_and_indexing.md#міні-оцінювання-самоперевірка)
+  - [Домашнє (tradeoffs: коректність vs продуктивність)](course/lessons/x_spatial_types_and_indexing.md#домашнє-tradeoffs-коректність-vs-продуктивність)
 
