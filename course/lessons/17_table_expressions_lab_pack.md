@@ -362,6 +362,26 @@ CREATE INDEX IX_Orders_Customer_OrderDateTime ON dbo.Orders(CustomerID, OrderDat
 2. Why is `ORDER BY OrderDateTime` alone not safe for top-1 when ties exist?
 3. When does APPLY help correctness compared to a join?
 4. If you reference a CTE twice, what plan shape might SQL Server choose to avoid repeated work?
+5. Why is “fixing duplicates with `DISTINCT`” often a code smell in production?
+6. What index shape helps the Lab 4 APPLY pattern scale (think: seek + ordered TOP)?
+7. In Lab 6, what would convince you the optimizer rewrote a correlated subquery into a set-based plan?
+
+## Homework (tradeoffs: correctness vs performance vs maintainability)
+
+1. Re-solve **Lab 4** using the **window function approach** (like Lab 3) and include customers with 0 orders.
+  - Which version is easier to prove correct?
+  - Which version is easier to extend later (e.g., add “latest PAID time” too)?
+
+2. Stress the tie case: insert one more order for Customer 1 with the same `OrderDateTime` as the tie, but a different `OrderID`.
+  - Show how a non-deterministic top-1 breaks.
+  - Fix it with a deterministic tie-breaker and explain the rule.
+
+3. Measure plan shape: for **Lab 6**, run with and without the suggested index.
+  - Capture `STATISTICS IO, TIME` and the Actual Execution Plan.
+  - Write a short explanation of what changed (operators, join type, seek/scan), and why.
+
+4. Cross-DB thinking (optional): rewrite Lab 4 and Lab 5 for PostgreSQL using `LATERAL`.
+  - Note any syntax differences and what you’d do for indexing.
 
 ## Summary
 

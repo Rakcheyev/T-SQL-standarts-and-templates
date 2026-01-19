@@ -429,6 +429,7 @@ This page lists the lesson headings and links directly to them.
   - [Lab 6 вЂ” Correlated subquery vs APPLY (explain plan shape)](course/lessons/17_table_expressions_lab_pack.md#lab-6-correlated-subquery-vs-apply-explain-plan-shape)
   - [Checklist: safe defaults](course/lessons/17_table_expressions_lab_pack.md#checklist-safe-defaults)
   - [Mini-quiz (quick self-check)](course/lessons/17_table_expressions_lab_pack.md#mini-quiz-quick-self-check)
+  - [Homework (tradeoffs: correctness vs performance vs maintainability)](course/lessons/17_table_expressions_lab_pack.md#homework-tradeoffs-correctness-vs-performance-vs-maintainability)
   - [Summary](course/lessons/17_table_expressions_lab_pack.md#summary)
 
 ## [Bonus: Spatial types and indexing](course/lessons/x_spatial_types_and_indexing.md)

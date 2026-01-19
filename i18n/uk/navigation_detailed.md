@@ -424,6 +424,7 @@ This page lists Ukrainian lesson headings and links directly to them.
   - [Р›Р°Р± 6 вЂ” Correlated subquery vs APPLY (plan shape)](course/lessons/17_table_expressions_lab_pack.md#ррр-6-вђ-correlated-subquery-vs-apply-plan-shape)
   - [Р§РµРєР»РёСЃС‚: Р±РµР·РїРµС‡РЅС– РґРµС„РѕР»С‚Рё](course/lessons/17_table_expressions_lab_pack.md#ррµрєррёсѓс-ррµррїрµсрѕс-рґрµсрѕрсрё)
   - [РњС–РЅС–вЂ‘С‚РµСЃС‚](course/lessons/17_table_expressions_lab_pack.md#рњсрѕсвђсрµсѓс)
+  - [Р”РѕРјР°С€РЅС” (tradeoffs: РєРѕСЂРµРєС‚РЅС–СЃС‚СЊ vs РїСЂРѕРґСѓРєС‚РёРІРЅС–СЃС‚СЊ vs РїС–РґС‚СЂРёРјСѓРІР°РЅС–СЃС‚СЊ)](course/lessons/17_table_expressions_lab_pack.md#ррѕрјрсрѕс-tradeoffs-рєрѕсђрµрєсрѕссѓссњ-vs-рїсђрѕрґсѓрєсрёрірѕссѓссњ-vs-рїсрґссђрёрјсѓріррѕссѓссњ)
   - [РџС–РґСЃСѓРјРѕРє](course/lessons/17_table_expressions_lab_pack.md#рџсрґсѓсѓрјрѕрє)
 
 ## [Бонус: Бонус — Просторові типи та просторові індекси (огляд)](course/lessons/x_spatial_types_and_indexing.md)
