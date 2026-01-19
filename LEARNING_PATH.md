@@ -28,7 +28,11 @@ This document describes the **recommended order** for reading the learning mater
 Optional:
 - [Elective: Advanced analytics SQL](course/lessons/15_advanced_analytics_sql.md)
 - [Elective: Monitoring and troubleshooting](course/lessons/16_monitoring_and_troubleshooting.md)
+- [Elective: Table expressions lab pack](course/lessons/17_table_expressions_lab_pack.md)
 - [Bonus: Spatial types and indexing](course/lessons/x_spatial_types_and_indexing.md)
+
+References:
+- Ben-Gan canon (inspiration only): [BEN_GAN_CANON.md](BEN_GAN_CANON.md)
 
 ## Difficulty levels
 

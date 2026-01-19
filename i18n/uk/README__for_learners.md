@@ -41,6 +41,10 @@
 
 - Pro DE (Data Engineer): [PRO_DE_TRACK_GUIDE.md](PRO_DE_TRACK_GUIDE.md)
 
+## Джерела (опційно)
+
+- “Канон” (натхнення, не копіювати текст): [BEN_GAN_CANON.md](BEN_GAN_CANON.md)
+
 ## Capstone проєкт
 
 - Опис проєкту: [CAPSTONE_PROJECT.md](CAPSTONE_PROJECT.md)

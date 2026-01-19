@@ -30,8 +30,9 @@
 - [x] Додати українські версії planning-доків
   - [x] Створити цей файл: `i18n/uk/TODO.md`
 
-- [ ] (Опційно) Додати “канон” як натхнення (Itzik Ben-Gan тощо)
+- [x] (Опційно) Додати “канон” як натхнення (Itzik Ben-Gan тощо)
   - Правило: не копіювати текст, а писати оригінальні пояснення та labs.
+  - Додано: `i18n/uk/BEN_GAN_CANON.md` + Урок 17 (lab pack): `i18n/uk/course/lessons/17_table_expressions_lab_pack.md`.
 
 ---
 

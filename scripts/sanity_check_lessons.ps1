@@ -94,7 +94,7 @@ function Check-LessonFile {
     $lines = @(Get-Content -LiteralPath $FilePath -Encoding UTF8)
     $fileName = Split-Path -Leaf $FilePath
 
-    $isNewLesson = $fileName -match '^(07b|07|08|09|1[0-6]|x)_' 
+    $isNewLesson = $fileName -match '^(07b|07|08|09|1[0-7]|x)_' 
 
     if ($lines.Count -eq 0) {
         $script:errors.Add("${fileName}: file is empty")

@@ -120,6 +120,7 @@ $lessonIndex = @(
     @{ File = "14_security_permissions.md"; Title = "Lesson 14: Security and permissions" },
     @{ File = "15_advanced_analytics_sql.md"; Title = "Lesson 15: Advanced analytics SQL" },
     @{ File = "16_monitoring_and_troubleshooting.md"; Title = "Lesson 16: Monitoring and troubleshooting" },
+    @{ File = "17_table_expressions_lab_pack.md"; Title = "Lesson 17: Table expressions lab pack (derived tables, CTEs, APPLY)" },
     @{ File = "x_spatial_types_and_indexing.md"; Title = "Bonus: Spatial types and indexing" }
 )
 

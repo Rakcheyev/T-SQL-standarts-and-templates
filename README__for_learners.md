@@ -42,6 +42,10 @@ Tip: if you’re learning on SQL Server, focus on `[CORE]`, `[CROSS]`, and `[T-S
 
 - Pro DE (Data Engineer): [PRO_DE_TRACK_GUIDE.md](PRO_DE_TRACK_GUIDE.md)
 
+## References (optional)
+
+- Ben-Gan canon (inspiration only): [BEN_GAN_CANON.md](BEN_GAN_CANON.md)
+
 ## Capstone project
 
 - End-to-end project spec: [CAPSTONE_PROJECT.md](CAPSTONE_PROJECT.md)

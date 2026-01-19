@@ -60,19 +60,13 @@ DBMS scope labels used in this file:
   - [x] Add `scripts/verify_repo.ps1` (one-command workflow)
   - [x] Add VS Code task in `.vscode/tasks.json`
 
-- [ ] Optional: incorporate Itzik Ben-Gan “canon” (source of patterns + labs)
-  - [ ] Use for: set-based thinking, correctness edge cases, window-function patterns, table expressions
-  - [ ] Keep it as inspiration/reference only (don’t copy text; build original explanations + labs)
-  - [ ] Trustworthy starting points:
-    - [ ] Microsoft Press Store search results (books list): https://www.microsoftpressstore.com/search/index.aspx?query=Ben-Gan
-    - [ ] T-SQL Fundamentals, 4th Edition: https://www.microsoftpressstore.com/store/t-sql-fundamentals-9780138102104
-    - [ ] T-SQL Window Functions (2nd Ed): https://www.microsoftpressstore.com/store/t-sql-window-functions-for-data-analysis-and-beyond-9780135861448
-    - [ ] T-SQL Querying: https://www.microsoftpressstore.com/store/t-sql-querying-9780735685048
-    - [ ] (Historical, still useful concepts) MSDN Magazine archive: APPLY / CTE / PIVOT/UNPIVOT / TRY/CATCH / SNAPSHOT
-      https://learn.microsoft.com/en-us/archive/msdn-magazine/2004/february/powerful-t-sql-syntax-gives-sql-server-a-programmability-boost
-  - [ ] Course integration ideas (high ROI):
-    - [ ] Add a dedicated “Window functions deep dive” block (or split Lesson 7) with labs: running totals, gaps-and-islands, top-N-per-group, dedupe with `ROW_NUMBER()`
-    - [ ] Add a “table expressions” lab pack: derived tables vs CTEs vs APPLY; correctness + plan shape comparisons
+- [x] Optional: incorporate Itzik Ben-Gan “canon” (source of patterns + labs)
+  - [x] Use for: set-based thinking, correctness edge cases, window-function patterns, table expressions
+  - [x] Keep it as inspiration/reference only (don’t copy text; build original explanations + labs)
+  - [x] Trustworthy starting points captured in: `BEN_GAN_CANON.md`
+  - [x] Course integration (high ROI):
+    - [x] Lesson 7B — Window functions deep dive (labs)
+    - [x] Lesson 17 — Table expressions lab pack (derived tables vs CTEs vs APPLY)
 
 ---
 
