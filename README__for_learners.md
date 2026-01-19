@@ -37,3 +37,7 @@ Tip: if you’re learning on SQL Server, focus on `[CORE]`, `[CROSS]`, and `[T-S
 - Lessons: [course/lessons/](course/lessons/)
 - Lesson images: [assets/images/](assets/images/)
 - Helper scripts for Markdown processing: [scripts/](scripts/)
+
+## Pro tracks
+
+- Pro DE (Data Engineer): [PRO_DE_TRACK_GUIDE.md](PRO_DE_TRACK_GUIDE.md)

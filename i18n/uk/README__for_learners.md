@@ -36,3 +36,7 @@
 - Уроки: [course/lessons/](course/lessons/)
 - Ілюстрації до уроків: [assets/images/](../../assets/images/)
 - Допоміжні скрипти для обробки Markdown: [scripts/](../../scripts/)
+
+## Pro треки
+
+- Pro DE (Data Engineer): [PRO_DE_TRACK_GUIDE.md](PRO_DE_TRACK_GUIDE.md)

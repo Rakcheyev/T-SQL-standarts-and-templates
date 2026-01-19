@@ -463,7 +463,7 @@ Deliverables:
 
 ### Pro DE (Data Engineer)
 - [x] Lessons 7–12 (and strongly recommended: Lesson 7B)
-- [ ] Strong emphasis: transactions/idempotency, load patterns, performance for pipelines
+- [x] Strong emphasis: transactions/idempotency, load patterns, performance for pipelines
 
 ### Pro DBA
 - [x] Lessons 7–11 + 13–14 (and recommended: Lesson 7B)
