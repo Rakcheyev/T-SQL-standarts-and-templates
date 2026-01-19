@@ -4,6 +4,8 @@
 
 *Intro:* Reusability in SQL is not free: the way you package logic changes what the optimizer can see. You’ll compare views, scalar UDFs, inline TVFs, and multi-statement TVFs, focusing on visibility, estimates, and plan shape—so you can choose abstraction without surprises.
 
+**DBMS scope:** [CROSS] views/functions concepts; examples are [T-SQL] (SQL Server TVFs + UDF inlining notes).
+
 This is the lesson where “clean code” and “good plans” meet. Two solutions can be functionally identical, but the database engine may treat them very differently depending on whether the logic is inlined or hidden behind a black box.
 
 We’ll frame each construct as a trade-off: readability and reuse versus optimization and predictability. You’ll learn why inline TVFs often behave like parameterized views, why scalar UDFs can be risky, and why multi-statement TVFs can surprise you with row estimates.
@@ -31,10 +33,10 @@ Learn the tradeoffs between views, scalar functions, inline TVFs, and multi-stat
 3. Optional (recommended): view the **actual execution plan** and note whether the logic is “inlined” into the query shape.
 
 ## Quick map
-- **View**: stored `SELECT` definition (logical abstraction).
-- **Scalar UDF**: returns a single value per call.
-- **Inline TVF**: returns a table, defined as a single `SELECT` (often optimizer-friendly).
-- **Multi-statement TVF**: returns a table built via multiple statements (can have performance pitfalls).
+- [CROSS] **View**: stored `SELECT` definition (logical abstraction).
+- [CROSS] **Scalar UDF**: returns a single value per call.
+- [T-SQL] **Inline TVF**: returns a table, defined as a single `SELECT` (often optimizer-friendly).
+- [T-SQL] **Multi-statement TVF**: returns a table built via multiple statements (can have performance pitfalls).
 
 ## What each construct is (and why you should care)
 ### Views
@@ -43,12 +45,12 @@ Learn the tradeoffs between views, scalar functions, inline TVFs, and multi-stat
 **Why it’s used:** hide complexity and standardize definitions (e.g., “invoice totals”).
 
 **Benefits:**
-- readable reuse
-- one place to fix logic
+- [CROSS] readable reuse
+- [CROSS] one place to fix logic
 
 **Pitfalls:**
-- a view is not automatically faster; it’s still a query the optimizer has to execute
-- stacking many views can make troubleshooting harder
+- [CROSS] a view is not automatically faster; it’s still a query the optimizer has to execute
+- [CROSS] stacking many views can make troubleshooting harder
 
 ### Scalar UDF
 **What it is:** a function that returns a single value.
@@ -56,12 +58,12 @@ Learn the tradeoffs between views, scalar functions, inline TVFs, and multi-stat
 **Why it’s used:** encapsulate repeated calculations.
 
 **Benefits:**
-- reusability
-- can improve readability for small calculations
+- [CROSS] reusability
+- [CROSS] can improve readability for small calculations
 
 **Pitfalls:**
-- can be executed per-row and hurt performance if used on large result sets
-- plan behavior depends on SQL Server version and whether it can inline the function
+- [CROSS] can be executed per-row and hurt performance if used on large result sets
+- [T-SQL] plan behavior depends on SQL Server version and whether it can inline the function
 
 ### Inline TVF vs multi-statement TVF
 **Inline TVF:** essentially a parameterized view (single `SELECT`). Often integrates well into the caller query.
@@ -234,10 +236,10 @@ Think of these constructs as tools with different “optimization transparency�
 That doesn’t mean you avoid the opaque tools entirely. It means you apply them where their benefit (encapsulation, procedural composition) outweighs the risk, and you validate with actual plans and representative volumes.
 
 As a team convention, it helps to define a few rules of thumb (“inline TVF preferred”, “scalar UDF must be reviewed on large queries”), because consistent practice beats individual heroics.
-- Prefer **views** for readable reuse (especially for BI/reporting).
-- Prefer **inline TVFs** when you need parameterized table logic.
-- Use **scalar UDFs** sparingly; validate plans on your target SQL Server version.
-- Avoid **MSTVFs** in performance-critical paths unless you have a strong reason.
+- [CROSS] Prefer **views** for readable reuse (especially for BI/reporting).
+- [T-SQL] Prefer **inline TVFs** when you need parameterized table logic.
+- [T-SQL] Use **scalar UDFs** sparingly; validate plans on your target SQL Server version.
+- [T-SQL] Avoid **MSTVFs** in performance-critical paths unless you have a strong reason.
 
 ## Summary
 The big lesson is that reusability is not free. In SQL Server, the way you package logic changes what the optimizer can see, and what it can see determines which plans it can choose.

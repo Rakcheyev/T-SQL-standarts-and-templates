@@ -4,6 +4,8 @@
 
 *Intro:* Performance stops being mysterious once you connect predicates to indexes and plans. This lesson teaches a repeatable tuning loop—measure, inspect the actual plan, change one thing, re-measure—while explaining SARGability, seeks vs scans, and covering indexes in practical terms.
 
+**DBMS scope:** [CORE] SARGability + [CROSS] indexing/plan concepts; examples are [T-SQL] (SQL Server plans + tooling).
+
 We’ll treat tuning as an experiment, not a superstition. You’ll learn to start from a correct query, capture evidence (actual plan + IO/time), and make one controlled change at a time so you can attribute improvements to a specific cause.
 
 The key skill is learning what your predicates *allow* the optimizer to do. A seekable predicate is not “faster by magic”—it’s simply shaped so an index can jump to the relevant range instead of scanning and filtering. We’ll also connect covering indexes to real pain points like key lookups, so you know when INCLUDE is worth the extra storage.
@@ -22,20 +24,21 @@ Learn to reason about performance using (1) predicates, (2) indexes, and (3) act
 - Beginners: introduces plans without assuming you already know the optimizer internals.
 
 ## Tooling (recommended)
-- SSMS or Azure Data Studio.
-- Enable **Actual Execution Plan**.
-- Optional: `SET STATISTICS IO, TIME ON;` for repeatable measurements.
+ - [T-SQL] SSMS or Azure Data Studio (SQL Server tooling).
+ - [T-SQL] Enable **Actual Execution Plan**.
+ - [T-SQL] Optional: `SET STATISTICS IO, TIME ON;` for repeatable measurements.
 
-## A safe workflow for tuning
-1. Start from a correct query.
-2. Capture **actual plan** + IO/TIME.
+ - [CORE] **SARGable predicate**: a predicate shape that can efficiently use an index.
+ - [CROSS] **Seek vs Scan**: seek navigates to relevant keys; scan reads many/all rows.
+ - [CROSS] **Covering index**: index contains all columns needed to avoid lookups (implementation differs by DBMS).
 3. Change one thing (predicate shape, index, query rewrite).
-4. Re-measure and compare.
-
+ - [CROSS] applying a function to the column: `CONVERT(date, EventTime) = ...` (example shown in SQL Server)
+ - [CROSS] mismatched data types that force implicit conversion
 ## Key terms
-- **SARGable predicate**: a predicate that can efficiently use an index seek.
-- **Seek vs Scan**: seek navigates to relevant keys; scan reads many/all rows.
+ - [CORE] use a range predicate on the raw column (>= and < for datetimes)
+ - [CORE] cast the *parameter/literal* to the column type, not the column to the parameter type
 - **Covering index**: includes all columns needed to avoid key lookups.
+ **Scope (labs):** [T-SQL] SQL Server syntax + catalog objects (`sys.all_objects`).
 
 ## What an index is (beginner-friendly)
 **What it is:** a data structure that helps SQL Server find rows faster (like a book index).

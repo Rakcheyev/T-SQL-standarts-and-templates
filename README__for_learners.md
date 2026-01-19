@@ -20,6 +20,18 @@ Lessons are in [course/lessons/](course/lessons/).
 - For quick lookups by topic/heading, use [navigation.md](navigation.md).
 - For quick lookups by topic/heading, use [navigation.md](navigation.md) (or the detailed index [navigation_detailed.md](navigation_detailed.md)).
 
+## DBMS scope tags (what the labels mean)
+
+Some lessons include a **DBMS scope** line near the top and/or inline tags inside bullet lists.
+These tags tell you whether a concept is portable SQL or specific to one database.
+
+- `[CORE]` — portable SQL ideas/patterns that translate well across DBMS (syntax may differ slightly).
+- `[CROSS]` — concept exists in multiple DBMS, but behavior/syntax/performance details differ; read the notes and adapt.
+- `[T-SQL]` — SQL Server / Azure SQL specific (Transact-SQL features, tooling, or behavior).
+- `[PG]` — PostgreSQL specific.
+
+Tip: if you’re learning on SQL Server, focus on `[CORE]`, `[CROSS]`, and `[T-SQL]`. If you’re on PostgreSQL, focus on `[CORE]`, `[CROSS]`, and `[PG]`.
+
 ## What’s inside
 
 - Lessons: [course/lessons/](course/lessons/)

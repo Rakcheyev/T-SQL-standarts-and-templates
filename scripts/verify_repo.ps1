@@ -17,6 +17,7 @@ try {
     }
 
     powershell -ExecutionPolicy Bypass -File .\scripts\sanity_check_lessons.ps1
+    powershell -ExecutionPolicy Bypass -File .\scripts\check_markdown_links.ps1
 
     Write-Host "OK: verification succeeded." -ForegroundColor Green
 } finally {

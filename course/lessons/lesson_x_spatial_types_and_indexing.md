@@ -4,6 +4,8 @@
 
 *Intro:* Spatial queries fail in subtle ways when SRID, units, or coordinate order are misunderstood. This bonus lesson gives a careful overview of geometry vs geography, common spatial shapes, and simple distance/radius patterns—plus the mindset to validate results before you trust a map.
 
+**DBMS scope:** [T-SQL] SQL Server spatial types (`geography`/`geometry`) and spatial indexes.
+
 Spatial work is deceptively “visual”: outputs often look plausible even when they’re wrong. A point with swapped coordinates may still render somewhere, and a distance computed in unexpected units can still be a number that seems reasonable until you sanity-check it.
 
 We’ll focus on the few decisions that matter most early: which type matches your reality (Earth vs plane), what SRID means in your system, and how to interpret distance/area results. You’ll also see how to combine correctness checks with performance thinking—narrow candidates first, then apply spatial predicates, and only then consider spatial indexes where they genuinely help.
@@ -29,8 +31,8 @@ Treat spatial work like you would treat time zones: always name your assumptions
 For learning, the goal is to build correct instincts: choose the right type (`geography` vs `geometry`), keep SRID explicit, and verify outputs.
 
 ## Types
-- `geometry`: planar (Euclidean) calculations.
-- `geography`: round-earth model (latitude/longitude on a spheroid).
+- [T-SQL] `geometry`: planar (Euclidean) calculations.
+- [T-SQL] `geography`: round-earth model (latitude/longitude on a spheroid).
 
 **Quick comparison**
 
@@ -73,12 +75,12 @@ Spatial also gives you an ecosystem of functions (`STDistance`, `STIntersects`, 
 The trade-off is that spatial is opinionated: you must respect coordinate systems and be deliberate about validation and performance.
 
 **Benefits:**
-- correctness: distance/containment logic lives in the engine
-- expressiveness: fewer “hand-rolled” math bugs
+- [CROSS] correctness: distance/containment logic lives in the engine
+- [CROSS] expressiveness: fewer “hand-rolled” math bugs
 
 **Pitfalls:**
-- coordinate system matters (SRID); lat/long must use the correct type and SRID
-- units differ: `geography` distance is in meters; `geometry` distance is in the coordinate system’s units
+- [T-SQL] coordinate system matters (SRID); lat/long must use the correct type and SRID
+- [T-SQL] units differ: `geography` distance is in meters; `geometry` distance is in the coordinate system’s units
 
 ## Labs (minimal, self-contained)
 
@@ -165,6 +167,8 @@ If you take one thing away, let it be this: always keep SRID and units explicit,
 Once correctness is established, start thinking about performance: reduce the candidate set with normal filters, then apply spatial predicates and indexes where they help.
 - Use `geography` for lat/long on Earth, `geometry` for planar.
 - Validate results and coordinate systems (SRID).
+- [T-SQL] Use `geography` for lat/long on Earth, `geometry` for planar.
+- [T-SQL] Validate results and coordinate systems (SRID).
 
 **Microsoft Docs (Learn):**
 - [Spatial data types overview](https://learn.microsoft.com/sql/relational-databases/spatial/spatial-data-types-overview)

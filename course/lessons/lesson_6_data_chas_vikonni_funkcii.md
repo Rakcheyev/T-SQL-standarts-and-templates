@@ -2,6 +2,8 @@
 
 <h2 align="center">Optimization of SQL queries</h2>
 
+**DBMS scope:** [CORE] (portable SQL fundamentals).
+
 **Optimization of SQL queries** is an important component of database management systems
 data just like any other component. 
 queries that access data, database performance can

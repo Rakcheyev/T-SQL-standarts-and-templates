@@ -4,6 +4,8 @@
 
 *Intro:* Security is easiest when it’s designed, not patched. You’ll learn SQL Server principals (login vs user), schemas, roles, and the GRANT/DENY model, then practice least-privilege patterns like EXECUTE-only access. The goal is to make the secure path the easy path.
 
+**DBMS scope:** [T-SQL] SQL Server security model + [CORE] least-privilege concepts.
+
 The mindset shift is to treat permissions like code: explicit, reviewable, and testable. When access is granted ad hoc (“just make it work”), the system becomes fragile—small changes accidentally widen privilege, and the blast radius of a leaked credential grows.
 
 We’ll build a clean model from the ground up: who is the principal, what is the boundary (schema), and what is the role allowed to do? Then we’ll turn that model into a practical pattern: the application executes approved modules, while base tables remain protected.
@@ -24,10 +26,10 @@ Know how SQL Server security is structured and apply least privilege.
 3. Prefer role-based grants.
 
 ## Key concepts
-- **Login** (server-level principal) vs **User** (database-level principal)
-- **Schema**: container/namespace; also a security boundary
-- **Role**: group of permissions
-- Prefer granting permissions to roles, not individual users
+- [T-SQL] **Login** (server-level principal) vs **User** (database-level principal)
+- [CROSS] **Schema**: container/namespace; also a security boundary
+- [CROSS] **Role**: group of permissions
+- [CORE] Prefer granting permissions to roles, not individual users
 
 ## What SQL Server permissions are (beginner-friendly)
 **What it is:** a system that answers “who can do what to which object?”.
@@ -35,12 +37,12 @@ Know how SQL Server security is structured and apply least privilege.
 **Why it’s used:** to enforce least privilege and reduce blast radius when credentials leak.
 
 **Benefits:**
-- safer systems (users only have what they need)
-- easier audits and offboarding
+- [CORE] safer systems (users only have what they need)
+- [CORE] easier audits and offboarding
 
 **Pitfalls:**
-- granting broad roles (`db_owner`) makes troubleshooting easy but security weak
-- mixing everything in `dbo` can make separation harder
+- [T-SQL] granting broad roles (`db_owner`) makes troubleshooting easy but security weak
+- [T-SQL] mixing everything in `dbo` can make separation harder
 
 ## Labs (templates)
 These require appropriate permissions (typically sysadmin in a sandbox).
@@ -117,6 +119,8 @@ The second mistake is treating schema design as purely organizational. In SQL Se
 The guiding principle is: make the secure path the easy path. Define roles, grant minimum permissions, and provide procedures/views as the intended interface.
 - Granting `db_owner` or `sysadmin` “to make it work”.
 - Mixing objects in `dbo` without schema separation.
+- [T-SQL] Granting `db_owner` or `sysadmin` “to make it work”.
+- [T-SQL] Mixing objects in `dbo` without schema separation.
 
 ## Summary
 SQL Server security becomes manageable when you treat it as a design problem, not an emergency fix. Logins and users define identity, schemas define boundaries, and roles define capabilities.

@@ -2,6 +2,8 @@
 
 <h2 align="center">Databases and their types</h2>
 
+**DBMS scope:** [CORE] (portable SQL fundamentals).
+
 
 Before starting a journey into the world of data where tables, columns and rows are
 an integral part of it, and requests for receiving information are formulated

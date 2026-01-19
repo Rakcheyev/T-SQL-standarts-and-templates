@@ -2,6 +2,8 @@
 
 <h2 align="center">Introduction</h2>
 
+**DBMS scope:** [CORE] (portable SQL fundamentals).
+
 Welcome to a new session where we will continue
 get familiar with **SQL** tools. 
 the wonderful world of advertising from the perspective of a data analyst.

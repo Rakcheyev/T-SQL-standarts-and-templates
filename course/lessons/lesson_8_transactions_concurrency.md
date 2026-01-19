@@ -4,6 +4,8 @@
 
 *Intro:* Concurrency is where “works on my machine” SQL fails: blocking, lock waits, and deadlocks appear only under overlap. You’ll learn what locks and isolation levels really mean, how to reproduce issues with two sessions, and which patterns keep transactions small and retryable.
 
+**DBMS scope:** [CORE] transactions + [CROSS] concurrency concepts; SQL Server specifics are [T-SQL] (RCSI/SNAPSHOT demos).
+
 This lesson is deliberately practical: you’ll open two query windows and watch how one session’s choices become another session’s wait time. That experience makes the concepts stick—because “blocking” stops being a theory and becomes an observable effect you can diagnose.
 
 You’ll build a simple mental model for why locks exist (correctness), why they sometimes hurt (contention), and how isolation levels shift the trade-offs. Then we’ll focus on engineering patterns you can apply without heroics: keep transactions short, touch rows in a consistent order, avoid unnecessary work while holding locks, and design your code so deadlock victims can safely retry.

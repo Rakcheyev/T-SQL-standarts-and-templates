@@ -4,6 +4,8 @@
 
 *Intro:* ETL is mostly about discipline: land data safely, validate it, then apply changes in a controlled, repeatable way. You’ll practice staging tables, upsert patterns, watermarks, and batching so reruns are safe, failures are contained, and large loads don’t become one giant transaction.
 
+**DBMS scope:** [CORE] staging/idempotency mindset + [CROSS] upsert patterns; examples are [T-SQL] (SQL Server bulk/batching scripts).
+
 The hard part of ETL is rarely the “happy path”. The hard part is what happens on the edges: duplicates, late-arriving updates, partial files, schema drift, and reruns after a crash. This lesson focuses on building pipelines that remain correct when reality is messy.
 
 We’ll separate concerns on purpose: staging is for landing and checking; the target layer is for curated truth. You’ll practice upsert approaches that make the outcome predictable, and you’ll learn why batching and clear transaction boundaries make operations safer (less log pressure, fewer long-held locks, smaller blast radius on failure).
@@ -32,9 +34,9 @@ Learn practical loading patterns: staging tables, incremental loads, upserts, an
 4. Re-run the lab: ensure the pattern behaves predictably.
 
 ## Concepts
-- **Staging table**: raw/landing area (often truncated and reloaded).
-- **Target table**: curated/serving table.
-- **Watermark**: last processed value (e.g., datetime).
+- [CROSS] **Staging table**: raw/landing area (often truncated and reloaded).
+- [CROSS] **Target table**: curated/serving table.
+- [CROSS] **Watermark**: last processed value (e.g., datetime).
 
 ## What staging + upsert is (beginner-friendly)
 ### Staging
@@ -43,12 +45,12 @@ Learn practical loading patterns: staging tables, incremental loads, upserts, an
 **Why it’s used:** it lets you validate and transform data before it affects the curated target table.
 
 **Benefits:**
-- easier retries (you can truncate/reload staging)
-- simpler debugging (you can inspect raw incoming rows)
+- [CROSS] easier retries (you can truncate/reload staging)
+- [CROSS] simpler debugging (you can inspect raw incoming rows)
 
 **Pitfalls:**
-- duplicates in staging can cause wrong upserts unless you dedupe
-- schema drift (source columns change) needs a process
+- [CROSS] duplicates in staging can cause wrong upserts unless you dedupe
+- [CROSS] schema drift (source columns change) needs a process
 
 ### Upsert
 **What it is:** apply changes by updating existing rows and inserting missing rows.
@@ -56,10 +58,10 @@ Learn practical loading patterns: staging tables, incremental loads, upserts, an
 **Why it’s used:** most real loads are incremental: some entities change, some are new.
 
 **Benefits:**
-- idempotent-friendly when designed carefully (safe retries)
+- [CROSS] idempotent-friendly when designed carefully (safe retries)
 
 **Pitfalls:**
-- race conditions under concurrency if the target is being written elsewhere; handle with proper keys and transactions
+- [CROSS] race conditions under concurrency if the target is being written elsewhere; handle with proper keys and transactions
 
 ## Temporary objects and procedural tools (beginner-friendly)
 ETL scripts often need “scratch space” and control-flow. In SQL Server you’ll commonly see these symbols:
@@ -68,17 +70,17 @@ ETL scripts often need “scratch space” and control-flow. In SQL Server you�
 **What it is:** a temporary table stored in `tempdb`, visible only within your current session (connection).
 
 **Why it’s used:**
-- to store intermediate results between steps
-- to index intermediate data (`CREATE INDEX` on the temp table)
-- to improve performance when you reuse the same intermediate set multiple times
+- [T-SQL] to store intermediate results between steps
+- [T-SQL] to index intermediate data (`CREATE INDEX` on the temp table)
+- [T-SQL] to improve performance when you reuse the same intermediate set multiple times
 
 **Benefits:**
-- can have indexes and statistics (often helps the optimizer)
-- good for “bigger” intermediate result sets
+- [T-SQL] can have indexes and statistics (often helps the optimizer)
+- [T-SQL] good for “bigger” intermediate result sets
 
 **Pitfalls:**
-- lives in `tempdb` → heavy use can become a bottleneck
-- scope is the session; if you use dynamic SQL (`EXEC(...)`), you must manage scope carefully
+- [T-SQL] lives in `tempdb` → heavy use can become a bottleneck
+- [T-SQL] scope is the session; if you use dynamic SQL (`EXEC(...)`), you must manage scope carefully
 
 ### `##GlobalTempTable` (global temporary table)
 **What it is:** a temp table in `tempdb` visible to all sessions.
@@ -86,9 +88,9 @@ ETL scripts often need “scratch space” and control-flow. In SQL Server you�
 **Why it’s used:** usually only for admin/debug or cross-session demos.
 
 **Pitfalls (big ones):**
-- name collisions between sessions
-- lifecycle is tricky (it remains until the creating session ends *and* no other session is using it)
-- avoid in production ETL unless you have a strong reason
+- [T-SQL] name collisions between sessions
+- [T-SQL] lifecycle is tricky (it remains until the creating session ends *and* no other session is using it)
+- [T-SQL] avoid in production ETL unless you have a strong reason
 
 ### `@Variable` and `@TableVariable`
 **`@Variable`:** a scalar variable (e.g., `@Watermark datetime2`), great for parameters and control-flow.
@@ -107,8 +109,8 @@ ETL scripts often need “scratch space” and control-flow. In SQL Server you�
 
 ### `@@Something` (system functions)
 **What it is:** built-in “session state” values, for example:
-- `@@ROWCOUNT` — how many rows were affected by the last statement
-- `@@TRANCOUNT` — current transaction nesting level
+- [T-SQL] `@@ROWCOUNT` — how many rows were affected by the last statement
+- [T-SQL] `@@TRANCOUNT` — current transaction nesting level
 
 **Pattern:** check `@@ROWCOUNT` in batching loops (as in Lab 5), but remember it changes after *every* statement.
 
@@ -122,9 +124,9 @@ ETL scripts often need “scratch space” and control-flow. In SQL Server you�
 **Preferred alternatives:** set-based `INSERT/UPDATE`, window functions, `APPLY`, and batching.
 
 **If you must use a cursor, prefer this pattern:**
-- `LOCAL FAST_FORWARD READ_ONLY` (simple, forward-only)
-- always `CLOSE` and `DEALLOCATE`
-- keep the cursor work small and fast; avoid long transactions inside the loop
+- [T-SQL] `LOCAL FAST_FORWARD READ_ONLY` (simple, forward-only)
+- [T-SQL] always `CLOSE` and `DEALLOCATE`
+- [T-SQL] keep the cursor work small and fast; avoid long transactions inside the loop
 
 Example skeleton:
 ```sql
@@ -220,8 +222,8 @@ COMMIT;
 SELECT * FROM dbo.Customers ORDER BY CustomerID;
 ```
 Expected:
-- Customer 2 updated
-- Customer 3 inserted
+- [CORE] Customer 2 updated
+- [CORE] Customer 3 inserted
 
 ### Lab 3 — Detect deletes (optional)
 Upserts are about inserts and updates, but real loads sometimes need to reflect deletions as well. The tricky part is that a missing row in staging can mean different things: “the source deleted it”, “the source didn’t send it this batch”, or “your extract failed”. You need business semantics before you delete anything.

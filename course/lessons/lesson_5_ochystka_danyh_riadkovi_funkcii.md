@@ -2,6 +2,8 @@
 
 <h2 align="center">String functions and operators</h2>
 
+**DBMS scope:** [CORE] (portable SQL fundamentals).
+
 **String functions and operators** in SQL are an integral part of the language
 structured queries to databases. 
 process data strings and manipulate them.

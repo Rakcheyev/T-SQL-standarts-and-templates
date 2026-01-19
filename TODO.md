@@ -1,42 +1,64 @@
-# Course TODO / Roadmap (post Lesson 6)
+# Course TODO / Roadmap (updated after Lessons 7–14)
 
-This file is a planning backlog for extending the course beyond Lesson 6.
+This file tracks the roadmap and remaining backlog for the course.
 
 Assumptions (current repo state):
 - Default locale: English in root docs and `course/lessons/`
 - Secondary locale: Ukrainian under `i18n/uk/`
 
+Current state (already implemented):
+- Lessons 7–14 and bonus Lesson X exist in both locales.
+- Navigation model is stable: simple `navigation.md` per locale + generated detailed indexes.
+- Verification workflow exists: `scripts/verify_repo.ps1` (regen detailed nav + sanity checks) + VS Code task.
+
+DBMS scope labels used in this file:
+- `[CORE]` portable SQL (concepts work across major DBMS)
+- `[CROSS]` cross-DB concept, but syntax/behavior differs (document per DB)
+- `[T-SQL]` SQL Server / Azure SQL specific (T-SQL syntax or engine behavior)
+- `[PG]` PostgreSQL specific
+
 ---
 
 ## 0) Meta
 
-- [ ] Decide target DBMS focus per track
-  - [ ] **Core**: SQL concepts (portable)
-  - [ ] **T-SQL / SQL Server**: production focus (recommended)
+- [x] Decide target DBMS focus per track
+  - [ ] **Core**: SQL concepts (portable) (optional)
+  - [x] **T-SQL / SQL Server**: production focus
   - [ ] Optional: PostgreSQL notes where relevant
+    - [ ] [T-SQL] `CROSS APPLY` / `OUTER APPLY` ↔ [PG] `LATERAL` joins
+    - [ ] [T-SQL] `PIVOT` / `UNPIVOT` ↔ [PG] conditional aggregation / `crosstab` (extension)
+    - [ ] [T-SQL] filtered indexes ↔ [PG] partial indexes
+    - [ ] [T-SQL] computed columns + indexing ↔ [PG] generated columns + indexes
+    - [ ] [T-SQL] Query Store (optional) ↔ [PG] `pg_stat_statements` + `auto_explain` (optional)
+    - [ ] [CROSS] identity / sequences: [T-SQL] `IDENTITY` ↔ [PG] `GENERATED AS IDENTITY`
 
-- [ ] Decide format standards for new lessons
-  - [ ] Consistent structure: intro → concepts → patterns → labs → summary → homework
-  - [ ] Add “Performance notes” block where relevant
-  - [ ] Add “Common mistakes” section (very high ROI)
+- [x] Decide format standards for new lessons
+  - [x] Consistent structure: intro → concepts → patterns → labs → summary
+  - [x] Add “Performance notes” where relevant
+  - [x] Add “Common mistakes” section
 
-- [ ] Define supported SQL Server targets (so labs are reproducible)
-  - [ ] Recommended baseline: SQL Server 2022 Developer Edition (compat level 160)
+- [x] Define supported SQL Server targets (so labs are reproducible)
+  - [x] Recommended baseline: SQL Server 2022 Developer Edition (compat level 160)
   - [ ] Also test (optional): SQL Server 2019 (compat 150) and Azure SQL Database
   - [ ] Call out any version-sensitive features per lesson (e.g., scalar UDF inlining, `STRING_SPLIT` ordinal)
 
-- [ ] Choose a standard lab dataset strategy
+- [x] Choose a standard lab dataset strategy
   - [ ] Option A: AdventureWorks (clear, widely used)
-  - [ ] Option B: tiny custom schema per lesson (better for teaching; deterministic)
-  - [ ] Rule: every lab must provide schema + seed data (or a generator) so results match
+  - [x] Option B: tiny custom schema per lesson (deterministic)
+  - [x] Rule: every lab provides schema + seed data (or a generator) so results match
 
-- [ ] Standardize performance measurement in labs (to avoid “cargo-cult tuning”)
-  - [ ] Require: Actual execution plan + `SET STATISTICS IO, TIME ON`
-  - [ ] Require: note rows processed vs rows returned (common misunderstanding)
+- [x] Standardize performance measurement in labs (to avoid “cargo-cult tuning”)
+  - [x] Require: Actual execution plan + `SET STATISTICS IO, TIME ON` (where performance is the topic)
+  - [x] Require: note rows processed vs rows returned
   - [ ] Optional: Query Store plan regression demo in Lesson 11
 
-- [ ] Add Ukrainian versions for planning docs
-  - [ ] Create `i18n/uk/TODO.md` (mirror + language switcher)
+- [x] Add Ukrainian versions for planning docs
+  - [x] Create `i18n/uk/TODO.md` (mirror + language switcher)
+
+- [x] Add repo integrity tooling
+  - [x] Add `scripts/sanity_check_lessons.ps1` (pairing + structure checks)
+  - [x] Add `scripts/verify_repo.ps1` (one-command workflow)
+  - [x] Add VS Code task in `.vscode/tasks.json`
 
 - [ ] Optional: incorporate Itzik Ben-Gan “canon” (source of patterns + labs)
   - [ ] Use for: set-based thinking, correctness edge cases, window-function patterns, table expressions
@@ -60,151 +82,155 @@ Assumptions (current repo state):
 Goal: move from “can write queries” to “can write safe and correct queries”.
 
 Topics:
-- Semi/anti joins: `EXISTS`, `NOT EXISTS`, anti-join patterns
-- `IN` vs `EXISTS` pitfalls (NULL semantics)
-- Set operators: `UNION ALL` vs `UNION`, `EXCEPT`, `INTERSECT`
-- APPLY patterns (T-SQL): `CROSS APPLY`, `OUTER APPLY` (Top-N per group, parsing)
+- [CORE] Semi/anti joins: `EXISTS`, `NOT EXISTS`, anti-join patterns
+- [CORE] `IN` vs `EXISTS` pitfalls (NULL semantics)
+- [CORE] Set operators: `UNION ALL` vs `UNION`, `EXCEPT`, `INTERSECT`
+- [T-SQL] APPLY patterns: `CROSS APPLY`, `OUTER APPLY` (Top-N per group, parsing)
 
 Deliverables:
-- [ ] Create EN lesson file: `course/lessons/lesson_7_advanced_query_patterns.md`
-- [ ] Create UK lesson file: `i18n/uk/course/lessons/lesson_7_advanced_query_patterns.md`
-- [ ] Add 5–8 labs with expected outputs
-- [ ] Update learning path + navigation indexes
+- [x] Create EN lesson file: `course/lessons/lesson_7_advanced_query_patterns.md`
+- [x] Create UK lesson file: `i18n/uk/course/lessons/lesson_7_advanced_query_patterns.md`
+- [x] Add labs with expected outputs
+- [x] Update learning path + navigation indexes
 
 ### Lesson 7B — Window functions deep dive (Ben-Gan style, high ROI)
 Goal: go from “I know `ROW_NUMBER()` exists” to “I can systematically solve analytics and sequencing tasks”.
 
 Topics:
-- `OVER (PARTITION BY ... ORDER BY ...)` mental model
-- Ranking vs row numbering: `ROW_NUMBER`, `RANK`, `DENSE_RANK`, `NTILE`
-- Aggregate window functions vs grouped aggregates (and common misuses)
-- Frames: `ROWS` vs `RANGE` (basic intuition + when it matters)
-- Running totals, moving averages
-- Dedupe patterns using window functions (keep latest, keep highest priority)
-- Top-N-per-group: window function approach vs APPLY approach (tradeoffs)
-- Gaps-and-islands (intro patterns)
+- [CORE] `OVER (PARTITION BY ... ORDER BY ...)` mental model
+- [CORE] Ranking vs row numbering: `ROW_NUMBER`, `RANK`, `DENSE_RANK`, `NTILE`
+- [CORE] Aggregate window functions vs grouped aggregates (and common misuses)
+- [CORE] Frames: `ROWS` vs `RANGE` (basic intuition + when it matters)
+- [CORE] Running totals, moving averages
+- [CORE] Dedupe patterns using window functions (keep latest, keep highest priority)
+- [CROSS] Top-N-per-group: window function approach vs APPLY approach (tradeoffs)
+- [CORE] Gaps-and-islands (intro patterns)
 
 Deliverables:
-- [ ] EN: `course/lessons/lesson_7b_window_functions_deep_dive.md`
-- [ ] UK: `i18n/uk/course/lessons/lesson_7b_window_functions_deep_dive.md`
-- [ ] Labs: at least 8 (this is a “pattern library” lesson)
-- [ ] Include a mini “pattern index” section for quick lookup
+- [x] EN: `course/lessons/lesson_7b_window_functions_deep_dive.md`
+- [x] UK: `i18n/uk/course/lessons/lesson_7b_window_functions_deep_dive.md`
+- [x] Labs: pattern library (multiple labs)
+- [x] Include a mini “pattern index” section for quick lookup
 
 ### Lesson 8 — Transactions, concurrency, locking, deadlocks
 Goal: teach reliability and “why prod behaves differently than dev”.
 
 Topics (SQL Server oriented):
-- ACID, implicit vs explicit transactions
-- Isolation levels: `READ COMMITTED`, `SNAPSHOT`, `SERIALIZABLE`
-- SQL Server option: Read Committed Snapshot (RCSI) vs Snapshot Isolation (conceptual)
-- Blocking vs deadlocks; reading deadlock basics
-- Idempotency patterns for DML
+- [CORE] ACID, implicit vs explicit transactions
+- [CORE] Isolation levels: `READ COMMITTED`, `SERIALIZABLE`
+- [T-SQL] Isolation levels (SQL Server): `SNAPSHOT`, Read Committed Snapshot (RCSI)
+- [CROSS] Blocking vs deadlocks; reading deadlock basics
+- [CORE] Idempotency patterns for DML
 
 Deliverables:
-- [ ] EN: `course/lessons/lesson_8_transactions_concurrency.md`
-- [ ] UK: `i18n/uk/course/lessons/lesson_8_transactions_concurrency.md`
-- [ ] Labs: reproduce blocking; fix with indexing/isolation; safe retry pattern
+- [x] EN: `course/lessons/lesson_8_transactions_concurrency.md`
+- [x] UK: `i18n/uk/course/lessons/lesson_8_transactions_concurrency.md`
+- [x] Labs: blocking/deadlock patterns + safe retry guidance
 
 ### Lesson 9 — Programmability: Stored procedures + error handling
 Goal: production-grade DML, safe deployments, and supportability.
 
 Topics:
-- Stored procedures vs ad-hoc SQL
-- Error handling: `TRY...CATCH`, `THROW`, `XACT_STATE()`, transaction patterns
-- Logging/auditing tables (minimal viable)
-- Parameterization basics
-- Production hygiene: `SET NOCOUNT ON`, schema-qualify object names, predictable result shapes
+- [CROSS] Stored procedures vs ad-hoc SQL
+- [T-SQL] Error handling: `TRY...CATCH`, `THROW`, `XACT_STATE()`, transaction patterns
+- [CORE] Logging/auditing tables (minimal viable)
+- [CORE] Parameterization basics
+- [T-SQL] Production hygiene: `SET NOCOUNT ON`
+- [CORE] Production hygiene: schema-qualify object names, predictable result shapes
 
 Deliverables:
-- [ ] EN: `course/lessons/lesson_9_stored_procedures_error_handling.md`
-- [ ] UK: `i18n/uk/course/lessons/lesson_9_stored_procedures_error_handling.md`
-- [ ] Labs: write an upsert proc with audit + proper rollback on error
+- [x] EN: `course/lessons/lesson_9_stored_procedures_error_handling.md`
+- [x] UK: `i18n/uk/course/lessons/lesson_9_stored_procedures_error_handling.md`
+- [x] Labs: procedure + audit + rollback pattern
 
 ### Lesson 10 — UDF / TVF (pros/cons and when to use)
 Goal: reusable logic without performance traps.
 
 Topics:
-- Scalar UDF
+- [CROSS] Scalar UDF
   - pros: reuse/clarity
   - cons: historically RBAR; optimizer limits
-  - SQL Server 2019+ scalar UDF inlining (what qualifies)
-- TVF
-  - inline TVF (best default)
-  - multi-statement TVF (cardinality/perf caveats)
-- Alternatives: views, iTVF over mTVF, temp tables vs table variables
-- Table variables: where they shine, where they don’t (and why estimates matter)
+  - [T-SQL] SQL Server 2019+ scalar UDF inlining (what qualifies)
+- [T-SQL] TVF
+  - [T-SQL] inline TVF (best default)
+  - [T-SQL] multi-statement TVF (cardinality/perf caveats)
+- [CROSS] Alternatives: views, temp tables (where relevant)
+- [T-SQL] Alternatives: iTVF over mTVF, table variables
+- [T-SQL] Table variables: where they shine, where they don’t (and why estimates matter)
 
 Deliverables:
-- [ ] EN: `course/lessons/lesson_10_udf_tvf_tradeoffs.md`
-- [ ] UK: `i18n/uk/course/lessons/lesson_10_udf_tvf_tradeoffs.md`
-- [ ] Labs: same business rule implemented 3 ways + plan/runtime comparison
+- [x] EN: `course/lessons/lesson_10_udf_tvf_and_views.md`
+- [x] UK: `i18n/uk/course/lessons/lesson_10_udf_tvf_and_views.md`
+- [x] Labs: UDF/TVF/views patterns and tradeoffs
 
 ### Lesson 11 — Indexing & query optimization (deep, flagship)
 Goal: systematic performance tuning (not “tips”).
 
 Topics:
-- Index fundamentals: clustered vs nonclustered
-- Covering indexes (INCLUDE), key design patterns
-- Filtered indexes, unique indexes/constraints
-- Computed columns + indexed computed columns
-- Statistics: why plans change, stale stats symptoms
-- SARGability (SARGable queries): what it is, why it matters, and how to write them
+- [CORE] Index fundamentals: clustered vs nonclustered
+- [CROSS] Covering indexes (INCLUDE), key design patterns
+- [CROSS] Filtered indexes / partial indexes; unique indexes/constraints
+- [CROSS] Computed columns / generated columns + indexing
+- [CROSS] Statistics: why plans change, stale stats symptoms
+- [CORE] SARGability (SARGable queries): what it is, why it matters, and how to write them
   - Common SARGability killers: implicit conversions, functions on columns, wildcard patterns
   - Practical date filtering patterns (range predicates)
-- Reading execution plans: scan/seek, lookup, spills, memory grants
-- Parameter sniffing basics (intro), Query Store overview (optional)
+- [CROSS] Reading execution plans: scan/seek, lookup, spills, memory grants
+- [T-SQL] Parameter sniffing basics (intro), Query Store overview (optional)
 
 Recommended structure inside the lesson:
 - A repeatable tuning workflow (symptom → hypothesis → measure → change → verify → regressions)
 - A “plan reading glossary” for the operators used in labs
 
 Deliverables:
-- [ ] EN: `course/lessons/lesson_11_indexing_and_optimization.md`
-- [ ] UK: `i18n/uk/course/lessons/lesson_11_indexing_and_optimization.md`
-- [ ] Labs: 3 slow queries → diagnose → fix → measure
-- [ ] Provide a “tuning report template” for learners
+- [x] EN: `course/lessons/lesson_11_indexing_and_sargability.md`
+- [x] UK: `i18n/uk/course/lessons/lesson_11_indexing_and_sargability.md`
+- [x] Labs: index/seek/scan + SARGability + covering index patterns
+- [x] Provide a “tuning report template” for learners (optional): `templates/tuning_report_template.md`
 
 ### Lesson 12 — Data engineering patterns (staging → transform → publish)
 Goal: real pipeline patterns on SQL Server.
 
 Topics:
-- Staging tables, audit columns, schema drift checks
-- Incremental loads: watermarking, CDC overview (optional)
-- Safer upsert patterns (and `MERGE` caveats)
-- Bulk load options: `BULK INSERT` (overview), minimal logging basics
-- Batching patterns for large modifications (`TOP (N)` loops; lock/log control)
-- Performance hygiene for pipelines
+- [CORE] Staging tables, audit columns, schema drift checks
+- [CROSS] Incremental loads: watermarking
+- [T-SQL] Incremental loads: CDC overview (optional)
+- [CROSS] Safer upsert patterns (and `MERGE` caveats)
+- [T-SQL] Bulk load options: `BULK INSERT` (overview), minimal logging basics
+- [T-SQL] Batching patterns for large modifications (`TOP (N)` loops; lock/log control)
+- [CORE] Performance hygiene for pipelines
   - SARGability in incremental loads (watermark predicates)
   - Avoiding implicit conversions between source and target
 
 Deliverables:
-- [ ] EN: `course/lessons/lesson_12_data_engineering_patterns.md`
-- [ ] UK: `i18n/uk/course/lessons/lesson_12_data_engineering_patterns.md`
-- [ ] Labs: incremental load + dedupe + audit
+- [x] EN: `course/lessons/lesson_12_etl_patterns_staging_upsert.md`
+- [x] UK: `i18n/uk/course/lessons/lesson_12_etl_patterns_staging_upsert.md`
+- [x] Labs: staging + upsert + watermark + batching
 
 ### Lesson 13 — DBA essentials: backup/restore + HA/DR basics
 Goal: operational literacy (RPO/RTO mindset).
 
 Topics:
-- Recovery models, backup chain
-- Restore verification and point-in-time restore
-- HA/DR overview: log shipping / availability groups (conceptual)
+- [T-SQL] Recovery models, backup chain
+- [CROSS] Restore verification and point-in-time restore
+- [T-SQL] HA/DR overview: log shipping / availability groups (conceptual)
 
 Deliverables:
-- [ ] EN: `course/lessons/lesson_13_backup_restore_hadr.md`
-- [ ] UK: `i18n/uk/course/lessons/lesson_13_backup_restore_hadr.md`
+- [x] EN: `course/lessons/lesson_13_backup_restore_basics.md`
+- [x] UK: `i18n/uk/course/lessons/lesson_13_backup_restore_basics.md`
 
 ### Lesson 14 — Security & governance
 Goal: least privilege + safe access patterns.
 
 Topics:
-- Logins vs users, schemas, roles
-- Least privilege patterns for analysts vs ETL
-- Auditing basics
+- [T-SQL] Logins vs users
+- [CORE] Schemas, roles
+- [CORE] Least privilege patterns for analysts vs ETL
+- [CORE] Auditing basics
 
 Deliverables:
-- [ ] EN: `course/lessons/lesson_14_security_governance.md`
-- [ ] UK: `i18n/uk/course/lessons/lesson_14_security_governance.md`
+- [x] EN: `course/lessons/lesson_14_security_permissions.md`
+- [x] UK: `i18n/uk/course/lessons/lesson_14_security_permissions.md`
 
 ---
 
@@ -417,28 +443,30 @@ Must-cover (SQL Server):
   - index-friendly filtering patterns (especially for `STIntersects`, `STContains`, sometimes `STDistance`)
 
 Deliverables:
-- [ ] EN: `course/lessons/lesson_x_spatial_types_and_indexing.md`
-- [ ] UK: `i18n/uk/course/lessons/lesson_x_spatial_types_and_indexing.md`
-- [ ] Labs: points-in-polygon, nearest within radius, buffer zones
+- [x] EN: `course/lessons/lesson_x_spatial_types_and_indexing.md`
+- [x] UK: `i18n/uk/course/lessons/lesson_x_spatial_types_and_indexing.md`
+- [x] Labs: intro patterns + indexing template
 
 ---
 
 ## 4) Track mapping (what each “Pro” path includes)
 
 ### Pro DA (Data Analyst)
-- [ ] Lesson 7 (advanced query patterns)
-- [ ] Lesson 7B (window functions deep dive)
-- [ ] Lesson 10 (UDF/TVF awareness)
-- [ ] Lesson 11 (indexing basics + SARGability)
+- [x] Lesson 7 (advanced query patterns)
+- [x] Lesson 7B (window functions deep dive)
+- [x] Lesson 10 (UDF/TVF awareness)
+- [x] Lesson 11 (indexing basics + SARGability)
 - [ ] Add DA-only lesson: Advanced analytics SQL
-  - `GROUPING SETS/ROLLUP/CUBE`, `PIVOT/UNPIVOT`, cohort/retention
+  - [CORE] `GROUPING SETS` / `ROLLUP` / `CUBE`
+  - [T-SQL] `PIVOT` / `UNPIVOT`
+  - [CORE] cohort/retention patterns
 
 ### Pro DE (Data Engineer)
-- [ ] Lessons 7–12 (and strongly recommended: Lesson 7B)
+- [x] Lessons 7–12 (and strongly recommended: Lesson 7B)
 - [ ] Strong emphasis: transactions/idempotency, load patterns, performance for pipelines
 
 ### Pro DBA
-- [ ] Lessons 7–11 + 13–14 (and recommended: Lesson 7B)
+- [x] Lessons 7–11 + 13–14 (and recommended: Lesson 7B)
 - [ ] Add DBA-only lesson: monitoring & troubleshooting
   - waits/IO/tempdb, baselines, incident workflow
 
@@ -450,17 +478,21 @@ Deliverables:
 
 ## 5) Repo integration tasks (must do for every new lesson)
 
-- [ ] Add language switcher line at top (EN ↔ UK)
-- [ ] Update:
+- [x] Add language switcher line at top (EN ↔ UK)
+- [x] Update:
   - `LEARNING_PATH.md`
   - `i18n/uk/LEARNING_PATH.md`
   - `navigation.md` and `navigation_detailed.md`
   - `i18n/uk/navigation.md` and `i18n/uk/navigation_detailed.md`
-- [ ] Re-run generators if needed:
+- [x] Re-run generators if needed:
   - `scripts/generate_navigation_en.ps1`
   - `scripts/generate_navigation_uk.ps1`
-- [ ] Ensure images (if any) live under `assets/images/` and paths resolve in both locales
-- [ ] Ensure anchors match navigation generation (avoid manual anchor maintenance)
+- [x] Run verification:
+  - `scripts/verify_repo.ps1`
+- [x] Ensure images (if any) live under `assets/images/` and paths resolve in both locales
+  - [x] Automated check: `scripts/check_markdown_links.ps1` (runs in `scripts/verify_repo.ps1`)
+- [x] Ensure anchors match navigation generation (avoid manual anchor maintenance)
+  - [x] Automated warning: anchored links in `navigation.md` and `i18n/uk/navigation.md`
 
 ---
 

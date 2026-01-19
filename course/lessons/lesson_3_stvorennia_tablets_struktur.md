@@ -2,6 +2,8 @@
 
 <h2 align="center">Data description language (DDL) (views, materialized views, tables)</h2>
 
+**DBMS scope:** [CORE] (portable SQL fundamentals).
+
 **Data Definition Language (DDL)** is the language used to
 creation, modification and deletion of database structures. 
 us to create and modify tables, define columns, and

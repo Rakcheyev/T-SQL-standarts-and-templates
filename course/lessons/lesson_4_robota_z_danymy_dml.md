@@ -2,6 +2,8 @@
 
 <h2 align="center">Data Manipulation Language (DML) (insert, update, delete statements)</h2>
 
+**DBMS scope:** [CORE] (portable SQL fundamentals).
+
 Today we will take a closer look at the data manipulation language
 **(DML)** which contains the **INSERT, UPDATE and DELETE** commands. 
 study this topic? 

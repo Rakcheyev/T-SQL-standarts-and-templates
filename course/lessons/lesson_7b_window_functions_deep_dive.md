@@ -4,6 +4,8 @@
 
 *Intro:* Window functions let you keep row detail while computing rankings, running totals, and “latest row per group”. This lesson builds a precise mental model—PARTITION, ORDER, FRAME—so you can write deterministic queries, handle ties, and avoid accidental grain changes.
 
+**DBMS scope:** [CORE] window functions; [CROSS] frame semantics and tie-handling can differ across DBMS.
+
 The discipline here is subtle: the query may “work” without a fully-defined order, but your results become non-repeatable the moment ties appear (same timestamp, same amount, same status). You’ll learn to add stable tie-breakers and to say out loud what the ordering means, so the output is explainable and reproducible.
 
 We’ll also treat frames as first-class logic. A running total over `ROWS` is not the same as a total over `RANGE`, and the difference matters when values repeat. By the end, you’ll be able to choose the right function (`ROW_NUMBER`, `RANK`, `DENSE_RANK`, `NTILE`, windowed aggregates) and predict how it behaves before you run it.

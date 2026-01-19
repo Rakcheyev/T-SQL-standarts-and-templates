@@ -4,6 +4,8 @@
 
 *Intro:* Many SQL bugs aren’t syntax errors—they’re logic errors that quietly ship to production. You’ll learn query patterns that express intent (existence, missing rows, top-1 per group) and protect you from NULL traps and duplicate fanout, while staying set-based and testable.
 
+**DBMS scope:** [CORE] (portable SQL) + [T-SQL] sections for `APPLY` (SQL Server).
+
 The core idea is to stop “joining until it works” and start writing queries that encode the business question directly. When the intent is explicit, your results are easier to validate, code review becomes simpler, and you’re less tempted to hide symptoms with `DISTINCT`.
 
 You’ll practice a few repeatable templates—semi-joins, anti-joins, deliberate set operators, and safe top-per-group approaches—that you can reuse in real schemas. Along the way, you’ll build the habit of thinking in terms of result grain (“what does one row represent?”) and proving correctness with small, predictable examples before scaling up.

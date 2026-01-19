@@ -4,6 +4,8 @@
 
 *Intro:* “We have backups” only matters if you can restore under time pressure. This lesson builds the restore-chain mental model (full, diff, log), connects it to RPO/RTO, and gives safe script templates for backup and restore-to-new-name practice—the habit that turns files into recovery.
 
+**DBMS scope:** [T-SQL] SQL Server backup/restore chain and scripts.
+
 Backups are not a checkbox—they’re a capability. The only proof that you have that capability is a routine restore rehearsal that works with real paths, real permissions, and real timing constraints.
 
 You’ll learn how the chain behaves, what breaks it, and how to think in terms of outcomes: how much data can we lose (RPO) and how long can we be down (RTO)? Then you’ll practice scripts that restore into a separate database name so you can validate safely without risking production.
@@ -18,36 +20,36 @@ Understand what backups are (and aren’t), and be able to write correct backup/
 - Junior DBAs/SREs: to learn the backup chain and practice safe restore scripts.
 
 ## Safety rules (please treat as non-negotiable)
-- Do **not** test restore scripts on production.
-- Always restore to a **separate** database name first.
-- A backup you never restored is just a file.
+- [CORE] Do **not** test restore scripts on production.
+- [CORE] Always restore to a **separate** database name first.
+- [CORE] A backup you never restored is just a file.
 
 ## Prerequisites
 - Basic admin access to a SQL Server instance (for hands-on)
 
 ## Key concepts
-- **Full backup**: base of a restore chain.
-- **Differential backup**: changes since last full backup.
-- **Log backup**: transaction log records since last log backup (requires FULL/BULK_LOGGED recovery).
-- **RPO**: how much data loss is acceptable.
-- **RTO**: how long restore can take.
+- [T-SQL] **Full backup**: base of a restore chain.
+- [T-SQL] **Differential backup**: changes since last full backup.
+- [T-SQL] **Log backup**: transaction log records since last log backup (requires FULL/BULK_LOGGED recovery).
+- [CORE] **RPO**: how much data loss is acceptable.
+- [CORE] **RTO**: how long restore can take.
 
 ## What backups are (and what they are not)
 **A backup is not high availability.** It won’t keep your database online during an outage.
 
 **A backup is recovery.** It’s how you rebuild the database state after:
-- accidental deletes/updates
-- disk/VM loss
-- corruption or ransomware
+- [CORE] accidental deletes/updates
+- [CORE] disk/VM loss
+- [CORE] corruption or ransomware
 
 Beginner mental model:
-- Full backup starts the chain.
-- Differential is “since last full”.
-- Log backups let you restore close to a point in time (if your recovery model supports it).
+- [T-SQL] Full backup starts the chain.
+- [T-SQL] Differential is “since last full”.
+- [T-SQL] Log backups let you restore close to a point in time (if your recovery model supports it).
 
 ## Safety
-- Always test restores.
-- Backups must be stored off the server to protect from disk loss.
+- [CORE] Always test restores.
+- [CORE] Backups must be stored off the server to protect from disk loss.
 
 ## Labs (script templates)
 These scripts require a writable backup path and permissions.

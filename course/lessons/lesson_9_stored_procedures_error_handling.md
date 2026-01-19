@@ -4,6 +4,8 @@
 
 *Intro:* Stored procedures are a contract: either the whole operation succeeds or nothing changes, and failures leave the session clean. You’ll practice a production template with TRY/CATCH, THROW, and XACT_STATE(), plus a simple audit trail—so database code behaves predictably under errors.
 
+**DBMS scope:** [CROSS] stored-procedure “contract” patterns + [T-SQL] error-handling template (`TRY...CATCH`, `THROW`, `XACT_STATE()`).
+
 The point isn’t to memorize syntax; it’s to standardize behavior. When every procedure follows the same error-handling shape, your application can rely on consistent outcomes (commit vs rollback), logs become meaningful, and “mystery half-writes” stop happening.
 
 You’ll practice writing multi-step work as one unit, proving that your transaction boundaries match the business boundary. We’ll also treat observability as part of correctness: a small audit entry—written at the right time—turns a failure from a guessing game into something you can explain.

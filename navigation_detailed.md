@@ -307,7 +307,6 @@ This page lists the lesson headings and links directly to them.
   - [Prerequisites](course/lessons/lesson_11_indexing_and_sargability.md#prerequisites)
   - [Who this lesson is for](course/lessons/lesson_11_indexing_and_sargability.md#who-this-lesson-is-for)
   - [Tooling (recommended)](course/lessons/lesson_11_indexing_and_sargability.md#tooling-recommended)
-  - [A safe workflow for tuning](course/lessons/lesson_11_indexing_and_sargability.md#a-safe-workflow-for-tuning)
   - [Key terms](course/lessons/lesson_11_indexing_and_sargability.md#key-terms)
   - [What an index is (beginner-friendly)](course/lessons/lesson_11_indexing_and_sargability.md#what-an-index-is-beginner-friendly)
   - [What вЂњSARGableвЂќ means in plain language](course/lessons/lesson_11_indexing_and_sargability.md#what-sargable-means-in-plain-language)
