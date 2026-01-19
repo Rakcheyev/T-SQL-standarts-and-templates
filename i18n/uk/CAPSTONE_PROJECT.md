@@ -64,8 +64,8 @@
 1. Скрипти OLTP схеми + seed data.
 2. Скрипти staging + інкрементального load (з чіткою історією rerun/backfill).
 3. 10–15 звітних запитів (мінімум 2 з window functions і 1 cohort-подібний).
-4. Нотатки з тюнінгу: [capstone/perf_tuning_notes.md](../../capstone/perf_tuning_notes.md)
-5. Ops runbook: [capstone/ops_runbook.md](../../capstone/ops_runbook.md)
+4. Нотатки з тюнінгу: [capstone/perf_tuning_notes.md](capstone/perf_tuning_notes.md)
+5. Ops runbook: [capstone/ops_runbook.md](capstone/ops_runbook.md)
 
 **Рубрика (швидка оцінка)**
 - Коректність (0–5): детерміновані результати, без “тихих” дублікатів, чіткі grains.
@@ -78,6 +78,6 @@
 2. Дані: [capstone/sql/02_seed_data.sql](../../capstone/sql/02_seed_data.sql)
 3. Load batch: [capstone/sql/03_pipeline_load.sql](../../capstone/sql/03_pipeline_load.sql)
 4. Reports: [capstone/sql/04_reporting_queries.sql](../../capstone/sql/04_reporting_queries.sql)
-5. Шаблон perf нотаток: [capstone/perf_tuning_notes.md](../../capstone/perf_tuning_notes.md)
-6. Ops: [capstone/ops_runbook.md](../../capstone/ops_runbook.md)
+5. Шаблон perf нотаток: [capstone/perf_tuning_notes.md](capstone/perf_tuning_notes.md)
+6. Ops: [capstone/ops_runbook.md](capstone/ops_runbook.md)
 
