@@ -50,7 +50,7 @@
   - incident workflow
 
 ### Pro Engineer — capstone
-- [ ] Capstone: end-to-end проєкт (OLTP schema + pipeline + reporting + ops runbook)
+- [x] Capstone: end-to-end проєкт (OLTP schema + pipeline + reporting + ops runbook)
 
 ---
 

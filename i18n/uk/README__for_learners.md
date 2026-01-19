@@ -40,3 +40,7 @@
 ## Pro треки
 
 - Pro DE (Data Engineer): [PRO_DE_TRACK_GUIDE.md](PRO_DE_TRACK_GUIDE.md)
+
+## Capstone проєкт
+
+- Опис проєкту: [CAPSTONE_PROJECT.md](CAPSTONE_PROJECT.md)

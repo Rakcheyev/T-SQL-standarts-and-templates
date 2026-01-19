@@ -471,8 +471,8 @@ Deliverables:
   - waits/IO/tempdb, baselines, incident workflow
 
 ### Pro Engineer (full-stack data product)
-- [ ] Capstone: end-to-end project (OLTP schema + pipeline + reporting + ops runbook)
-  - [ ] Capstone outputs: schema scripts, load scripts, 10–15 core queries, performance tuning notes, and an ops runbook
+- [x] Capstone: end-to-end project (OLTP schema + pipeline + reporting + ops runbook)
+  - [x] Capstone outputs: schema scripts, load scripts, 10–15 core queries, performance tuning notes, and an ops runbook
 
 ---
 

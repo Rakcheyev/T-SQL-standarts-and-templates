@@ -33,3 +33,7 @@ This is a **reference index** for quickly finding topics and headings in the les
 
 
 For a detailed, anchor-based index, use [navigation_detailed.md](navigation_detailed.md).
+
+## Projects
+
+- Capstone: [CAPSTONE_PROJECT.md](CAPSTONE_PROJECT.md)

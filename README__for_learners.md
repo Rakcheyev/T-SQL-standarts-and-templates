@@ -41,3 +41,7 @@ Tip: if you’re learning on SQL Server, focus on `[CORE]`, `[CROSS]`, and `[T-S
 ## Pro tracks
 
 - Pro DE (Data Engineer): [PRO_DE_TRACK_GUIDE.md](PRO_DE_TRACK_GUIDE.md)
+
+## Capstone project
+
+- End-to-end project spec: [CAPSTONE_PROJECT.md](CAPSTONE_PROJECT.md)
