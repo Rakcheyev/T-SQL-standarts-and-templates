@@ -15,6 +15,12 @@ Learn practical patterns for:
 ## Prerequisites
 - Lessons 6–7 (window functions and safe query patterns)
 
+## Why this matters in production
+
+Analytics SQL is where “mostly correct” queries cause real damage: mis-labeled subtotals become double-counted KPIs, pivoted reports drift as categories change, and cohort/retention metrics get debated for weeks because the cohort definition was implicit instead of encoded.
+
+The goal of this lesson is not fancy syntax — it’s building reports that are reproducible, reviewable, and hard to misinterpret. If you can label subtotal rows, choose portable patterns when possible, and define cohorts precisely, you’ll ship analytics that stakeholders can trust.
+
 ## Key terms
 - **Subtotal / grand total:** extra aggregation rows beyond the “base” grouping.
 - **Grouping set:** one explicit grouping level in `GROUPING SETS`.
@@ -216,6 +222,23 @@ SELECT
 FROM Activity
 GROUP BY CohortMonth, MonthOffset
 ORDER BY CohortMonth, MonthOffset;
+
+## Mini-assessment (self-check)
+
+1. Why is labeling subtotal rows important when using `ROLLUP`/`GROUPING SETS`?
+2. When would you prefer conditional aggregation over `PIVOT`?
+3. What’s one reason cohort metrics become misleading in production?
+4. In the cohort query, why do we `GROUP BY CustomerId, PurchaseMonth` in `Purchases`?
+5. If you add a new `Channel` value, which of the labs will adapt automatically and which will not?
+
+## Homework (tradeoffs: correctness vs portability vs readability)
+
+1. Extend Lab 1 to also output a **grand total per channel** and label each subtotal row.
+2. Rewrite Lab 4 (`PIVOT`) into a conditional aggregation report and compare:
+   - portability across DBMS
+   - how easy it is to add a new channel
+   - how easy it is to read in code review
+3. Cohorts: change the cohort definition to **first purchase channel** (web vs store) and produce retention by MonthOffset per cohort-channel.
 ```
 
 Expected output (by reasoning from the seed data):

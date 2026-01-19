@@ -388,6 +388,7 @@ This page lists Ukrainian lesson headings and links directly to them.
   - [РЈСЂРѕРє 15 вЂ” Advanced analytics SQL (GROUPING SETS, PIVOT, cohorts)](course/lessons/15_advanced_analytics_sql.md#рјсђрѕрє-15-вђ-advanced-analytics-sql-grouping-sets-pivot-cohorts)
   - [РњРµС‚Р°](course/lessons/15_advanced_analytics_sql.md#рњрµср)
   - [РџРµСЂРµРґСѓРјРѕРІРё](course/lessons/15_advanced_analytics_sql.md#рџрµсђрµрґсѓрјрѕрірё)
+  - [Р§РѕРјСѓ С†Рµ РІР°Р¶Р»РёРІРѕ Сѓ РїСЂРѕРґС–](course/lessons/15_advanced_analytics_sql.md#ррѕрјсѓ-срµ-ріррррёрірѕ-сѓ-рїсђрѕрґс)
   - [РљР»СЋС‡РѕРІС– С‚РµСЂРјС–РЅРё](course/lessons/15_advanced_analytics_sql.md#рљрсћсрѕріс-срµсђрјсрѕрё)
   - [РўРёРїРѕРІС– РїРѕРјРёР»РєРё](course/lessons/15_advanced_analytics_sql.md#рўрёрїрѕріс-рїрѕрјрёррєрё)
   - [Labs](course/lessons/15_advanced_analytics_sql.md#labs)

@@ -392,6 +392,7 @@ This page lists the lesson headings and links directly to them.
   - [Lesson 15 вЂ” Advanced analytics SQL (GROUPING SETS, PIVOT, cohorts)](course/lessons/15_advanced_analytics_sql.md#lesson-15-advanced-analytics-sql-grouping-sets-pivot-cohorts)
   - [Goal](course/lessons/15_advanced_analytics_sql.md#goal)
   - [Prerequisites](course/lessons/15_advanced_analytics_sql.md#prerequisites)
+  - [Why this matters in production](course/lessons/15_advanced_analytics_sql.md#why-this-matters-in-production)
   - [Key terms](course/lessons/15_advanced_analytics_sql.md#key-terms)
   - [Common mistakes](course/lessons/15_advanced_analytics_sql.md#common-mistakes)
   - [Labs](course/lessons/15_advanced_analytics_sql.md#labs)
