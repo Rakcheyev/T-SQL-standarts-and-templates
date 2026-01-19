@@ -15,6 +15,8 @@
 3. Batch запуск: `capstone/sql/03_pipeline_load.sql`
 4. Звіти: `capstone/sql/04_reporting_queries.sql`
 
+Індекс перевірок: `i18n/uk/capstone/validation_checks.md`
+
 **Нотатки для оператора**
 - Запускайте скрипти саме в цьому порядку.
 - Кожен запуск має мати унікальний `@BatchId`, якщо лише ви не робите цілеспрямований retry.

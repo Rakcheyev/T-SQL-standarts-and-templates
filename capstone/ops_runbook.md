@@ -15,6 +15,8 @@ In production, “it ran once” is not success. Success means:
 3. Run a batch: `capstone/sql/03_pipeline_load.sql`
 4. Reports: `capstone/sql/04_reporting_queries.sql`
 
+Validation index: `capstone/validation_checks.md`
+
 **Operator notes**
 - Prefer running the scripts in the order above.
 - Each batch run should have a unique `@BatchId` unless you are intentionally retrying.
