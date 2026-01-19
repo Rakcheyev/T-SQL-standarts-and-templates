@@ -26,10 +26,58 @@
 - Reporting-запити повертають стабільні коректні результати.
 - Є мінімум 3 performance поліпшення з доказами (IO/time + план).
 
+## Як виглядає “якісно” (чеклист для рев’ю)
+
+Використовуйте це як self-review перед тим, як вважати capstone “готовим”.
+
+**Коректність даних**
+- Для кожного запиту визначено grain (“1 рядок = …”).
+- Немає випадкового fanout: join до one-to-many таблиць — свідомий і перевірений.
+- Інкрементальний load безпечний при ретраях (без дублікатів і без пропусків).
+
+**Підтримуваність**
+- Скрипти виконуються в зрозумілому порядку й мають структуру (schema, seed, load, reporting).
+- Ключові припущення задокументовані (time zone, валюта, визначення retention, late-arriving data).
+- Консистентні назви між OLTP, staging і curated шарами.
+
+**Докази продуктивності**
+- Мінімум 3 поліпшення задокументовані з:
+	- `SET STATISTICS IO, TIME` (до/після)
+	- коротким поясненням зміни плану/операторів
+- Індекси обґрунтовані workload-ом і мінімальні (без “індексувати все”).
+
+**Операції**
+- Ви можете безпечно перезапускати пайплайн і розумієте, як виявляти часткові фейли.
+- Runbook містить: як запускати, як робити backfill, що моніторити і як виглядає “погано”.
+
+## Міні-оцінювання (самоперевірка)
+
+1. Що означає “ідемпотентність” для load batch і як ви це доводите?
+2. Де в пайплайні можуть з’являтися дублікати (мінімум 3 точки)?
+3. Який grain у кожній curated таблиці та в кожному звіті?
+4. Які докази ви покажете в PR, щоб обґрунтувати індекс?
+5. Якщо регресує запит “денна виручка”, що перевірите першим (дані vs план vs ресурси)?
+
+## Домашнє (deliverables + рубрика)
+
+**Deliverables**
+1. Скрипти OLTP схеми + seed data.
+2. Скрипти staging + інкрементального load (з чіткою історією rerun/backfill).
+3. 10–15 звітних запитів (мінімум 2 з window functions і 1 cohort-подібний).
+4. Нотатки з тюнінгу: [capstone/perf_tuning_notes.md](../../capstone/perf_tuning_notes.md)
+5. Ops runbook: [capstone/ops_runbook.md](../../capstone/ops_runbook.md)
+
+**Рубрика (швидка оцінка)**
+- Коректність (0–5): детерміновані результати, без “тихих” дублікатів, чіткі grains.
+- Переносимість (0–3): core-запити без зайвого T-SQL-only, якщо це не обґрунтовано.
+- Продуктивність (0–5): виміряні поліпшення + розумна індексація.
+- Ops (0–5): зрозумілий runbook і безпечні rerun/backfill.
+
 ## Як почати
 1. Схема: [capstone/sql/01_schema.sql](../../capstone/sql/01_schema.sql)
 2. Дані: [capstone/sql/02_seed_data.sql](../../capstone/sql/02_seed_data.sql)
 3. Load batch: [capstone/sql/03_pipeline_load.sql](../../capstone/sql/03_pipeline_load.sql)
 4. Reports: [capstone/sql/04_reporting_queries.sql](../../capstone/sql/04_reporting_queries.sql)
-5. Ops: [capstone/ops_runbook.md](../../capstone/ops_runbook.md)
+5. Шаблон perf нотаток: [capstone/perf_tuning_notes.md](../../capstone/perf_tuning_notes.md)
+6. Ops: [capstone/ops_runbook.md](../../capstone/ops_runbook.md)
 
