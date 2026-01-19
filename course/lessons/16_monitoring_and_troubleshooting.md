@@ -16,6 +16,12 @@ Learn a minimal monitoring and troubleshooting toolkit:
 ## Prerequisites
 - Lesson 11 (Indexing and SARGability) recommended.
 
+## Why this matters in production
+
+Most teams don’t lose hours because they lack “one more DMV query”. They lose hours because they don’t have a shared workflow to turn symptoms into evidence, and evidence into a safe change.
+
+If you can quickly answer (1) what is running, (2) what it’s waiting on, (3) who is blocking whom, and (4) what changed compared to baseline, you can stop guessing. That makes incidents shorter, reduces risky “random restarts”, and helps you prevent repeats.
+
 ## Safety notes
 - DMVs are a snapshot; take multiple samples over time.
 - On busy production servers, avoid running heavy diagnostic queries too frequently.
@@ -185,6 +191,25 @@ Expected result:
 - Ignoring `blocking_session_id` and only staring at wait stats.
 - Blaming one query when the symptom is actually resource contention.
 - Overusing `NOLOCK`: it hides symptoms and can return incorrect results.
+
+## Mini-assessment (self-check)
+
+1. Why are DMVs described as “snapshots”, and how do you compensate for that during an incident?
+2. What’s the difference between a session being blocked and a session waiting on I/O?
+3. Why is a baseline useful even if you have Query Store?
+4. When is it reasonable to kill a session, and what evidence would you capture first?
+5. Why can “top waits since restart” be misleading without context?
+6. What are two common causes of tempdb pressure in query workloads?
+
+## Homework (incident practice)
+
+1. Build a “1-page runbook” for your environment: which 3 DMV queries you run first, in what order, and what each one answers.
+2. Create a reproducible blocking demo in a dev database (two sessions, one transaction open) and use Lab 2 to identify the blocker.
+3. For Lab 5, define what “bad latency” would mean in your environment (even as a placeholder) and note what you’d check outside SQL Server (storage, VM metrics, etc.).
+4. (Optional) If Query Store is enabled, pick one query and document:
+    - its baseline performance,
+    - a change that regresses it,
+    - how you would detect and mitigate that regression.
 
 ## Summary
 - Troubleshooting is a loop: define symptom, capture evidence, compare to baseline, change one thing, verify.

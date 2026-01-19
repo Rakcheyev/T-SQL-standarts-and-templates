@@ -408,6 +408,7 @@ This page lists the lesson headings and links directly to them.
   - [Lesson 16 вЂ” Monitoring, troubleshooting, and baselines (SQL Server)](course/lessons/16_monitoring_and_troubleshooting.md#lesson-16-monitoring-troubleshooting-and-baselines-sql-server)
   - [Goal](course/lessons/16_monitoring_and_troubleshooting.md#goal)
   - [Prerequisites](course/lessons/16_monitoring_and_troubleshooting.md#prerequisites)
+  - [Why this matters in production](course/lessons/16_monitoring_and_troubleshooting.md#why-this-matters-in-production)
   - [Safety notes](course/lessons/16_monitoring_and_troubleshooting.md#safety-notes)
   - [Incident workflow (repeatable)](course/lessons/16_monitoring_and_troubleshooting.md#incident-workflow-repeatable)
   - [Labs](course/lessons/16_monitoring_and_troubleshooting.md#labs)
@@ -418,6 +419,8 @@ This page lists the lesson headings and links directly to them.
     - [Lab 5 вЂ” I/O latency quick check by database file](course/lessons/16_monitoring_and_troubleshooting.md#lab-5-io-latency-quick-check-by-database-file)
     - [Lab 6 вЂ” Query Store: find regressed queries (if enabled)](course/lessons/16_monitoring_and_troubleshooting.md#lab-6-query-store-find-regressed-queries-if-enabled)
   - [Common mistakes (and how to debug)](course/lessons/16_monitoring_and_troubleshooting.md#common-mistakes-and-how-to-debug)
+  - [Mini-assessment (self-check)](course/lessons/16_monitoring_and_troubleshooting.md#mini-assessment-self-check)
+  - [Homework (incident practice)](course/lessons/16_monitoring_and_troubleshooting.md#homework-incident-practice)
   - [Summary](course/lessons/16_monitoring_and_troubleshooting.md#summary)
 
 ## [Lesson 17: Table expressions lab pack (derived tables, CTEs, APPLY)](course/lessons/17_table_expressions_lab_pack.md)

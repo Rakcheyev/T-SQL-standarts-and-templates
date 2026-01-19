@@ -404,6 +404,7 @@ This page lists Ukrainian lesson headings and links directly to them.
   - [РЈСЂРѕРє 16 вЂ” РњРѕРЅС–С‚РѕСЂРёРЅРі, troubleshooting С‚Р° baselines (SQL Server)](course/lessons/16_monitoring_and_troubleshooting.md#рјсђрѕрє-16-вђ-рњрѕрѕссрѕсђрёрѕрі-troubleshooting-ср-baselines-sql-server)
   - [РњРµС‚Р°](course/lessons/16_monitoring_and_troubleshooting.md#рњрµср)
   - [РџРµСЂРµРґСѓРјРѕРІРё](course/lessons/16_monitoring_and_troubleshooting.md#рџрµсђрµрґсѓрјрѕрірё)
+  - [Р§РѕРјСѓ С†Рµ РІР°Р¶Р»РёРІРѕ Сѓ РїСЂРѕРґС–](course/lessons/16_monitoring_and_troubleshooting.md#ррѕрјсѓ-срµ-ріррррёрірѕ-сѓ-рїсђрѕрґс)
   - [РќРѕС‚Р°С‚РєРё Р· Р±РµР·РїРµРєРё](course/lessons/16_monitoring_and_troubleshooting.md#рќрѕсрсрєрё-р-ррµррїрµрєрё)
   - [Incident workflow (РїРѕРІС‚РѕСЂСЋРІР°РЅРёР№)](course/lessons/16_monitoring_and_troubleshooting.md#incident-workflow-рїрѕрісрѕсђсћріррѕрёр)
   - [Labs](course/lessons/16_monitoring_and_troubleshooting.md#labs)
@@ -414,6 +415,8 @@ This page lists Ukrainian lesson headings and links directly to them.
     - [Lab 5 вЂ” I/O latency: С€РІРёРґРєР° РїРµСЂРµРІС–СЂРєР° РїРѕ С„Р°Р№Р»Р°С…](course/lessons/16_monitoring_and_troubleshooting.md#lab-5-вђ-io-latency-срірёрґрєр-рїрµсђрµріссђрєр-рїрѕ-сррррс)
     - [Lab 6 вЂ” Query Store: Р·РЅР°Р№С‚Рё вЂњРІР°Р¶РєС–вЂќ Р·Р°РїРёС‚Рё (СЏРєС‰Рѕ СѓРІС–РјРєРЅРµРЅРѕ)](course/lessons/16_monitoring_and_troubleshooting.md#lab-6-вђ-query-store-ррѕррсрё-вђњрірррєсвђќ-рррїрёсрё-сџрєсрѕ-сѓрісрјрєрѕрµрѕрѕ)
   - [РўРёРїРѕРІС– РїРѕРјРёР»РєРё (С– СЏРє РґРµР±Р°Р¶РёС‚Рё)](course/lessons/16_monitoring_and_troubleshooting.md#рўрёрїрѕріс-рїрѕрјрёррєрё-с-сџрє-рґрµррррёсрё)
+  - [РњС–РЅС–-РѕС†С–РЅСЋРІР°РЅРЅСЏ (СЃР°РјРѕРїРµСЂРµРІС–СЂРєР°)](course/lessons/16_monitoring_and_troubleshooting.md#рњсрѕс-рѕссрѕсћріррѕрѕсџ-сѓррјрѕрїрµсђрµріссђрєр)
+  - [Р”РѕРјР°С€РЅС” (РїСЂР°РєС‚РёРєР° С–РЅС†РёРґРµРЅС‚С–РІ)](course/lessons/16_monitoring_and_troubleshooting.md#ррѕрјрсрѕс-рїсђррєсрёрєр-срѕсрёрґрµрѕссрі)
   - [РџС–РґСЃСѓРјРѕРє](course/lessons/16_monitoring_and_troubleshooting.md#рџсрґсѓсѓрјрѕрє)
 
 ## [Урок 17: РЈСЂРѕРє 17 вЂ” Table expressions lab pack (derived tables, CTE, APPLY)](course/lessons/17_table_expressions_lab_pack.md)
