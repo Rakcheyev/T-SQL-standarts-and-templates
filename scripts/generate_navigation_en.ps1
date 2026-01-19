@@ -119,6 +119,7 @@ $lessonIndex = @(
     @{ File = "13_backup_restore_basics.md"; Title = "Lesson 13: Backup/restore basics" },
     @{ File = "14_security_permissions.md"; Title = "Lesson 14: Security and permissions" },
     @{ File = "15_advanced_analytics_sql.md"; Title = "Lesson 15: Advanced analytics SQL" },
+    @{ File = "16_monitoring_and_troubleshooting.md"; Title = "Lesson 16: Monitoring and troubleshooting" },
     @{ File = "x_spatial_types_and_indexing.md"; Title = "Bonus: Spatial types and indexing" }
 )
 

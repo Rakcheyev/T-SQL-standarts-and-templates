@@ -467,7 +467,7 @@ Deliverables:
 
 ### Pro DBA
 - [x] Lessons 7–11 + 13–14 (and recommended: Lesson 7B)
-- [ ] Add DBA-only lesson: monitoring & troubleshooting
+- [x] Add DBA-only lesson: monitoring & troubleshooting
   - waits/IO/tempdb, baselines, incident workflow
 
 ### Pro Engineer (full-stack data product)

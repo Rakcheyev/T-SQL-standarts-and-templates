@@ -44,7 +44,7 @@
   - [CORE] cohort/retention патерни
 
 ### Pro DBA — моніторинг і troubleshooting
-- [ ] Додати DBA-only урок: monitoring & troubleshooting
+- [x] Додати DBA-only урок: monitoring & troubleshooting
   - waits/IO/tempdb
   - baselines
   - incident workflow

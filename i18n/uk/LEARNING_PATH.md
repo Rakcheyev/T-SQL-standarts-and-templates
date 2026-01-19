@@ -27,6 +27,7 @@
 
 Опційно:
 - [Електив: Advanced analytics SQL](course/lessons/15_advanced_analytics_sql.md)
+- [Електив: Monitoring & troubleshooting](course/lessons/16_monitoring_and_troubleshooting.md)
 - [Бонус: Просторові типи та індексація](course/lessons/x_spatial_types_and_indexing.md)
 
 ## Рівні складності (групування навчальних матеріалів)
@@ -57,5 +58,6 @@
 
 Опційно:
 - [Електив: Advanced analytics SQL](course/lessons/15_advanced_analytics_sql.md)
+- [Електив: Monitoring & troubleshooting](course/lessons/16_monitoring_and_troubleshooting.md)
 - [Бонус: Просторові типи та індексація](course/lessons/x_spatial_types_and_indexing.md)
 

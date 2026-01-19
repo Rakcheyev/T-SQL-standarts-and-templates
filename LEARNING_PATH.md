@@ -27,6 +27,7 @@ This document describes the **recommended order** for reading the learning mater
 
 Optional:
 - [Elective: Advanced analytics SQL](course/lessons/15_advanced_analytics_sql.md)
+- [Elective: Monitoring and troubleshooting](course/lessons/16_monitoring_and_troubleshooting.md)
 - [Bonus: Spatial types and indexing](course/lessons/x_spatial_types_and_indexing.md)
 
 ## Difficulty levels
@@ -57,5 +58,6 @@ Optional:
 
 Optional:
 - [Elective: Advanced analytics SQL](course/lessons/15_advanced_analytics_sql.md)
+- [Elective: Monitoring and troubleshooting](course/lessons/16_monitoring_and_troubleshooting.md)
 - [Bonus: Spatial types and indexing](course/lessons/x_spatial_types_and_indexing.md)
 
