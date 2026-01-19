@@ -34,3 +34,25 @@ JOIN (VALUES
     ('b@example.com', '2025-03-05T08:15:00', 'SKU-002', 1, 25.00)
 ) v(Email, OrderTime, Sku, Qty, UnitPrice)
     ON v.Email = c.Email AND v.OrderTime = o.OrderTime;
+
+/*
+Validation (optional)
+*/
+
+SELECT
+    (SELECT COUNT(*) FROM dbo.Customer)   AS CustomerCount,
+    (SELECT COUNT(*) FROM dbo.Product)    AS ProductCount,
+    (SELECT COUNT(*) FROM dbo.[Order])    AS OrderCount,
+    (SELECT COUNT(*) FROM dbo.OrderItem)  AS OrderItemCount;
+
+-- Orphan checks (should be zero)
+SELECT COUNT(*) AS OrphanOrders
+FROM dbo.[Order] o
+LEFT JOIN dbo.Customer c ON c.CustomerId = o.CustomerId
+WHERE c.CustomerId IS NULL;
+
+SELECT COUNT(*) AS OrphanOrderItems
+FROM dbo.OrderItem oi
+LEFT JOIN dbo.[Order] o ON o.OrderId = oi.OrderId
+LEFT JOIN dbo.Product p ON p.ProductId = oi.ProductId
+WHERE o.OrderId IS NULL OR p.ProductId IS NULL;

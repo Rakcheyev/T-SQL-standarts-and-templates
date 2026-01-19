@@ -113,3 +113,55 @@ BEGIN CATCH
 
     THROW;
 END CATCH;
+
+/*
+Validation (optional)
+
+Run these queries after the load to prove:
+- batch status is recorded
+- expected row counts exist
+- facts have no duplicates and no missing dimension keys
+
+Tip: rerun this script with the same @BatchId and confirm that the outputs below do not change.
+*/
+
+SELECT BatchId, StartedAt, EndedAt, Status, Message
+FROM etl.LoadBatch
+WHERE BatchId = @BatchId;
+
+SELECT 'stg.Customer'  AS TableName, COUNT(*) AS RowCount FROM stg.Customer  WHERE BatchId = @BatchId
+UNION ALL
+SELECT 'stg.Product'   AS TableName, COUNT(*) AS RowCount FROM stg.Product   WHERE BatchId = @BatchId
+UNION ALL
+SELECT 'stg.[Order]'   AS TableName, COUNT(*) AS RowCount FROM stg.[Order]   WHERE BatchId = @BatchId
+UNION ALL
+SELECT 'stg.OrderItem' AS TableName, COUNT(*) AS RowCount FROM stg.OrderItem WHERE BatchId = @BatchId;
+
+SELECT
+    (SELECT COUNT(*) FROM dw.DimCustomer)  AS DimCustomerCount,
+    (SELECT COUNT(*) FROM dw.DimProduct)   AS DimProductCount,
+    (SELECT COUNT(*) FROM dw.FactOrderItem) AS FactOrderItemCount;
+
+-- Fact coverage for this batch’s orders
+SELECT
+    (SELECT COUNT(*)
+     FROM stg.OrderItem oi
+     JOIN stg.[Order] o ON o.BatchId = @BatchId AND o.OrderId = oi.OrderId
+     WHERE oi.BatchId = @BatchId) AS ExpectedFactRows,
+    (SELECT COUNT(*)
+     FROM dw.FactOrderItem f
+     JOIN stg.[Order] o ON o.BatchId = @BatchId AND o.OrderId = f.OrderId) AS ActualFactRows;
+
+-- Duplicate facts (should be zero; PK should enforce this)
+SELECT TOP (20) OrderId, ProductKey, COUNT(*) AS Cnt
+FROM dw.FactOrderItem
+GROUP BY OrderId, ProductKey
+HAVING COUNT(*) > 1
+ORDER BY Cnt DESC;
+
+-- Orphan dimension references (should be zero; FK should enforce this)
+SELECT COUNT(*) AS OrphanFacts
+FROM dw.FactOrderItem f
+LEFT JOIN dw.DimCustomer c ON c.CustomerKey = f.CustomerKey
+LEFT JOIN dw.DimProduct p ON p.ProductKey = f.ProductKey
+WHERE c.CustomerKey IS NULL OR p.ProductKey IS NULL;

@@ -161,3 +161,33 @@ GO
 CREATE INDEX IX_Order_OrderTime ON dbo.[Order](OrderTime);
 CREATE INDEX IX_Order_Customer_OrderTime ON dbo.[Order](CustomerId, OrderTime);
 GO
+
+/*
+Validation (optional)
+
+Run these after creating the schema to confirm objects exist.
+*/
+
+SELECT s.name AS SchemaName
+FROM sys.schemas s
+WHERE s.name IN ('etl', 'stg', 'dw')
+ORDER BY s.name;
+
+SELECT
+    v.ObjectName,
+    OBJECT_ID(v.ObjectName) AS ObjectId
+FROM (VALUES
+    ('etl.LoadBatch'),
+    ('dbo.Customer'),
+    ('dbo.Product'),
+    ('dbo.[Order]'),
+    ('dbo.OrderItem'),
+    ('stg.Customer'),
+    ('stg.Product'),
+    ('stg.[Order]'),
+    ('stg.OrderItem'),
+    ('dw.DimCustomer'),
+    ('dw.DimProduct'),
+    ('dw.FactOrderItem')
+) v(ObjectName)
+ORDER BY v.ObjectName;

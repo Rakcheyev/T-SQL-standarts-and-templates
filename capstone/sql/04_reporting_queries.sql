@@ -3,6 +3,26 @@ Reporting queries (capstone)
 Run 01_schema.sql, 02_seed_data.sql, 03_pipeline_load.sql first.
 */
 
+/*
+Sanity checks (recommended)
+*/
+
+SELECT
+    (SELECT COUNT(*) FROM dw.DimCustomer)   AS DimCustomerCount,
+    (SELECT COUNT(*) FROM dw.DimProduct)    AS DimProductCount,
+    (SELECT COUNT(*) FROM dw.FactOrderItem) AS FactOrderItemCount;
+
+SELECT TOP (20) BatchId, StartedAt, EndedAt, Status, Message
+FROM etl.LoadBatch
+ORDER BY BatchId DESC;
+
+-- Data quality: orphan checks (should be zero)
+SELECT COUNT(*) AS OrphanFacts
+FROM dw.FactOrderItem f
+LEFT JOIN dw.DimCustomer c ON c.CustomerKey = f.CustomerKey
+LEFT JOIN dw.DimProduct p ON p.ProductKey = f.ProductKey
+WHERE c.CustomerKey IS NULL OR p.ProductKey IS NULL;
+
 -- 1) Daily revenue
 SELECT
     CAST(OrderTime AS date) AS OrderDate,
