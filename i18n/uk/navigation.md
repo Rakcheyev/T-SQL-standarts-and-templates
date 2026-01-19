@@ -39,3 +39,4 @@
 ## References
 
 - “Канон” (натхнення, не копіювати текст): [BEN_GAN_CANON.md](BEN_GAN_CANON.md)
+- Нотатки по PostgreSQL (T-SQL ↔ PG): [POSTGRESQL_NOTES.md](POSTGRESQL_NOTES.md)

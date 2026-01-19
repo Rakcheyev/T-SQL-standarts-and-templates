@@ -120,6 +120,21 @@ ORDER BY SalesMonth, ChannelLabel;
 ### Lab 3 — Conditional aggregation as a portable alternative to `PIVOT`
 Task: get a crosstab of revenue per month with columns `web_revenue` and `store_revenue`.
 
+**PostgreSQL note:** conditional aggregation is the default approach. PostgreSQL also supports a very readable `FILTER` form:
+
+```sql
+-- PostgreSQL style (equivalent idea)
+SELECT
+    date_trunc('month', sale_date)::date AS sales_month,
+    SUM(amount) FILTER (WHERE channel = 'web') AS web_revenue,
+    SUM(amount) FILTER (WHERE channel = 'store') AS store_revenue,
+    SUM(amount) AS total_revenue
+FROM sales
+GROUP BY 1
+ORDER BY 1;
+```
+See: [POSTGRESQL_NOTES.md](../../POSTGRESQL_NOTES.md)
+
 ```sql
 SELECT
     DATEFROMPARTS(YEAR(SaleDate), MONTH(SaleDate), 1) AS SalesMonth,

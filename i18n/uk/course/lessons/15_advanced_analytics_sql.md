@@ -119,6 +119,21 @@ ORDER BY SalesMonth, ChannelLabel;
 ### Lab 3 — Умовна агрегація як переносима альтернатива `PIVOT`
 Задача: крос-таблиця виручки по місяцю з колонками `web_revenue` та `store_revenue`.
 
+**Примітка для PostgreSQL:** умовна агрегація — типовий підхід. У PostgreSQL також є читабельний синтаксис `FILTER`:
+
+```sql
+-- PostgreSQL стиль (та сама ідея)
+SELECT
+    date_trunc('month', sale_date)::date AS sales_month,
+    SUM(amount) FILTER (WHERE channel = 'web') AS web_revenue,
+    SUM(amount) FILTER (WHERE channel = 'store') AS store_revenue,
+    SUM(amount) AS total_revenue
+FROM sales
+GROUP BY 1
+ORDER BY 1;
+```
+Див. [POSTGRESQL_NOTES.md](../../../../POSTGRESQL_NOTES.md)
+
 ```sql
 SELECT
     DATEFROMPARTS(YEAR(SaleDate), MONTH(SaleDate), 1) AS SalesMonth,

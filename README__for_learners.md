@@ -45,6 +45,7 @@ Tip: if you’re learning on SQL Server, focus on `[CORE]`, `[CROSS]`, and `[T-S
 ## References (optional)
 
 - Ben-Gan canon (inspiration only): [BEN_GAN_CANON.md](BEN_GAN_CANON.md)
+- PostgreSQL cross-notes (T-SQL ↔ PG): [POSTGRESQL_NOTES.md](POSTGRESQL_NOTES.md)
 
 ## Capstone project
 

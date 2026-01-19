@@ -144,6 +144,11 @@ For `EXCEPT` and `INTERSECT`, remember they use distinct semantics too. That’s
 ### 5) `APPLY` (T‑SQL): per-row derived sets
 `APPLY` is one of those features that feels strange until you have the right mental model. Think of it as “for each row on the left, run this small query and return its results.” It’s like a table-valued function call, but written inline.
 
+**PostgreSQL note:** the closest equivalent is a `LATERAL` join. Rough mapping:
+- `CROSS APPLY` ↔ `CROSS JOIN LATERAL`
+- `OUTER APPLY` ↔ `LEFT JOIN LATERAL ... ON true`
+See: [POSTGRESQL_NOTES.md](../../POSTGRESQL_NOTES.md)
+
 This makes certain patterns very natural. “Top 1 order per customer” is a classic: you want one derived row from `Orders` per row in `Customers`, and that derived row depends on the current customer.
 
 The caution is not that `APPLY` is bad, but that it can invite row-by-row thinking. Always validate that your apply logic is doing a small, indexed lookup per left row (or that the optimizer can transform it), rather than scanning large ranges repeatedly.

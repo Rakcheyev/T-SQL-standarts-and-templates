@@ -19,13 +19,13 @@
 
 ## 0) Мета / стандарти
 
-- [ ] (Опційно) Нотатки по PostgreSQL там, де доречно
-  - [ ] [T-SQL] `CROSS APPLY` / `OUTER APPLY` ↔ [PG] `LATERAL` join-и
-  - [ ] [T-SQL] `PIVOT` / `UNPIVOT` ↔ [PG] умовна агрегація / `crosstab` (extension)
-  - [ ] [T-SQL] filtered indexes ↔ [PG] partial indexes
-  - [ ] [T-SQL] computed columns + indexing ↔ [PG] generated columns + indexes
-  - [ ] [T-SQL] Query Store (опційно) ↔ [PG] `pg_stat_statements` + `auto_explain` (опційно)
-  - [ ] [CROSS] identity / sequences: [T-SQL] `IDENTITY` ↔ [PG] `GENERATED AS IDENTITY`
+- [x] (Опційно) Нотатки по PostgreSQL там, де доречно
+  - [x] [T-SQL] `CROSS APPLY` / `OUTER APPLY` ↔ [PG] `LATERAL` join-и
+  - [x] [T-SQL] `PIVOT` / `UNPIVOT` ↔ [PG] умовна агрегація / `crosstab` (extension)
+  - [x] [T-SQL] filtered indexes ↔ [PG] partial indexes
+  - [x] [T-SQL] computed columns + indexing ↔ [PG] generated columns + indexes
+  - [x] [T-SQL] Query Store (опційно) ↔ [PG] `pg_stat_statements` + `auto_explain` (опційно)
+  - [x] [CROSS] identity / sequences: [T-SQL] `IDENTITY` ↔ [PG] `GENERATED AS IDENTITY`
 
 - [x] Додати українські версії planning-доків
   - [x] Створити цей файл: `i18n/uk/TODO.md`

@@ -33,6 +33,7 @@ Optional:
 
 References:
 - Ben-Gan canon (inspiration only): [BEN_GAN_CANON.md](BEN_GAN_CANON.md)
+- PostgreSQL cross-notes (T-SQL ↔ PG): [POSTGRESQL_NOTES.md](POSTGRESQL_NOTES.md)
 
 ## Difficulty levels
 

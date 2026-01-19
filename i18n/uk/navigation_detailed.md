@@ -316,6 +316,7 @@ This page lists Ukrainian lesson headings and links directly to them.
     - [Лаб 4 — Складений індекс і порядок ключів](course/lessons/11_indexing_and_sargability.md#лаб-4-складений-індекс-і-порядок-ключів)
     - [Лаб 5 — Покриття через INCLUDE](course/lessons/11_indexing_and_sargability.md#лаб-5-покриття-через-include)
     - [Лаб 6 — Пастка implicit conversion (концепт)](course/lessons/11_indexing_and_sargability.md#лаб-6-пастка-implicit-conversion-концепт)
+    - [Лаб 7 (опційно) — Query Store і регресії планів](course/lessons/11_indexing_and_sargability.md#лаб-7-опційно-query-store-і-регресії-планів)
   - [Підсумок](course/lessons/11_indexing_and_sargability.md#підсумок)
 
 ## [Урок 12: Урок 12 — ETL/ELT патерни: staging, upsert, batching](course/lessons/12_etl_patterns_staging_upsert.md)

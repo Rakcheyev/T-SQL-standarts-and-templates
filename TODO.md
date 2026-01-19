@@ -24,13 +24,13 @@ DBMS scope labels used in this file:
 - [x] Decide target DBMS focus per track
   - [ ] **Core**: SQL concepts (portable) (optional)
   - [x] **T-SQL / SQL Server**: production focus
-  - [ ] Optional: PostgreSQL notes where relevant
-    - [ ] [T-SQL] `CROSS APPLY` / `OUTER APPLY` ↔ [PG] `LATERAL` joins
-    - [ ] [T-SQL] `PIVOT` / `UNPIVOT` ↔ [PG] conditional aggregation / `crosstab` (extension)
-    - [ ] [T-SQL] filtered indexes ↔ [PG] partial indexes
-    - [ ] [T-SQL] computed columns + indexing ↔ [PG] generated columns + indexes
-    - [ ] [T-SQL] Query Store (optional) ↔ [PG] `pg_stat_statements` + `auto_explain` (optional)
-    - [ ] [CROSS] identity / sequences: [T-SQL] `IDENTITY` ↔ [PG] `GENERATED AS IDENTITY`
+  - [x] Optional: PostgreSQL notes where relevant
+    - [x] [T-SQL] `CROSS APPLY` / `OUTER APPLY` ↔ [PG] `LATERAL` joins
+    - [x] [T-SQL] `PIVOT` / `UNPIVOT` ↔ [PG] conditional aggregation / `crosstab` (extension)
+    - [x] [T-SQL] filtered indexes ↔ [PG] partial indexes
+    - [x] [T-SQL] computed columns + indexing ↔ [PG] generated columns + indexes
+    - [x] [T-SQL] Query Store (optional) ↔ [PG] `pg_stat_statements` + `auto_explain` (optional)
+    - [x] [CROSS] identity / sequences: [T-SQL] `IDENTITY` ↔ [PG] `GENERATED AS IDENTITY`
 
 - [x] Decide format standards for new lessons
   - [x] Consistent structure: intro → concepts → patterns → labs → summary
@@ -50,7 +50,7 @@ DBMS scope labels used in this file:
 - [x] Standardize performance measurement in labs (to avoid “cargo-cult tuning”)
   - [x] Require: Actual execution plan + `SET STATISTICS IO, TIME ON` (where performance is the topic)
   - [x] Require: note rows processed vs rows returned
-  - [ ] Optional: Query Store plan regression demo in Lesson 11
+  - [x] Optional: Query Store plan regression demo in Lesson 11
 
 - [x] Add Ukrainian versions for planning docs
   - [x] Create `i18n/uk/TODO.md` (mirror + language switcher)

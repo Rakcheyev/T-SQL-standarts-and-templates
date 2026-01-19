@@ -319,6 +319,7 @@ This page lists the lesson headings and links directly to them.
     - [Lab 4 — Composite index and key order](course/lessons/11_indexing_and_sargability.md#lab-4-composite-index-and-key-order)
     - [Lab 5 — Covering with INCLUDE](course/lessons/11_indexing_and_sargability.md#lab-5-covering-with-include)
     - [Lab 6 — Implicit conversion trap (concept)](course/lessons/11_indexing_and_sargability.md#lab-6-implicit-conversion-trap-concept)
+    - [Lab 7 (optional) — Query Store plan regression demo](course/lessons/11_indexing_and_sargability.md#lab-7-optional-query-store-plan-regression-demo)
   - [Summary checklist](course/lessons/11_indexing_and_sargability.md#summary-checklist)
 
 ## [Lesson 12: ETL patterns (staging, upsert, batching)](course/lessons/12_etl_patterns_staging_upsert.md)

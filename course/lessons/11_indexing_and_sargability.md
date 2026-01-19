@@ -196,6 +196,26 @@ In real systems this shows up when parameters are declared with the wrong type (
 If a column is `int` but you compare to a string literal, SQL Server may do an implicit conversion.
 Rule: match data types.
 
+### Lab 7 (optional) — Query Store plan regression demo
+This lab is about **observability**, not index mechanics.
+
+Goal: see how Query Store helps you spot a plan change that can cause a regression.
+
+Prerequisites:
+- SQL Server with Query Store available and enabled for the database.
+- A repeatable query (use the `dbo.Events` table from the setup).
+
+Outline:
+1. Enable Query Store for the current database (if not already enabled).
+2. Run a baseline query a few times and capture the plan.
+3. Make a change that plausibly affects the plan (for example: create/drop an index, or change a predicate form).
+4. Run again and compare plans in Query Store.
+
+Helpful docs:
+- https://learn.microsoft.com/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store
+
+**PostgreSQL equivalent (optional):** see [POSTGRESQL_NOTES.md](../../POSTGRESQL_NOTES.md) for `pg_stat_statements` + `auto_explain` as the rough analog.
+
 ## Summary checklist
 Performance tuning becomes much less mysterious when you treat it as a repeatable experiment. You start from a correct query, you observe the plan and IO, and you make one change at a time.
 
