@@ -27,4 +27,5 @@
 
 ## Опційно
 
+- [Електив: Advanced analytics SQL](course/lessons/15_advanced_analytics_sql.md)
 - [Бонус: Просторові типи та індексація](course/lessons/x_spatial_types_and_indexing.md)

@@ -27,6 +27,7 @@ This is a **reference index** for quickly finding topics and headings in the les
 
 ### Optional
 
+- [Elective: Advanced analytics SQL](course/lessons/15_advanced_analytics_sql.md)
 - [Bonus: Spatial types and indexing](course/lessons/x_spatial_types_and_indexing.md)
 
 

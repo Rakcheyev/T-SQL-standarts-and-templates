@@ -27,7 +27,7 @@
   - [ ] [T-SQL] Query Store (опційно) ↔ [PG] `pg_stat_statements` + `auto_explain` (опційно)
   - [ ] [CROSS] identity / sequences: [T-SQL] `IDENTITY` ↔ [PG] `GENERATED AS IDENTITY`
 
-- [ ] Додати українські версії planning-доків
+- [x] Додати українські версії planning-доків
   - [x] Створити цей файл: `i18n/uk/TODO.md`
 
 - [ ] (Опційно) Додати “канон” як натхнення (Itzik Ben-Gan тощо)
@@ -38,7 +38,7 @@
 ## 1) Наступні великі блоки (елективи)
 
 ### Pro DA (Data Analyst) — поглиблена аналітика
-- [ ] Додати DA-only урок: Advanced analytics SQL
+- [x] Додати DA-only урок: Advanced analytics SQL
   - [CORE] `GROUPING SETS` / `ROLLUP` / `CUBE`
   - [T-SQL] `PIVOT` / `UNPIVOT`
   - [CORE] cohort/retention патерни

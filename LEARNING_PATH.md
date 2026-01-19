@@ -26,6 +26,7 @@ This document describes the **recommended order** for reading the learning mater
 15. [Lesson 14: Security and permissions](course/lessons/14_security_permissions.md)
 
 Optional:
+- [Elective: Advanced analytics SQL](course/lessons/15_advanced_analytics_sql.md)
 - [Bonus: Spatial types and indexing](course/lessons/x_spatial_types_and_indexing.md)
 
 ## Difficulty levels
@@ -55,5 +56,6 @@ Optional:
 - [Lesson 14: Security and permissions](course/lessons/14_security_permissions.md)
 
 Optional:
+- [Elective: Advanced analytics SQL](course/lessons/15_advanced_analytics_sql.md)
 - [Bonus: Spatial types and indexing](course/lessons/x_spatial_types_and_indexing.md)
 

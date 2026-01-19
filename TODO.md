@@ -456,7 +456,7 @@ Deliverables:
 - [x] Lesson 7B (window functions deep dive)
 - [x] Lesson 10 (UDF/TVF awareness)
 - [x] Lesson 11 (indexing basics + SARGability)
-- [ ] Add DA-only lesson: Advanced analytics SQL
+- [x] Add DA-only lesson: Advanced analytics SQL
   - [CORE] `GROUPING SETS` / `ROLLUP` / `CUBE`
   - [T-SQL] `PIVOT` / `UNPIVOT`
   - [CORE] cohort/retention patterns

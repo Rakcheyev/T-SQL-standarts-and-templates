@@ -26,6 +26,7 @@
 15. [Урок 14: Безпека та права доступу](course/lessons/14_security_permissions.md)
 
 Опційно:
+- [Електив: Advanced analytics SQL](course/lessons/15_advanced_analytics_sql.md)
 - [Бонус: Просторові типи та індексація](course/lessons/x_spatial_types_and_indexing.md)
 
 ## Рівні складності (групування навчальних матеріалів)
@@ -55,5 +56,6 @@
 - [Урок 14: Безпека та права доступу](course/lessons/14_security_permissions.md)
 
 Опційно:
+- [Електив: Advanced analytics SQL](course/lessons/15_advanced_analytics_sql.md)
 - [Бонус: Просторові типи та індексація](course/lessons/x_spatial_types_and_indexing.md)
 
