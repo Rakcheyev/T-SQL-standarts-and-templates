@@ -59,7 +59,7 @@ A window function computes a value **per row**, while looking at a defined “wi
 - `ORDER BY` defines row sequence inside the partition
 
 ## Setup for labs
-This setup is intentionally small, but it’s not “toy” data. It contains the situations that most window-function bugs come from: repeated customers, multiple rows on the same date, and ties in ordering values.
+This setup is intentionally small, but it’s still realistic. It contains the situations that most window-function bugs come from: repeated customers, multiple rows on the same date, and ties in ordering values.
 
 Notice customer 1 has two sales on the same day with the same amount. That is not an accident — it forces you to think about deterministic ordering. In real systems, ties happen all the time (same timestamp, same amount, same status), and the only reliable fix is to define a tie-break.
 

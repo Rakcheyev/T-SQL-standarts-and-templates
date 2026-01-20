@@ -272,14 +272,16 @@ VALUES (
 '{
     "customer": "John Doe"
     , "items": {
-            "product": "Beer"
+      "product": "AA Batteries"
         , "qty": 6
         }
 }'
 );
 ```
 
-This means that John Doe purchased 6 bottles of beers
+This means John Doe ordered 6 units of AA Batteries.
+
+Production note: real order payloads often have an **array** of items (not a single object), and you usually prefer `jsonb` over `json` in PostgreSQL for indexing and efficient comparisons. We keep the shape small here so you can focus on operators and projection.
 
 The following statement adds multiple rows at once.
 
@@ -290,10 +292,10 @@ VALUES
     '{"customer": "Lily Bush", "items": {"product": "Diaper", "qty": 24}}'
 )
 , (
-    '{"customer": "Josh William", "items": {"product": "Toy Car", "qty": 1}}'
+  '{"customer": "Josh William", "items": {"product": "USB-C Cable", "qty": 1}}'
 )
 , (
-    '{"customer": "Mary Clark", "items": {"product": "Toy Train", "qty": 2}}'
+  '{"customer": "Mary Clark", "items": {"product": "HDMI Adapter", "qty": 2}}'
 );
 ```
 
@@ -318,10 +320,10 @@ Expected output:
 
 | customer | product | qty |
 |:---|:---|---:|
-| John Doe | Beer | 6 |
-| Josh William | Toy Car | 1 |
+| John Doe | AA Batteries | 6 |
+| Josh William | USB-C Cable | 1 |
 | Lily Bush | Diaper | 24 |
-| Mary Clark | Toy Train | 2 |
+| Mary Clark | HDMI Adapter | 2 |
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image1.png" width="600" />
@@ -354,10 +356,10 @@ Expected output:
 
 | customer | items |
 |:---|:---|
-| "John Doe" | {"product": "Beer", "qty": 6} |
+| "John Doe" | {"product": "AA Batteries", "qty": 6} |
 | "Lily Bush" | {"product": "Diaper", "qty": 24} |
-| "Josh William" | {"product": "Toy Car", "qty": 1} |
-| "Mary Clark" | {"product": "Toy Train", "qty": 2} |
+| "Josh William" | {"product": "USB-C Cable", "qty": 1} |
+| "Mary Clark" | {"product": "HDMI Adapter", "qty": 2} |
 
 And the next query uses the -\>\> operator to get all of them
 customers in the form of text:
@@ -394,10 +396,10 @@ Expected output:
 
 | product |
 |:---|
-| Beer |
+| AA Batteries |
 | Diaper |
-| Toy Car |
-| Toy Train |
+| HDMI Adapter |
+| USB-C Cable |
 
 <div align="center">
   <img src="../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image4.png" width="200" />

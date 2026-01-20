@@ -181,8 +181,8 @@ VALUES (1, N'Alice', '2025-01-01T00:00:00'),
 GO
 ```
 
-### Lab 1 — Load staging (simulated)
-Treat staging as a landing zone that you can rebuild. In many pipelines, staging is populated from files, Kafka topics, API pulls, or upstream tables. Here we simulate that by inserting a tiny batch.
+### Lab 1 — Load staging (reproducible batch)
+Treat staging as a landing zone that you can rebuild. In many pipelines, staging is populated from files, Kafka topics, API pulls, or upstream tables. Here we model an incoming batch with a tiny, reproducible insert.
 
 Notice that we `TRUNCATE` staging first. This is a common pattern for “full refresh into staging” because it keeps staging predictable: whatever is in staging right now is exactly the batch you’re about to process.
 

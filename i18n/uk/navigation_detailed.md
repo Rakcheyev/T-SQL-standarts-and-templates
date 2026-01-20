@@ -346,7 +346,7 @@ This page lists Ukrainian lesson headings and links directly to them.
   - [Курсори в ETL: коли доречно (і коли ні)](course/lessons/12_etl_patterns_staging_upsert.md#курсори-в-etl-коли-доречно-і-коли-ні)
   - [Лаби](course/lessons/12_etl_patterns_staging_upsert.md#лаби)
     - [Налаштування](course/lessons/12_etl_patterns_staging_upsert.md#налаштування)
-    - [Лаб 1 — Завантаження в staging (симуляція)](course/lessons/12_etl_patterns_staging_upsert.md#лаб-1-завантаження-в-staging-симуляція)
+    - [Лаб 1 — Завантаження в staging (відтворюваний батч)](course/lessons/12_etl_patterns_staging_upsert.md#лаб-1-завантаження-в-staging-відтворюваний-батч)
     - [Лаб 2 — Upsert через `UPDATE` + `INSERT`](course/lessons/12_etl_patterns_staging_upsert.md#лаб-2-upsert-через-update-insert)
     - [Лаб 3 — Виявлення “видалень” (опційно)](course/lessons/12_etl_patterns_staging_upsert.md#лаб-3-виявлення-видалень-опційно)
     - [Лаб 4 — Інкрементальне завантаження з watermark (патерн)](course/lessons/12_etl_patterns_staging_upsert.md#лаб-4-інкрементальне-завантаження-з-watermark-патерн)

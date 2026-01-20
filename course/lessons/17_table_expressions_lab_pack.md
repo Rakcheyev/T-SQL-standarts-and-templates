@@ -175,14 +175,41 @@ WITH BigOrders AS (
   FROM dbo.Orders AS o
   WHERE o.Amount >= 20.00
 )
+, Totals AS (
+  SELECT
+    COUNT(*) AS BigOrderCount,
+    SUM(Amount) AS BigOrderAmount
+  FROM BigOrders
+), ByCustomer AS (
+  SELECT
+    CustomerID,
+    COUNT(*) AS BigOrderCountByCustomer,
+    SUM(Amount) AS BigOrderAmountByCustomer
+  FROM BigOrders
+  GROUP BY CustomerID
+)
 SELECT
-  (SELECT COUNT(*) FROM BigOrders) AS BigOrderCount,
-  (SELECT SUM(Amount) FROM BigOrders) AS BigOrderAmount;
+  bc.CustomerID,
+  t.BigOrderCount,
+  t.BigOrderAmount,
+  bc.BigOrderCountByCustomer,
+  bc.BigOrderAmountByCustomer
+FROM Totals AS t
+CROSS JOIN ByCustomer AS bc
+ORDER BY bc.CustomerID;
 ```
+
+Expected rows:
+
+| CustomerID | BigOrderCount | BigOrderAmount | BigOrderCountByCustomer | BigOrderAmountByCustomer |
+|-----------:|-------------:|--------------:|------------------------:|-------------------------:|
+| 1 | 3 | 115.00 | 2 | 95.00 |
+| 2 | 3 | 115.00 | 1 | 20.00 |
 
 Discussion:
 - CTEs are *query text* — the optimizer may inline them.
 - If you reference a CTE multiple times, the engine might choose a plan that repeats work or spools results.
+- If you actually need to reuse the same intermediate result across multiple statements, use a temp table.
 
 ---
 

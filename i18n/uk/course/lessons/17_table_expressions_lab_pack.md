@@ -175,14 +175,41 @@ WITH BigOrders AS (
   FROM dbo.Orders AS o
   WHERE o.Amount >= 20.00
 )
+, Totals AS (
+  SELECT
+    COUNT(*) AS BigOrderCount,
+    SUM(Amount) AS BigOrderAmount
+  FROM BigOrders
+), ByCustomer AS (
+  SELECT
+    CustomerID,
+    COUNT(*) AS BigOrderCountByCustomer,
+    SUM(Amount) AS BigOrderAmountByCustomer
+  FROM BigOrders
+  GROUP BY CustomerID
+)
 SELECT
-  (SELECT COUNT(*) FROM BigOrders) AS BigOrderCount,
-  (SELECT SUM(Amount) FROM BigOrders) AS BigOrderAmount;
+  bc.CustomerID,
+  t.BigOrderCount,
+  t.BigOrderAmount,
+  bc.BigOrderCountByCustomer,
+  bc.BigOrderAmountByCustomer
+FROM Totals AS t
+CROSS JOIN ByCustomer AS bc
+ORDER BY bc.CustomerID;
 ```
+
+Очікувані рядки:
+
+| CustomerID | BigOrderCount | BigOrderAmount | BigOrderCountByCustomer | BigOrderAmountByCustomer |
+|-----------:|-------------:|--------------:|------------------------:|-------------------------:|
+| 1 | 3 | 115.00 | 2 | 95.00 |
+| 2 | 3 | 115.00 | 1 | 20.00 |
 
 Обговорення:
 - CTE — це *вираз запиту*; оптимізатор може його inline.
 - Якщо звертатися до CTE кілька разів, можлива стратегія зі spool або повторним обчисленням.
+- Якщо треба реально перевикористати проміжний результат у кількох операторах, використовуйте temp table.
 
 ---
 

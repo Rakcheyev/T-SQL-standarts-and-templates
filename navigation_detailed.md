@@ -350,7 +350,7 @@ This page lists the lesson headings and links directly to them.
   - [Cursors in ETL: when to use (and when not)](course/lessons/12_etl_patterns_staging_upsert.md#cursors-in-etl-when-to-use-and-when-not)
   - [Labs](course/lessons/12_etl_patterns_staging_upsert.md#labs)
     - [Lab setup](course/lessons/12_etl_patterns_staging_upsert.md#lab-setup)
-    - [Lab 1 — Load staging (simulated)](course/lessons/12_etl_patterns_staging_upsert.md#lab-1-load-staging-simulated)
+    - [Lab 1 — Load staging (reproducible batch)](course/lessons/12_etl_patterns_staging_upsert.md#lab-1-load-staging-reproducible-batch)
     - [Lab 2 — Upsert via `UPDATE` then `INSERT`](course/lessons/12_etl_patterns_staging_upsert.md#lab-2-upsert-via-update-then-insert)
     - [Lab 3 — Detect deletes (optional)](course/lessons/12_etl_patterns_staging_upsert.md#lab-3-detect-deletes-optional)
     - [Lab 4 — Incremental load with watermark (pattern)](course/lessons/12_etl_patterns_staging_upsert.md#lab-4-incremental-load-with-watermark-pattern)

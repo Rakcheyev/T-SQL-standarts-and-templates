@@ -272,14 +272,16 @@ VALUES (
 '{
     "customer": "John Doe"
     , "items": {
-            "product": "Beer"
+            "product": "AA Batteries"
         , "qty": 6
         }
 }'
 );
 ```
 
-Це означає, що John Doe придбав 6 пляшок beers
+Це означає, що John Doe замовив 6 одиниць AA Batteries.
+
+Нотатка для production: у реальних order payload часто є **масив** items (а не один об’єкт), і в PostgreSQL зазвичай краще використовувати `jsonb` замість `json` (індексація та порівняння). Тут ми тримаємо форму простою, щоб сфокусуватися на операторах і проєкції.
 
 Наступний оператор додає кілька рядків одночасно.
 
@@ -290,10 +292,10 @@ VALUES
     '{"customer": "Lily Bush", "items": {"product": "Diaper", "qty": 24}}'
 )
 , (
-    '{"customer": "Josh William", "items": {"product": "Toy Car", "qty": 1}}'
+    '{"customer": "Josh William", "items": {"product": "USB-C Cable", "qty": 1}}'
 )
 , (
-    '{"customer": "Mary Clark", "items": {"product": "Toy Train", "qty": 2}}'
+    '{"customer": "Mary Clark", "items": {"product": "HDMI Adapter", "qty": 2}}'
 );
 ```
 
@@ -318,10 +320,10 @@ ORDER BY customer;
 
 | customer | product | qty |
 |:---|:---|---:|
-| John Doe | Beer | 6 |
-| Josh William | Toy Car | 1 |
+| John Doe | AA Batteries | 6 |
+| Josh William | USB-C Cable | 1 |
 | Lily Bush | Diaper | 24 |
-| Mary Clark | Toy Train | 2 |
+| Mary Clark | HDMI Adapter | 2 |
 
 <div align="center">
   <img src="../../../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image1.png" width="600" />
@@ -354,10 +356,10 @@ FROM orders;
 
 | customer | items |
 |:---|:---|
-| "John Doe" | {"product": "Beer", "qty": 6} |
+| "John Doe" | {"product": "AA Batteries", "qty": 6} |
 | "Lily Bush" | {"product": "Diaper", "qty": 24} |
-| "Josh William" | {"product": "Toy Car", "qty": 1} |
-| "Mary Clark" | {"product": "Toy Train", "qty": 2} |
+| "Josh William" | {"product": "USB-C Cable", "qty": 1} |
+| "Mary Clark" | {"product": "HDMI Adapter", "qty": 2} |
 
 А наступний запит використовує оператор -\>\>, щоб отримати всіх
 клієнтів у вигляді тексту:
@@ -394,10 +396,10 @@ ORDER BY product;
 
 | product |
 |:---|
-| Beer |
+| AA Batteries |
 | Diaper |
-| Toy Car |
-| Toy Train |
+| HDMI Adapter |
+| USB-C Cable |
 
 <div align="center">
   <img src="../../../../assets/images/lesson_6_data_chas_vikonni_funkcii/media/image4.png" width="200" />
