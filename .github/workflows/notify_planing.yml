@@ -1,0 +1,33 @@
+name: Notify Planing при push
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  notify:
+    name: Надіслати repository_dispatch до Planing
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dispatch до Planing
+        uses: actions/github-script@v7
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+        with:
+          github-token: ${{ secrets.PAT_TOKEN }}
+          script: |
+            await github.rest.repos.createDispatchEvent({
+              owner: 'Rakcheyev',
+              repo: 'Planing',
+              event_type: 'repo_push',
+              client_payload: {
+                repo: context.repo.repo,
+                ref: context.ref,
+                sha: context.sha,
+                actor: context.actor,
+              },
+            });
+            console.log('✅ dispatch надіслано до Rakcheyev/Planing (repo_push)');
